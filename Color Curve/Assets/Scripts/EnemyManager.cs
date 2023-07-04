@@ -1,0 +1,65 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using DG.Tweening;
+public class EnemyManager : MonoBehaviour
+{
+    [SerializeField] private GameObject _DeadParticle;
+    [SerializeField] private int _Health;
+    [SerializeField] public Color _NormalColor, _DamagedColor;
+    [SerializeField] public List<SpriteRenderer> _Sp;
+    [SerializeField] Slider _HealthSlider;
+    [SerializeField] public EnemyColor EnemyColorTypes = new EnemyColor();
+    [SerializeField] public EnemyTypes EnemyTypes = new EnemyTypes();
+    [SerializeField] public ParticleSystem BackgroundParticle;
+    [SerializeField] public List<TrailRenderer> Trail;
+    private ScoreManager _scoreManager;
+    private WaveManager _waveManager;
+    private int _healthCount;
+
+    private void Start()
+    {
+        _scoreManager = FindObjectOfType<ScoreManager>();
+        _waveManager = FindObjectOfType<WaveManager>();
+        _healthCount = _Health;
+        _HealthSlider.maxValue = _Health;
+        _HealthSlider.minValue = 0;
+        _HealthSlider.value = _healthCount;
+    }
+
+    public void TakeDamage(int damage, Transform pos)
+    {
+        if(_healthCount - damage > 0)
+        {
+            _healthCount -= damage;
+            _HealthSlider.value = _healthCount;
+            StartCoroutine(damageAction());
+            Camera.main.DOShakePosition(.05f, .1f);
+            _scoreManager.IncreaseScore(damage * Random.Range(5, 10), pos);
+
+        }
+        else
+        {
+            GameObject spawnedDeadParticle = Instantiate(_DeadParticle, transform.position, Quaternion.identity);
+            ParticleSystem.MainModule mainPart = spawnedDeadParticle.GetComponent<ParticleSystem>().main;
+            mainPart.startColor = _NormalColor;
+            Camera.main.DOShakePosition(.1f, .5f);
+            _waveManager.KilledEnemyCount++;
+            Destroy(gameObject);
+            _scoreManager.IncreaseScore(damage * Random.Range(7, 12), pos);
+        }
+    }
+    IEnumerator damageAction()
+    {
+        for (int i = 0; i < _Sp.Count; i++)
+        {
+            _Sp[i].color = _DamagedColor;
+        }
+        yield return new WaitForSeconds(.05f);
+        for (int i = 0; i < _Sp.Count; i++)
+        {
+            _Sp[i].color = _NormalColor;
+        }
+    }
+}
