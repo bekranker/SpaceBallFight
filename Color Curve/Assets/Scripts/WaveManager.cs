@@ -26,19 +26,19 @@ public class WaveManager : MonoBehaviour
     {
         if (_timeCounter <= 0 && _spawnedEnemyCount < _WaveData[_waveIndex].EnemyCount)
         {
+            _spawnedEnemyCount++;
             GameObject spawnedEnemey = _SpawnerManager.SpawnEnemy(_WaveData[_waveIndex].EnemyTypes[Random.Range(0, _WaveData[_waveIndex].EnemyTypes.Count)]);
             ChangeEnemyState(spawnedEnemey.GetComponent<EnemyManager>());
-            _spawnedEnemyCount++;
             _timeCounter = _WaveData[_waveIndex].SpawnDelay;
         }
-        else if(_timeCounter > 0)
+        if(_timeCounter > 0)
             _timeCounter -= Time.deltaTime;
     }
     public IEnumerator NextWave()
     {
-        _waveIndex++;
         _Animatior.SetTrigger("WaveCompleted");
         yield return new WaitForSeconds(2f);
+        _waveIndex++;
         _timeCounter = _WaveData[_waveIndex].SpawnDelay;
         KilledEnemyCount = 0;
         _spawnedEnemyCount = 0;

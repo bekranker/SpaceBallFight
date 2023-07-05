@@ -17,6 +17,7 @@ public class EnemyManager : MonoBehaviour
     private ScoreManager _scoreManager;
     private WaveManager _waveManager;
     private int _healthCount;
+    private bool _canDie;
 
     private void Start()
     {
@@ -26,6 +27,7 @@ public class EnemyManager : MonoBehaviour
         _HealthSlider.maxValue = _Health;
         _HealthSlider.minValue = 0;
         _HealthSlider.value = _healthCount;
+        _canDie = true;
     }
 
     public void TakeDamage(int damage, Transform pos)
@@ -37,17 +39,18 @@ public class EnemyManager : MonoBehaviour
             StartCoroutine(damageAction());
             Camera.main.DOShakePosition(.05f, .1f);
             _scoreManager.IncreaseScore(damage * Random.Range(5, 10), pos);
-
         }
         else
         {
+            if (!_canDie) return;
+            _waveManager.KilledEnemyCount++;
             GameObject spawnedDeadParticle = Instantiate(_DeadParticle, transform.position, Quaternion.identity);
             ParticleSystem.MainModule mainPart = spawnedDeadParticle.GetComponent<ParticleSystem>().main;
             mainPart.startColor = _NormalColor;
             Camera.main.DOShakePosition(.1f, .5f);
-            _waveManager.KilledEnemyCount++;
-            Destroy(gameObject);
             _scoreManager.IncreaseScore(damage * Random.Range(7, 12), pos);
+            Destroy(gameObject);
+            _canDie = false;
         }
     }
     IEnumerator damageAction()

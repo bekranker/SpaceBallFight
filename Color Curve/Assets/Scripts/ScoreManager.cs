@@ -15,12 +15,10 @@ public class ScoreManager : MonoBehaviour
     public void IncreaseScore(int value, Transform pos)
     {
 
-        if (_WaveManager._spawnedEnemyCount == _WaveManager._WaveData[_WaveManager._waveIndex].EnemyCount)
+        if (_WaveManager.KilledEnemyCount == _WaveManager._WaveData[_WaveManager._waveIndex].EnemyCount)
         {
-            print(_WaveManager._waveIndex);
             StartCoroutine(_WaveManager.NextWave());
         }
-
         _CrossHair.ShootEffect();
         Score += value;
         if(Score >= 1000)
