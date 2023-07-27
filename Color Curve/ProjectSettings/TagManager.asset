@@ -66,3 +66,6 @@ TagManager:
   - name: Game Canvas
     uniqueID: 2060664443
     locked: 0
+  - name: CameraSortingLayer
+    uniqueID: 3880908699
+    locked: 0

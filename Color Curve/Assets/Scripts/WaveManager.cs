@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class WaveManager : MonoBehaviour
@@ -7,12 +8,13 @@ public class WaveManager : MonoBehaviour
 
     [SerializeField] public List<WaveDatas> _WaveData = new List<WaveDatas>();
     [SerializeField] private Spawneranager _SpawnerManager;
-    [SerializeField] private Animator _Animatior;
     [SerializeField] private PlayerController _PlayerController;
+    [SerializeField] private GameManager _GameManager;
     private float _timeCounter;
     public int _waveIndex;
     public int KilledEnemyCount;
     public int _spawnedEnemyCount;
+    [SerializeField] private TMP_Text _ScoreText, _WaveCount, _TargetKillCount;
 
     private void Start()
     {
@@ -20,6 +22,8 @@ public class WaveManager : MonoBehaviour
         _spawnedEnemyCount = 0;
         _waveIndex = 0;
         _timeCounter = _WaveData[_waveIndex].SpawnDelay;
+        ChangeTargetKillCountCount();
+        ChangeScrore();
     }
 
     private void Update()
@@ -36,12 +40,15 @@ public class WaveManager : MonoBehaviour
     }
     public IEnumerator NextWave()
     {
-        _Animatior.SetTrigger("WaveCompleted");
-        yield return new WaitForSeconds(2f);
+        _GameManager.ChangeWaveInfos();
+        yield return new WaitForSecondsRealtime(2f);
         _waveIndex++;
         _timeCounter = _WaveData[_waveIndex].SpawnDelay;
         KilledEnemyCount = 0;
         _spawnedEnemyCount = 0;
+        ChangeTargetKillCountCount();
+        ChangeScrore();
+        ChangeWaveCount();
     }
     private void ChangeEnemyState(EnemyManager enemyManager)
     {
@@ -51,8 +58,6 @@ public class WaveManager : MonoBehaviour
         {
             mainPArt = enemyManager.BackgroundParticle.main;
         }
-        
-        
         switch (colorType)
         {
             case EnemyColor.Red:
@@ -116,4 +121,7 @@ public class WaveManager : MonoBehaviour
                 break;
         }
     }
+    public void ChangeScrore() => _ScoreText.text = KilledEnemyCount.ToString();
+    public void ChangeWaveCount() => _WaveCount.text = (_waveIndex + 1).ToString();
+    public void ChangeTargetKillCountCount() => _TargetKillCount.text = (_WaveData[_waveIndex].EnemyCount).ToString();
 }

@@ -18,6 +18,8 @@ public class EnemyManager : MonoBehaviour
     private WaveManager _waveManager;
     private int _healthCount;
     private bool _canDie;
+    private Camera mainCamera;
+    [SerializeField] private GameObject _Prefab;
 
     private void Start()
     {
@@ -28,6 +30,7 @@ public class EnemyManager : MonoBehaviour
         _HealthSlider.minValue = 0;
         _HealthSlider.value = _healthCount;
         _canDie = true;
+        mainCamera = Camera.main;
     }
 
     public void TakeDamage(int damage, Transform pos)
@@ -37,17 +40,18 @@ public class EnemyManager : MonoBehaviour
             _healthCount -= damage;
             _HealthSlider.value = _healthCount;
             StartCoroutine(damageAction());
-            Camera.main.DOShakePosition(.05f, .1f);
+            mainCamera.DOShakePosition(.05f, .1f);
             _scoreManager.IncreaseScore(damage * Random.Range(5, 10), pos);
         }
         else
         {
             if (!_canDie) return;
             _waveManager.KilledEnemyCount++;
+            _waveManager.ChangeScrore();
             GameObject spawnedDeadParticle = Instantiate(_DeadParticle, transform.position, Quaternion.identity);
             ParticleSystem.MainModule mainPart = spawnedDeadParticle.GetComponent<ParticleSystem>().main;
             mainPart.startColor = _NormalColor;
-            Camera.main.DOShakePosition(.1f, .5f);
+            mainCamera.DOShakePosition(.1f, .5f);
             _scoreManager.IncreaseScore(damage * Random.Range(7, 12), pos);
             Destroy(gameObject);
             _canDie = false;

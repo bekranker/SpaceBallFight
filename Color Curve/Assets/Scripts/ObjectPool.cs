@@ -9,11 +9,11 @@ public class ObjectPool : MonoBehaviour
     [SerializeField, Range(0, 500)] private int _BulletSize;
     [SerializeField, Range(0, 500)] private int _ParticleSize;
     [SerializeField, Range(0, 500)] private int _ComboEffectSize;
-    public Queue<GameObject> BulletQueue = new Queue<GameObject>();
+    [SerializeField] private float _BulletSpeed;
     public Queue<GameObject> ParticleQueue = new Queue<GameObject>();
+    public Queue<GameObject> BulletQueue = new Queue<GameObject>();
     public Queue<GameObject> ComboEffectQueue = new Queue<GameObject>();
 
-    [SerializeField] private float _BulletSpeed;
 
     private List<Color> _randomTextColors = new List<Color>
     {
@@ -22,30 +22,21 @@ public class ObjectPool : MonoBehaviour
         Color.blue,
         Color.green,
     };
-
     void Start()
     {
-        for (int i = 0; i < _BulletSize; i++)
+        SpawnObjects(_BulletSize, BulletQueue, _BulletPrefab);
+        SpawnObjects(_ParticleSize, ParticleQueue, _ParticlePrefab);
+        SpawnObjects(_ComboEffectSize, ComboEffectQueue, _ComboEffect);
+    }
+    private void SpawnObjects(int size, Queue<GameObject> queue, GameObject prefab)
+    {
+        for (int i = 0; i < size; i++)
         {
-            GameObject spawnedBullet = Instantiate(_BulletPrefab);
-            BulletQueue.Enqueue(spawnedBullet);
-            spawnedBullet.SetActive(false);
-        }
-        for (int i = 0; i < _ParticleSize; i++)
-        {
-            GameObject spawnedParticle = Instantiate(_ParticlePrefab);
-            ParticleQueue.Enqueue(spawnedParticle);
-            spawnedParticle.SetActive(false);
-        }
-        for (int i = 0; i < _ComboEffectSize; i++)
-        {
-            GameObject spawnedEffect = Instantiate(_ComboEffect);
-            ComboEffectQueue.Enqueue(spawnedEffect);
+            GameObject spawnedEffect = Instantiate(prefab);
+            queue.Enqueue(spawnedEffect);
             spawnedEffect.SetActive(false);
         }
     }
-
-
     public GameObject TakeBullet(Vector3 playerPos)
     {
         GameObject takeBullet = BulletQueue.Dequeue();
@@ -60,7 +51,6 @@ public class ObjectPool : MonoBehaviour
         bullet.SetActive(false);
         BulletQueue.Enqueue(bullet);
     }
-
     private void AddVelocity(Rigidbody2D rb, Vector3 playerPos)
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -73,7 +63,6 @@ public class ObjectPool : MonoBehaviour
         rb.velocity = Vector2.zero;
         rb.angularVelocity = 0;
     }
-
     public GameObject TakeParticle(Vector2 pos)
     {
         GameObject taedComboEffect = ParticleQueue.Dequeue();
