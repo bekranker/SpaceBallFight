@@ -10,4 +10,7 @@ public class WaveDatas : ScriptableObject
     public float SpawnDelay;
     public List<EnemyTypes> EnemyTypes = new List<EnemyTypes>();
     public List<EnemyColor> StartColor = new List<EnemyColor>();
+    public float WaveTimeCount;
+    public bool Boss;
+    public GameObject BossPrefab;
 }

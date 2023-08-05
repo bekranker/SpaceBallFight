@@ -14,6 +14,11 @@ TagManager:
   - BulletRed
   - BulletGreen
   - BulletBlue
+  - ScoreManager
+  - WaveManager
+  - ShockWave
+  - Pool
+  - BossManager
   layers:
   - Default
   - TransparentFX
@@ -62,6 +67,9 @@ TagManager:
     locked: 0
   - name: Players
     uniqueID: 83237209
+    locked: 0
+  - name: Boss
+    uniqueID: 3449101227
     locked: 0
   - name: Game Canvas
     uniqueID: 2060664443

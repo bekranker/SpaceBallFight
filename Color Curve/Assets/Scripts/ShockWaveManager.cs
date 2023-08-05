@@ -6,7 +6,7 @@ public class ShockWaveManager : MonoBehaviour
 {
     private static int keyID = Shader.PropertyToID("_WaveDistanceFromCenter");
     public Material Material;
-    [SerializeField, Range(0.05f, 1)] private float _ShockWaveSpeed;
+    [SerializeField, Range(0.05f, 3)] private float _ShockWaveSpeed;
 
     public void CallShockWave()
     {

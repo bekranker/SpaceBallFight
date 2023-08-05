@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,8 +23,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Color _RedParticleColor, _GreenParticleColor, _BlueParticleColor;
     [SerializeField] private Sprite _RedPlayerSprite, _GreenPlayerSprite, _BluePlayerSprite;
     [SerializeField] private Sprite _RedParticleSprite, _GreenParticleSprite, _BlueParticleSprite;
+    public bool Green, Blue;
     private int _index;
-    private float previousScrollPosition;
+    private float _previousScrollPosition;
     private void Start()
     {
         _index = 1;
@@ -61,7 +63,7 @@ public class PlayerController : MonoBehaviour
             SetParticleColor();
         }
 
-        previousScrollPosition = currentScrollPosition;
+        _previousScrollPosition = currentScrollPosition;
         if (Input.GetKeyDown(KeyCode.E))
         {
             _index = (_index + 1 > 3) ? 1 : _index + 1;
@@ -108,11 +110,21 @@ public class PlayerController : MonoBehaviour
                 _Sp.gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = _RedPlayerSprite;
                 break;
             case 2:
+                if (!Green)
+                {
+                    return;
+                }
                 _PlayerStates = PlayerState.Green;
                 _Sp.color = _GreenPlayerColor;
                 _Sp.gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = _GreenPlayerSprite;
                 break;
             case 3:
+                if (!Blue)
+                {
+                    _index = 1;
+                    ChangeState();
+                    return;
+                }
                 _PlayerStates = PlayerState.Blue;
                 _Sp.color = _BluePlayerColor;
                 _Sp.gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = _BluePlayerSprite;
@@ -138,10 +150,12 @@ public class PlayerController : MonoBehaviour
                 texture.SetSprite(0, _RedParticleSprite);
                 break;
             case PlayerState.Green:
+                if (!Green) return;
                 mainPart.startColor = _GreenParticleColor;
                 texture.SetSprite(0, _GreenParticleSprite);
                 break;
             case PlayerState.Blue:
+                if (!Blue) return;
                 mainPart.startColor = _BlueParticleColor;
                 texture.SetSprite(0, _BlueParticleSprite);
                 break;

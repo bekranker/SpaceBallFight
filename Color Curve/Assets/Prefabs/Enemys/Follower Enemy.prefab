@@ -5628,6 +5628,7 @@ GameObject:
   - component: {fileID: 9192851956114548401}
   - component: {fileID: -248564570217021096}
   - component: {fileID: 1987475125680785737}
+  - component: {fileID: -4635291899559715131}
   m_Layer: 0
   m_Name: Follower Enemy
   m_TagString: Enemy
@@ -5736,6 +5737,7 @@ MonoBehaviour:
   Trail:
   - {fileID: 831932824744974025}
   - {fileID: 6827706394288733767}
+  _Prefab: {fileID: 0}
 --- !u!114 &9192851956114548401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5776,6 +5778,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyMovementAbstract: {fileID: -248564570217021096}
+--- !u!114 &-4635291899559715131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6486329078010515525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fb61c7e54678944083ff7abb37d2dd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ParticleSystem: {fileID: 5332554066000510625, guid: 8c6a7d125aebc6f4e893e7a3d4092a2d, type: 3}
+  _EnemyManager: {fileID: 8632185892933866409}
 --- !u!1 &7076260029384090505
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,3 +16,4 @@ MonoBehaviour:
   SpawnDelay: 1
   EnemyTypes: 02000000
   StartColor: 02000000
+  WaveTimeCount: 5

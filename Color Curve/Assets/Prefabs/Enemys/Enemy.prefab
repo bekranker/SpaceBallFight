@@ -453,6 +453,7 @@ GameObject:
   - component: {fileID: 3345185614287689602}
   - component: {fileID: -456690909615830100}
   - component: {fileID: -4279034778473957359}
+  - component: {fileID: 2584711400389892618}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -577,7 +578,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc8496203c257d643a06cdb9e53cc633, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _DeadParticle: {fileID: 6033193557138097627, guid: 8c6a7d125aebc6f4e893e7a3d4092a2d, type: 3}
   _Health: 50
   _NormalColor: {r: 1, g: 0, b: 0, a: 1}
   _DamagedColor: {r: 1, g: 1, b: 1, a: 1}
@@ -589,6 +589,7 @@ MonoBehaviour:
   EnemyTypes: 1
   BackgroundParticle: {fileID: 763131256908207663}
   Trail: []
+  _Prefab: {fileID: 0}
 --- !u!114 &-456690909615830100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -618,6 +619,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyMovementAbstract: {fileID: -456690909615830100}
+--- !u!114 &2584711400389892618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2956253033659694738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fb61c7e54678944083ff7abb37d2dd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ParticleSystem: {fileID: 5332554066000510625, guid: 8c6a7d125aebc6f4e893e7a3d4092a2d, type: 3}
+  _EnemyManager: {fileID: 3345185614287689602}
 --- !u!1 &3185633174465495842
 GameObject:
   m_ObjectHideFlags: 0

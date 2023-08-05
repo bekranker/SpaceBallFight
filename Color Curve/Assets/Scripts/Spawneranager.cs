@@ -6,8 +6,106 @@ public class Spawneranager : MonoBehaviour
 {
     [SerializeField] private List<GameObject> _Enemys = new List<GameObject>();
     [SerializeField] private List<Transform> _Spawners = new List<Transform>();
+    [SerializeField] private WaveManager _WaveManager;
+    [SerializeField] private PlayerController _PlayerController;
+    [SerializeField] private BossManager _BossManager;
 
+    private float _timeCounter;
+    public bool CanSpawn;
+    public int KilledEnemyCount;
+    private void Start()
+    {
+        CanSpawn = true;
+        KilledEnemyCount = 0;
+        _timeCounter = _WaveManager._WaveData[_WaveManager.WaveIndex].SpawnDelay;
+    }
+    private void Update()
+    {
+        if (!CanSpawn) return;
+        if (_timeCounter <= 0)
+        {
+            GameObject spawnedEnemey = SpawnEnemy(_WaveManager._WaveData[_WaveManager.WaveIndex].EnemyTypes[Random.Range(0, _WaveManager._WaveData[_WaveManager.WaveIndex].EnemyTypes.Count)]);
+            ChangeEnemyState(spawnedEnemey.GetComponent<EnemyManager>());
+            _timeCounter = _WaveManager._WaveData[_WaveManager.WaveIndex].SpawnDelay;
+        }
+        if (_timeCounter > 0)
+            _timeCounter -= Time.deltaTime;
+    }
+    public void SpawnBoss()
+    {
+        Instantiate(_WaveManager._WaveData[_WaveManager.WaveIndex].BossPrefab, _BossManager._BossSpawnPoint.position, Quaternion.identity);
+    }
+    private void ChangeEnemyState(EnemyManager enemyManager)
+    {
+        EnemyColor colorType = _WaveManager._WaveData[_WaveManager.WaveIndex].StartColor[Random.Range(0, _WaveManager._WaveData[_WaveManager.WaveIndex].StartColor.Count)];
+        ParticleSystem.MainModule mainPArt;
+        if (enemyManager.BackgroundParticle != null)
+        {
+            mainPArt = enemyManager.BackgroundParticle.main;
+        }
+        switch (colorType)
+        {
+            case EnemyColor.Red:
+                for (int i = 0; i < enemyManager._Sp.Count; i++)
+                {
+                    enemyManager._Sp[i].color = _PlayerController._RedPlayerColor;
+                }
+                enemyManager.gameObject.GetComponent<EnemyManager>().EnemyColorTypes = EnemyColor.Red;
+                enemyManager.gameObject.GetComponent<EnemyManager>()._NormalColor = Color.red;
+                if (enemyManager.BackgroundParticle != null)
+                    mainPArt.startColor = _PlayerController._RedPlayerColor;
+                if (enemyManager.Trail != null)
+                {
+                    enemyManager.Trail.ForEach((_trail) => { _trail.startColor = _PlayerController._RedPlayerColor; });
+                }
 
+                break;
+            case EnemyColor.Green:
+                for (int i = 0; i < enemyManager._Sp.Count; i++)
+                {
+                    enemyManager._Sp[i].color = _PlayerController._GreenPlayerColor;
+                }
+                enemyManager.gameObject.GetComponent<EnemyManager>().EnemyColorTypes = EnemyColor.Green;
+                enemyManager.gameObject.GetComponent<EnemyManager>()._NormalColor = _PlayerController._GreenPlayerColor;
+                if (enemyManager.BackgroundParticle != null)
+                    mainPArt.startColor = Color.green;
+                if (enemyManager.Trail != null)
+                {
+                    enemyManager.Trail.ForEach((_trail) => { _trail.startColor = _PlayerController._GreenPlayerColor; });
+                }
+                break;
+            case EnemyColor.Blue:
+                for (int i = 0; i < enemyManager._Sp.Count; i++)
+                {
+                    enemyManager._Sp[i].color = _PlayerController._BluePlayerColor;
+                }
+                enemyManager.gameObject.GetComponent<EnemyManager>().EnemyColorTypes = EnemyColor.Blue;
+                enemyManager.gameObject.GetComponent<EnemyManager>()._NormalColor = _PlayerController._BluePlayerColor;
+                if (enemyManager.BackgroundParticle != null)
+                    mainPArt.startColor = _PlayerController._BluePlayerColor;
+                if (enemyManager.Trail != null)
+                {
+                    enemyManager.Trail.ForEach((_trail) => { _trail.startColor = _PlayerController._BluePlayerColor; });
+                }
+                break;
+            case EnemyColor.White:
+                for (int i = 0; i < enemyManager._Sp.Count; i++)
+                {
+                    enemyManager._Sp[i].color = Color.white;
+                }
+                enemyManager.gameObject.GetComponent<EnemyManager>().EnemyColorTypes = EnemyColor.White;
+                enemyManager.gameObject.GetComponent<EnemyManager>()._NormalColor = Color.white;
+                if (enemyManager.BackgroundParticle != null)
+                    mainPArt.startColor = Color.white;
+                if (enemyManager.Trail != null)
+                {
+                    enemyManager.Trail.ForEach((_trail) => { _trail.startColor = Color.white; });
+                }
+                break;
+            default:
+                break;
+        }
+    }
     public GameObject SpawnEnemy(EnemyTypes enemyType)
     {
         switch (enemyType)

@@ -91,6 +91,7 @@ GameObject:
   - component: {fileID: 1296728903600321364}
   - component: {fileID: -2793281673359001634}
   - component: {fileID: -4180663417553669593}
+  - component: {fileID: 9097687526110511934}
   m_Layer: 3
   m_Name: Hexagon Enemy
   m_TagString: Enemy
@@ -220,7 +221,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc8496203c257d643a06cdb9e53cc633, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _DeadParticle: {fileID: 6033193557138097627, guid: 8c6a7d125aebc6f4e893e7a3d4092a2d, type: 3}
   _Health: 50
   _NormalColor: {r: 1, g: 0, b: 0, a: 1}
   _DamagedColor: {r: 1, g: 1, b: 1, a: 1}
@@ -232,6 +232,7 @@ MonoBehaviour:
   EnemyTypes: 2
   BackgroundParticle: {fileID: 1261956688659119360}
   Trail: []
+  _Prefab: {fileID: 0}
 --- !u!114 &-2793281673359001634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,6 +262,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyMovementAbstract: {fileID: -2793281673359001634}
+--- !u!114 &9097687526110511934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4035755614856987180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fb61c7e54678944083ff7abb37d2dd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ParticleSystem: {fileID: 5332554066000510625, guid: 8c6a7d125aebc6f4e893e7a3d4092a2d, type: 3}
+  _EnemyManager: {fileID: 1296728903600321364}
 --- !u!1 &4376758242496433270
 GameObject:
   m_ObjectHideFlags: 0

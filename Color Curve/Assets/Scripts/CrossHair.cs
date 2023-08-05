@@ -8,20 +8,22 @@ public class CrossHair : MonoBehaviour
     [SerializeField] private PlayerController _PlayerController;
     [SerializeField] private SpriteRenderer _SpriteRenderer;
     [SerializeField] private Color _Blue, _Red, _Green;
+
+    private Vector3 _mousePos;
+    private Camera _camera;
+
     private void Start()
     {
         Cursor.visible = false;
         ChangeColorCross();
+        _camera = Camera.main;
     }
-
-
     void Update()
     {
-        var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mousePos.z = 0;
-        transform.position = mousePos;
+        _mousePos = _camera.ScreenToWorldPoint(Input.mousePosition);
+        _mousePos.z = 0;
+        transform.position = _mousePos;
     }
-
     public void ShootEffect()
     {
         transform.DOScale(1.5f, .05f).OnComplete(() =>
@@ -29,7 +31,6 @@ public class CrossHair : MonoBehaviour
             transform.localScale = Vector3.one;
         });
     }
-
     public void ChangeColorCross()
     {
         switch (_PlayerController._PlayerStates)
