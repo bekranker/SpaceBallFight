@@ -606,6 +606,7 @@ MonoBehaviour:
   _Speed: 5
   BodyOne: {fileID: 6901885282707967161}
   BodyTwo: {fileID: 244017261495792721}
+  _Rb: {fileID: 1203746973454814318}
 --- !u!114 &-4279034778473957359
 MonoBehaviour:
   m_ObjectHideFlags: 0

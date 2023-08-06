@@ -5,12 +5,15 @@ using UnityEngine;
 
 public class BossAttackManager : MonoBehaviour
 {
-    public static event Action AttackEvent;
+    public static event Action AttackEventStart, AttackEventUpdate;
     public bool CanFight;
-
 
     private void Start()
     {
-        AttackEvent?.Invoke();
+        AttackEventStart?.Invoke();
+    }
+    private void Update()
+    {
+        AttackEventUpdate?.Invoke();
     }
 }

@@ -17,6 +17,9 @@ public class BossManager : MonoBehaviour
     [SerializeField] private TMP_Text _BossHealthText;
     [SerializeField] private GameManager _GameManager;
     [SerializeField] private List<SpriteRenderer> _Borders = new List<SpriteRenderer>();
+    [SerializeField] private Animator _Animation;
+
+
     //------------------------Cut------------------------
 
     private WaitForSeconds _sleep = new WaitForSeconds(3);
@@ -49,11 +52,12 @@ public class BossManager : MonoBehaviour
         _mainCamera.DOShakePosition(3, 2, 2, fadeOut: true);
         yield return _sleep;
         _mainCamera.DOShakePosition(.25f, 5, 10, fadeOut: true, randomnessMode: ShakeRandomnessMode.Harmonic);
-        Instantiate(_BossHerePS, _BossSpawnPoint.position, Quaternion.identity);
+        Instantiate(_BossHerePS, new Vector3(_BossSpawnPoint.position.x, _BossSpawnPoint.position.y, 0), Quaternion.identity);
         _SpawnManager.SpawnBoss();
     }
     private IEnumerator EndBossFightIE()
     {
+        StartCoroutine(GoSlider());
         _Borders.ForEach((_border) => { _border.DOFade(0, 1).OnComplete(() => { _border.gameObject.SetActive(false); }); });
         yield return _sleep;
         _CameraFollow.enabled = true;
@@ -61,6 +65,12 @@ public class BossManager : MonoBehaviour
         _WaveManager.WaveIndex++;
         _GameManager.ChangeWaveInfos();
         _SpawnManager.CanSpawn = true;
+    }
+    private IEnumerator GoSlider()
+    {
+        _Animation.SetTrigger("Go");
+        yield return new WaitForSeconds(1);
+        _Animation.gameObject.SetActive(false);
     }
     public void SetHealthSlider(float value, float min, float max)
     {

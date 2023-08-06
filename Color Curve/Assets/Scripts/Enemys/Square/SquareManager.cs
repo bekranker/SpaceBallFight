@@ -7,6 +7,7 @@ public class SquareManager : EnemyMovementAbstract
     [HideInInspector] public PlayerController _PlayerController;
     [SerializeField] private float _Speed;
     [SerializeField] private Transform BodyOne, BodyTwo;
+    [SerializeField] private Rigidbody2D _Rb;
     private bool _canDash, _canFollow;
 
     public override void OnUpdate(AbstractmovementManager abstractmovementManager)
@@ -60,7 +61,8 @@ public class SquareManager : EnemyMovementAbstract
     {
         _canDash = false;
         yield return new WaitForSeconds(.25f);
-        transform.position = Vector3.MoveTowards(transform.position, _PlayerController.gameObject.transform.position, 15 * Time.deltaTime);
+        _Rb.velocity = 30 * Time.deltaTime * 100 * transform.up;
+        yield return new WaitForSeconds(.25f);
         _canFollow = true;
     }
 

@@ -33,7 +33,7 @@ public class Spawneranager : MonoBehaviour
     }
     public void SpawnBoss()
     {
-        Instantiate(_WaveManager._WaveData[_WaveManager.WaveIndex].BossPrefab, _BossManager._BossSpawnPoint.position, Quaternion.identity);
+        Instantiate(_WaveManager._WaveData[_WaveManager.WaveIndex].BossPrefab, new Vector3(_BossManager._BossSpawnPoint.position.x, _BossManager._BossSpawnPoint.position.y, 0), Quaternion.identity);
     }
     private void ChangeEnemyState(EnemyManager enemyManager)
     {
