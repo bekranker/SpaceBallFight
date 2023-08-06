@@ -19,6 +19,7 @@ TagManager:
   - ShockWave
   - Pool
   - BossManager
+  - Unlocked
   layers:
   - Default
   - TransparentFX

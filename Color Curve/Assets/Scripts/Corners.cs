@@ -15,4 +15,14 @@ public class Corners : MonoBehaviour
             _ObjectPool.GiveBullet(collision.gameObject);
         }
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("BulletWhite") ||
+            collision.gameObject.CompareTag("BulletGreen") ||
+            collision.gameObject.CompareTag("BulletBlue") ||
+            collision.gameObject.CompareTag("BulletRed"))
+        {
+            _ObjectPool.GiveBullet(collision.gameObject);
+        }
+    }
 }

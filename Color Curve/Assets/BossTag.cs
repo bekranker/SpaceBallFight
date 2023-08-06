@@ -15,7 +15,7 @@ public class BossTag : MonoBehaviour
     [SerializeField] private List<Transform> _Eyes = new List<Transform>();
     [SerializeField] private ParticleSystem _HitParticle;
     [SerializeField] private ScoreManager _ScoreManager;
-
+    [SerializeField] private BossAttackManager _BossAttackManager;
 
     //----------------------------------------------------Cut----------------------------------------------------
 
@@ -23,12 +23,12 @@ public class BossTag : MonoBehaviour
     private BossManager _BossManager;
     private float _currentHealth;
     private WaitForSecondsRealtime _sleepTime = new WaitForSecondsRealtime(.05f);
-    private Transform _player;
+    [HideInInspector] public Transform _player;
     private Vector3 _playerPosition;
     private Transform _t;
     private Vector2 _direction;
-
-
+    private bool _didDead;
+    private bool _canDamage;
 
 
 
@@ -41,6 +41,8 @@ public class BossTag : MonoBehaviour
         _BossManager.SetHealthSlider(_MaxHealth, 0, _MaxHealth);
         _BossManager.SetHealthSlider(_MaxHealth, _MaxHealth);
         _currentHealth = _MaxHealth;
+
+        StartCoroutine(SetBossBeReady());
     }
     private void Update()
     {
@@ -50,6 +52,7 @@ public class BossTag : MonoBehaviour
     {
         _BossManager.SetHealthSlider(_MaxHealth, 0, _MaxHealth);
         yield return new WaitForSeconds(2);
+        _canDamage = true;
     }
     private void LookToPlayer()
     {
@@ -63,9 +66,14 @@ public class BossTag : MonoBehaviour
     }
     public void TakeDamage(float damage, Transform pos)
     {
+        if (_didDead) return;
+        if (!_canDamage) return;
         if (_currentHealth - damage <= 0)
         {
+            _didDead = true;
             OnDie?.Invoke();
+            _BossManager.EndBossFight();
+            _BossAttackManager.CanFight = false;
         }
         else
         {

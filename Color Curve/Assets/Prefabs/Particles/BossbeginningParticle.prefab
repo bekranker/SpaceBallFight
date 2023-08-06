@@ -42,7 +42,7 @@ ParticleSystem:
   m_GameObject: {fileID: 559422814800478795}
   serializedVersion: 8
   lengthInSec: 3
-  simulationSpeed: 2
+  simulationSpeed: 3
   stopAction: 2
   cullingMode: 0
   ringBufferMode: 0
@@ -4937,7 +4937,7 @@ Transform:
   m_Children:
   - {fileID: 1249974519257213495}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &5461028439512107721
 ParticleSystem:
@@ -4948,7 +4948,7 @@ ParticleSystem:
   m_GameObject: {fileID: 3349017497622092107}
   serializedVersion: 8
   lengthInSec: 1.5
-  simulationSpeed: 1
+  simulationSpeed: 2
   stopAction: 2
   cullingMode: 0
   ringBufferMode: 0

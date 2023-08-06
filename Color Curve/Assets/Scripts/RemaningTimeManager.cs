@@ -38,7 +38,7 @@ public class RemaningTimeManager : MonoBehaviour
                 {
                     //Boss call
                     _SpawnerManager.CanSpawn = false;
-                    _BossManager.BossFight();
+                    _BossManager.BeginBossFight();
                 }
                 else
                 {

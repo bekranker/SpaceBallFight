@@ -7,7 +7,16 @@ using DG.Tweening;
 public class StupidBossAttack : MonoBehaviour
 {
     [SerializeField] private Animator _Animator;
+    [SerializeField] private BossAttackManager _BossAttackManager;
 
+    private void OnEnable()
+    {
+        BossAttackManager.AttackEvent += AttackToPlayer;
+    }
+    private void OnDisable()
+    {
+        BossAttackManager.AttackEvent -= AttackToPlayer;
+    }
     private bool _canMove;
     private WaitForSecondsRealtime _sleep = new WaitForSecondsRealtime(2);
     private List<Vector2> _Positions = new List<Vector2>
@@ -19,12 +28,9 @@ public class StupidBossAttack : MonoBehaviour
     private int _positionIndex;
     [SerializeField] Transform _t;
 
-    private void Start()
-    {
-        AttackToPlayer();
-    }
     public void AttackToPlayer()
     {
+        if (!_BossAttackManager.CanFight) return;
         StartCoroutine(AttackIE());
     }
     private IEnumerator AttackIE()

@@ -15,7 +15,8 @@ public class BossManager : MonoBehaviour
     [SerializeField] private CameraFollow _CameraFollow;
     [SerializeField] public Slider _BossHealthSlider;
     [SerializeField] private TMP_Text _BossHealthText;
-
+    [SerializeField] private GameManager _GameManager;
+    [SerializeField] private List<SpriteRenderer> _Borders = new List<SpriteRenderer>();
     //------------------------Cut------------------------
 
     private WaitForSeconds _sleep = new WaitForSeconds(3);
@@ -29,16 +30,21 @@ public class BossManager : MonoBehaviour
         _canCallBoss = true;
         _mainCamera = Camera.main;
     }
-    public void BossFight()
+    public void BeginBossFight()
     {
         if (!_canCallBoss) return;
 
         _CameraFollow.enabled = false;
-        StartCoroutine(beginBossFight());
+        StartCoroutine(BeginBossFightIE());
         _canCallBoss = false;
     }
-    private IEnumerator beginBossFight()
+    public void EndBossFight()
     {
+        StartCoroutine(EndBossFightIE());
+    }
+    private IEnumerator BeginBossFightIE()
+    {
+        _Borders.ForEach((_border) => { _border.gameObject.SetActive(true);  _border.DOFade(1, 1); });
         Instantiate(_BossBeginParticleSystem, _BossSpawnPoint.position, Quaternion.identity);
         _mainCamera.DOShakePosition(3, 2, 2, fadeOut: true);
         yield return _sleep;
@@ -46,9 +52,14 @@ public class BossManager : MonoBehaviour
         Instantiate(_BossHerePS, _BossSpawnPoint.position, Quaternion.identity);
         _SpawnManager.SpawnBoss();
     }
-    private IEnumerator endBossFight()
+    private IEnumerator EndBossFightIE()
     {
-        yield return null;
+        _Borders.ForEach((_border) => { _border.DOFade(0, 1).OnComplete(() => { _border.gameObject.SetActive(false); }); });
+        yield return _sleep;
+        _CameraFollow.enabled = false;
+        _canCallBoss = true;
+        _WaveManager.WaveIndex++;
+        _GameManager.ChangeWaveInfos();
     }
     public void SetHealthSlider(float value, float min, float max)
     {
