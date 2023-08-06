@@ -793,7 +793,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60f0fd36a348b5c48bcd1892ebcee10b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _MaxHealth: 5
+  _MaxHealth: 1250
   _SpriteRenderer:
   - {fileID: 3416591650518308714}
   - {fileID: 5285656950751555728}
@@ -820,3 +820,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _BossTag: {fileID: 3838827982302977659}
   _GreenPlayerParticle: {fileID: 130230781439211816, guid: 687aeaa429a9c79459dab249cbb253f1, type: 3}
+  _DeadParticle: {fileID: 2885456171195781281, guid: 8cf86ea9b9cc6b14cac3deec1e3fe2df, type: 3}

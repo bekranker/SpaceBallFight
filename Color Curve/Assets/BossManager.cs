@@ -56,10 +56,11 @@ public class BossManager : MonoBehaviour
     {
         _Borders.ForEach((_border) => { _border.DOFade(0, 1).OnComplete(() => { _border.gameObject.SetActive(false); }); });
         yield return _sleep;
-        _CameraFollow.enabled = false;
+        _CameraFollow.enabled = true;
         _canCallBoss = true;
         _WaveManager.WaveIndex++;
         _GameManager.ChangeWaveInfos();
+        _SpawnManager.CanSpawn = true;
     }
     public void SetHealthSlider(float value, float min, float max)
     {

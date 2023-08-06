@@ -16,6 +16,7 @@ public class BossTag : MonoBehaviour
     [SerializeField] private ParticleSystem _HitParticle;
     [SerializeField] private ScoreManager _ScoreManager;
     [SerializeField] private BossAttackManager _BossAttackManager;
+    [HideInInspector] public ShockWaveManager _ShockWave;
 
     //----------------------------------------------------Cut----------------------------------------------------
 
@@ -38,6 +39,7 @@ public class BossTag : MonoBehaviour
         _player = FindAnyObjectByType<PlayerController>().transform;
         _BossManager = GameObject.FindGameObjectWithTag("BossManager").GetComponent<BossManager>();
         _ScoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
+        _ShockWave = GameObject.FindGameObjectWithTag("ShockWave").GetComponent<ShockWaveManager>();
         _BossManager.SetHealthSlider(_MaxHealth, 0, _MaxHealth);
         _BossManager.SetHealthSlider(_MaxHealth, _MaxHealth);
         _currentHealth = _MaxHealth;

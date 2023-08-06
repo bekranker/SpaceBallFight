@@ -16,6 +16,7 @@ public class UnlockGreenPlayer : MonoBehaviour
             print("sa");
             playerController.Green = true;
             _UnlockedAnimation.SetTrigger("Unlocked");
+            Destroy(gameObject);
         }
     }
 }
