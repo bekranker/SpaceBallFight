@@ -6,11 +6,10 @@ using System;
 
 public class BossTag : MonoBehaviour
 {
-
     public static event Action OnDie, OnHit;
-
+    [SerializeField] public EnemyColor EnemyColor = EnemyColor.Red; 
     [SerializeField] private float _MaxHealth;
-    [SerializeField] private List<SpriteRenderer> _SpriteRenderer = new List<SpriteRenderer>();
+    [SerializeField] public List<SpriteRenderer> _SpriteRenderer = new List<SpriteRenderer>();
     [SerializeField] private Color _DamageColor, _NormalColor;
     [SerializeField] private List<Transform> _Eyes = new List<Transform>();
     [SerializeField] private ParticleSystem _HitParticle;
@@ -44,6 +43,7 @@ public class BossTag : MonoBehaviour
         _BossManager.SetHealthSlider(_MaxHealth, _MaxHealth);
         _currentHealth = _MaxHealth;
 
+        Setcolor(EnemyColor);
         StartCoroutine(SetBossBeReady());
     }
     private void Update()
@@ -66,7 +66,7 @@ public class BossTag : MonoBehaviour
             _eyes.up = _direction;
         });
     }
-    public void TakeDamage(float damage, Transform pos)
+    public void TakeDamage(float damage, Transform pos, string tag)
     {
         if (_didDead) return;
         if (!_canDamage) return;
@@ -86,7 +86,8 @@ public class BossTag : MonoBehaviour
             _ScoreManager.IncreaseScore(Mathf.RoundToInt(damage), pos);
             OnHit?.Invoke();
             StartCoroutine(DamageEffect());
-            _currentHealth -= damage;
+
+            _currentHealth -= (IsCorrectColor(tag) ? damage : damage / 3);
         }
         _BossManager.SetHealthSlider(_currentHealth, _MaxHealth);
     }
@@ -101,5 +102,48 @@ public class BossTag : MonoBehaviour
         {
             _sprites.color = _NormalColor;
         });
+    }
+    public void Setcolor(EnemyColor enemyC)
+    {
+        _ShockWave.CallShockWave();
+        EnemyColor = enemyC;
+        switch (enemyC)
+        {
+            case EnemyColor.Red:
+                _NormalColor = Color.red;
+                _DamageColor = Color.white;
+                break;
+            case EnemyColor.Green:
+                _NormalColor = Color.green;
+                _DamageColor = Color.white;
+                break;
+            case EnemyColor.Blue:
+                _NormalColor = Color.blue;
+                _DamageColor = Color.white;
+                break;
+            default:
+                break;
+        }
+        _SpriteRenderer?.ForEach((_sp) => 
+        {
+            _sp.color = _NormalColor;
+        });
+
+    }
+    private bool IsCorrectColor(string tag)
+    {
+        if (tag == "BulletRed" && EnemyColor == EnemyColor.Red)
+        {
+            return true;
+        }
+        if (tag == "BulletGreen" && EnemyColor == EnemyColor.Green)
+        {
+            return true;
+        }
+        if (tag == "BulletBlue" && EnemyColor == EnemyColor.Blue)
+        {
+            return true;
+        }
+        return false;
     }
 }

@@ -13,6 +13,7 @@ public enum PlayerState
 
 public class PlayerController : MonoBehaviour
 {
+    public int MaxHealth, CurrentHealth;
     public PlayerState _PlayerStates;
     [SerializeField] private Transform _CursorPosition;
     [SerializeField] private float _Speed;
@@ -163,4 +164,7 @@ public class PlayerController : MonoBehaviour
                 break;
         }
     }
+    public void IncreaseHealth(int value) => CurrentHealth += value;
+    public void DecreaseHealth(int value) => CurrentHealth -= value;
+
 }

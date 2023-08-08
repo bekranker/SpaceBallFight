@@ -24,13 +24,13 @@ public class BossDedection : MonoBehaviour
         switch (bulletTag)
         {
             case "BulletRed":
-                _BossTag.TakeDamage(Random.Range(2,5), _t);
+                _BossTag.TakeDamage(Random.Range(2,5), _t, "BulletRed");
                 break;
             case "BulletBlue":
-                _BossTag.TakeDamage(Random.Range(0, 5), _t);
+                _BossTag.TakeDamage(Random.Range(0, 5), _t, "BulletBlue");
                 break;
             case "BulletGreen":
-                _BossTag.TakeDamage(Random.Range(0, 5), _t);
+                _BossTag.TakeDamage(Random.Range(0, 5), _t, "BulletGreen");
                 break;
             default:
                 break;

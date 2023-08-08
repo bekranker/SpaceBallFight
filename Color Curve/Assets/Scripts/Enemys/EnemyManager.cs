@@ -25,6 +25,7 @@ public class EnemyManager : MonoBehaviour
 
     //-----------------------------------Cut-----------------------------------
 
+    private WaitForSeconds _sleepTime = new WaitForSeconds(.05f);
     private ScoreManager _scoreManager;
     private WaveManager _waveManager;
     private int _healthCount;
@@ -50,7 +51,8 @@ public class EnemyManager : MonoBehaviour
         else
         {
             if (!_canDie) return;
-            _waveManager.IncreaseKilledEnemy();
+            if(_waveManager != null)
+                _waveManager.IncreaseKilledEnemy();
             OnDead?.Invoke();
             _mainCamera.DOShakePosition(.1f, .5f);
             _scoreManager.IncreaseScore(damage * Random.Range(7, 12), pos);
@@ -64,7 +66,7 @@ public class EnemyManager : MonoBehaviour
         {
             _Sp[i].color = _DamagedColor;
         }
-        yield return new WaitForSeconds(.05f);
+        yield return _sleepTime;
         for (int i = 0; i < _Sp.Count; i++)
         {
             _Sp[i].color = _NormalColor;

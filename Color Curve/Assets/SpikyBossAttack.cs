@@ -12,9 +12,8 @@ public class SpikyBossAttack : MonoBehaviour
     [SerializeField] private List<GameObject> _SpikesParent = new List<GameObject>();
     private int _spikeIndex;
     [SerializeField] private float _SlideSpeed, _LookSpeed, _PushSpeed;
-    private List<Transform> _spikeParentNull = new List<Transform>();
     private Queue<Transform> _spikeParentQueue = new Queue<Transform>();
-    private WaitForSeconds _sleepTimeForAttack = new WaitForSeconds(.075f);
+    private WaitForSeconds _sleepTimeForAttack = new WaitForSeconds(.05f);
     private WaitForSeconds _sleepTime = new WaitForSeconds(.3f);
     private WaitForSeconds _nextAttackSleepTime = new WaitForSeconds(1f);
     private Transform _playerT;
@@ -33,32 +32,21 @@ public class SpikyBossAttack : MonoBehaviour
         {
             _spikeParentQueue.Enqueue(_SpikesParent[i].transform);
         }
-        for (int i = 0; i < count; i++)
-        {
-            for (int a = 0; a < _SpikesParent[i].transform.childCount; a++)
-            {
-                _startPositions.Enqueue(_SpikesParent[i].transform.GetChild(a).position);
-                _spikes.Enqueue(_SpikesParent[i].transform.GetChild(a));
-            }
-        }
+        Repeate();
     }
-    private void OnEnable()
-    {
-        BossAttackManager.AttackEventUpdate += SpikeMovement;
-    }
-    private void OnDisable()
-    {
-        BossAttackManager.AttackEventUpdate -= SpikeMovement;
-    }
+    private void Repeate() => InvokeRepeating("SpikeMovement", 1, .5f);
     public void SpikeMovement()
     {
-        if (!_BossAttackManager.CanFight) return; 
-        if (!_canAttack) return;
-        StartCoroutine(SpikeMovemenIE());
-        _canAttack = false;
+        if (_BossAttackManager.CanFight && _canAttack)
+        {
+            print("Attacking");
+            StartCoroutine(SpikeMovemenIE());
+        }
     }
     private IEnumerator SpikeMovemenIE()
     {
+        _canAttack = false;
+
         if (_spikeParentQueue.Count == 0)
         {
             for (int i = 0; i < 20; i++)
@@ -80,17 +68,25 @@ public class SpikyBossAttack : MonoBehaviour
             }
             _BossRandomMovement.CanMove = true;
             _BossAttackManager.CanFight = false;
+            _canAttack = true;
+            for (int i = 0; i < 4; i++)
+            {
+                _spikeParentQueue.Enqueue(_SpikesParent[i].transform);
+            }
+            _selectedSpikeIndex = 0;
             yield break;
         }
 
         //-----------------------Cut
         //Attacking with spikes
-
+        
         yield return _sleepTime;
         Transform selectedSpikes = _spikeParentQueue.Dequeue();
         int childCount = selectedSpikes.childCount;
         for (int i = 0; i < childCount; i++)
         {
+            _spikes.Enqueue(selectedSpikes.GetChild(i));
+            _startPositions.Enqueue(selectedSpikes.GetChild(i).position);
             Transform spike = selectedSpikes.GetChild(i);
             yield return _sleepTimeForAttack;
             MoveALittleBit(spike);
