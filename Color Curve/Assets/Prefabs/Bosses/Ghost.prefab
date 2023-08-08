@@ -465,6 +465,7 @@ GameObject:
   - component: {fileID: 972892988807617407}
   - component: {fileID: 2179454186489652415}
   - component: {fileID: 1172997881651302555}
+  - component: {fileID: -6238926839660446894}
   m_Layer: 0
   m_Name: Ghost
   m_TagString: Untagged
@@ -501,16 +502,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyColor: 0
-  _MaxHealth: 1250
+  _MaxHealth: 10
   _SpriteRenderer:
   - {fileID: 5258969562169511306}
   _DamageColor: {r: 0, g: 0, b: 0, a: 0}
   _NormalColor: {r: 0, g: 0, b: 0, a: 0}
   _Eyes: []
-  _HitParticle: {fileID: 4436072672923617521, guid: 02df4dafa798d9e4d84ff570e9c0ee20, type: 3}
+  _HitParticle: {fileID: 7331853491115004459, guid: 72ff552b91381ff45924e8d9c96a54cb, type: 3}
   _ScoreManager: {fileID: 0}
   _BossAttackManager: {fileID: 2179454186489652415}
   _ShockWave: {fileID: 0}
+  _ColorBlue: {r: 0, g: 0.7607844, b: 1, a: 1}
   _player: {fileID: 0}
 --- !u!114 &2179454186489652415
 MonoBehaviour:
@@ -539,3 +541,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CanFollow: 1
   _Speed: 5
+--- !u!114 &-6238926839660446894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9122747971215821611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d869d8fb65198d49a95a4007ad899dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _DieParticle: {fileID: 2885456171195781281, guid: 8cf86ea9b9cc6b14cac3deec1e3fe2df, type: 3}

@@ -21,7 +21,6 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] public EnemyTypes EnemyTypes = new EnemyTypes();
     [SerializeField] public ParticleSystem BackgroundParticle;
     [SerializeField] public List<TrailRenderer> Trail;
-    [SerializeField] private GameObject _Prefab;
 
     //-----------------------------------Cut-----------------------------------
 

@@ -60,15 +60,15 @@ public class BossFightCreateEnemy : MonoBehaviour
             case EnemyColor.Blue:
                 for (int i = 0; i < enemyManager._Sp.Count; i++)
                 {
-                    enemyManager._Sp[i].color = Color.blue;
+                    enemyManager._Sp[i].color = _Tag._ColorBlue;
                 }
                 enemyManager.gameObject.GetComponent<EnemyManager>().EnemyColorTypes = EnemyColor.Blue;
-                enemyManager.gameObject.GetComponent<EnemyManager>()._NormalColor = Color.blue;
+                enemyManager.gameObject.GetComponent<EnemyManager>()._NormalColor = _Tag._ColorBlue;
                 if (enemyManager.BackgroundParticle != null)
-                    mainPArt.startColor = Color.blue;
+                    mainPArt.startColor = _Tag._ColorBlue;
                 if (enemyManager.Trail != null)
                 {
-                    enemyManager.Trail.ForEach((_trail) => { _trail.startColor = Color.blue; });
+                    enemyManager.Trail.ForEach((_trail) => { _trail.startColor = _Tag._ColorBlue; });
                 }
                 break;
             default:

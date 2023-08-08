@@ -2517,6 +2517,8 @@ GameObject:
   - component: {fileID: 3590063330491552225}
   - component: {fileID: 92143459397364334}
   - component: {fileID: 8163783587352199540}
+  - component: {fileID: 7477923757867668403}
+  - component: {fileID: 8611920672260624397}
   m_Layer: 0
   m_Name: SpikyBoss
   m_TagString: Untagged
@@ -2537,8 +2539,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6438575411044970300}
+  - {fileID: 9087426049495767462}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1287393616398001274
 BoxCollider2D:
@@ -2598,16 +2601,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyColor: 1
-  _MaxHealth: 1250
+  _MaxHealth: 10
   _SpriteRenderer:
   - {fileID: 9091782852800415263}
   _DamageColor: {r: 1, g: 1, b: 1, a: 1}
   _NormalColor: {r: 0, g: 1, b: 0, a: 1}
   _Eyes: []
-  _HitParticle: {fileID: 4436072672923617521, guid: 02df4dafa798d9e4d84ff570e9c0ee20, type: 3}
+  _HitParticle: {fileID: 7331853491115004459, guid: 72ff552b91381ff45924e8d9c96a54cb, type: 3}
   _ScoreManager: {fileID: 0}
   _BossAttackManager: {fileID: 3590063330491552225}
   _ShockWave: {fileID: 0}
+  _ColorBlue: {r: 0, g: 0.7607844, b: 1, a: 1}
   _player: {fileID: 0}
 --- !u!114 &3590063330491552225
 MonoBehaviour:
@@ -2650,6 +2654,36 @@ MonoBehaviour:
   _Speed: 5
   CanMove: 1
   _BossAttackManager: {fileID: 3590063330491552225}
+--- !u!114 &7477923757867668403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4713013754631508659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d869d8fb65198d49a95a4007ad899dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _DieParticle: {fileID: 2885456171195781281, guid: 8cf86ea9b9cc6b14cac3deec1e3fe2df, type: 3}
+--- !u!114 &8611920672260624397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4713013754631508659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6102e913627ba3e4abff658bd5296e6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Enemy:
+  - {fileID: 2956253033659694738, guid: b2c5f37d75d4e8b4b9460cbf52fbf0f6, type: 3}
+  - {fileID: 6486329078010515525, guid: 4da8e04c7c3efaf4aa7942f81eb08837, type: 3}
+  - {fileID: 4035755614856987180, guid: dbb4bae0573d86a4793368cd89748f41, type: 3}
+  _Tag: {fileID: 8650758095324117973}
 --- !u!1 &4963607615138192099
 GameObject:
   m_ObjectHideFlags: 0
@@ -2719,6 +2753,37 @@ Transform:
   - {fileID: 604194086023823047}
   - {fileID: 4781275016568224358}
   m_Father: {fileID: 8130157049656580946}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5188093493280975107
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9087426049495767462}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9087426049495767462
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5188093493280975107}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.3, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5831196049076660146}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5533556375454687918
@@ -3742,8 +3807,11 @@ MonoBehaviour:
   _SlideSpeed: 0.1
   _LookSpeed: 0.1
   _PushSpeed: 50
+  _SpawnerT: {fileID: 9087426049495767462}
+  _BossFightCreateEnemy: {fileID: 8611920672260624397}
   _BossRandomMovement: {fileID: 8163783587352199540}
   _BossAttackManager: {fileID: 3590063330491552225}
+  _BossTag: {fileID: 8650758095324117973}
 --- !u!1 &7635126132971713769
 GameObject:
   m_ObjectHideFlags: 0

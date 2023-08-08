@@ -25,7 +25,7 @@ public class WaveManager : MonoBehaviour
     public IEnumerator NextWave()
     {
         yield return _waitForWave;
-        ChangeScrore();
+        //ChangeScrore();
         _RemaningTimeManager.CanIncrease = true;
         _RemaningTimeManager.SetRemaningTime(_WaveData[WaveIndex].WaveTimeCount);
     }

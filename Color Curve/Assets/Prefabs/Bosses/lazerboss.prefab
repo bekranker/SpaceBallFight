@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2115577761221136777}
   - component: {fileID: 6119313875081385536}
   - component: {fileID: 1327088040288029278}
+  - component: {fileID: -6887939074566037906}
   m_Layer: 0
   m_Name: lazerboss
   m_TagString: Untagged
@@ -48,7 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyColor: 1
-  _MaxHealth: 1250
+  _MaxHealth: 10
   _SpriteRenderer:
   - {fileID: 8468803243237296431}
   - {fileID: 30721676677632464}
@@ -58,10 +59,11 @@ MonoBehaviour:
   _DamageColor: {r: 1, g: 1, b: 1, a: 1}
   _NormalColor: {r: 0, g: 1, b: 0, a: 1}
   _Eyes: []
-  _HitParticle: {fileID: 4436072672923617521, guid: 02df4dafa798d9e4d84ff570e9c0ee20, type: 3}
+  _HitParticle: {fileID: 7331853491115004459, guid: 72ff552b91381ff45924e8d9c96a54cb, type: 3}
   _ScoreManager: {fileID: 0}
   _BossAttackManager: {fileID: 6768188169551334552}
   _ShockWave: {fileID: 0}
+  _ColorBlue: {r: 0, g: 0.7607844, b: 1, a: 1}
   _player: {fileID: 0}
 --- !u!114 &6119313875081385536
 MonoBehaviour:
@@ -77,6 +79,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _t: {fileID: 3754456607043283120}
   _SpinSpeed: 0.5
+  _GoCenter: 0
 --- !u!114 &1327088040288029278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94,6 +97,19 @@ MonoBehaviour:
   - {fileID: 2956253033659694738, guid: b2c5f37d75d4e8b4b9460cbf52fbf0f6, type: 3}
   - {fileID: 6486329078010515525, guid: 4da8e04c7c3efaf4aa7942f81eb08837, type: 3}
   _Tag: {fileID: 2115577761221136777}
+--- !u!114 &-6887939074566037906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2321063364261582777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d869d8fb65198d49a95a4007ad899dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _DieParticle: {fileID: 2885456171195781281, guid: 8cf86ea9b9cc6b14cac3deec1e3fe2df, type: 3}
 --- !u!1 &2402067419612747580
 GameObject:
   m_ObjectHideFlags: 0

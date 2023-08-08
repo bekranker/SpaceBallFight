@@ -2,42 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GreenAttack : MonoBehaviour
+public class BlueAttack : MonoBehaviour
 {
     [SerializeField] private SpinBoss _SpinBoss;
     [SerializeField] private GameObject _BulletPrefab;
     [SerializeField] private BossFightCreateEnemy _BossFightCreateEnemy;
     [SerializeField] private float _BulletSpeed, _BulletCountForEachPoint;
-    [SerializeField] private BossRandomMovement _BossRandomMovement;
+    [SerializeField] private BossPlayerFollow _BossPlayerFollow;
     [SerializeField] private Transform _SpawnPoint;
     [SerializeField] private BossAttackManager _BossAttackManager;
     private WaitForSeconds _attackDelay = new WaitForSeconds(0.1f);
     private WaitForSeconds _attackDelay2 = new WaitForSeconds(3);
     private WaitForSeconds _attackDelay3 = new WaitForSeconds(3);
     private Transform _player;
-    private bool _can;
     private float _startSpinSpeed;
-
-
-
     private void Start()
     {
         _startSpinSpeed = _SpinBoss._SpinSpeed;
-        _can = true;
         _player = FindObjectOfType<PlayerController>().transform;
-        InvokeRepeating("repeate", 0, .5f);
+        repeate();
     }
-    
+
     private void repeate()
     {
         if (!_BossAttackManager.CanFight) return;
-        if (!_can) return;
         StartCoroutine(ShootIE());
-        _can = false;
     }
     private IEnumerator ShootIE()
     {
-        _BossAttackManager.CanFight = false;
+        _BossPlayerFollow.CanFollow = false;
         yield return _attackDelay2;
         _SpinBoss._SpinSpeed *= 2;
         for (int i = 0; i < _BulletCountForEachPoint; i++)
@@ -51,12 +44,11 @@ public class GreenAttack : MonoBehaviour
         _BossFightCreateEnemy.SpawnRandomEnemy(Random.Range(5, 10), .5f, _SpawnPoint.position);
         yield return _attackDelay3;
         _SpinBoss._SpinSpeed = _startSpinSpeed;
-        _BossRandomMovement.CanMove = true;
+        _BossPlayerFollow.CanFollow = true;
         repeate();
-        _can = true;
     }
     private void PushBulet(Rigidbody2D rb)
     {
-        rb.velocity = _BulletSpeed * rb.transform.right;
+        rb.velocity = _BulletSpeed * rb.transform.up;
     }
 }

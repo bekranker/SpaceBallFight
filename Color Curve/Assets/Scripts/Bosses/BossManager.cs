@@ -18,11 +18,11 @@ public class BossManager : MonoBehaviour
     [SerializeField] private GameManager _GameManager;
     [SerializeField] private List<SpriteRenderer> _Borders = new List<SpriteRenderer>();
     [SerializeField] private Animator _Animation;
-
-
+    [SerializeField] private List<ParticleSystem> _BossBeginParticles;
+    private int _bossCount = 0;
     //------------------------Cut------------------------
 
-    private WaitForSeconds _sleep = new WaitForSeconds(3);
+    private WaitForSeconds _sleep = new WaitForSeconds(2);
     private Camera _mainCamera;
     private bool _canCallBoss;
 
@@ -47,12 +47,12 @@ public class BossManager : MonoBehaviour
     }
     private IEnumerator BeginBossFightIE()
     {
+        Instantiate(_BossBeginParticles[_bossCount], _BossSpawnPoint.position, Quaternion.identity);
         _Borders.ForEach((_border) => { _border.gameObject.SetActive(true);  _border.DOFade(1, 1); });
-        Instantiate(_BossBeginParticleSystem, _BossSpawnPoint.position, Quaternion.identity);
         _mainCamera.DOShakePosition(3, 2, 2, fadeOut: true);
         yield return _sleep;
+        _bossCount++;
         _mainCamera.DOShakePosition(.25f, 5, 10, fadeOut: true, randomnessMode: ShakeRandomnessMode.Harmonic);
-        Instantiate(_BossHerePS, new Vector3(_BossSpawnPoint.position.x, _BossSpawnPoint.position.y, 0), Quaternion.identity);
         _SpawnManager.SpawnBoss();
     }
     private IEnumerator EndBossFightIE()

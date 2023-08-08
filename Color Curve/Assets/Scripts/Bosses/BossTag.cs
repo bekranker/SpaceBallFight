@@ -16,7 +16,7 @@ public class BossTag : MonoBehaviour
     [SerializeField] private ScoreManager _ScoreManager;
     [SerializeField] private BossAttackManager _BossAttackManager;
     [HideInInspector] public ShockWaveManager _ShockWave;
-
+    [SerializeField] public Color _ColorBlue;
     //----------------------------------------------------Cut----------------------------------------------------
 
 
@@ -118,7 +118,7 @@ public class BossTag : MonoBehaviour
                 _DamageColor = Color.white;
                 break;
             case EnemyColor.Blue:
-                _NormalColor = Color.blue;
+                _NormalColor = _ColorBlue;
                 _DamageColor = Color.white;
                 break;
             default:

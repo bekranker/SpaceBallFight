@@ -21,8 +21,11 @@ public class SpikyBossAttack : MonoBehaviour
     private Queue<Vector3> _startPositions = new Queue<Vector3>();
     private Queue<Transform> _spikes = new Queue<Transform>();
     private int _selectedSpikeIndex;
+    [SerializeField] private Transform _SpawnerT;
+    [SerializeField] private BossFightCreateEnemy _BossFightCreateEnemy;
     [SerializeField] private BossRandomMovement _BossRandomMovement;
     [SerializeField] private BossAttackManager _BossAttackManager;
+    [SerializeField] private BossTag _BossTag;
     private void Start()
     {
         _playerT = FindObjectOfType<PlayerController>().transform;
@@ -105,6 +108,8 @@ public class SpikyBossAttack : MonoBehaviour
             yield return _sleepTimeForAttack;
             PushSpike(rb);
         }
+        _BossTag._ShockWave.CallShockWave();
+        _BossFightCreateEnemy.SpawnRandomEnemy(Random.Range(5,10), .1f, _SpawnerT.position);
         yield return _nextAttackSleepTime;
         _canAttack = true;
         SpikeMovement();

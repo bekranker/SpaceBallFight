@@ -100,6 +100,7 @@ GameObject:
   - component: {fileID: 1440559676262522750}
   - component: {fileID: 4954880520193330799}
   - component: {fileID: 7542101511969963314}
+  - component: {fileID: -2148234018616237502}
   m_Layer: 0
   m_Name: alevboss
   m_TagString: Untagged
@@ -136,17 +137,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyColor: 0
-  _MaxHealth: 1250
+  _MaxHealth: 10
   _SpriteRenderer:
   - {fileID: 6463164299694116712}
   - {fileID: 9148507580756972424}
   _DamageColor: {r: 0, g: 0, b: 0, a: 0}
   _NormalColor: {r: 0, g: 0, b: 0, a: 0}
   _Eyes: []
-  _HitParticle: {fileID: 4436072672923617521, guid: 02df4dafa798d9e4d84ff570e9c0ee20, type: 3}
+  _HitParticle: {fileID: 7331853491115004459, guid: 72ff552b91381ff45924e8d9c96a54cb, type: 3}
   _ScoreManager: {fileID: 0}
   _BossAttackManager: {fileID: 1440559676262522750}
   _ShockWave: {fileID: 0}
+  _ColorBlue: {r: 0, g: 0.7607844, b: 1, a: 1}
   _player: {fileID: 0}
 --- !u!114 &8564588387711331056
 MonoBehaviour:
@@ -206,6 +208,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _t: {fileID: 1678724448990727628}
   _SpinSpeed: 5
+  _GoCenter: 0
 --- !u!114 &7542101511969963314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,6 +228,19 @@ MonoBehaviour:
   _BulletCountForEachPoint: 150
   _BossPlayerFollow: {fileID: 8564588387711331056}
   _SpawnPoint: {fileID: 7848127959829207443}
+--- !u!114 &-2148234018616237502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1703918714598183436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d869d8fb65198d49a95a4007ad899dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _DieParticle: {fileID: 2885456171195781281, guid: 8cf86ea9b9cc6b14cac3deec1e3fe2df, type: 3}
 --- !u!1 &4404552696471192483
 GameObject:
   m_ObjectHideFlags: 0
