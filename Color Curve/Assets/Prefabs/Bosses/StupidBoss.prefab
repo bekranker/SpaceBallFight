@@ -807,7 +807,7 @@ MonoBehaviour:
   _ScoreManager: {fileID: 0}
   _BossAttackManager: {fileID: 4782805929224477665}
   _ShockWave: {fileID: 0}
-  _ColorBlue: {r: 0, g: 0, b: 0, a: 0}
+  _ColorBlue: {r: 0, g: 0.7607843, b: 1, a: 1}
   _player: {fileID: 0}
 --- !u!114 &-2558706131669184837
 MonoBehaviour:

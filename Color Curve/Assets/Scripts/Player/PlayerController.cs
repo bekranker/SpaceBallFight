@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     public PlayerState _PlayerStates;
     [SerializeField] private Transform _CursorPosition;
     [SerializeField] private float _Speed;
-    [SerializeField] private ParticleSystem _BackgroundParticle;
+    [SerializeField] private ParticleSystem _BackgroundParticle, _PlayerBackgroundParticle;
     [SerializeField] private SpriteRenderer _Sp;
     [SerializeField] private CrossHair _CrossHair;
     [SerializeField] public Color _RedPlayerColor, _GreenPlayerColor, _BluePlayerColor;
@@ -142,8 +142,8 @@ public class PlayerController : MonoBehaviour
     }
     private void SetParticleColor()
     {
-        ParticleSystem.MainModule mainPart = gameObject.transform.GetChild(0).gameObject.GetComponent<ParticleSystem>().main;
-        ParticleSystem.TextureSheetAnimationModule texture = gameObject.transform.GetChild(0).gameObject.GetComponent<ParticleSystem>().textureSheetAnimation;
+        ParticleSystem.MainModule mainPart = _PlayerBackgroundParticle.main;
+        ParticleSystem.TextureSheetAnimationModule texture = _PlayerBackgroundParticle.textureSheetAnimation;
         switch (_PlayerStates)
         {
             case PlayerState.Red:

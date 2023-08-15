@@ -338,8 +338,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _BossTag: {fileID: 7684549080195541535}
-  _GreenPlayerParticle: {fileID: 8359156425756279567, guid: c94294cf4a075d94ea754e9babae13f0, type: 3}
-  _DeadParticle: {fileID: 5332554066000510625, guid: 8c6a7d125aebc6f4e893e7a3d4092a2d, type: 3}
+  _GreenPlayerParticle: {fileID: 130230781439211816, guid: 687aeaa429a9c79459dab249cbb253f1, type: 3}
+  _DeadParticle: {fileID: 3326816926934398082, guid: 2685f429241492d4ca7fc4c615058695, type: 3}
 --- !u!1 &5899652537647196092
 GameObject:
   m_ObjectHideFlags: 0

@@ -21,6 +21,7 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] public EnemyTypes EnemyTypes = new EnemyTypes();
     [SerializeField] public ParticleSystem BackgroundParticle;
     [SerializeField] public List<TrailRenderer> Trail;
+    [SerializeField] private CollectableXP CollectableXPs;
 
     //-----------------------------------Cut-----------------------------------
 
@@ -30,9 +31,12 @@ public class EnemyManager : MonoBehaviour
     private int _healthCount;
     private bool _canDie;
     private Camera _mainCamera;
+    private Transform _t;
+
 
     private void Start()
     {
+        _t = transform;
         _scoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
         _waveManager = GameObject.FindGameObjectWithTag("WaveManager").GetComponent<WaveManager>();
         _mainCamera = Camera.main;
@@ -55,6 +59,10 @@ public class EnemyManager : MonoBehaviour
             OnDead?.Invoke();
             _mainCamera.DOShakePosition(.1f, .5f);
             _scoreManager.IncreaseScore(damage * Random.Range(7, 12), pos);
+            for (int i = 0; i < 5; i++)
+            {
+                Instantiate(CollectableXPs, _t.position, Quaternion.identity);
+            }
             Destroy(gameObject);
             _canDie = false;
         }

@@ -8,6 +8,8 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField, Range(0.05f, 1)] private float _ShootRange;
     [SerializeField] private GameObject _BulletPrefab;
     [SerializeField] private ObjectPool _ObjectPool;
+    [SerializeField] private SpriteRenderer _PlayeRSpriteRenderer;
+    public bool CanUseFire, CanUseFreeze, CanUseToxic;
     private float _shootCounter;
 
 
@@ -34,7 +36,7 @@ public class PlayerAttack : MonoBehaviour
     {
         GameObject spawnedBulelt = _ObjectPool.TakeBullet(transform.position);
         spawnedBulelt.transform.position = transform.position;
-        spawnedBulelt.GetComponent<SpriteRenderer>().color = gameObject.transform.GetChild(1).GetComponent<SpriteRenderer>().color;
+        spawnedBulelt.GetComponent<SpriteRenderer>().color = _PlayeRSpriteRenderer.GetComponent<SpriteRenderer>().color;
         switch (_PlayerController._PlayerStates)
         {
             case PlayerState.Red:
@@ -51,7 +53,4 @@ public class PlayerAttack : MonoBehaviour
                 break;
         }
     }
-
-
-
 }

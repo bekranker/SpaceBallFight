@@ -21,6 +21,13 @@ TagManager:
   - BossManager
   - Unlocked
   - Spike
+  - UnlockedImage
+  - RedPoint
+  - BluePoint
+  - GreenPoint
+  - XP
+  - GreenBallBG
+  - BlueBallBG
   layers:
   - Default
   - TransparentFX
@@ -31,7 +38,7 @@ TagManager:
   - Player
   - Edge
   - Bullet
-  - 
+  - XP
   - 
   - 
   - 

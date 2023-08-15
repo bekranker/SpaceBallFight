@@ -589,7 +589,7 @@ MonoBehaviour:
   EnemyTypes: 1
   BackgroundParticle: {fileID: 763131256908207663}
   Trail: []
-  _Prefab: {fileID: 0}
+  CollectableXPs: {fileID: 4129759103029792585, guid: 253357b010c58da41875f7f5de3a5813, type: 3}
 --- !u!114 &-456690909615830100
 MonoBehaviour:
   m_ObjectHideFlags: 0

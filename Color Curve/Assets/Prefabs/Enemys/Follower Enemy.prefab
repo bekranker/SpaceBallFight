@@ -5724,7 +5724,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc8496203c257d643a06cdb9e53cc633, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _DeadParticle: {fileID: 6033193557138097627, guid: 8c6a7d125aebc6f4e893e7a3d4092a2d, type: 3}
   _Health: 50
   _NormalColor: {r: 1, g: 0, b: 0, a: 1}
   _DamagedColor: {r: 1, g: 1, b: 1, a: 1}
@@ -5737,7 +5736,7 @@ MonoBehaviour:
   Trail:
   - {fileID: 831932824744974025}
   - {fileID: 6827706394288733767}
-  _Prefab: {fileID: 0}
+  CollectableXPs: {fileID: 4129759103029792585, guid: 253357b010c58da41875f7f5de3a5813, type: 3}
 --- !u!114 &9192851956114548401
 MonoBehaviour:
   m_ObjectHideFlags: 0

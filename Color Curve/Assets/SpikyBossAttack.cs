@@ -109,7 +109,7 @@ public class SpikyBossAttack : MonoBehaviour
             PushSpike(rb);
         }
         _BossTag._ShockWave.CallShockWave();
-        _BossFightCreateEnemy.SpawnRandomEnemy(Random.Range(5,10), .1f, _SpawnerT.position);
+        _BossFightCreateEnemy.SpawnRandomEnemy(Random.Range(3,5), .1f, _SpawnerT.position);
         yield return _nextAttackSleepTime;
         _canAttack = true;
         SpikeMovement();

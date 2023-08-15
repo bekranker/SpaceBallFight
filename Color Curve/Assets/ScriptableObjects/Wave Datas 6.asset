@@ -17,3 +17,5 @@ MonoBehaviour:
   EnemyTypes: 0100000000000000
   StartColor: 03000000
   WaveTimeCount: 5
+  Boss: 0
+  BossPrefab: {fileID: 2321063364261582777, guid: c6ee6208f7fc97d458fd48cfdaa673d4, type: 3}
