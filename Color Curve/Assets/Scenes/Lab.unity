@@ -11787,9 +11787,9 @@ ParticleSystem:
         m_RotationOrder: 4
     startColor:
       serializedVersion: 2
-      minMaxState: 0
-      minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.9528302, g: 0.9033909, b: 0.9033909, a: 1}
+      minMaxState: 2
+      minColor: {r: 1, g: 1, b: 1, a: 0.39607844}
+      maxColor: {r: 0.9433962, g: 0.9433962, b: 0.9433962, a: 0.8235294}
       maxGradient:
         serializedVersion: 2
         key0: {r: 0.7058824, g: 0.1254902, b: 0.16470589, a: 1}
@@ -11853,8 +11853,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.1
-      minScalar: 0.05
+      scalar: 0.15
+      minScalar: 0.07
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -23612,7 +23612,7 @@ GameObject:
   - component: {fileID: 1374032194}
   - component: {fileID: 1374032195}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: Red Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24707,7 +24707,7 @@ GameObject:
   - component: {fileID: 1678422489}
   - component: {fileID: 1678422490}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: Green Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24886,10 +24886,14 @@ MonoBehaviour:
   _BluePointIndex: 0
   _GreenPointIndex: 0
   _PlayerAttack: {fileID: 1679517852}
+  _PlayerController: {fileID: 1679517851}
   _ScoreManager: {fileID: 1810342100}
   _RedSlider: {fileID: 1374032195}
   _GreenSlider: {fileID: 1678422490}
   _BlueSlider: {fileID: 2135638334}
+  _SkillPointRedP: {fileID: 8289041913691131111, guid: 69ecf86b4892aab4a9f257ebd5fb8a2a, type: 3}
+  _SkillPointBlueP: {fileID: 4492007883296701334, guid: 2b5ec416118a05c4fbc8f23fa2a51289, type: 3}
+  _SkillPointGreenP: {fileID: 5819341236065469044, guid: dd727c72e285a694ca6ebbc461314e64, type: 3}
 --- !u!50 &1679517850
 Rigidbody2D:
   serializedVersion: 4
@@ -24932,11 +24936,13 @@ MonoBehaviour:
   MaxHealth: 0
   CurrentHealth: 0
   _PlayerStates: 0
+  CanChangestate: 0
   _CursorPosition: {fileID: 1191222190}
   _Speed: 8
   _BackgroundParticle: {fileID: 368604908}
   _PlayerBackgroundParticle: {fileID: 297776431}
   _Sp: {fileID: 106592760}
+  _SpFace: {fileID: 1840293395}
   _CrossHair: {fileID: 1191222191}
   _RedPlayerColor: {r: 1, g: 0, b: 0, a: 1}
   _GreenPlayerColor: {r: 0, g: 1, b: 0, a: 1}
@@ -24952,6 +24958,12 @@ MonoBehaviour:
   _BlueParticleSprite: {fileID: 21300000, guid: 4fe37c19abdc7684fbbbb61bf3cb0164, type: 3}
   Green: 0
   Blue: 0
+  FirstSpeed: 0
+  _RedSlider: {fileID: 1374032195}
+  _GreenSlider: {fileID: 1678422490}
+  _BlueSlider: {fileID: 2135638334}
+  _PlayerDedection: {fileID: 1679517849}
+  _PlayerAttack: {fileID: 1679517852}
 --- !u!114 &1679517852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24969,9 +24981,12 @@ MonoBehaviour:
   _BulletPrefab: {fileID: 6875931718734023674, guid: fed30ad69192ca947bb68b0db316d0bd, type: 3}
   _ObjectPool: {fileID: 822149039}
   _PlayeRSpriteRenderer: {fileID: 106592760}
+  _FireBullet: {fileID: 3313010810877800333, guid: d5bcf6f681e26824fbd64d0ca7ff4d60, type: 3}
+  _FreezeBullet: {fileID: 2204922624276446520, guid: 36b00d81fda9e8e4085053083620b570, type: 3}
+  _ToxicBullet: {fileID: 8359156425756279567, guid: a5abc08bd6d75b045a50b251c2714a9d, type: 3}
   CanUseFire: 0
-  CanUseFreeze: 0
-  CanUseToxic: 0
+  CanUseFreeze: 1
+  CanUseToxic: 1
 --- !u!1 &1681033248
 GameObject:
   m_ObjectHideFlags: 0
@@ -26831,7 +26846,7 @@ GameObject:
   - component: {fileID: 2135638333}
   - component: {fileID: 2135638334}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: Blue Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

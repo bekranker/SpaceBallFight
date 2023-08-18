@@ -222,7 +222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _SpinBoss: {fileID: 4954880520193330799}
-  _BulletPrefab: {fileID: 4645358681334011435, guid: cf3462632f81ebe41a9301e8046feda9, type: 3}
+  _BulletPrefab: {fileID: 3313010810877800333, guid: d5bcf6f681e26824fbd64d0ca7ff4d60, type: 3}
   _BossFightCreateEnemy: {fileID: 8849384559579839880}
   _BulletSpeed: 15
   _BulletCountForEachPoint: 150

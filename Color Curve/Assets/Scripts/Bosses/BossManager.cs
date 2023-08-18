@@ -1,5 +1,6 @@
 using DG.Tweening;
 using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -47,6 +48,7 @@ public class BossManager : MonoBehaviour
     }
     private IEnumerator BeginBossFightIE()
     {
+        GC.Collect();
         Instantiate(_BossBeginParticles[_bossCount], _BossSpawnPoint.position, Quaternion.identity);
         _Borders.ForEach((_border) => { _border.gameObject.SetActive(true);  _border.DOFade(1, 1); });
         _mainCamera.DOShakePosition(3, 2, 2, fadeOut: true);
@@ -57,6 +59,7 @@ public class BossManager : MonoBehaviour
     }
     private IEnumerator EndBossFightIE()
     {
+        GC.Collect();
         StartCoroutine(GoSlider());
         _Borders.ForEach((_border) => { _border.DOFade(0, 1).OnComplete(() => { _border.gameObject.SetActive(false); }); });
         yield return _sleep;

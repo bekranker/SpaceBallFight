@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using DG.Tweening;
 using System;
@@ -22,6 +20,8 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] public ParticleSystem BackgroundParticle;
     [SerializeField] public List<TrailRenderer> Trail;
     [SerializeField] private CollectableXP CollectableXPs;
+    [SerializeField] private GameObject _SkillPointRed, _SkillPointBlue, _SkillPointGreen;
+
 
     //-----------------------------------Cut-----------------------------------
 
@@ -50,6 +50,7 @@ public class EnemyManager : MonoBehaviour
             DecreaseHealt(damage);
             StartCoroutine(damageAction());
             _scoreManager.IncreaseScore(damage * Random.Range(5, 10), pos);
+            OnHit?.Invoke();
         }
         else
         {
@@ -63,6 +64,7 @@ public class EnemyManager : MonoBehaviour
             {
                 Instantiate(CollectableXPs, _t.position, Quaternion.identity);
             }
+            CreateSkillPoint();
             Destroy(gameObject);
             _canDie = false;
         }
@@ -90,5 +92,32 @@ public class EnemyManager : MonoBehaviour
     {
         _healthCount -= value;
         _HealthSlider.value = _healthCount;
+    }
+    private void CreateSkillPoint()
+    {
+        if (!DidFallPoint()) return;
+        switch (EnemyColorTypes)
+        {
+            case EnemyColor.Red:
+                Instantiate(_SkillPointRed, _t.position, Quaternion.identity);
+                break;
+            case EnemyColor.Green:
+                Instantiate(_SkillPointGreen, _t.position, Quaternion.identity);
+                break;
+            case EnemyColor.Blue:
+                Instantiate(_SkillPointBlue, _t.position, Quaternion.identity);
+                break;
+            default:
+                break;
+        }
+    }
+    private bool DidFallPoint()
+    {
+        int rand = Random.Range(0,10);
+        if (rand <= 2)
+        {
+            return true;
+        }
+        return false;
     }
 }

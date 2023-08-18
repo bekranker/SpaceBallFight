@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3316133170356816676}
   - component: {fileID: 4607970238467237745}
   - component: {fileID: 4881547240480565565}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ToxicGreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35,7 +35,7 @@ Transform:
   - {fileID: 3451574620559463513}
   - {fileID: 2068298452842294028}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2760288952838819646
 SpriteRenderer:
@@ -118,7 +118,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

@@ -37,10 +37,33 @@ public class EnemyDedection : MonoBehaviour
                 else
                     TakeDamage(collision, 1);
                 break;
-            case "BulletWhite":
+            default:
+                break;
+        }
+        TakeDamageFromSpecialBullets(collision);
+    }
+    private void TakeDamageFromSpecialBullets(Collider2D collision)
+    {
+        switch (collision.tag)
+        {
+            case "SBulletRed":
                 _objectPool.TakeParticle(collision.gameObject.transform.position);
-                if (_EnemyManager.EnemyColorTypes == EnemyColor.White)
-                    TakeDamage(collision, 10);
+                if (_EnemyManager.EnemyColorTypes == EnemyColor.Red)
+                    TakeDamage(collision, 50);
+                else
+                    TakeDamage(collision, 1);
+                break;
+            case "SBulletBlue":
+                _objectPool.TakeParticle(collision.gameObject.transform.position);
+                if (_EnemyManager.EnemyColorTypes == EnemyColor.Blue)
+                    TakeDamage(collision, 25);
+                else
+                    TakeDamage(collision, 1);
+                break;
+            case "SBulletGreen":
+                _objectPool.TakeParticle(collision.gameObject.transform.position);
+                if (_EnemyManager.EnemyColorTypes == EnemyColor.Green)
+                    TakeDamage(collision, 15);
                 else
                     TakeDamage(collision, 1);
                 break;
@@ -50,8 +73,7 @@ public class EnemyDedection : MonoBehaviour
     }
     private void TakeDamage(Collider2D collision, int damageCount)
     {
-        if(collision.gameObject.CompareTag("BulletWhite") ||
-            collision.gameObject.CompareTag("BulletRed") ||
+        if( collision.gameObject.CompareTag("BulletRed") ||
             collision.gameObject.CompareTag("BulletGreen") ||
             collision.gameObject.CompareTag("BulletBlue"))
         _objectPool.GiveBullet(collision.gameObject);

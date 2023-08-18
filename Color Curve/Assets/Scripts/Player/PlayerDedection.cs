@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,10 +6,13 @@ using UnityEngine.UI;
 
 public class PlayerDedection : MonoBehaviour
 {
-    [SerializeField] private int _RedPointIndex, _BluePointIndex, _GreenPointIndex;
+    [SerializeField] public int _RedPointIndex, _BluePointIndex, _GreenPointIndex;
     [SerializeField] private PlayerAttack _PlayerAttack;
+    [SerializeField] private PlayerController _PlayerController;
     [SerializeField] private ScoreManager _ScoreManager;
     [SerializeField] private Slider _RedSlider, _GreenSlider, _BlueSlider;
+    [SerializeField] private ParticleSystem _SkillPointRedP, _SkillPointBlueP, _SkillPointGreenP;
+    private WaitForSeconds WaitForSeconds = new WaitForSeconds(1);
     private Transform _t;
     private void Start()
     {
@@ -18,6 +22,26 @@ public class PlayerDedection : MonoBehaviour
     {
         CollectPoints(collision);
         CollectXPs(collision);
+        if (collision.CompareTag("FreezeBullet"))
+        {
+            StartCoroutine(decreaseSpeed());
+            _PlayerController.TakeDamage(7);
+        }
+        if (collision.CompareTag("BossBullet"))
+        {
+            _PlayerController.TakeDamage(7);
+        }
+        if (collision.CompareTag("Enemy"))
+        {
+            _PlayerController.TakeDamage(3);
+            Destroy(collision.gameObject);
+        }
+    }
+    private IEnumerator decreaseSpeed()
+    {
+        _PlayerController._Speed /= 2;
+        yield return WaitForSeconds;
+        _PlayerController._Speed = _PlayerController.FirstSpeed;
     }
     private void CollectXPs(Collider2D collision)
     {
@@ -31,24 +55,27 @@ public class PlayerDedection : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("RedPoint"))
         {
-            IncreasePointIndex(_RedPointIndex, collision.gameObject);
             _RedSlider.value++;
+            _RedPointIndex++;
+            IncreasePointIndex(collision.gameObject, _SkillPointRedP);
         }
         if (collision.gameObject.CompareTag("BluePoint"))
         {
-            IncreasePointIndex(_BluePointIndex, collision.gameObject);
             _BlueSlider.value++;
+            _BluePointIndex++;
+            IncreasePointIndex(collision.gameObject, _SkillPointBlueP);
         }
         if (collision.gameObject.CompareTag("GreenPoint"))
         {
-            IncreasePointIndex(_GreenPointIndex, collision.gameObject);
             _GreenSlider.value++;
+            _GreenPointIndex++;
+            IncreasePointIndex(collision.gameObject, _SkillPointGreenP);
         }
     }
-    private void IncreasePointIndex(int outValue, GameObject dedectedSkillPoint)
+    private void IncreasePointIndex(GameObject dedectedSkillPoint, ParticleSystem effect)
     {
-        outValue++;
         BeCanUsefuellTheSpecialAttack();
+        Instantiate(effect, dedectedSkillPoint.transform.position, Quaternion.identity);
         Destroy(dedectedSkillPoint);
     }
     private void BeCanUsefuellTheSpecialAttack()

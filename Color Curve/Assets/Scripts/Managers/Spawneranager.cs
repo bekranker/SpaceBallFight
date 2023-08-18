@@ -88,20 +88,6 @@ public class Spawneranager : MonoBehaviour
                     enemyManager.Trail.ForEach((_trail) => { _trail.startColor = _PlayerController._BluePlayerColor; });
                 }
                 break;
-            case EnemyColor.White:
-                for (int i = 0; i < enemyManager._Sp.Count; i++)
-                {
-                    enemyManager._Sp[i].color = Color.white;
-                }
-                enemyManager.gameObject.GetComponent<EnemyManager>().EnemyColorTypes = EnemyColor.White;
-                enemyManager.gameObject.GetComponent<EnemyManager>()._NormalColor = Color.white;
-                if (enemyManager.BackgroundParticle != null)
-                    mainPArt.startColor = Color.white;
-                if (enemyManager.Trail != null)
-                {
-                    enemyManager.Trail.ForEach((_trail) => { _trail.startColor = Color.white; });
-                }
-                break;
             default:
                 break;
         }

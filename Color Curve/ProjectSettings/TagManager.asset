@@ -28,6 +28,11 @@ TagManager:
   - XP
   - GreenBallBG
   - BlueBallBG
+  - FreezeBullet
+  - BossBullet
+  - SBulletRed
+  - SBulletBlue
+  - SBulletGreen
   layers:
   - Default
   - TransparentFX
@@ -39,8 +44,8 @@ TagManager:
   - Edge
   - Bullet
   - XP
-  - 
-  - 
+  - SkillPoint
+  - Enemy
   - 
   - 
   - 

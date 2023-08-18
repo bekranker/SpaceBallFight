@@ -16,5 +16,4 @@ public enum EnemyColor
     Red,
     Green,
     Blue,
-    White,
 }

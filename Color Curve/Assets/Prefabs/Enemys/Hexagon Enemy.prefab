@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: -2793281673359001634}
   - component: {fileID: -4180663417553669593}
   - component: {fileID: 9097687526110511934}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: Hexagon Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -233,6 +233,9 @@ MonoBehaviour:
   BackgroundParticle: {fileID: 1261956688659119360}
   Trail: []
   CollectableXPs: {fileID: 4129759103029792585, guid: 253357b010c58da41875f7f5de3a5813, type: 3}
+  _SkillPointRed: {fileID: 8814023692368538883, guid: c6b5615e8cbcb144ea33538f3b47bbf3, type: 3}
+  _SkillPointBlue: {fileID: 4322037419891903360, guid: eb35d9b54886ac946a6174ea91be615a, type: 3}
+  _SkillPointGreen: {fileID: 3300495693130643080, guid: c28d4dba8fa3e9d4aba7c1a3399507bd, type: 3}
 --- !u!114 &-2793281673359001634
 MonoBehaviour:
   m_ObjectHideFlags: 0
