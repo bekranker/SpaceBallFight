@@ -5,7 +5,8 @@ using UnityEngine;
 public class TriangleManager : EnemyMovementAbstract
 {
     [HideInInspector] public PlayerController _PlayerController;
-    [SerializeField] private float _Speed;
+    [SerializeField] EnemyManager _EnemyManager;
+    private Transform _t;
     public override void OnUpdate(AbstractmovementManager abstractmovementManager)
     {
         LookToPlayer();
@@ -13,6 +14,7 @@ public class TriangleManager : EnemyMovementAbstract
 
     public override void OnStart(AbstractmovementManager abstractmovementManager)
     {
+        _t = transform;
         _PlayerController = FindObjectOfType<PlayerController>();
     }
 
@@ -21,10 +23,10 @@ public class TriangleManager : EnemyMovementAbstract
         FollowCurrentPlayer();
     }
 
-    private void LookToPlayer() => transform.up = _PlayerController.gameObject.transform.position - transform.position;
+    private void LookToPlayer() => _t.up = _PlayerController.transform.position - _t.position;
     private void FollowCurrentPlayer()
     {
-        transform.position = Vector3.MoveTowards(transform.position, _PlayerController.gameObject.transform.position, _Speed * Time.deltaTime);
+        _t.position = Vector3.MoveTowards(_t.position, _PlayerController.transform.position, _EnemyManager.Speed * Time.deltaTime);
     }
 
     public override void TriggerEnter2D(AbstractmovementManager abstractmovementManager, Collider2D collision)

@@ -7,7 +7,8 @@ public class ShockWaveManager : MonoBehaviour
     private static int keyID = Shader.PropertyToID("_WaveDistanceFromCenter");
     public Material Material;
     [SerializeField, Range(0.05f, 3)] private float _ShockWaveSpeed;
-
+    float lerpedAmount;
+    float elapsedTime = 0f;
     public void CallShockWave()
     {
         StartCoroutine(CallShockWaveIE());
@@ -15,8 +16,8 @@ public class ShockWaveManager : MonoBehaviour
 
     private IEnumerator CallShockWaveIE()
     {
-        float lerpedAmount = 0f;
-        float elapsedTime = 0f;
+        lerpedAmount = 0f;
+        elapsedTime = 0f;
 
         while (elapsedTime < 1)
         {
@@ -26,5 +27,4 @@ public class ShockWaveManager : MonoBehaviour
             yield return null;
         }
     }
-
 }

@@ -6,9 +6,13 @@ public class EnemyDedection : MonoBehaviour
 {
     private ObjectPool _objectPool;
     [SerializeField] private EnemyManager _EnemyManager;
+    private float _firstSpeed;
+    private WaitForSeconds _delay = new WaitForSeconds(2f);
+
 
     private void Start()
     {
+        _firstSpeed = _EnemyManager.Speed;
         _objectPool = FindObjectOfType<ObjectPool>();
     }
 
@@ -48,24 +52,15 @@ public class EnemyDedection : MonoBehaviour
         {
             case "SBulletRed":
                 _objectPool.TakeParticle(collision.gameObject.transform.position);
-                if (_EnemyManager.EnemyColorTypes == EnemyColor.Red)
-                    TakeDamage(collision, 50);
-                else
-                    TakeDamage(collision, 1);
+                TakeDamage(collision, 50);
                 break;
             case "SBulletBlue":
                 _objectPool.TakeParticle(collision.gameObject.transform.position);
-                if (_EnemyManager.EnemyColorTypes == EnemyColor.Blue)
-                    TakeDamage(collision, 25);
-                else
-                    TakeDamage(collision, 1);
+                TakeDamage(collision, 25);
                 break;
             case "SBulletGreen":
                 _objectPool.TakeParticle(collision.gameObject.transform.position);
-                if (_EnemyManager.EnemyColorTypes == EnemyColor.Green)
-                    TakeDamage(collision, 15);
-                else
-                    TakeDamage(collision, 1);
+                TakeDamage(collision, 15);
                 break;
             default:
                 break;
@@ -73,10 +68,17 @@ public class EnemyDedection : MonoBehaviour
     }
     private void TakeDamage(Collider2D collision, int damageCount)
     {
-        if( collision.gameObject.CompareTag("BulletRed") ||
-            collision.gameObject.CompareTag("BulletGreen") ||
-            collision.gameObject.CompareTag("BulletBlue"))
         _objectPool.GiveBullet(collision.gameObject);
         _EnemyManager.TakeDamage(damageCount, collision.gameObject.transform);
+        if (collision.gameObject.CompareTag("SBulletBlue"))
+        {
+            StartCoroutine(delay());
+        }
+    }
+    private IEnumerator delay()
+    {
+        _EnemyManager.Speed /= 2;
+        yield return _delay;
+        _EnemyManager.Speed = _firstSpeed;
     }
 }

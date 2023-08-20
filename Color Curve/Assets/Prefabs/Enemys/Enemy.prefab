@@ -578,6 +578,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc8496203c257d643a06cdb9e53cc633, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Speed: 5
   _Health: 50
   _NormalColor: {r: 1, g: 0, b: 0, a: 1}
   _DamagedColor: {r: 1, g: 1, b: 1, a: 1}
@@ -606,10 +607,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _PlayerController: {fileID: 0}
-  _Speed: 5
   BodyOne: {fileID: 6901885282707967161}
   BodyTwo: {fileID: 244017261495792721}
   _Rb: {fileID: 1203746973454814318}
+  _EnemyManager: {fileID: 3345185614287689602}
 --- !u!114 &-4279034778473957359
 MonoBehaviour:
   m_ObjectHideFlags: 0

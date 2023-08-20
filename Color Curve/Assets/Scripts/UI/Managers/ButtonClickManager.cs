@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using DG.Tweening;
 
@@ -16,7 +13,6 @@ public class ButtonClickManager : MonoBehaviour, IPointerDownHandler, IPointerUp
     #endregion
     [Space(10)]
     [Header("---Dotween---")]
-    [SerializeField] private Image _ButtonIcon;
     [SerializeField] private Vector3 _ToScale;
     private Vector3 _startScale;
     [Space(10)]
@@ -24,18 +20,19 @@ public class ButtonClickManager : MonoBehaviour, IPointerDownHandler, IPointerUp
     [HideInInspector] public bool CanClick;
     private bool _didEnter;
     private bool _didClick;
+    private Transform _t;
     private void Start()
     {
+        _t = transform;
         CanClick = true;
         _didClick = false;
-        _startScale = transform.localScale;
+        _startScale = _t.localScale;
     }
     //This function is only working when mouse is hovering the UI buttons. Also Its working only When press or hold
     public void OnPointerDown(PointerEventData eventData)
     {
         if (!CanClick) return;
-        transform.DOScale(_ToScale, .05f);
-        _ButtonIcon.transform.DOPunchRotation(Vector3.forward * 10, .1f);
+        _t.DOScale(_ToScale, .05f);
         _didClick = true;
         CanClick = false;
     }
@@ -44,12 +41,12 @@ public class ButtonClickManager : MonoBehaviour, IPointerDownHandler, IPointerUp
     //This function is only working when mouse is hovering the UI buttons. Also Its working only When remove the click
     public void OnPointerUp(PointerEventData eventData)
     {
-        transform.DOScale(_startScale, .05f);
+        _t.DOScale(_startScale, .05f);
         if (!_didClick) return;
         if (_didEnter)
         {
-            if (DoSomething != null)
-                DoSomething();
+            DoSomething?.Invoke();
+            CanClick = true;
         }
         else
         {

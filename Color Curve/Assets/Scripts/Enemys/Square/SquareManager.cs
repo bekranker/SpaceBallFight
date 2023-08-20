@@ -5,9 +5,11 @@ using UnityEngine;
 public class SquareManager : EnemyMovementAbstract
 {
     [HideInInspector] public PlayerController _PlayerController;
-    [SerializeField] private float _Speed;
     [SerializeField] private Transform BodyOne, BodyTwo;
     [SerializeField] private Rigidbody2D _Rb;
+    [SerializeField] EnemyManager _EnemyManager;
+
+    private Transform _t;
     private bool _canDash, _canFollow;
 
     public override void OnUpdate(AbstractmovementManager abstractmovementManager)
@@ -17,6 +19,7 @@ public class SquareManager : EnemyMovementAbstract
 
     public override void OnStart(AbstractmovementManager abstractmovementManager)
     {
+        _t = transform;
         _canDash = true;
         _canFollow = true;
         _PlayerController = FindObjectOfType<PlayerController>();
@@ -27,13 +30,13 @@ public class SquareManager : EnemyMovementAbstract
         FollowCurrentPlayer();
     }
 
-    private void LookToPlayer() => transform.up = _PlayerController.gameObject.transform.position - transform.position;
+    private void LookToPlayer() => _t.up = _PlayerController.transform.position - _t.position;
     private void FollowCurrentPlayer()
     {
-        if (Vector2.Distance(transform.position, _PlayerController.gameObject.transform.position) > 5 && _canFollow)
+        if (Vector2.Distance(_t.position, _PlayerController.transform.position) > 5 && _canFollow)
         {
             TurnBody();
-            transform.position = Vector3.MoveTowards(transform.position, _PlayerController.gameObject.transform.position, _Speed * Time.deltaTime);
+            _t.position = Vector3.MoveTowards(_t.position, _PlayerController.transform.position, _EnemyManager.Speed * Time.deltaTime);
             GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }
         else
@@ -46,7 +49,7 @@ public class SquareManager : EnemyMovementAbstract
                 }
             }
         }
-        if (Vector2.Distance(transform.position, _PlayerController.gameObject.transform.position) > 5)
+        if (Vector2.Distance(_t.position, _PlayerController.transform.position) > 5)
         {
             _canDash = true;
             _canFollow = true;
@@ -61,7 +64,7 @@ public class SquareManager : EnemyMovementAbstract
     {
         _canDash = false;
         yield return new WaitForSeconds(.25f);
-        _Rb.velocity = 30 * Time.deltaTime * 100 * transform.up;
+        _Rb.velocity = 30 * Time.deltaTime * 100 * _t.up;
         yield return new WaitForSeconds(.25f);
         _canFollow = true;
     }

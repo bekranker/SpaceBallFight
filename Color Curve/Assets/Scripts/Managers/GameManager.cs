@@ -5,12 +5,21 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] WaveManager _WaveManager;
+    [SerializeField] private WaveManager _WaveManager;
     [SerializeField] private Animator _Animatior;
-    [SerializeField] ShockWaveManager _ShockWaveManager;
+    [SerializeField] private ShockWaveManager _ShockWaveManager;
     [SerializeField] private PlayerController _PlayerController;
     [SerializeField] private UIManager _UIManager;
+    [SerializeField] private GameObject _GameOverScreen;
+    [SerializeField] private ScoreManager _ScoreManager;
     private WaitForSecondsRealtime _sleepTime = new WaitForSecondsRealtime(1.75f);
+    private EnemyManager[] _enemys;
+    private Transform _playerT;
+    private void Start()
+    {
+        _playerT = _PlayerController.transform;
+    }
+
     public void ChangeWaveInfos()
     {
         StartCoroutine(ChangeWaveInfoIE());
@@ -22,5 +31,23 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
         yield return _sleepTime;
         Time.timeScale = 1;
+    }
+    public void DeadTime()
+    {
+        Time.timeScale = 0;
+        _GameOverScreen.SetActive(true);
+        _ShockWaveManager.CallShockWave();
+        _ScoreManager.SaveScore();
+        _WaveManager.SaveWave();
+        _UIManager.OpenOrCloseUI(false);
+        DeleteAllEnemys();
+    }
+    private void DeleteAllEnemys()
+    {
+        _enemys = FindObjectsOfType<EnemyManager>();
+        foreach (EnemyManager enemy in _enemys)
+        {
+            enemy.TakeDamage(1000, _playerT);
+        }
     }
 }

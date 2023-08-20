@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -25,17 +26,29 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Color _RedParticleColor, _GreenParticleColor, _BlueParticleColor;
     [SerializeField] private Sprite _RedPlayerSprite, _GreenPlayerSprite, _BluePlayerSprite;
     [SerializeField] private Sprite _RedParticleSprite, _GreenParticleSprite, _BlueParticleSprite;
-    [HideInInspector] public bool Green, Blue;
+    public bool Green, Blue;
     [HideInInspector] public float FirstSpeed;
     private WaitForSecondsRealtime _sleepTime = new WaitForSecondsRealtime(0.1f);
     private int _index;
     private float _previousScrollPosition;
     [SerializeField] private Slider _RedSlider, _GreenSlider, _BlueSlider;
+    [SerializeField] private GameObject _RedSliderG, _GreenSliderG, _BlueSliderG;
     [SerializeField] private PlayerDedection _PlayerDedection;
     [SerializeField] private PlayerAttack _PlayerAttack;
-    
+    [SerializeField] private Slider _PlayerHealth;
+    [SerializeField] private Transform _PlayerHealthT;
+    [SerializeField] private float _SliderEffectSpeed, _SliderEffectScale;
+    [SerializeField] private GameManager _GameManager;
+    [SerializeField] private ParticleSystem _DieEffect;
+    private bool _canChange;
+
+
     private void Start()
     {
+        Green = (PlayerPrefs.HasKey("GreenUnlocked")) ? true: false;
+        Blue = (PlayerPrefs.HasKey("BlueUnlocked")) ? true: false;
+        _canChange = true;
+        PlayerHealthSldier();
         FirstSpeed = _Speed;
         CanChangestate = true;
         _index = 1;
@@ -62,10 +75,7 @@ public class PlayerController : MonoBehaviour
     {
         if(CurrentHealth - damageValue <= 0)
         {
-            //dead
-            StartCoroutine(takeDamageIE(damageValue));
-            //lose screen must be call here
-            
+            _GameManager.DeadTime();
             return;
         }
         else
@@ -73,6 +83,7 @@ public class PlayerController : MonoBehaviour
             //hitted by something
             StartCoroutine(takeDamageIE(damageValue));
         }
+        PlayerHealthSldier();
     }
     private IEnumerator takeDamageIE(float damageValue)
     {
@@ -86,7 +97,13 @@ public class PlayerController : MonoBehaviour
         _Sp.color = currentColor;
         SetParticleColor();
     }
-    
+    public void Dead()
+    {
+        Instantiate(_DieEffect, transform.position, Quaternion.identity);
+        gameObject.SetActive(false);
+    }
+
+
     //changing player
     private void ChangeCharacter()
     {
@@ -153,6 +170,7 @@ public class PlayerController : MonoBehaviour
                 _PlayerStates = PlayerState.Red;
                 _Sp.color = _RedPlayerColor;
                 _SpFace.sprite = _RedPlayerSprite;
+                OpenSlider(_RedSliderG);
                 break;
             case 2:
                 if (!Green)
@@ -162,6 +180,7 @@ public class PlayerController : MonoBehaviour
                 _PlayerStates = PlayerState.Green;
                 _Sp.color = _GreenPlayerColor;
                 _SpFace.sprite = _GreenPlayerSprite;
+                OpenSlider(_GreenSliderG);
                 break;
             case 3:
                 if (!Blue)
@@ -173,12 +192,19 @@ public class PlayerController : MonoBehaviour
                 _PlayerStates = PlayerState.Blue;
                 _Sp.color = _BluePlayerColor;
                 _SpFace.sprite = _BluePlayerSprite;
+                OpenSlider(_BlueSliderG);
                 break;
             default:
                 break;
         }
     }
-    
+    private void OpenSlider(GameObject slider)
+    {
+        _RedSliderG.SetActive(false);
+        _GreenSliderG.SetActive(false);
+        _BlueSliderG.SetActive(false);
+        slider.SetActive(true);
+    }
     //looking mouse
     private void LookAtTheMouse()
     {
@@ -257,5 +283,19 @@ public class PlayerController : MonoBehaviour
             default:
                 break;
         }
+    }
+    public bool IsTrueState(PlayerState states)
+    {
+        return states == _PlayerStates;
+    }
+    private void PlayerHealthSldier()
+    {
+        if (!_canChange) return;
+        _PlayerHealth.value = CurrentHealth;
+        _PlayerHealthT.DOPunchPosition(_SliderEffectScale * new Vector3(1, 0), _SliderEffectSpeed).OnComplete(() =>
+        {
+            _canChange = true;
+        });
+        _canChange = false;
     }
 }

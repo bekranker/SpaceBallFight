@@ -55,21 +55,31 @@ public class PlayerDedection : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("RedPoint"))
         {
-            _RedSlider.value++;
-            _RedPointIndex++;
-            IncreasePointIndex(collision.gameObject, _SkillPointRedP);
+            if (_PlayerController.IsTrueState(PlayerState.Red))
+            {
+                _RedPointIndex++;
+                _RedSlider.value = _RedPointIndex;
+                IncreasePointIndex(collision.gameObject, _SkillPointRedP);
+            }
         }
         if (collision.gameObject.CompareTag("BluePoint"))
         {
-            _BlueSlider.value++;
-            _BluePointIndex++;
-            IncreasePointIndex(collision.gameObject, _SkillPointBlueP);
+            if (_PlayerController.IsTrueState(PlayerState.Blue))
+            {
+                _BluePointIndex++;
+                _BlueSlider.value = _BluePointIndex;
+                IncreasePointIndex(collision.gameObject, _SkillPointBlueP);
+            }
+            
         }
         if (collision.gameObject.CompareTag("GreenPoint"))
         {
-            _GreenSlider.value++;
-            _GreenPointIndex++;
-            IncreasePointIndex(collision.gameObject, _SkillPointGreenP);
+            if (_PlayerController.IsTrueState(PlayerState.Green))
+            {
+                _GreenPointIndex++;
+                _GreenSlider.value = _GreenPointIndex;
+                IncreasePointIndex(collision.gameObject, _SkillPointGreenP);
+            }
         }
     }
     private void IncreasePointIndex(GameObject dedectedSkillPoint, ParticleSystem effect)
@@ -80,8 +90,6 @@ public class PlayerDedection : MonoBehaviour
     }
     private void BeCanUsefuellTheSpecialAttack()
     {
-        //Increase there own slider right here.
-
         if (_RedPointIndex >= 5)
         {
             _PlayerAttack.CanUseFire = true;

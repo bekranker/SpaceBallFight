@@ -10,7 +10,7 @@ public class EnemyManager : MonoBehaviour
 {
 
     public event Action OnDead, OnHit;
-
+    public float Speed;
     [SerializeField] private int _Health;
     [SerializeField] public Color _NormalColor, _DamagedColor;
     [SerializeField] public List<SpriteRenderer> _Sp;
@@ -19,7 +19,6 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] public EnemyTypes EnemyTypes = new EnemyTypes();
     [SerializeField] public ParticleSystem BackgroundParticle;
     [SerializeField] public List<TrailRenderer> Trail;
-    [SerializeField] private CollectableXP CollectableXPs;
     [SerializeField] private GameObject _SkillPointRed, _SkillPointBlue, _SkillPointGreen;
 
 
@@ -60,10 +59,6 @@ public class EnemyManager : MonoBehaviour
             OnDead?.Invoke();
             _mainCamera.DOShakePosition(.1f, .5f);
             _scoreManager.IncreaseScore(damage * Random.Range(7, 12), pos);
-            for (int i = 0; i < 5; i++)
-            {
-                Instantiate(CollectableXPs, _t.position, Quaternion.identity);
-            }
             CreateSkillPoint();
             Destroy(gameObject);
             _canDie = false;

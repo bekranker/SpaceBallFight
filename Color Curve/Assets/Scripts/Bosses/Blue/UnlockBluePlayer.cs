@@ -1,51 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class UnlockPlayer : MonoBehaviour
 {
-	public enum PlayerType
-	{
-		Blue,
-		Green,
-		Red
-	}
-	public PlayerType playerType;
-    [SerializeField] private Sprite _Sprite;
-    private Image image;
-    private Animator _unlockedAnimation;
-    private GameObject _blueBallBG, _greenBallBG;
-    private void Start()
-    {
-        _unlockedAnimation = GameObject.FindGameObjectWithTag("Unlocked").GetComponent<Animator>();
-        _blueBallBG = GameObject.FindGameObjectWithTag("BlueBallBG");
-        _greenBallBG = GameObject.FindGameObjectWithTag("GreenBallBG");
-        image = GameObject.FindGameObjectWithTag("UnlockedImage").GetComponent<Image>();
-    }
+    [SerializeField] private GameObject _UnlockedCanvas;
+    [SerializeField] private bool _BlueUnlocked, _GreenUnlocked;
+
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.TryGetComponent(out PlayerController playerController))
         {
-            SetUnlock(playerController);
+            SetUnlock();
         }
     }
-    private void SetUnlock(PlayerController playerController)
+    private void SetUnlock()
     {
-        switch (playerType)
+        Canvas instiatedCanvas = Instantiate(_UnlockedCanvas).GetComponent<Canvas>();
+        instiatedCanvas.worldCamera = Camera.main;
+        instiatedCanvas.GetComponent<Animator>().SetTrigger("Unlocked");
+        if (_BlueUnlocked)
         {
-            case PlayerType.Blue:
-                playerController.Blue = true;
-                image.sprite = _Sprite;
-                break;
-                
-            case PlayerType.Green:
-                playerController.Green = true;
-                break;
-            default:
-                break;
+            PlayerPrefs.SetInt("BlueUnlocked", 1);
         }
-        _unlockedAnimation.SetTrigger("Unlocked");
+        if (_GreenUnlocked)
+        {
+            PlayerPrefs.SetInt("GreenUnlocked", 1);
+        }
         Destroy(gameObject);
     }
 }

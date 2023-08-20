@@ -18,14 +18,12 @@ public class WaveManager : MonoBehaviour
 
     private void Start()
     {
-        WaveIndex = 0;
         ChangeScrore();
         _RemaningTimeManager.SetRemaningTime(_WaveData[WaveIndex].WaveTimeCount);
     }
     public IEnumerator NextWave()
     {
         yield return _waitForWave;
-        //ChangeScrore();
         _RemaningTimeManager.CanIncrease = true;
         _RemaningTimeManager.SetRemaningTime(_WaveData[WaveIndex].WaveTimeCount);
     }
@@ -34,5 +32,9 @@ public class WaveManager : MonoBehaviour
     {
         _SpawnerManager.KilledEnemyCount++;
         ChangeScrore();
+    }
+    public void SaveWave()
+    {
+        PlayerPrefs.SetInt("WaveIndex", WaveIndex);
     }
 }
