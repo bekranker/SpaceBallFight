@@ -27,25 +27,43 @@ public class UIManager : MonoBehaviour
         _ReturnToMenuButton.DoSomething += ReturnToMenu;
 
         _AdsBulletButton.DoSomething += SetBulletAds;
-        _AdsShieldButton.DoSomething += SetShield;
+        _AdsShieldButton.DoSomething += SetShieldAds;
         _AdsUpgradeButton.DoSomething += SetUpgradeAds;
         _AdsHealthButton.DoSomething += SetHealthAds;
     }
-    private void SetHealthAds()
+    public void SetHealthAds()
     {
-        CrazyAds.Instance.beginAdBreakRewarded();
+        CrazyAds.Instance.beginAdBreakRewarded(HealthReward, () => print("add didnt be loaded"));
     }
-    private void SetUpgradeAds()
+    private void HealthReward()
     {
-        CrazyAds.Instance.beginAdBreakRewarded();
+        _PlayerController.CurrentHealth = _PlayerController.MaxHealth;
+        _PlayerController.PlayerHealthSldier();
     }
-    private void SetShield()
+    public void SetUpgradeAds()
     {
-        CrazyAds.Instance.beginAdBreakRewarded();
+        CrazyAds.Instance.beginAdBreakRewarded(UpgradeRewarded, () => print("add didnt be loaded"));
     }
-    private void SetBulletAds()
+    private void UpgradeRewarded()
     {
-        CrazyAds.Instance.beginAdBreakRewarded();
+        StartCoroutine(_PlayerController.IncreaseSpeedAndAttack());
+    }
+    public void SetShieldAds()
+    {
+        CrazyAds.Instance.beginAdBreakRewarded(ShieldReward, ()=> print("add didnt be loaded"));
+    }
+    private void ShieldReward()
+    {
+        StartCoroutine(_PlayerController.GetAShield());
+    }
+    public void SetBulletAds()
+    {
+        CrazyAds.Instance.beginAdBreakRewarded(BulletReward, () => print("add didnt be loaded"));
+    }
+    private void BulletReward()
+    {
+        _PlayerController.BulletCount = _PlayerController.MaXbulletCount;
+        _PlayerController.BulletSlider();
     }
     public void ResumeTheGame()
     {

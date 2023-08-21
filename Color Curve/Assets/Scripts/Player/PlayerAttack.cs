@@ -16,7 +16,7 @@ public class PlayerAttack : MonoBehaviour
     private bool _canAttackSpecial, _canAttackNormal;
     private WaitForSeconds _attackDelay2 = new WaitForSeconds(.05f);
     private int _attackCount;
-    int i, _forCount;
+    private int i, _forCount;
 
 
     private void Start()
@@ -33,6 +33,8 @@ public class PlayerAttack : MonoBehaviour
 
         if (Input.GetMouseButton(0) && _canAttackNormal)
         {
+            if (_PlayerController.BulletCount <= 0)
+                return;
             if (_shootCounter <= 0)
             {
                 BulletSpawn();
@@ -65,6 +67,8 @@ public class PlayerAttack : MonoBehaviour
                 spawnedBulelt.transform.tag = "BulletWhite";
                 break;
         }
+        _PlayerController.BulletCount--;
+        _PlayerController.BulletSlider();
     }
     private void UseSpecialAttack()
     {

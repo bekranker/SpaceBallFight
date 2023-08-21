@@ -13,7 +13,7 @@ public class ObjectPool : MonoBehaviour
     public Queue<GameObject> ParticleQueue = new Queue<GameObject>();
     public Queue<GameObject> BulletQueue = new Queue<GameObject>();
     public Queue<GameObject> ComboEffectQueue = new Queue<GameObject>();
-
+    public int BulletCounter;
 
     private List<Color> _randomTextColors = new List<Color>
     {
@@ -43,6 +43,7 @@ public class ObjectPool : MonoBehaviour
         takeBullet.SetActive(true);
         takeBullet.transform.position = playerPos;
         AddVelocity(takeBullet.GetComponent<Rigidbody2D>(), playerPos);
+        BulletCounter--;
         return takeBullet;
     }
     public void GiveBullet(GameObject bullet)

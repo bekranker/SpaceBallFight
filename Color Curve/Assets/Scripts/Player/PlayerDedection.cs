@@ -129,6 +129,7 @@ public class PlayerDedection : MonoBehaviour
     }
     public void SetText(TMP_Text text, string to, bool full = false)
     {
+        text.text = to;
         if (!_canEffect) return;
         if (!full)
         {
@@ -144,7 +145,6 @@ public class PlayerDedection : MonoBehaviour
                 _canEffect = true;
             });
         }
-        text.text = to;
         _canEffect = false;
     }
 }

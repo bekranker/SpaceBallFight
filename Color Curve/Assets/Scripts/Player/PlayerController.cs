@@ -2,8 +2,10 @@ using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public enum PlayerState
 {
@@ -14,6 +16,7 @@ public enum PlayerState
 
 public class PlayerController : MonoBehaviour
 {
+    public int DamageMultipilier;
     public int MaxHealth, CurrentHealth;
     public PlayerState _PlayerStates;
     public bool CanChangestate;
@@ -39,21 +42,27 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform _PlayerHealthT;
     [SerializeField] private float _SliderEffectSpeed, _SliderEffectScale;
     [SerializeField] private GameManager _GameManager;
+    [SerializeField] private GameObject _Shield, _RingUpgrade;
     [SerializeField] private ParticleSystem _DieEffect;
-    private bool _canChange;
-
+    [SerializeField] public int BulletCount, MaXbulletCount;
+    [SerializeField] private Slider _BulletSlider;
+    [SerializeField] private Transform _BulletSliderT;
+    [SerializeField] private TMP_Text _BulletSliderTMP;
+    private bool _canChange, _canEffect;
+    private WaitForSeconds _delayForAdsReward = new WaitForSeconds(10);
 
     private void Start()
     {
+        _canEffect = true;
+        _canChange = true;
+        CanChangestate = true;
+        FirstSpeed = _Speed;
+        _index = 1;
         Green = (PlayerPrefs.HasKey("GreenUnlocked")) ? true: false;
         Blue = (PlayerPrefs.HasKey("BlueUnlocked")) ? true: false;
-        _canChange = true;
+        BulletSlider();
         PlayerHealthSldier();
-        FirstSpeed = _Speed;
-        CanChangestate = true;
-        _index = 1;
     }
-
     void Update()
     {
         LookAtTheMouse();
@@ -69,7 +78,6 @@ public class PlayerController : MonoBehaviour
 
         transform.position += new Vector3(inputX, inputY, 0) * Time.deltaTime;
     }
-    
     //taking damage
     public void TakeDamage(float damageValue)
     {
@@ -102,8 +110,6 @@ public class PlayerController : MonoBehaviour
         Instantiate(_DieEffect, transform.position, Quaternion.identity);
         gameObject.SetActive(false);
     }
-
-
     //changing player
     private void ChangeCharacter()
     {
@@ -212,7 +218,6 @@ public class PlayerController : MonoBehaviour
         mousePos.z = 0;
         _Sp.gameObject.transform.up = mousePos - _Sp.transform.position;
     }
-    
     //changing effects
     private void SetParticleColor()
     {
@@ -243,7 +248,6 @@ public class PlayerController : MonoBehaviour
         ParticleSystem.MainModule mainPart = _PlayerBackgroundParticle.main;
         mainPart.startColor = Color.white;
     }
-
     //Health slider must be update here
     public void IncreaseHealth(int value) => CurrentHealth += value;
     public void DecreaseHealth(int value) => CurrentHealth -= value;
@@ -291,7 +295,7 @@ public class PlayerController : MonoBehaviour
     {
         return states == _PlayerStates;
     }
-    private void PlayerHealthSldier()
+    public void PlayerHealthSldier()
     {
         if (!_canChange) return;
         _PlayerHealth.value = CurrentHealth;
@@ -300,5 +304,33 @@ public class PlayerController : MonoBehaviour
             _canChange = true;
         });
         _canChange = false;
+    }
+    public IEnumerator IncreaseSpeedAndAttack()
+    {
+        _RingUpgrade.SetActive(true);
+        DamageMultipilier *= 3;
+        _Speed *= 2;
+        yield return _delayForAdsReward;
+        _Speed = FirstSpeed;
+        DamageMultipilier = 1;
+        _RingUpgrade.SetActive(false);
+    }
+    public IEnumerator GetAShield()
+    {
+        _Shield.SetActive(true);
+        yield return _delayForAdsReward;
+        _Shield.SetActive(false);
+    }
+    public void BulletSlider() 
+    {
+        _BulletSlider.value = BulletCount;
+        SetBulletText(BulletCount);
+        if (!_canEffect) return;
+        _BulletSliderT.DOPunchScale(.1f * Vector2.one, .1f).OnComplete(() => _canEffect = true);
+        _canEffect = false;
+    }
+    public void SetBulletText(int count)
+    {
+        _BulletSliderTMP.text = $"{count}/{MaXbulletCount}";
     }
 }
