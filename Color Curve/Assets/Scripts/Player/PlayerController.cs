@@ -271,14 +271,17 @@ public class PlayerController : MonoBehaviour
             case PlayerState.Red:
                 _RedSlider.value = 0;
                 _PlayerDedection._RedPointIndex = 0;
+                _PlayerDedection.SetText(_PlayerDedection._RedSliderTMP, "0/5");
                 break;
             case PlayerState.Green:
                 _GreenSlider.value = 0;
                 _PlayerDedection._GreenPointIndex = 0;
+                _PlayerDedection.SetText(_PlayerDedection._GreenSliderTMP, "0/5");
                 break;
             case PlayerState.Blue:
                 _BlueSlider.value = 0;
                 _PlayerDedection._BluePointIndex = 0;
+                _PlayerDedection.SetText(_PlayerDedection._BlueSliderTMP, "0/5");
                 break;
             default:
                 break;

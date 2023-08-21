@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using CrazyGames;
 using TMPro;
-using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -13,9 +12,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject _Panel;
     [SerializeField] private List<GameObject> _CloseTheese = new List<GameObject>();
     [SerializeField] private PlayerController _PlayerController;
-    [SerializeField] private ButtonClickManager _AdsHealthButton, _AdsEnergyButton, _AdsShieldButton, _AdsBulletButton;
-
-
+    [SerializeField] private ButtonClickManager _AdsHealthButton, _AdsUpgradeButton, _AdsShieldButton, _AdsBulletButton;
     private bool _canClick;
 
 
@@ -28,8 +25,28 @@ public class UIManager : MonoBehaviour
         _PauseButton.DoSomething += PauseTheGame;
         _ResumeButton.DoSomething += ResumeTheGame;
         _ReturnToMenuButton.DoSomething += ReturnToMenu;
-    }
 
+        _AdsBulletButton.DoSomething += SetBulletAds;
+        _AdsShieldButton.DoSomething += SetShield;
+        _AdsUpgradeButton.DoSomething += SetUpgradeAds;
+        _AdsHealthButton.DoSomething += SetHealthAds;
+    }
+    private void SetHealthAds()
+    {
+        CrazyAds.Instance.beginAdBreakRewarded();
+    }
+    private void SetUpgradeAds()
+    {
+        CrazyAds.Instance.beginAdBreakRewarded();
+    }
+    private void SetShield()
+    {
+        CrazyAds.Instance.beginAdBreakRewarded();
+    }
+    private void SetBulletAds()
+    {
+        CrazyAds.Instance.beginAdBreakRewarded();
+    }
     public void ResumeTheGame()
     {
         Time.timeScale = 1;

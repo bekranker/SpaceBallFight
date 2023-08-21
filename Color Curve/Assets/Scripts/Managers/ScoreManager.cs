@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -10,10 +11,15 @@ public class ScoreManager : MonoBehaviour
     private int _bestScore;
     [SerializeField] ObjectPool _Pool;
     [SerializeField] private TMP_Text _Score;
+    [SerializeField] private Transform _ScoreT;
     [SerializeField] private CrossHair _CrossHair;
     [SerializeField] private TMP_Text _BestScoreTMP, _CurrentScoreTMP;
+
+    private bool _canEffect;
+
     private void Start()
     {
+        _canEffect = true;
         _bestScore = PlayerPrefs.GetInt("BestScore", 0);
     }
     public void IncreaseScore(int value, Transform pos)
@@ -26,6 +32,12 @@ public class ScoreManager : MonoBehaviour
             _Score.text = Score.ToString() + "M";
         else
             _Score.text = Score.ToString();
+
+        if (_canEffect)
+        {
+            _ScoreT.DOPunchScale(0.25f * Vector2.one, .1f).OnComplete(() => { _canEffect = true;});
+            _canEffect = false;
+        }
 
         GameObject effect = _Pool.TakeComboEffect(pos.position);
         effect.transform.GetChild(0).GetComponent<TMP_Text>().text = "X" + value.ToString();

@@ -1,6 +1,8 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,10 +14,17 @@ public class PlayerDedection : MonoBehaviour
     [SerializeField] private ScoreManager _ScoreManager;
     [SerializeField] private Slider _RedSlider, _GreenSlider, _BlueSlider;
     [SerializeField] private ParticleSystem _SkillPointRedP, _SkillPointBlueP, _SkillPointGreenP;
+    [SerializeField] public TMP_Text _RedSliderTMP, _GreenSliderTMP, _BlueSliderTMP;
+    [SerializeField] public Transform _RedSliderT, _GreenSliderT, _BlueSliderT;
     private WaitForSeconds WaitForSeconds = new WaitForSeconds(1);
     private Transform _t;
+    private bool _canEffect;
     private void Start()
     {
+        _canEffect = true;
+        SetText(_RedSliderTMP, $"{_RedPointIndex}/5");
+        SetText(_GreenSliderTMP, $"{_GreenPointIndex}/5");
+        SetText(_BlueSliderTMP, $"{_BluePointIndex}/5");
         _t = transform;
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -93,14 +102,49 @@ public class PlayerDedection : MonoBehaviour
         if (_RedPointIndex >= 5)
         {
             _PlayerAttack.CanUseFire = true;
+            SetText(_RedSliderTMP, "Full", true);
+        }
+        else
+        {
+            SetText(_RedSliderTMP, $"{_RedPointIndex}/5");
         }
         if (_GreenPointIndex >= 5)
         {
             _PlayerAttack.CanUseToxic = true;
+            SetText(_GreenSliderTMP, "Full", true);
+        }
+        else
+        {
+            SetText(_GreenSliderTMP, $"{_GreenPointIndex}/5");
         }
         if (_BluePointIndex >= 5)
         {
             _PlayerAttack.CanUseFreeze = true;
+            SetText(_BlueSliderTMP, "Full", true);
         }
+        else
+        {
+            SetText(_BlueSliderTMP, $"{_BluePointIndex}/5");
+        }
+    }
+    public void SetText(TMP_Text text, string to, bool full = false)
+    {
+        if (!_canEffect) return;
+        if (!full)
+        {
+            _RedSliderT.DOPunchScale(0.75f * Vector2.one, 0.2f).OnComplete(() =>
+            {
+                _canEffect = true;
+            });
+        }
+        else
+        {
+            _RedSliderT.DOPunchPosition(25 * new Vector2(1,0), 0.3f).OnComplete(() =>
+            {
+                _canEffect = true;
+            });
+        }
+        text.text = to;
+        _canEffect = false;
     }
 }

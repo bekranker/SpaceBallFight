@@ -32,7 +32,7 @@ public class ButtonClickManager : MonoBehaviour, IPointerDownHandler, IPointerUp
     public void OnPointerDown(PointerEventData eventData)
     {
         if (!CanClick) return;
-        _t.DOScale(_ToScale, .05f);
+        _t.DOScale(_ToScale, .05f).SetUpdate(true);
         _didClick = true;
         CanClick = false;
     }
@@ -41,7 +41,7 @@ public class ButtonClickManager : MonoBehaviour, IPointerDownHandler, IPointerUp
     //This function is only working when mouse is hovering the UI buttons. Also Its working only When remove the click
     public void OnPointerUp(PointerEventData eventData)
     {
-        _t.DOScale(_startScale, .05f);
+        _t.DOScale(_startScale, .05f).SetUpdate(true);
         if (!_didClick) return;
         if (_didEnter)
         {
