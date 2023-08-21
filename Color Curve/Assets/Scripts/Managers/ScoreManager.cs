@@ -21,11 +21,11 @@ public class ScoreManager : MonoBehaviour
         _CrossHair.ShootEffect();
         Score += value;
         if(Score >= 1000)
-            _Score.text = Score.ToString("0.00") + "K";
+            _Score.text = Score.ToString() + "K";
         if(Score >= 1000000)
-            _Score.text = Score.ToString("0.00") + "M";
+            _Score.text = Score.ToString() + "M";
         else
-            _Score.text = Score.ToString("0.00");
+            _Score.text = Score.ToString();
 
         GameObject effect = _Pool.TakeComboEffect(pos.position);
         effect.transform.GetChild(0).GetComponent<TMP_Text>().text = "X" + value.ToString();
