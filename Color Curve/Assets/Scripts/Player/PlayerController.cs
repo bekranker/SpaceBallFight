@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PlayerDedection _PlayerDedection;
     [SerializeField] private PlayerAttack _PlayerAttack;
     [SerializeField] private Slider _PlayerHealth;
+    [SerializeField] private TMP_Text _PlayerHealthTMP;
     [SerializeField] private Transform _PlayerHealthT;
     [SerializeField] private float _SliderEffectSpeed, _SliderEffectScale;
     [SerializeField] private GameManager _GameManager;
@@ -48,11 +49,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Slider _BulletSlider;
     [SerializeField] private Transform _BulletSliderT;
     [SerializeField] private TMP_Text _BulletSliderTMP;
+    [SerializeField] private CameraFollow _CameraFollow;
     private bool _canChange, _canEffect;
     private WaitForSeconds _delayForAdsReward = new WaitForSeconds(10);
 
     private void Start()
     {
+        CurrentHealth = MaxHealth;
         _canEffect = true;
         _canChange = true;
         CanChangestate = true;
@@ -297,6 +300,7 @@ public class PlayerController : MonoBehaviour
     }
     public void PlayerHealthSldier()
     {
+        SetHealthText(CurrentHealth.ToString());
         if (!_canChange) return;
         _PlayerHealth.value = CurrentHealth;
         _PlayerHealthT.DOPunchPosition(_SliderEffectScale * new Vector3(1, 0), _SliderEffectSpeed).OnComplete(() =>
@@ -310,7 +314,9 @@ public class PlayerController : MonoBehaviour
         _RingUpgrade.SetActive(true);
         DamageMultipilier *= 3;
         _Speed *= 2;
+        _CameraFollow._Speed = 0.1f;
         yield return _delayForAdsReward;
+        _CameraFollow._Speed = 0.28988f;
         _Speed = FirstSpeed;
         DamageMultipilier = 1;
         _RingUpgrade.SetActive(false);
@@ -332,5 +338,9 @@ public class PlayerController : MonoBehaviour
     public void SetBulletText(int count)
     {
         _BulletSliderTMP.text = $"{count}/{MaXbulletCount}";
+    }
+    public void SetHealthText(string value)
+    {
+        _PlayerHealthTMP.text = $"{value}/{MaxHealth}";
     }
 }

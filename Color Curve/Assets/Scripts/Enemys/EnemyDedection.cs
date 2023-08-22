@@ -19,6 +19,12 @@ public class EnemyDedection : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.CompareTag("Shield"))
+        {
+            _objectPool.TakeParticle(collision.gameObject.transform.position);
+            _EnemyManager.TakeDamage(999, collision.gameObject.transform);
+            return;
+        }
         switch (collision.tag)
         {
             case "BulletRed":
@@ -45,6 +51,7 @@ public class EnemyDedection : MonoBehaviour
             default:
                 break;
         }
+        
         TakeDamageFromSpecialBullets(collision);
     }
     private void TakeDamageFromSpecialBullets(Collider2D collision)
@@ -58,6 +65,7 @@ public class EnemyDedection : MonoBehaviour
             case "SBulletBlue":
                 _objectPool.TakeParticle(collision.gameObject.transform.position);
                 TakeDamage(collision, 25 * _playerController.DamageMultipilier);
+                StartCoroutine(delay());
                 break;
             case "SBulletGreen":
                 _objectPool.TakeParticle(collision.gameObject.transform.position);
@@ -71,10 +79,6 @@ public class EnemyDedection : MonoBehaviour
     {
         _objectPool.GiveBullet(collision.gameObject);
         _EnemyManager.TakeDamage(damageCount, collision.gameObject.transform);
-        if (collision.gameObject.CompareTag("SBulletBlue"))
-        {
-            StartCoroutine(delay());
-        }
     }
     private IEnumerator delay()
     {

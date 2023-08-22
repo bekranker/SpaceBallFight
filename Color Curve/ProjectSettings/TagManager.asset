@@ -33,6 +33,7 @@ TagManager:
   - SBulletRed
   - SBulletBlue
   - SBulletGreen
+  - Shield
   layers:
   - Default
   - TransparentFX
@@ -46,7 +47,7 @@ TagManager:
   - XP
   - SkillPoint
   - Enemy
-  - 
+  - Shield
   - 
   - 
   - 

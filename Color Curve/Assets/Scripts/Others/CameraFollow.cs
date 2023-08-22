@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    [SerializeField, Range(0.05f, 100)] float _Speed;
+    [SerializeField, Range(0.05f, 100)] public float _Speed;
     [SerializeField] Transform _Player;
     Vector3 vect3 = new Vector3(0,0,-10);
 
