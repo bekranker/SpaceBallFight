@@ -62,7 +62,7 @@ public class RemaningTimeManager : MonoBehaviour
         int minute = Mathf.FloorToInt(CurrentCounter / 60f);
         int second = Mathf.FloorToInt(CurrentCounter % 60f);
 
-        text.text = "Next Wave: " + minute.ToString("00") + ":" + second.ToString("00");
+        text.text = minute.ToString("00") + ":" + second.ToString("00");
     }
     public void SetRemaningTime(float value)
     {

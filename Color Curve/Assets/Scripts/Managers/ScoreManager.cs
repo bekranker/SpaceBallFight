@@ -26,16 +26,11 @@ public class ScoreManager : MonoBehaviour
     {
         _CrossHair.ShootEffect();
         Score += value;
-        if(Score >= 1000)
-            _Score.text = Score.ToString() + "K";
-        if(Score >= 1000000)
-            _Score.text = Score.ToString() + "M";
-        else
-            _Score.text = Score.ToString();
+        _Score.text = Score.ToString();
 
         if (_canEffect)
         {
-            _ScoreT.DOPunchScale(0.25f * Vector2.one, .1f).OnComplete(() => { _canEffect = true;});
+            _ScoreT.DOPunchScale(0.3f * Vector2.one, .15f).OnComplete(() => { _canEffect = true;});
             _canEffect = false;
         }
 

@@ -45,6 +45,10 @@ public class PlayerDedection : MonoBehaviour
             _PlayerController.TakeDamage(3);
             Destroy(collision.gameObject);
         }
+        if (collision.gameObject.CompareTag("Lazer"))
+        {
+            _PlayerController.TakeDamage(15);
+        }
     }
     private IEnumerator decreaseSpeed()
     {
@@ -90,6 +94,7 @@ public class PlayerDedection : MonoBehaviour
                 IncreasePointIndex(collision.gameObject, _SkillPointGreenP);
             }
         }
+        
     }
     private void IncreasePointIndex(GameObject dedectedSkillPoint, ParticleSystem effect)
     {

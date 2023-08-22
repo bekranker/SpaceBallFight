@@ -136,7 +136,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _UnlockedCanvas: {fileID: 1501909995271890420, guid: d58d4ac7f10f677489ff84c283c361c0, type: 3}
   _BlueUnlocked: 0
-  _GreenUnlocked: 0
+  _GreenUnlocked: 1
 --- !u!1 &7207724364302055615
 GameObject:
   m_ObjectHideFlags: 0

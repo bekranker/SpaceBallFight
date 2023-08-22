@@ -60,16 +60,16 @@ public class EnemyDedection : MonoBehaviour
         {
             case "SBulletRed":
                 _objectPool.TakeParticle(collision.gameObject.transform.position);
-                TakeDamage(collision, 50 * _playerController.DamageMultipilier);
+                _EnemyManager.TakeDamage(50, collision.gameObject.transform);
                 break;
             case "SBulletBlue":
                 _objectPool.TakeParticle(collision.gameObject.transform.position);
-                TakeDamage(collision, 25 * _playerController.DamageMultipilier);
+                _EnemyManager.TakeDamage(25, collision.gameObject.transform);
                 StartCoroutine(delay());
                 break;
             case "SBulletGreen":
                 _objectPool.TakeParticle(collision.gameObject.transform.position);
-                TakeDamage(collision, 15 * _playerController.DamageMultipilier);
+                _EnemyManager.TakeDamage(15, collision.gameObject.transform);
                 break;
             default:
                 break;

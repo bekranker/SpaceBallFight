@@ -12,14 +12,14 @@ public class UnlockPlayer : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent(out PlayerController playerController))
         {
-            SetUnlock();
+            SetUnlock(collision);
         }
     }
-    private void SetUnlock()
+    private void SetUnlock(Collider2D collision)
     {
-        Canvas instiatedCanvas = Instantiate(_UnlockedCanvas).GetComponent<Canvas>();
+        Canvas instiatedCanvas = Instantiate(_UnlockedCanvas, collision.transform.position, Quaternion.identity).GetComponent<Canvas>();
         instiatedCanvas.worldCamera = Camera.main;
-        instiatedCanvas.GetComponent<Animator>().SetTrigger("Unlocked");
+        instiatedCanvas.transform.GetChild(0).GetChild(0).GetComponent<Animator>().SetTrigger("Unlocked");
         if (_BlueUnlocked)
         {
             PlayerPrefs.SetInt("BlueUnlocked", 1);

@@ -34,6 +34,7 @@ TagManager:
   - SBulletBlue
   - SBulletGreen
   - Shield
+  - Lazer
   layers:
   - Default
   - TransparentFX

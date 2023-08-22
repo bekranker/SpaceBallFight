@@ -41,6 +41,16 @@ public class GameManager : MonoBehaviour
         _WaveManager.SaveWave();
         _UIManager.OpenOrCloseUI(false);
         DeleteAllEnemys();
+        _PlayerController.gameObject.SetActive(false);
+    }
+    public void BornTime()
+    {
+        Time.timeScale = 1;
+        _GameOverScreen.SetActive(false);
+        _ScoreManager.SaveScore();
+        _WaveManager.SaveWave();
+        _UIManager.OpenOrCloseUI(true);
+        _PlayerController.gameObject.SetActive(true);
     }
     private void DeleteAllEnemys()
     {
