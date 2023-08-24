@@ -4,18 +4,20 @@ using UnityEngine;
 
 public class GreenBulet : MonoBehaviour
 {
-    WaitForSeconds _sleepTime = new WaitForSeconds(1);
     [SerializeField] private GameObject _BulletExlopdePrefab;
-
+    private int _randWait;
 
     void Start()
     {
-        StartCoroutine(greenParticle());
+        _randWait = Random.Range(1, 3);
+        greenParticle();
     }
-    IEnumerator greenParticle()
+    void greenParticle()
     {
-        yield return _sleepTime;
+        Destroy(gameObject, _randWait);
+    }
+    private void OnDestroy()
+    {
         Instantiate(_BulletExlopdePrefab, transform.position, Quaternion.identity);
-        Destroy(gameObject);
     }
 }

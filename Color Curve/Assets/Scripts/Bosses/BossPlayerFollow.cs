@@ -28,8 +28,6 @@ public class BossPlayerFollow : MonoBehaviour
     private void FollowThePlayer()
     {
         if (!CanFollow) return;
-
         _t.position = Vector2.MoveTowards(_t.position, _player.position, _Speed * Time.deltaTime);
-
     }
 }

@@ -24,16 +24,47 @@ public class BossDedection : MonoBehaviour
         switch (bulletTag)
         {
             case "BulletRed":
-                _BossTag.TakeDamage(Random.Range(200,500), _t, "BulletRed");
+                if (_BossTag.EnemyColor == EnemyColor.Red)
+                {
+                    _BossTag.TakeDamage(Random.Range(200, 500), _t, "BulletRed");
+                }
+                else
+                {
+                    _BossTag.TakeDamage(Random.Range(20,50), _t, "BulletRed");
+                }
                 _ObjectPool.GiveBullet(bullet);
                 break;
             case "BulletBlue":
-                _BossTag.TakeDamage(Random.Range(200, 500), _t, "BulletBlue");
+                if (_BossTag.EnemyColor == EnemyColor.Red)
+                {
+                    _BossTag.TakeDamage(Random.Range(200, 500), _t, "BulletBlue");
+                }
+                else
+                {
+                    _BossTag.TakeDamage(Random.Range(20, 50), _t, "BulletBlue");
+                }
                 _ObjectPool.GiveBullet(bullet);
                 break;
             case "BulletGreen":
-                _BossTag.TakeDamage(Random.Range(200, 500), _t, "BulletGreen");
+                if (_BossTag.EnemyColor == EnemyColor.Red)
+                {
+                    _BossTag.TakeDamage(Random.Range(200, 500), _t, "BulletGreen");
+                }
+                else
+                {
+                    _BossTag.TakeDamage(Random.Range(20, 50), _t, "BulletGreen");
+                }
                 _ObjectPool.GiveBullet(bullet);
+                break;
+            case "SBulletRed":
+                _BossTag.TakeDamage(1250, bullet.transform, "BulletRed");
+                break;
+            case "SBulletBlue":
+                _BossTag.TakeDamage(1250, bullet.transform, "BulletBlue");
+                StartCoroutine(_BossTag.Slow());
+                break;
+            case "SBulletGreen":
+                _BossTag.TakeDamage(1250, bullet.transform, "BulletGreen");
                 break;
             default:
                 break;

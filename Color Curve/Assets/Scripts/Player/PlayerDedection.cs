@@ -35,10 +35,12 @@ public class PlayerDedection : MonoBehaviour
         {
             StartCoroutine(decreaseSpeed());
             _PlayerController.TakeDamage(7);
+            Destroy(collision.gameObject);
         }
         if (collision.CompareTag("BossBullet"))
         {
             _PlayerController.TakeDamage(7);
+            Destroy(collision.gameObject);
         }
         if (collision.CompareTag("Enemy"))
         {

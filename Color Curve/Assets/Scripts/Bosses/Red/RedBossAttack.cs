@@ -11,22 +11,16 @@ public class RedBossAttack : MonoBehaviour
     [SerializeField] private BossPlayerFollow _BossPlayerFollow;
     [SerializeField] private Transform _SpawnPoint;
 
-    private WaitForSeconds _sleepTime = new WaitForSeconds(5);
+    private WaitForSeconds _changeAttackDelay = new WaitForSeconds(5);
     private WaitForSeconds _sleepTimeFirst = new WaitForSeconds(2);
-    private WaitForSeconds _attackDelay = new WaitForSeconds(.1f);
-    private WaitForSeconds _attackDelay2 = new WaitForSeconds(.01f);
+    private WaitForSeconds _shootDelay = new WaitForSeconds(.01f);
     private float _firstSpeed;
     private Transform _t;
-    private Vector3 _p;
     private void Start()
     {
         _firstSpeed = _SpinBoss._SpinSpeed;
         Attack();
         _t = transform;
-    }
-    private void Update()
-    {
-        _p = _SpawnPoint.position;
     }
     private void Attack()
     {
@@ -39,10 +33,10 @@ public class RedBossAttack : MonoBehaviour
         _BossPlayerFollow.CanFollow = false;
         //---------------------------------------Cut---------------------------------------
         StartCoroutine(ShootIE());
-        yield return _sleepTime;
+        yield return _changeAttackDelay;
         _SpinBoss._SpinSpeed *= 1.2f;
         createEnemys();
-        yield return _sleepTime;
+        yield return _changeAttackDelay;
         _SpinBoss._SpinSpeed = _firstSpeed;
         _BossPlayerFollow.CanFollow = true;
         Attack();
@@ -51,7 +45,7 @@ public class RedBossAttack : MonoBehaviour
     {
         for (int i = 0; i < _BulletCountForEachPoint; i++)
         {
-            yield return _attackDelay2;
+            yield return _shootDelay;
             float angle = i * 22.5f;
             Quaternion rotation = Quaternion.Euler(0, 0, angle);
             Rigidbody2D rb = Instantiate(_BulletPrefab, _t.position, rotation).GetComponent<Rigidbody2D>();
@@ -60,7 +54,7 @@ public class RedBossAttack : MonoBehaviour
     }
     private void createEnemys()
     {
-        _BossFightCreateEnemy.SpawnRandomEnemy(Random.Range(5, 10), .25f, _p);
+        _BossFightCreateEnemy.SpawnRandomEnemy(Random.Range(5, 10), .25f, _SpawnPoint.position);
     }
 
     private void PushBulet(Rigidbody2D rb)

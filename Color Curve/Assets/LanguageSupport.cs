@@ -14,6 +14,7 @@ public class LanguageSupport : MonoBehaviour
 
     void Start()
     {
+        Cursor.visible = true;
         _FlagImage.sprite = _LanguagesSprites[IndexOfLanguage()];
         _languageIndex = IndexOfLanguage();
         _LanguageSupportButtonRight.DoSomething += ()=> SetLanguageRight();

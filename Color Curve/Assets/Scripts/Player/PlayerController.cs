@@ -1,7 +1,6 @@
 using DG.Tweening;
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -50,6 +49,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform _BulletSliderT;
     [SerializeField] private TMP_Text _BulletSliderTMP;
     [SerializeField] private CameraFollow _CameraFollow;
+    [SerializeField] public Action OnPlayerStateChange; 
     private bool _canChange, _canEffect;
     private WaitForSeconds _delayForAdsReward = new WaitForSeconds(10);
 
@@ -170,6 +170,7 @@ public class PlayerController : MonoBehaviour
             _CrossHair.ChangeColorCross();
             SetParticleColor(); 
         }
+        OnPlayerStateChange?.Invoke();
     }
     private void ChangeState()
     {

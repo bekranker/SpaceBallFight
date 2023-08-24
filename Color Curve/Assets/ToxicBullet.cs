@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ToxicBullet : MonoBehaviour
 {
+    [SerializeField] private ParticleSystem _ToxicParticle;
     [SerializeField] private LayerMask _AfectedLayers;
     private bool _can;
     private Transform _t;
@@ -12,6 +13,7 @@ public class ToxicBullet : MonoBehaviour
     {
         _t = transform;
         _can = true;
+        StartCoroutine(effect());
         Destroy(gameObject, 5);
     }
     void Update()
@@ -40,5 +42,11 @@ public class ToxicBullet : MonoBehaviour
         _can = false;
         yield return new WaitForSeconds(1);
         _can = true;
+    }
+    private IEnumerator effect()
+    {
+        yield return new WaitForSeconds(4.5f);
+        ParticleSystem.MainModule mainPart = _ToxicParticle.main;
+        mainPart.startLifetime = 0;
     }
 }

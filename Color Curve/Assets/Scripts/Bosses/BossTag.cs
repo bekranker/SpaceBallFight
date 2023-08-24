@@ -17,23 +17,26 @@ public class BossTag : MonoBehaviour
     [SerializeField] private BossAttackManager _BossAttackManager;
     [HideInInspector] public ShockWaveManager _ShockWave;
     [SerializeField] public Color _ColorBlue;
+    [SerializeField] public float Speed;
     //----------------------------------------------------Cut----------------------------------------------------
 
 
     private BossManager _BossManager;
     private float _currentHealth;
     private WaitForSecondsRealtime _sleepTime = new WaitForSecondsRealtime(.05f);
+    private WaitForSecondsRealtime _sleepTimeForDelay = new WaitForSecondsRealtime(1f);
     [HideInInspector] public Transform _player;
     private Vector3 _playerPosition;
     private Transform _t;
     private Vector2 _direction;
     private bool _didDead;
     private bool _canDamage;
-
+    private float _firstSpeed;
 
 
     private void Start()
     {
+        _firstSpeed = Speed;
         _t = transform;
         _player = FindAnyObjectByType<PlayerController>().transform;
         _BossManager = GameObject.FindGameObjectWithTag("BossManager").GetComponent<BossManager>();
@@ -145,5 +148,11 @@ public class BossTag : MonoBehaviour
             return true;
         }
         return false;
+    }
+    public IEnumerator Slow()
+    {
+        Speed *= 2;
+        yield return _sleepTimeForDelay;
+        Speed = _firstSpeed;
     }
 }
