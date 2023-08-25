@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private UIManager _UIManager;
     [SerializeField] private GameObject _GameOverScreen;
     [SerializeField] private ScoreManager _ScoreManager;
+    [SerializeField] private AudioSource _BgMusic;
     private WaitForSecondsRealtime _sleepTime = new WaitForSecondsRealtime(1.75f);
     private EnemyManager[] _enemys;
     private Transform _playerT;
@@ -47,6 +48,7 @@ public class GameManager : MonoBehaviour
     public void BornTime()
     {
         Time.timeScale = 1;
+        _BgMusic.Play();
         _GameOverScreen.SetActive(false);
         _ScoreManager.SaveScore();
         _WaveManager.SaveWave();

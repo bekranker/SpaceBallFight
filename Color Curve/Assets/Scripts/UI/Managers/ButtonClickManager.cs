@@ -42,6 +42,7 @@ public class ButtonClickManager : MonoBehaviour, IPointerDownHandler, IPointerUp
     public void OnPointerUp(PointerEventData eventData)
     {
         _t.DOScale(_startScale, .05f).SetUpdate(true);
+        Audio.PlayAudio("Click", .15f);
         if (!_didClick) return;
         if (_didEnter)
         {

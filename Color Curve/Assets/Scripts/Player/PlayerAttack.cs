@@ -47,6 +47,7 @@ public class PlayerAttack : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.F) && CanUseSpecialAttack())
         {
+            Audio.PlayAudio($"BossShootBGNoise", .1f);
             UseSpecialAttack();
         }
     }
@@ -71,15 +72,14 @@ public class PlayerAttack : MonoBehaviour
                 spawnedBulelt.transform.tag = "BulletWhite";
                 break;
         }
-        Audio.PlayAudio($"shoot{_Range}", .05f, Random.Range(0.9f, 1.1f));
         _PlayerController.BulletCount--;
         _PlayerController.BulletSlider();
+        Audio.PlayAudio($"shoot{_Range}", .1f);
     }
     private void UseSpecialAttack()
     {
         _canAttackNormal = false;
         _canAttackSpecial = true;
-        Audio.PlayAudio($"BossShootBGNoise", .4f);
 
         switch (_PlayerController._PlayerStates)
         {

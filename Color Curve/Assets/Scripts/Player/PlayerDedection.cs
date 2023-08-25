@@ -66,6 +66,7 @@ public class PlayerDedection : MonoBehaviour
                 _RedPointIndex++;
                 _RedSlider.value = _RedPointIndex;
                 IncreasePointIndex(collision.gameObject, _SkillPointRedP);
+                Audio.PlayAudio($"CollectSoundEffect", 1f);
             }
         }
         if (collision.gameObject.CompareTag("BluePoint"))
@@ -75,8 +76,8 @@ public class PlayerDedection : MonoBehaviour
                 _BluePointIndex++;
                 _BlueSlider.value = _BluePointIndex;
                 IncreasePointIndex(collision.gameObject, _SkillPointBlueP);
+                Audio.PlayAudio($"CollectSoundEffect", 1f);
             }
-            
         }
         if (collision.gameObject.CompareTag("GreenPoint"))
         {
@@ -85,13 +86,12 @@ public class PlayerDedection : MonoBehaviour
                 _GreenPointIndex++;
                 _GreenSlider.value = _GreenPointIndex;
                 IncreasePointIndex(collision.gameObject, _SkillPointGreenP);
+                Audio.PlayAudio($"CollectSoundEffect", 1f);
             }
         }
-        Audio.PlayAudio($"CollectSoundEffect", 1f);
     }
     private void IncreasePointIndex(GameObject dedectedSkillPoint, ParticleSystem effect)
     {
-        Audio.PlayAudio("Collect1");
         BeCanUsefuellTheSpecialAttack();
         Instantiate(effect, dedectedSkillPoint.transform.position, Quaternion.identity);
         Destroy(dedectedSkillPoint);
