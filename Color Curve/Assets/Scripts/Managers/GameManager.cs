@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     IEnumerator ChangeWaveInfoIE()
     {
         _ShockWaveManager.CallShockWave();
+        Audio.PlayAudio("EnemysComing");
         _Animatior.SetTrigger("WaveCompleted");
         Time.timeScale = 0;
         yield return _sleepTime;

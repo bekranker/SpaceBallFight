@@ -30,7 +30,6 @@ public class PlayerDedection : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         CollectPoints(collision);
-        CollectXPs(collision);
         if (collision.CompareTag("FreezeBullet"))
         {
             StartCoroutine(decreaseSpeed());
@@ -57,14 +56,6 @@ public class PlayerDedection : MonoBehaviour
         _PlayerController._Speed /= 2;
         yield return WaitForSeconds;
         _PlayerController._Speed = _PlayerController.FirstSpeed;
-    }
-    private void CollectXPs(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("XP"))
-        {
-            _ScoreManager.IncreaseScore(15, _t);
-            Destroy(collision.gameObject);
-        }
     }
     private void CollectPoints(Collider2D collision)
     {
@@ -96,10 +87,11 @@ public class PlayerDedection : MonoBehaviour
                 IncreasePointIndex(collision.gameObject, _SkillPointGreenP);
             }
         }
-        
+        Audio.PlayAudio($"CollectSoundEffect", 1f);
     }
     private void IncreasePointIndex(GameObject dedectedSkillPoint, ParticleSystem effect)
     {
+        Audio.PlayAudio("Collect1");
         BeCanUsefuellTheSpecialAttack();
         Instantiate(effect, dedectedSkillPoint.transform.position, Quaternion.identity);
         Destroy(dedectedSkillPoint);

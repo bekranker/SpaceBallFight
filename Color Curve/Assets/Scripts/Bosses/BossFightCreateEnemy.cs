@@ -16,6 +16,7 @@ public class BossFightCreateEnemy : MonoBehaviour
         for (int i = 0; i < enemyCount; i++)
         {
             yield return new WaitForSeconds(spawnDelay);
+            Audio.PlayAudio("BossCreateEnemy", .25f);
             GameObject enemy = Instantiate(_Enemy[randEnemy], spawnPos, Quaternion.identity);
             ChangeEnemyState(enemy.GetComponent<EnemyManager>());
         }

@@ -49,7 +49,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform _BulletSliderT;
     [SerializeField] private TMP_Text _BulletSliderTMP;
     [SerializeField] private CameraFollow _CameraFollow;
-    [SerializeField] public Action OnPlayerStateChange; 
+    [SerializeField] public Action OnPlayerStateChange;
+    [SerializeField] private AudioSource _Bg;
     private bool _canChange, _canEffect;
     private WaitForSeconds _delayForAdsReward = new WaitForSeconds(10);
 
@@ -86,12 +87,15 @@ public class PlayerController : MonoBehaviour
     {
         if(CurrentHealth - damageValue <= 0)
         {
+            _Bg.Stop();
             _GameManager.DeadTime();
+            Audio.PlayAudio("amsesi", .25f, Random.Range(0.9f, 1.1f));
             return;
         }
         else
         {
             //hitted by something
+            Audio.PlayAudio("EnemyHit", .25f, Random.Range(0.9f, 1.1f));
             StartCoroutine(takeDamageIE(damageValue));
         }
         PlayerHealthSldier();
@@ -185,7 +189,18 @@ public class PlayerController : MonoBehaviour
             case 2:
                 if (!Green)
                 {
-                    return;
+                    if (Blue)
+                    {
+                        _index = 3;
+                        ChangeState();
+                        return;
+                    }
+                    else
+                    {
+                        _index = 1;
+                        ChangeState();
+                        return;
+                    }
                 }
                 _PlayerStates = PlayerState.Green;
                 _Sp.color = _GreenPlayerColor;
@@ -195,9 +210,18 @@ public class PlayerController : MonoBehaviour
             case 3:
                 if (!Blue)
                 {
-                    _index = 1;
-                    ChangeState();
-                    return;
+                    if (Green)
+                    {
+                        _index = 2;
+                        ChangeState();
+                        return;
+                    }
+                    else
+                    {
+                        _index = 1;
+                        ChangeState();
+                        return;
+                    }
                 }
                 _PlayerStates = PlayerState.Blue;
                 _Sp.color = _BluePlayerColor;
@@ -316,7 +340,9 @@ public class PlayerController : MonoBehaviour
         DamageMultipilier *= 3;
         _Speed *= 2;
         _CameraFollow._Speed = 0.1f;
+        _PlayerAttack.ShootRange = 0.05f;
         yield return _delayForAdsReward;
+        _PlayerAttack.ShootRange = _PlayerAttack.FirstShootRange;
         _CameraFollow._Speed = 0.28988f;
         _Speed = FirstSpeed;
         DamageMultipilier = 1;

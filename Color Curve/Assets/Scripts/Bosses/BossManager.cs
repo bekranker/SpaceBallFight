@@ -51,6 +51,7 @@ public class BossManager : MonoBehaviour
     private IEnumerator BeginBossFightIE()
     {
         GC.Collect();
+        Audio.PlayAudio("BossBegin", .2f);
         _AudioSource.clip = _BossFight;
         _AudioSource.Play();
         Instantiate(_BossBeginParticles[_bossCount], _BossSpawnPoint.position, Quaternion.identity);

@@ -75,6 +75,7 @@ public class BossTag : MonoBehaviour
         if (!_canDamage) return;
         if (_currentHealth - damage <= 0)
         {
+            Audio.PlayAudio("BossDie", .5f);
             _didDead = true;
             OnDie?.Invoke();
             _BossManager.EndBossFight();

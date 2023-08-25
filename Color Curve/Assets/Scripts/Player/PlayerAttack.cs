@@ -5,27 +5,30 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     [SerializeField] private PlayerController _PlayerController;
-    [SerializeField, Range(0.05f, 1)] private float _ShootRange;
+    [SerializeField, Range(0.05f, 1)] public float ShootRange;
     [SerializeField] private GameObject _BulletPrefab;
     [SerializeField] private ObjectPool _ObjectPool;
     [SerializeField] private SpriteRenderer _PlayeRSpriteRenderer;
     [SerializeField] private GameObject _FireBullet, _FreezeBullet, _ToxicBullet;
     [SerializeField, Range(0, 25)] int _Range;
+    public float FirstShootRange;
     public bool CanUseFire, CanUseFreeze, CanUseToxic;
     private float _shootCounter;
     private Transform _t;
     private bool _canAttackSpecial, _canAttackNormal;
     private WaitForSeconds _attackDelay2 = new WaitForSeconds(.05f);
+    private WaitForSeconds _forSound = new WaitForSeconds(.3f);
     private int _attackCount;
     private int i, _forCount;
 
 
     private void Start()
     {
+        FirstShootRange = ShootRange;
         _canAttackSpecial = false;
         _canAttackNormal = true;
         _t = transform;
-        _shootCounter = _ShootRange;
+        _shootCounter = ShootRange;
     }
 
     void Update()
@@ -39,7 +42,7 @@ public class PlayerAttack : MonoBehaviour
             if (_shootCounter <= 0)
             {
                 BulletSpawn();
-                _shootCounter = _ShootRange;
+                _shootCounter = ShootRange;
             }
         }
         if (Input.GetKeyDown(KeyCode.F) && CanUseSpecialAttack())
@@ -68,7 +71,7 @@ public class PlayerAttack : MonoBehaviour
                 spawnedBulelt.transform.tag = "BulletWhite";
                 break;
         }
-        Audio.PlayAudio($"shoot{_Range}", .15f, Random.Range(0.9f, 1.1f));
+        Audio.PlayAudio($"shoot{_Range}", .05f, Random.Range(0.9f, 1.1f));
         _PlayerController.BulletCount--;
         _PlayerController.BulletSlider();
     }
@@ -76,6 +79,7 @@ public class PlayerAttack : MonoBehaviour
     {
         _canAttackNormal = false;
         _canAttackSpecial = true;
+        Audio.PlayAudio($"BossShootBGNoise", .4f);
 
         switch (_PlayerController._PlayerStates)
         {

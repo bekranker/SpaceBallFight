@@ -34,6 +34,7 @@ public class UnlockPlayer : MonoBehaviour
             PlayerPrefs.SetInt("GreenUnlocked", 1);
             _PlayerController.Green = true;
         }
+        Audio.PlayAudio("Unlocked", .5f);
         Destroy(gameObject);
     }
 }

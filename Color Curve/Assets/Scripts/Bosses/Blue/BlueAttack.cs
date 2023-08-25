@@ -35,6 +35,7 @@ public class BlueAttack : MonoBehaviour
         for (int i = 0; i < _BulletCountForEachPoint; i++)
         {
             yield return _shootDelayForBlue;
+            Audio.PlayAudio("BossShoot", .25f);
             Rigidbody2D rb = Instantiate(_BulletPrefabForBlue, _SpawnPoint.position, _SpawnPoint.rotation).GetComponent<Rigidbody2D>();
             PushBulet(rb);
         }

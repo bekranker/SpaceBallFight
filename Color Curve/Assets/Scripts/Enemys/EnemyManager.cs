@@ -20,7 +20,7 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] public ParticleSystem BackgroundParticle;
     [SerializeField] public List<TrailRenderer> Trail;
     [SerializeField] private GameObject _SkillPointRed, _SkillPointBlue, _SkillPointGreen;
-
+    [SerializeField] private Vector2 _FromScale;
 
     //-----------------------------------Cut-----------------------------------
 
@@ -37,6 +37,9 @@ public class EnemyManager : MonoBehaviour
     {
         _firsSpeed = Speed;
         _t = transform;
+        float randScale = Random.Range(_FromScale.x, _FromScale.y);
+        Vector2 scale = new Vector2(randScale, randScale);
+        _t.localScale = scale;
         _scoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
         _waveManager = GameObject.FindGameObjectWithTag("WaveManager").GetComponent<WaveManager>();
         _mainCamera = Camera.main;
