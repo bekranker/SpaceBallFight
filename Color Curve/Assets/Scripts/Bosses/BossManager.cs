@@ -20,6 +20,8 @@ public class BossManager : MonoBehaviour
     [SerializeField] private List<SpriteRenderer> _Borders = new List<SpriteRenderer>();
     [SerializeField] private Animator _Animation;
     [SerializeField] private List<ParticleSystem> _BossBeginParticles;
+    [SerializeField] private AudioSource _AudioSource;
+    [SerializeField] private AudioClip _NormalBGMusic, _BossFight;
     private int _bossCount = 0;
     //------------------------Cut------------------------
 
@@ -49,10 +51,13 @@ public class BossManager : MonoBehaviour
     private IEnumerator BeginBossFightIE()
     {
         GC.Collect();
+        _AudioSource.clip = _BossFight;
+        _AudioSource.Play();
         Instantiate(_BossBeginParticles[_bossCount], _BossSpawnPoint.position, Quaternion.identity);
         _Borders.ForEach((_border) => { _border.gameObject.SetActive(true);  _border.DOFade(1, 1); });
         _mainCamera.DOShakePosition(3, 2, 2, fadeOut: true);
         yield return _sleep;
+        Audio.PlayAudio("BlueBossegin", .1f);
         _bossCount++;
         _mainCamera.DOShakePosition(.25f, 5, 10, fadeOut: true, randomnessMode: ShakeRandomnessMode.Harmonic);
         _SpawnManager.SpawnBoss();
@@ -63,6 +68,8 @@ public class BossManager : MonoBehaviour
         StartCoroutine(GoSlider());
         _Borders.ForEach((_border) => { _border.DOFade(0, 1).OnComplete(() => { _border.gameObject.SetActive(false); }); });
         yield return _sleep;
+        _AudioSource.clip = _NormalBGMusic;
+        _AudioSource.Play();
         _CameraFollow.enabled = true;
         _canCallBoss = true;
         _WaveManager.WaveIndex++;

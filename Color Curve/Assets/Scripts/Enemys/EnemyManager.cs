@@ -31,10 +31,11 @@ public class EnemyManager : MonoBehaviour
     private bool _canDie;
     private Camera _mainCamera;
     private Transform _t;
-
+    private float _firsSpeed;
 
     private void Start()
     {
+        _firsSpeed = Speed;
         _t = transform;
         _scoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
         _waveManager = GameObject.FindGameObjectWithTag("WaveManager").GetComponent<WaveManager>();
@@ -46,6 +47,7 @@ public class EnemyManager : MonoBehaviour
     {
         if(_healthCount - damage > 0)
         {
+            Audio.PlayAudio("EnemyHit", .25f, Random.Range(0.9f, 1.1f));
             DecreaseHealt(damage);
             StartCoroutine(damageAction());
             _scoreManager.IncreaseScore(damage * Random.Range(5, 10), pos);
@@ -53,6 +55,7 @@ public class EnemyManager : MonoBehaviour
         }
         else
         {
+            Audio.PlayAudio("EnemyDie1", .35f, Random.Range(0.9f, 1.1f));
             if (!_canDie) return;
             if(_waveManager != null)
                 _waveManager.IncreaseKilledEnemy();
@@ -70,7 +73,9 @@ public class EnemyManager : MonoBehaviour
         {
             _Sp[i].color = _DamagedColor;
         }
+        Speed = 0;
         yield return _sleepTime;
+        Speed = _firsSpeed;
         for (int i = 0; i < _Sp.Count; i++)
         {
             _Sp[i].color = _NormalColor;

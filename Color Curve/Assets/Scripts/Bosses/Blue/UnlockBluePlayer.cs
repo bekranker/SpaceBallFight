@@ -6,8 +6,12 @@ public class UnlockPlayer : MonoBehaviour
 {
     [SerializeField] private GameObject _UnlockedCanvas;
     [SerializeField] private bool _BlueUnlocked, _GreenUnlocked;
+    [SerializeField] private PlayerController _PlayerController;
 
-
+    private void Start()
+    {
+        _PlayerController = FindObjectOfType<PlayerController>();
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.TryGetComponent(out PlayerController playerController))
@@ -23,10 +27,12 @@ public class UnlockPlayer : MonoBehaviour
         if (_BlueUnlocked)
         {
             PlayerPrefs.SetInt("BlueUnlocked", 1);
+            _PlayerController.Blue = true;
         }
         if (_GreenUnlocked)
         {
             PlayerPrefs.SetInt("GreenUnlocked", 1);
+            _PlayerController.Green = true;
         }
         Destroy(gameObject);
     }

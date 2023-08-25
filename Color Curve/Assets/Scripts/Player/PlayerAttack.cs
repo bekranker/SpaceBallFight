@@ -10,6 +10,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private ObjectPool _ObjectPool;
     [SerializeField] private SpriteRenderer _PlayeRSpriteRenderer;
     [SerializeField] private GameObject _FireBullet, _FreezeBullet, _ToxicBullet;
+    [SerializeField, Range(0, 25)] int _Range;
     public bool CanUseFire, CanUseFreeze, CanUseToxic;
     private float _shootCounter;
     private Transform _t;
@@ -67,6 +68,7 @@ public class PlayerAttack : MonoBehaviour
                 spawnedBulelt.transform.tag = "BulletWhite";
                 break;
         }
+        Audio.PlayAudio($"shoot{_Range}", .15f, Random.Range(0.9f, 1.1f));
         _PlayerController.BulletCount--;
         _PlayerController.BulletSlider();
     }

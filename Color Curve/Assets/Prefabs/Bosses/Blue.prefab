@@ -572,7 +572,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyColor: 2
-  _MaxHealth: 10000
+  _MaxHealth: 5
   _SpriteRenderer:
   - {fileID: 1170405919546122793}
   - {fileID: 6314259680120364254}
@@ -586,6 +586,7 @@ MonoBehaviour:
   _BossAttackManager: {fileID: 7541677978920868396}
   _ShockWave: {fileID: 0}
   _ColorBlue: {r: 0, g: 0.7607844, b: 1, a: 1}
+  Speed: 0
   _player: {fileID: 0}
 --- !u!114 &2612594647363477601
 MonoBehaviour:
