@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4939240674375244091}
   - component: {fileID: 5745487926992808575}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Face
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,9 +96,9 @@ GameObject:
   - component: {fileID: 3416591650518308714}
   - component: {fileID: 8977085553285939748}
   - component: {fileID: 3841704426089675210}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LeftPart
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -214,7 +214,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -251,7 +251,7 @@ GameObject:
   - component: {fileID: 8909729359562764265}
   - component: {fileID: 133073520657288184}
   - component: {fileID: 4782805929224477665}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: StupidEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -349,9 +349,9 @@ GameObject:
   - component: {fileID: 5285656950751555728}
   - component: {fileID: 7750320251912684568}
   - component: {fileID: 4739575847551629035}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: RightPart
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -467,7 +467,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -505,7 +505,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6400538654301804554}
   - component: {fileID: 6656924677081253077}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -589,7 +589,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4946807249650398146}
   - component: {fileID: 8028745902567543507}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Face
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -673,7 +673,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3995860025968458649}
   - component: {fileID: 7123502781547815676}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -758,9 +758,10 @@ GameObject:
   - component: {fileID: 8530728940616773516}
   - component: {fileID: 3838827982302977659}
   - component: {fileID: -2558706131669184837}
-  m_Layer: 0
+  - component: {fileID: -8464912889016123284}
+  m_Layer: 11
   m_Name: StupidBoss
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -794,7 +795,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyColor: 0
-  _MaxHealth: 10
+  _MaxHealth: 10000
   _SpriteRenderer:
   - {fileID: 3416591650518308714}
   - {fileID: 5285656950751555728}
@@ -808,6 +809,7 @@ MonoBehaviour:
   _BossAttackManager: {fileID: 4782805929224477665}
   _ShockWave: {fileID: 0}
   _ColorBlue: {r: 0, g: 0.7607843, b: 1, a: 1}
+  Speed: 0
   _player: {fileID: 0}
 --- !u!114 &-2558706131669184837
 MonoBehaviour:
@@ -822,3 +824,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _DieParticle: {fileID: 2885456171195781281, guid: 8cf86ea9b9cc6b14cac3deec1e3fe2df, type: 3}
+--- !u!114 &-8464912889016123284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8905257333664680449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a571644cbdcbcfd4e9e0f04d7d2abfba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _BossTag: {fileID: 3838827982302977659}
+  _GreenPlayerParticle: {fileID: 130230781439211816, guid: 687aeaa429a9c79459dab249cbb253f1, type: 3}
+  _DeadParticle: {fileID: 2885456171195781281, guid: 8cf86ea9b9cc6b14cac3deec1e3fe2df, type: 3}

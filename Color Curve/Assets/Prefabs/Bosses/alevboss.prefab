@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1678724448990727628}
   - component: {fileID: 9148507580756972424}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: BodyFires
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,10 +100,10 @@ GameObject:
   - component: {fileID: 1440559676262522750}
   - component: {fileID: 4954880520193330799}
   - component: {fileID: 7542101511969963314}
-  - component: {fileID: -2148234018616237502}
-  m_Layer: 0
+  - component: {fileID: -2083280183237880496}
+  m_Layer: 11
   m_Name: alevboss
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -122,7 +122,7 @@ Transform:
   m_Children:
   - {fileID: 4525431813282169709}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4223094603076711288
 MonoBehaviour:
@@ -137,7 +137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyColor: 0
-  _MaxHealth: 10
+  _MaxHealth: 15000
   _SpriteRenderer:
   - {fileID: 6463164299694116712}
   - {fileID: 9148507580756972424}
@@ -149,6 +149,7 @@ MonoBehaviour:
   _BossAttackManager: {fileID: 1440559676262522750}
   _ShockWave: {fileID: 0}
   _ColorBlue: {r: 0, g: 0.7607844, b: 1, a: 1}
+  Speed: 0
   _player: {fileID: 0}
 --- !u!114 &8564588387711331056
 MonoBehaviour:
@@ -181,6 +182,7 @@ MonoBehaviour:
   - {fileID: 6486329078010515525, guid: 4da8e04c7c3efaf4aa7942f81eb08837, type: 3}
   - {fileID: 4035755614856987180, guid: dbb4bae0573d86a4793368cd89748f41, type: 3}
   _Tag: {fileID: 4223094603076711288}
+  _HaveX: 0
 --- !u!114 &1440559676262522750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,13 +224,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _SpinBoss: {fileID: 4954880520193330799}
-  _BulletPrefab: {fileID: 3313010810877800333, guid: d5bcf6f681e26824fbd64d0ca7ff4d60, type: 3}
+  _BulletPrefab: {fileID: 3313010810877800333, guid: ffd85410ebe49aa4b9e6994e44b20df4, type: 3}
   _BossFightCreateEnemy: {fileID: 8849384559579839880}
   _BulletSpeed: 15
   _BulletCountForEachPoint: 150
   _BossPlayerFollow: {fileID: 8564588387711331056}
   _SpawnPoint: {fileID: 7848127959829207443}
---- !u!114 &-2148234018616237502
+--- !u!114 &-2083280183237880496
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -237,10 +239,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1703918714598183436}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d869d8fb65198d49a95a4007ad899dc, type: 3}
+  m_Script: {fileID: 11500000, guid: a571644cbdcbcfd4e9e0f04d7d2abfba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _DieParticle: {fileID: 2885456171195781281, guid: 8cf86ea9b9cc6b14cac3deec1e3fe2df, type: 3}
+  _BossTag: {fileID: 4223094603076711288}
+  _GreenPlayerParticle: {fileID: 130230781439211816, guid: 1df2683ec8563244aa109fe0919b4b4a, type: 3}
+  _DeadParticle: {fileID: 7432857655332963612, guid: ee34b6f25b8529443813d0945528bdd8, type: 3}
 --- !u!1 &4404552696471192483
 GameObject:
   m_ObjectHideFlags: 0
@@ -250,7 +254,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4525431813282169709}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Animator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -283,7 +287,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2428174884987899173}
   - component: {fileID: 6137474648406861199}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Face
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -371,9 +375,9 @@ GameObject:
   - component: {fileID: 6463164299694116712}
   - component: {fileID: 4314050014066341763}
   - component: {fileID: 3618470452602369032}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Body
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -515,7 +519,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1414814818366340440}
   - component: {fileID: 287476364846313640}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -599,7 +603,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7975854835244238988}
   - component: {fileID: 4568136750832680853}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Circle (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -682,7 +686,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7848127959829207443}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}

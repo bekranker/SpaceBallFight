@@ -26,45 +26,45 @@ public class BossDedection : MonoBehaviour
             case "BulletRed":
                 if (_BossTag.EnemyColor == EnemyColor.Red)
                 {
-                    _BossTag.TakeDamage(Random.Range(200, 500), _t, "BulletRed");
+                    _BossTag.TakeDamage(Random.Range(20, 50), _t, "BulletRed");
                 }
                 else
                 {
-                    _BossTag.TakeDamage(Random.Range(20,50), _t, "BulletRed");
+                    _BossTag.TakeDamage(Random.Range(2,5), _t, "BulletRed");
                 }
                 _ObjectPool.GiveBullet(bullet);
                 break;
             case "BulletBlue":
                 if (_BossTag.EnemyColor == EnemyColor.Red)
                 {
-                    _BossTag.TakeDamage(Random.Range(200, 500), _t, "BulletBlue");
+                    _BossTag.TakeDamage(Random.Range(20, 50), _t, "BulletBlue");
                 }
                 else
                 {
-                    _BossTag.TakeDamage(Random.Range(20, 50), _t, "BulletBlue");
+                    _BossTag.TakeDamage(Random.Range(2, 5), _t, "BulletBlue");
                 }
                 _ObjectPool.GiveBullet(bullet);
                 break;
             case "BulletGreen":
                 if (_BossTag.EnemyColor == EnemyColor.Red)
                 {
-                    _BossTag.TakeDamage(Random.Range(200, 500), _t, "BulletGreen");
+                    _BossTag.TakeDamage(Random.Range(20, 50), _t, "BulletGreen");
                 }
                 else
                 {
-                    _BossTag.TakeDamage(Random.Range(20, 50), _t, "BulletGreen");
+                    _BossTag.TakeDamage(Random.Range(2, 5), _t, "BulletGreen");
                 }
                 _ObjectPool.GiveBullet(bullet);
                 break;
             case "SBulletRed":
-                _BossTag.TakeDamage(1250, bullet.transform, "BulletRed");
+                _BossTag.TakeDamage(150, bullet.transform, "BulletRed");
                 break;
             case "SBulletBlue":
-                _BossTag.TakeDamage(1250, bullet.transform, "BulletBlue");
+                _BossTag.TakeDamage(150, bullet.transform, "BulletBlue");
                 StartCoroutine(_BossTag.Slow());
                 break;
             case "SBulletGreen":
-                _BossTag.TakeDamage(1250, bullet.transform, "BulletGreen");
+                _BossTag.TakeDamage(150, bullet.transform, "BulletGreen");
                 break;
             default:
                 break;

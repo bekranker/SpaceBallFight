@@ -13,19 +13,27 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _GameOverScreen;
     [SerializeField] private ScoreManager _ScoreManager;
     [SerializeField] private AudioSource _BgMusic;
+    [SerializeField] private Animator _Animator;
     private WaitForSecondsRealtime _sleepTime = new WaitForSecondsRealtime(1.75f);
     private EnemyManager[] _enemys;
     private Transform _playerT;
     private void Start()
     {
+        Time.timeScale = 0;
+        StartCoroutine(priviewthecutScnee());
         _playerT = _PlayerController.transform;
     }
 
+    private IEnumerator priviewthecutScnee()
+    {
+        yield return new WaitForSecondsRealtime(1);
+        Time.timeScale = 1;
+    }
     public void ChangeWaveInfos()
     {
-        StartCoroutine(ChangeWaveInfoIE());
+        StartCoroutine(ChangeWaveIE());
     }
-    IEnumerator ChangeWaveInfoIE()
+    IEnumerator ChangeWaveIE()
     {
         _ShockWaveManager.CallShockWave();
         Audio.PlayAudio("EnemysComing");

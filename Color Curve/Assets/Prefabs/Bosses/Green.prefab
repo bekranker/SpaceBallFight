@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5863398472228563644}
   - component: {fileID: 6080750251362450637}
   - component: {fileID: 6628551740559712052}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Sping
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,7 +111,7 @@ GameObject:
   m_Component:
   - component: {fileID: 80908664721110565}
   - component: {fileID: 5221861809911228010}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -194,7 +194,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4147515043188711462}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Animator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -231,9 +231,9 @@ GameObject:
   - component: {fileID: 9167154706983426252}
   - component: {fileID: 8209334226995038042}
   - component: {fileID: 1834613308952605026}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Green
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -267,7 +267,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyColor: 1
-  _MaxHealth: 10
+  _MaxHealth: 15000
   _SpriteRenderer:
   - {fileID: 4698558658207753985}
   - {fileID: 6080750251362450637}
@@ -279,6 +279,7 @@ MonoBehaviour:
   _BossAttackManager: {fileID: 9167154706983426252}
   _ShockWave: {fileID: 0}
   _ColorBlue: {r: 0, g: 0.7607844, b: 1, a: 1}
+  Speed: 0
   _player: {fileID: 0}
 --- !u!114 &8826243587419512896
 MonoBehaviour:
@@ -325,6 +326,7 @@ MonoBehaviour:
   - {fileID: 6486329078010515525, guid: 4da8e04c7c3efaf4aa7942f81eb08837, type: 3}
   - {fileID: 4035755614856987180, guid: dbb4bae0573d86a4793368cd89748f41, type: 3}
   _Tag: {fileID: 7684549080195541535}
+  _HaveX: 0
 --- !u!114 &1834613308952605026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -338,7 +340,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _BossTag: {fileID: 7684549080195541535}
-  _GreenPlayerParticle: {fileID: 130230781439211816, guid: 687aeaa429a9c79459dab249cbb253f1, type: 3}
+  _GreenPlayerParticle: {fileID: 130230781439211816, guid: a631f1a56667ccb478a6c275e1d0eb3f, type: 3}
   _DeadParticle: {fileID: 3326816926934398082, guid: 2685f429241492d4ca7fc4c615058695, type: 3}
 --- !u!1 &5899652537647196092
 GameObject:
@@ -353,9 +355,9 @@ GameObject:
   - component: {fileID: 7059314555157773863}
   - component: {fileID: 2175592660077429783}
   - component: {fileID: 5710106952632874919}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Body
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -522,7 +524,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8263553123391220055}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -554,7 +556,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8690878988142256752}
   - component: {fileID: 8500291400960090611}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Circle (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -637,7 +639,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5375207024395218222}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Eyes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -671,7 +673,7 @@ GameObject:
   m_Component:
   - component: {fileID: 51685390774965192}
   - component: {fileID: 998102357412065812}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Face
   m_TagString: Untagged
   m_Icon: {fileID: 0}

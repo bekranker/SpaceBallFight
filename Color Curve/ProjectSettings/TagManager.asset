@@ -25,7 +25,6 @@ TagManager:
   - RedPoint
   - BluePoint
   - GreenPoint
-  - XP
   - GreenBallBG
   - BlueBallBG
   - FreezeBullet
@@ -35,6 +34,9 @@ TagManager:
   - SBulletGreen
   - Shield
   - Lazer
+  - Boss
+  - Border
+  - CollectBullet
   layers:
   - Default
   - TransparentFX

@@ -45,7 +45,7 @@ public class PlayerAttack : MonoBehaviour
                 _shootCounter = ShootRange;
             }
         }
-        if (Input.GetKeyDown(KeyCode.F) && CanUseSpecialAttack())
+        if ((Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.Space)) && CanUseSpecialAttack())
         {
             Audio.PlayAudio($"BossShootBGNoise", .1f);
             UseSpecialAttack();

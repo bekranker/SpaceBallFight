@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 6119313875081385536}
   - component: {fileID: 1327088040288029278}
   - component: {fileID: -6887939074566037906}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: lazerboss
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyColor: 1
-  _MaxHealth: 10
+  _MaxHealth: 10000
   _SpriteRenderer:
   - {fileID: 8468803243237296431}
   - {fileID: 30721676677632464}
@@ -64,6 +64,7 @@ MonoBehaviour:
   _BossAttackManager: {fileID: 6768188169551334552}
   _ShockWave: {fileID: 0}
   _ColorBlue: {r: 0, g: 0.7607844, b: 1, a: 1}
+  Speed: 0
   _player: {fileID: 0}
 --- !u!114 &6119313875081385536
 MonoBehaviour:
@@ -97,6 +98,7 @@ MonoBehaviour:
   - {fileID: 2956253033659694738, guid: b2c5f37d75d4e8b4b9460cbf52fbf0f6, type: 3}
   - {fileID: 6486329078010515525, guid: 4da8e04c7c3efaf4aa7942f81eb08837, type: 3}
   _Tag: {fileID: 2115577761221136777}
+  _HaveX: 1
 --- !u!114 &-6887939074566037906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,7 +121,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5697852225329700023}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -469,9 +471,9 @@ GameObject:
   - component: {fileID: 8468803243237296431}
   - component: {fileID: 1694967058050677289}
   - component: {fileID: 1164741759583956094}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Body
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -845,7 +847,7 @@ GameObject:
   m_Component:
   - component: {fileID: 809800236980165887}
   - component: {fileID: 2753319522589040176}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Face
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1089,7 +1091,7 @@ GameObject:
   - component: {fileID: 6768188169551334552}
   - component: {fileID: 4917922351737361603}
   - component: {fileID: 7105990290632166754}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Animator
   m_TagString: Untagged
   m_Icon: {fileID: 0}

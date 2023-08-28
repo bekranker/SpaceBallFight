@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4937155361946302417}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
@@ -45,9 +45,9 @@ GameObject:
   - component: {fileID: 3343701501381940265}
   - component: {fileID: 1550684450723002834}
   - component: {fileID: 6918027093068860884}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Body
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -207,6 +207,7 @@ MonoBehaviour:
   - {fileID: 6486329078010515525, guid: 4da8e04c7c3efaf4aa7942f81eb08837, type: 3}
   - {fileID: 4035755614856987180, guid: dbb4bae0573d86a4793368cd89748f41, type: 3}
   _Tag: {fileID: 972892988807617407}
+  _HaveX: 0
 --- !u!1 &3028057791208782536
 GameObject:
   m_ObjectHideFlags: 0
@@ -217,7 +218,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2661926068650960563}
   - component: {fileID: 3143633279873174707}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Eyes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -300,7 +301,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2813330797188418417}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Animator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -333,7 +334,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5828481848434416594}
   - component: {fileID: 7636108625994112564}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Face
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -418,7 +419,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8309201199347053858}
   - component: {fileID: 5865305995102668082}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -466,9 +467,9 @@ GameObject:
   - component: {fileID: 2179454186489652415}
   - component: {fileID: 1172997881651302555}
   - component: {fileID: -6238926839660446894}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Ghost
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -502,7 +503,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyColor: 0
-  _MaxHealth: 10
+  _MaxHealth: 10000
   _SpriteRenderer:
   - {fileID: 5258969562169511306}
   _DamageColor: {r: 0, g: 0, b: 0, a: 0}
@@ -513,6 +514,7 @@ MonoBehaviour:
   _BossAttackManager: {fileID: 2179454186489652415}
   _ShockWave: {fileID: 0}
   _ColorBlue: {r: 0, g: 0.7607844, b: 1, a: 1}
+  Speed: 0
   _player: {fileID: 0}
 --- !u!114 &2179454186489652415
 MonoBehaviour:

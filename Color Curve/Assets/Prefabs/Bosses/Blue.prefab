@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4601765542702531739}
   - component: {fileID: 4552382402791850794}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Eyes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4760465556912563177}
   - component: {fileID: 5411763130168451703}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Eyes (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1223697321274696035}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -209,7 +209,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9096859773587916857}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Animator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -243,7 +243,7 @@ GameObject:
   - component: {fileID: 1074758971433216594}
   - component: {fileID: 3943049455165802286}
   - component: {fileID: 6979054919888838852}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Spin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -341,7 +341,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3593132996305869852}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -376,9 +376,9 @@ GameObject:
   - component: {fileID: 6524886404752968538}
   - component: {fileID: 4068761198479079022}
   - component: {fileID: 3383718933842344565}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Body
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -536,9 +536,9 @@ GameObject:
   - component: {fileID: 6815747530035486234}
   - component: {fileID: -2282599074497807954}
   - component: {fileID: 5402133392304588746}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Blue
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -572,7 +572,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyColor: 2
-  _MaxHealth: 1000
+  _MaxHealth: 15000
   _SpriteRenderer:
   - {fileID: 1170405919546122793}
   - {fileID: 6314259680120364254}
@@ -632,6 +632,7 @@ MonoBehaviour:
   - {fileID: 6486329078010515525, guid: 4da8e04c7c3efaf4aa7942f81eb08837, type: 3}
   - {fileID: 4035755614856987180, guid: dbb4bae0573d86a4793368cd89748f41, type: 3}
   _Tag: {fileID: 4584990611553512346}
+  _HaveX: 0
 --- !u!114 &-2282599074497807954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -658,7 +659,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _BossTag: {fileID: 4584990611553512346}
-  _GreenPlayerParticle: {fileID: 130230781439211816, guid: 432c54633f5ead040ba25b953674457c, type: 3}
+  _GreenPlayerParticle: {fileID: 130230781439211816, guid: 9d415c378759ed644afe0af1166cc7ec, type: 3}
   _DeadParticle: {fileID: 1339670025956112321, guid: ee1a3b5c7c66df046af6a6c72db05d66, type: 3}
 --- !u!1 &8889868816753563571
 GameObject:
@@ -670,7 +671,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4833015179590485160}
   - component: {fileID: 6314259680120364254}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Face
   m_TagString: Untagged
   m_Icon: {fileID: 0}

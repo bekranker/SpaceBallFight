@@ -108,6 +108,10 @@ public class Spawneranager : MonoBehaviour
                 GameObject spawnedEnemyHexagon = SpawnEnemy(_Enemys[2]);
                 spawnedEnemyHexagon.GetComponent<EnemyManager>().EnemyTypes = EnemyTypes.Hexagon;
                 return spawnedEnemyHexagon;
+            case EnemyTypes.X:
+                GameObject spawnedEnemyX = SpawnEnemy(_Enemys[Random.Range(0, 3)]);
+                spawnedEnemyX.GetComponent<EnemyManager>().EnemyTypes = EnemyTypes.X;
+                return spawnedEnemyX;
             default:
                 break;
         }

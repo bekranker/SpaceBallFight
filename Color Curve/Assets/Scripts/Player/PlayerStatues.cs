@@ -10,6 +10,7 @@ public enum EnemyTypes
     Triangle,
     Square,
     Hexagon,
+    X
 }
 public enum EnemyColor
 {

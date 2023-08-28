@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
-
+using Color = UnityEngine.Color;
 
 public class Shield : MonoBehaviour
 {
@@ -18,11 +19,12 @@ public class Shield : MonoBehaviour
     private void Start()
     {
         _PlayerController.OnPlayerStateChange += ActionChange;
+        StartCoroutine(LastThreeSeconds());
     }
 
     private void LateUpdate()
     {
-        _TurnedPart.Rotate(0, 0, _Speed * Time.deltaTime * 90);
+        _TurnedPart.Rotate(0, 0, _Speed * Time.unscaledDeltaTime * 90);
         _ShieldIcons.ForEach((_shield)=> _shield.transform.rotation = Quaternion.Euler(0,0,0));
     }
 
@@ -46,7 +48,43 @@ public class Shield : MonoBehaviour
                 break;
         }
     }
+    private IEnumerator LastThreeSeconds()
+    {
+        yield return new WaitForSeconds(5);
+        _SpriteRenderer.color = new Color(255, 255, 255, .2f);
+        _ShieldIconsSp.ForEach((spRenderer) => { spRenderer.color = new Color(255,255,255, .2f); });
+        yield return new WaitForSeconds(.5f);
+        _SpriteRenderer.color = new Color(255, 255, 255, 255);
+        _ShieldIconsSp.ForEach((spRenderer) => { spRenderer.color = new Color(255, 255, 255, 255f); });
+        yield return new WaitForSeconds(.5f);
+        _SpriteRenderer.color = new Color(255, 255, 255, .2f);
+        _ShieldIconsSp.ForEach((spRenderer) => { spRenderer.color = new Color(255, 255, 255, .2f);});
+        yield return new WaitForSeconds(.5f);
+        _SpriteRenderer.color = new Color(255, 255, 255, 255);
+        _ShieldIconsSp.ForEach((spRenderer) => { spRenderer.color = new Color(255, 255, 255, 255f); });
+        yield return new WaitForSeconds(.5f);
+        _SpriteRenderer.color = new Color(255, 255, 255, .2f);
+        _ShieldIconsSp.ForEach((spRenderer) => { spRenderer.color = new Color(255, 255, 255, .2f); });
+        yield return new WaitForSeconds(.5f);
+        _SpriteRenderer.color = new Color(255, 255, 255, 255);
+        _ShieldIconsSp.ForEach((spRenderer) => { spRenderer.color = new Color(255, 255, 255, 255); });
+        yield return new WaitForSeconds(.5f);
+        _SpriteRenderer.color = new Color(255, 255, 255, 255);
+        _ShieldIconsSp.ForEach((spRenderer) => { spRenderer.color = new Color(255, 255, 255, 255f); });
+        yield return new WaitForSeconds(.5f);
+        _SpriteRenderer.color = new Color(255, 255, 255, .2f);
+        _ShieldIconsSp.ForEach((spRenderer) => { spRenderer.color = new Color(255, 255, 255, .2f); });
+        yield return new WaitForSeconds(.5f);
+        _SpriteRenderer.color = new Color(255, 255, 255, 255);
+        _ShieldIconsSp.ForEach((spRenderer) => { spRenderer.color = new Color(255, 255, 255, 255f); });
+        yield return new WaitForSeconds(.5f);
+        _SpriteRenderer.color = new Color(255, 255, 255, .2f);
+        _ShieldIconsSp.ForEach((spRenderer) => { spRenderer.color = new Color(255, 255, 255, .2f); });
+        yield return new WaitForSeconds(.5f);
+        _SpriteRenderer.color = new Color(255, 255, 255, 255);
+        _ShieldIconsSp.ForEach((spRenderer) => { spRenderer.color = new Color(255, 255, 255, 255); });
 
+    }
     private void ChangeColors(Sprite sprite)
     {
         _ShieldIconsSp.ForEach((spRenderer) => { spRenderer.sprite = sprite; });

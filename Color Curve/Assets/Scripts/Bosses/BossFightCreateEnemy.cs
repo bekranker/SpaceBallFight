@@ -6,6 +6,7 @@ public class BossFightCreateEnemy : MonoBehaviour
 {
     [SerializeField] private List<GameObject> _Enemy = new List<GameObject>();
     [SerializeField] private BossTag _Tag;
+    [SerializeField] private bool _HaveX;
     public void SpawnRandomEnemy(int enemyCount, float spawnDelay, Vector3 pos)
     {
         StartCoroutine(SpawnRandomEnemyIE(enemyCount, spawnDelay, pos));
@@ -27,6 +28,15 @@ public class BossFightCreateEnemy : MonoBehaviour
         if (enemyManager.BackgroundParticle != null)
         {
             mainPArt = enemyManager.BackgroundParticle.main;
+        }
+        if (_HaveX)
+        {
+            int rand = Random.Range(0, 10);
+            if (rand <= 5)
+            {
+                enemyManager.EnemyTypes = EnemyTypes.X;
+                StartCoroutine(enemyManager.ChangeStateRandom());
+            }
         }
         switch (_Tag.EnemyColor)
         {

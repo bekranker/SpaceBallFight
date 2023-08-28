@@ -10,7 +10,7 @@ public class Corners : MonoBehaviour
         if (collision.CompareTag("BulletWhite") ||
             collision.CompareTag("BulletGreen") ||
             collision.CompareTag("BulletBlue") ||
-            collision.CompareTag("BulletRed")) 
+            collision.CompareTag("BulletRed"))
         {
             _ObjectPool.GiveBullet(collision.gameObject);
         }

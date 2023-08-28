@@ -19,8 +19,10 @@ public class PlayerDedection : MonoBehaviour
     private WaitForSeconds WaitForSeconds = new WaitForSeconds(1);
     private Transform _t;
     private bool _canEffect;
+    private Transform _cameraTransform;
     private void Start()
     {
+        _cameraTransform = Camera.main.transform;
         _canEffect = true;
         SetText(_RedSliderTMP, $"{_RedPointIndex}/5");
         SetText(_GreenSliderTMP, $"{_GreenPointIndex}/5");
@@ -50,6 +52,34 @@ public class PlayerDedection : MonoBehaviour
         {
             _PlayerController.TakeDamage(15);
         }
+        if (collision.gameObject.CompareTag("Boss"))
+        {
+            _PlayerController.TakeDamage(25);
+        }
+        if (collision.gameObject.CompareTag("Spike"))
+        {
+            _PlayerController.TakeDamage(10);
+        }
+        if (collision.gameObject.CompareTag("Border"))
+        {
+            _PlayerController.TakeDamage(25);
+            var direction = _cameraTransform.position - _t.position;
+            transform.right = direction;
+            GetComponent<Rigidbody2D>().velocity = transform.right * 25;
+            StartCoroutine(pushIt());
+        }
+        if (collision.gameObject.CompareTag("CollectBullet"))
+        {
+            _PlayerController.BulletCount += 5;
+            _PlayerController.BulletSlider();
+            Instantiate(_SkillPointRedP, collision.transform.position, Quaternion.identity);
+            Destroy(collision.gameObject);
+        }
+    }
+    private IEnumerator pushIt()
+    {
+        yield return new WaitForSeconds(.3f);
+        GetComponent<Rigidbody2D>().velocity = Vector2.zero;
     }
     private IEnumerator decreaseSpeed()
     {

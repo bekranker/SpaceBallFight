@@ -21,7 +21,8 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] public List<TrailRenderer> Trail;
     [SerializeField] private GameObject _SkillPointRed, _SkillPointBlue, _SkillPointGreen;
     [SerializeField] private Vector2 _FromScale;
-
+    [SerializeField] private GameObject _Bullet;
+    [SerializeField] private Color _BlueColor;
     //-----------------------------------Cut-----------------------------------
 
     private WaitForSeconds _sleepTime = new WaitForSeconds(.05f);
@@ -35,6 +36,7 @@ public class EnemyManager : MonoBehaviour
 
     private void Start()
     {
+        StartCoroutine(ChangeStateRandom());
         _firsSpeed = Speed;
         _t = transform;
         float randScale = Random.Range(_FromScale.x, _FromScale.y);
@@ -66,6 +68,7 @@ public class EnemyManager : MonoBehaviour
             _mainCamera.DOShakePosition(.1f, .5f);
             _scoreManager.IncreaseScore(damage * Random.Range(7, 12), pos);
             CreateSkillPoint();
+            CreateBullet();
             Destroy(gameObject);
             _canDie = false;
         }
@@ -83,6 +86,65 @@ public class EnemyManager : MonoBehaviour
         {
             _Sp[i].color = _NormalColor;
         }
+    }
+    public IEnumerator ChangeStateRandom()
+    {
+        if (EnemyTypes == EnemyTypes.X)
+        {
+            int rand = Random.Range(0, 4);
+            ParticleSystem.MainModule mainPArt;
+            if (BackgroundParticle != null)
+            {
+                mainPArt = BackgroundParticle.main;
+            }
+            switch (rand)
+            {
+                case 0:
+                    EnemyColorTypes = EnemyColor.Red;
+                    for (int i = 0; i < _Sp.Count; i++)
+                    {
+                        _Sp[i].color = Color.red;
+                    }
+                    if (BackgroundParticle != null)
+                        mainPArt.startColor = Color.red;
+                    if (Trail != null)
+                    {
+                        Trail.ForEach((_trail) => { _trail.startColor = Color.red; });
+                    }
+                    break;
+                case 1:
+                    EnemyColorTypes = EnemyColor.Green;
+                    for (int i = 0; i < _Sp.Count; i++)
+                    {
+                        _Sp[i].color = Color.green;
+                    }
+                    if (BackgroundParticle != null)
+                        mainPArt.startColor = Color.green;
+                    if (Trail != null)
+                    {
+                        Trail.ForEach((_trail) => { _trail.startColor = Color.green; });
+                    }
+                    break;
+                case 2:
+                    EnemyColorTypes = EnemyColor.Blue;
+                    for (int i = 0; i < _Sp.Count; i++)
+                    {
+                        _Sp[i].color = _BlueColor;
+                    }
+                    if (BackgroundParticle != null)
+                        mainPArt.startColor = _BlueColor;
+                    if (Trail != null)
+                    {
+                        Trail.ForEach((_trail) => { _trail.startColor = _BlueColor; });
+                    }
+                    break;
+                default:
+                    break;
+            }
+            yield return new WaitForSeconds(3);
+            StartCoroutine(ChangeStateRandom());
+        }
+   
     }
     private void SetHealth(int value)
     {
@@ -102,22 +164,46 @@ public class EnemyManager : MonoBehaviour
         switch (EnemyColorTypes)
         {
             case EnemyColor.Red:
-                Instantiate(_SkillPointRed, _t.position, Quaternion.identity);
+                if (PlayerPrefs.HasKey("RedUnlockedSkill"))
+                {
+                    Instantiate(_SkillPointRed, _t.position, Quaternion.identity);
+                }
+
                 break;
             case EnemyColor.Green:
-                Instantiate(_SkillPointGreen, _t.position, Quaternion.identity);
+                if (PlayerPrefs.HasKey("GreenUnlockedSkill"))
+                {
+                    Instantiate(_SkillPointGreen, _t.position, Quaternion.identity);
+                }
                 break;
             case EnemyColor.Blue:
-                Instantiate(_SkillPointBlue, _t.position, Quaternion.identity);
+                if (PlayerPrefs.HasKey("BlueUnlockedSkill"))
+                {
+                    Instantiate(_SkillPointBlue, _t.position, Quaternion.identity);
+                }
                 break;
             default:
                 break;
         }
     }
+    private void CreateBullet()
+    {
+        if (!DidFallBullet()) return;
+        Instantiate(_Bullet, _t.position, Quaternion.identity);
+    }
     private bool DidFallPoint()
     {
         int rand = Random.Range(0,10);
         if (rand <= 2)
+        {
+            return true;
+        }
+        return false;
+    }
+    private bool DidFallBullet()
+    {
+        int rand = Random.Range(0, 5);
+        if (rand <= 3)
         {
             return true;
         }

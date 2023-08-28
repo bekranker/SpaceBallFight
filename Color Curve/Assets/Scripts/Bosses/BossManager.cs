@@ -18,10 +18,10 @@ public class BossManager : MonoBehaviour
     [SerializeField] private TMP_Text _BossHealthText;
     [SerializeField] private GameManager _GameManager;
     [SerializeField] private List<SpriteRenderer> _Borders = new List<SpriteRenderer>();
-    [SerializeField] private Animator _Animation;
     [SerializeField] private List<ParticleSystem> _BossBeginParticles;
     [SerializeField] private AudioSource _AudioSource;
     [SerializeField] private AudioClip _NormalBGMusic, _BossFight;
+    [SerializeField] private PlayerController _PlayerController;
     private int _bossCount = 0;
     //------------------------Cut------------------------
 
@@ -40,6 +40,7 @@ public class BossManager : MonoBehaviour
     {
         if (!_canCallBoss) return;
 
+        _PlayerController.LockPlayer = true;
         _CameraFollow.enabled = false;
         StartCoroutine(BeginBossFightIE());
         _canCallBoss = false;
@@ -69,6 +70,7 @@ public class BossManager : MonoBehaviour
         StartCoroutine(GoSlider());
         _Borders.ForEach((_border) => { _border.DOFade(0, 1).OnComplete(() => { _border.gameObject.SetActive(false); }); });
         yield return _sleep;
+        _PlayerController.LockPlayer = false;
         _AudioSource.clip = _NormalBGMusic;
         _AudioSource.Play();
         _CameraFollow.enabled = true;
@@ -79,9 +81,8 @@ public class BossManager : MonoBehaviour
     }
     private IEnumerator GoSlider()
     {
-        _Animation.SetTrigger("Go");
+        _BossHealthSlider.gameObject.SetActive(false);
         yield return new WaitForSeconds(1);
-        _Animation.gameObject.SetActive(false);
     }
     public void SetHealthSlider(float value, float min, float max)
     {

@@ -321,7 +321,7 @@ GameObject:
   - component: {fileID: 2817072283840462151}
   m_Layer: 11
   m_Name: LastBoss
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -443,7 +443,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyColor: 0
-  _MaxHealth: 100000
+  _MaxHealth: 25000
   _SpriteRenderer:
   - {fileID: 5373862884397780209}
   - {fileID: 5716242867864433578}

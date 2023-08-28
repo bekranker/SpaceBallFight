@@ -28,12 +28,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Color _RedParticleColor, _GreenParticleColor, _BlueParticleColor;
     [SerializeField] private Sprite _RedPlayerSprite, _GreenPlayerSprite, _BluePlayerSprite;
     [SerializeField] private Sprite _RedParticleSprite, _GreenParticleSprite, _BlueParticleSprite;
-    public bool Green, Blue;
+    public bool Green, Blue, Red;
     [HideInInspector] public float FirstSpeed;
     private WaitForSecondsRealtime _sleepTime = new WaitForSecondsRealtime(0.1f);
     private int _index;
     private float _previousScrollPosition;
     [SerializeField] private Slider _RedSlider, _GreenSlider, _BlueSlider;
+    [SerializeField] public TMP_Text _RedSliderTMP, _GreenSliderTMP, _BlueSliderTMP;
+    [SerializeField] public Sprite _RedSliderSprite, _GreenSliderSprite, _BlueSliderSprite;
+    [SerializeField] public Sprite _RedSliderSpriteUnlocked, _GreenSliderSpriteUnlocked, _BlueSliderSpriteUnlocked;
+    [SerializeField] public Image _RedSliderSpriteR, _GreenSliderSpriteR, _BlueSliderSpriteR;
     [SerializeField] private GameObject _RedSliderG, _GreenSliderG, _BlueSliderG;
     [SerializeField] private PlayerDedection _PlayerDedection;
     [SerializeField] private PlayerAttack _PlayerAttack;
@@ -51,12 +55,20 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private CameraFollow _CameraFollow;
     [SerializeField] public Action OnPlayerStateChange;
     [SerializeField] private AudioSource _Bg;
-    private bool _canChange, _canEffect;
+    private Transform _t;
+    private bool _canChange, _canEffect, _canDamage;
     private WaitForSeconds _delayForAdsReward = new WaitForSeconds(10);
+    private Vector2 _lockPosition;
+    public bool LockPlayer;
+    private Camera _camera;
+
 
     private void Start()
     {
+        _camera = Camera.main;
+        _t = transform;
         CurrentHealth = MaxHealth;
+        _canDamage = true;
         _canEffect = true;
         _canChange = true;
         CanChangestate = true;
@@ -66,6 +78,7 @@ public class PlayerController : MonoBehaviour
         Blue = (PlayerPrefs.HasKey("BlueUnlocked")) ? true: false;
         BulletSlider();
         PlayerHealthSldier();
+        ChangeState();
     }
     void Update()
     {
@@ -79,8 +92,8 @@ public class PlayerController : MonoBehaviour
     {
         var inputX = Input.GetAxisRaw("Horizontal") * _Speed;
         var inputY = Input.GetAxisRaw("Vertical") * _Speed;
-
-        transform.position += new Vector3(inputX, inputY, 0) * Time.deltaTime;
+        var go = new Vector3(inputX, inputY);
+        _t.position += go * Time.deltaTime;
     }
     //taking damage
     public void TakeDamage(float damageValue)
@@ -96,7 +109,11 @@ public class PlayerController : MonoBehaviour
         {
             //hitted by something
             Audio.PlayAudio("EnemyHit", .25f, Random.Range(0.9f, 1.1f));
-            StartCoroutine(takeDamageIE(damageValue));
+            if (_canDamage)
+            {
+                StartCoroutine(takeDamageIE(damageValue));
+                _canDamage = false;
+            }
         }
         PlayerHealthSldier();
     }
@@ -108,6 +125,7 @@ public class PlayerController : MonoBehaviour
         SetBGPColorToWhite();
         Time.timeScale = 0f;
         yield return _sleepTime;
+        _canDamage = true;
         Time.timeScale = 1;
         _Sp.color = currentColor;
         SetParticleColor();
@@ -185,6 +203,7 @@ public class PlayerController : MonoBehaviour
                 _Sp.color = _RedPlayerColor;
                 _SpFace.sprite = _RedPlayerSprite;
                 OpenSlider(_RedSliderG);
+                LockedOrUnlockedSlider("Red", _RedSliderTMP, _RedSliderSpriteR, _RedSliderSprite, _RedSliderSpriteUnlocked);
                 break;
             case 2:
                 if (!Green)
@@ -206,6 +225,7 @@ public class PlayerController : MonoBehaviour
                 _Sp.color = _GreenPlayerColor;
                 _SpFace.sprite = _GreenPlayerSprite;
                 OpenSlider(_GreenSliderG);
+                LockedOrUnlockedSlider("Green", _GreenSliderTMP, _GreenSliderSpriteR, _GreenSliderSprite, _GreenSliderSpriteUnlocked);
                 break;
             case 3:
                 if (!Blue)
@@ -227,6 +247,7 @@ public class PlayerController : MonoBehaviour
                 _Sp.color = _BluePlayerColor;
                 _SpFace.sprite = _BluePlayerSprite;
                 OpenSlider(_BlueSliderG);
+                LockedOrUnlockedSlider("Blue", _BlueSliderTMP, _BlueSliderSpriteR, _BlueSliderSprite, _BlueSliderSpriteUnlocked);
                 break;
             default:
                 break;
@@ -238,6 +259,19 @@ public class PlayerController : MonoBehaviour
         _GreenSliderG.SetActive(false);
         _BlueSliderG.SetActive(false);
         slider.SetActive(true);
+    }
+    public void LockedOrUnlockedSlider(string key, TMP_Text slidertext, Image sliderSpriteRenderer, Sprite sliderSpriteLocked, Sprite sliderSpriteUnlocked)
+    {
+        if (!PlayerPrefs.HasKey($"{key}UnlockedSkill"))
+        {
+            slidertext.text = "Locked";
+            sliderSpriteRenderer.sprite = sliderSpriteLocked;
+        }
+        else
+        {
+            slidertext.text = "0/5";
+            sliderSpriteRenderer.sprite = sliderSpriteUnlocked;
+        }
     }
     //looking mouse
     private void LookAtTheMouse()
@@ -298,6 +332,7 @@ public class PlayerController : MonoBehaviour
     }
     public void ChangeValueOfCollectedSkillPoints()
     {
+        if (!PlayerPrefs.HasKey("RedUnlockedSkill")) return;
         switch (_PlayerStates)
         {
             case PlayerState.Red:
@@ -306,11 +341,18 @@ public class PlayerController : MonoBehaviour
                 _PlayerDedection.SetText(_PlayerDedection._RedSliderTMP, "0/5");
                 break;
             case PlayerState.Green:
+                if (!PlayerPrefs.HasKey("GreenUnlockedSkill")) return;
+
+
                 _GreenSlider.value = 0;
                 _PlayerDedection._GreenPointIndex = 0;
                 _PlayerDedection.SetText(_PlayerDedection._GreenSliderTMP, "0/5");
                 break;
             case PlayerState.Blue:
+                if (!PlayerPrefs.HasKey("BlueUnlockedSkill")) return;
+
+
+
                 _BlueSlider.value = 0;
                 _PlayerDedection._BluePointIndex = 0;
                 _PlayerDedection.SetText(_PlayerDedection._BlueSliderTMP, "0/5");
