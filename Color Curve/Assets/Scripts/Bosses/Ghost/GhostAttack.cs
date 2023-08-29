@@ -74,6 +74,6 @@ public class GhostAttack : MonoBehaviour
     {
         var direction = _playerT.position - _t.position;
         Rigidbody2D rb = Instantiate(_BulletPrefab, _Spawner.position, Quaternion.identity).GetComponent<Rigidbody2D>();
-        rb.velocity = direction * _BulletSpeed * 100 * Time.deltaTime;
+        rb.velocity = direction * _BulletSpeed * 50 * Time.deltaTime;
     }
 }

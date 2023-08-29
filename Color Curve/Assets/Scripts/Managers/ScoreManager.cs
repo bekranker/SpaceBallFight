@@ -26,8 +26,17 @@ public class ScoreManager : MonoBehaviour
     {
         _CrossHair.ShootEffect();
         Score += value;
-        _Score.text = Score.ToString();
 
+        if (Score >= 1000)
+        {
+            _Score.text = ((float)Score / 1000).ToString("0.0") + "k";
+        }
+        else
+        {
+            _Score.text = Score.ToString();
+        }
+        
+        
         if (_canEffect)
         {
             _ScoreT.DOPunchScale(0.3f * Vector2.one, .15f).OnComplete(() => { _canEffect = true;}).SetUpdate(true);
@@ -48,11 +57,24 @@ public class ScoreManager : MonoBehaviour
             if (Score > _bestScore)
             {
                 PlayerPrefs.SetInt("BestScore", Score);
+                _bestScore = Score;
             }
         }
-        PlayerPrefs.SetInt("CurrentScore", Score);
-
-        _BestScoreTMP.text = "Best Score: " + _bestScore;
-        _CurrentScoreTMP.text = "Score: " + Score;
+        if (_bestScore == 0)
+        {
+            _BestScoreTMP.text = "0";
+        }
+        else
+        {
+            _BestScoreTMP.text = ((float)_bestScore / 1000).ToString("0.0") + "k";
+        }
+        if (Score == 0)
+        {
+            _CurrentScoreTMP.text = "0";
+        }
+        else
+        {
+            _CurrentScoreTMP.text = ((float)Score / 1000).ToString("0.0") + "k";
+        }
     }
 }

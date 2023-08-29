@@ -38,6 +38,7 @@ public class GreenAttack : MonoBehaviour
     {
         _BossAttackManager.CanFight = false;
         yield return _attackDelay2;
+        Audio.PlayAudio($"BossShootBGNoise", .1f);
         _SpinBoss._SpinSpeed *= 2;
         for (int i = 0; i < _BulletCountForEachPoint; i++)
         {

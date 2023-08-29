@@ -34,15 +34,15 @@ public class UnlockPlayer : MonoBehaviour
         }
         if (_RedSkillUnlocked)
         {
-            _PlayerController.LockedOrUnlockedSlider("Red", _PlayerController._RedSliderTMP, _PlayerController._RedSliderSpriteR, _PlayerController._RedSliderSprite, _PlayerController._RedSliderSpriteUnlocked);
+            _PlayerController.UnlockedSkill(_PlayerController._RedSliderTMP, _PlayerController._RedSliderSpriteR, _PlayerController._RedSliderSpriteUnlocked);
         }
         if (_GreenSkillUnlocked)
         {
-            _PlayerController.LockedOrUnlockedSlider("Green", _PlayerController._GreenSliderTMP, _PlayerController._GreenSliderSpriteR, _PlayerController._GreenSliderSprite, _PlayerController._GreenSliderSpriteUnlocked);
+            _PlayerController.UnlockedSkill(_PlayerController._GreenSliderTMP, _PlayerController._GreenSliderSpriteR, _PlayerController._GreenSliderSpriteUnlocked);
         }
         if (_BlueSkillUnlocked)
         {
-            _PlayerController.LockedOrUnlockedSlider("Blue", _PlayerController._BlueSliderTMP, _PlayerController._BlueSliderSpriteR, _PlayerController._BlueSliderSprite, _PlayerController._BlueSliderSpriteUnlocked);
+            _PlayerController.UnlockedSkill(_PlayerController._BlueSliderTMP, _PlayerController._BlueSliderSpriteR, _PlayerController._BlueSliderSpriteUnlocked);
         }
         Audio.PlayAudio("Unlocked", .2f);
         Destroy(gameObject);

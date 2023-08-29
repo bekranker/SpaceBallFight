@@ -61,7 +61,8 @@ public class PlayerController : MonoBehaviour
     private Vector2 _lockPosition;
     public bool LockPlayer;
     private Camera _camera;
-
+    private float _inputX, _inputY;
+    Vector3 _go;
 
     private void Start()
     {
@@ -74,8 +75,6 @@ public class PlayerController : MonoBehaviour
         CanChangestate = true;
         FirstSpeed = _Speed;
         _index = 1;
-        Green = (PlayerPrefs.HasKey("GreenUnlocked")) ? true: false;
-        Blue = (PlayerPrefs.HasKey("BlueUnlocked")) ? true: false;
         BulletSlider();
         PlayerHealthSldier();
         ChangeState();
@@ -90,25 +89,43 @@ public class PlayerController : MonoBehaviour
     //Movement
     private void WalkPlayer()
     {
-        var inputX = Input.GetAxisRaw("Horizontal") * _Speed;
-        var inputY = Input.GetAxisRaw("Vertical") * _Speed;
-        var go = new Vector3(inputX, inputY);
-        _t.position += go * Time.deltaTime;
+        _inputX = Input.GetAxisRaw("Horizontal") * _Speed;
+        _inputY = Input.GetAxisRaw("Vertical") * _Speed;
+        _go = new Vector3(_inputX, _inputY);
+
+        if (LockPlayer)
+        {
+            if (Vector2.Distance(_t.position, _camera.transform.position) < 10)
+            {
+                _t.position += _go * Time.deltaTime;
+            }
+            else
+            {
+                var direction = new Vector3(_camera.transform.position.x, _camera.transform.position.y, 0) -  _t.position ;
+                _t.position += Vector3.ClampMagnitude(direction.normalized, 0.05f);
+            }
+        }
+        else
+        {
+            _t.position += _go * Time.deltaTime;
+        }
+        
     }
     //taking damage
     public void TakeDamage(float damageValue)
     {
         if(CurrentHealth - damageValue <= 0)
         {
+            StartCoroutine(takeDamageIE(damageValue));
             _Bg.Stop();
             _GameManager.DeadTime();
-            Audio.PlayAudio("amsesi", .25f, Random.Range(0.9f, 1.1f));
+            Audio.PlayAudio("amsesi", .25f);
             return;
         }
         else
         {
             //hitted by something
-            Audio.PlayAudio("EnemyHit", .25f, Random.Range(0.9f, 1.1f));
+            Audio.PlayAudio("EnemyHit", .25f);
             if (_canDamage)
             {
                 StartCoroutine(takeDamageIE(damageValue));
@@ -203,7 +220,6 @@ public class PlayerController : MonoBehaviour
                 _Sp.color = _RedPlayerColor;
                 _SpFace.sprite = _RedPlayerSprite;
                 OpenSlider(_RedSliderG);
-                LockedOrUnlockedSlider("Red", _RedSliderTMP, _RedSliderSpriteR, _RedSliderSprite, _RedSliderSpriteUnlocked);
                 break;
             case 2:
                 if (!Green)
@@ -225,7 +241,6 @@ public class PlayerController : MonoBehaviour
                 _Sp.color = _GreenPlayerColor;
                 _SpFace.sprite = _GreenPlayerSprite;
                 OpenSlider(_GreenSliderG);
-                LockedOrUnlockedSlider("Green", _GreenSliderTMP, _GreenSliderSpriteR, _GreenSliderSprite, _GreenSliderSpriteUnlocked);
                 break;
             case 3:
                 if (!Blue)
@@ -247,7 +262,6 @@ public class PlayerController : MonoBehaviour
                 _Sp.color = _BluePlayerColor;
                 _SpFace.sprite = _BluePlayerSprite;
                 OpenSlider(_BlueSliderG);
-                LockedOrUnlockedSlider("Blue", _BlueSliderTMP, _BlueSliderSpriteR, _BlueSliderSprite, _BlueSliderSpriteUnlocked);
                 break;
             default:
                 break;
@@ -260,18 +274,10 @@ public class PlayerController : MonoBehaviour
         _BlueSliderG.SetActive(false);
         slider.SetActive(true);
     }
-    public void LockedOrUnlockedSlider(string key, TMP_Text slidertext, Image sliderSpriteRenderer, Sprite sliderSpriteLocked, Sprite sliderSpriteUnlocked)
+    public void UnlockedSkill(TMP_Text slidertext, Image sliderSpriteRenderer, Sprite sliderSpriteUnlocked)
     {
-        if (!PlayerPrefs.HasKey($"{key}UnlockedSkill"))
-        {
-            slidertext.text = "Locked";
-            sliderSpriteRenderer.sprite = sliderSpriteLocked;
-        }
-        else
-        {
-            slidertext.text = "0/5";
-            sliderSpriteRenderer.sprite = sliderSpriteUnlocked;
-        }
+        slidertext.text = "0/5";
+        sliderSpriteRenderer.sprite = sliderSpriteUnlocked;
     }
     //looking mouse
     private void LookAtTheMouse()
@@ -332,7 +338,6 @@ public class PlayerController : MonoBehaviour
     }
     public void ChangeValueOfCollectedSkillPoints()
     {
-        if (!PlayerPrefs.HasKey("RedUnlockedSkill")) return;
         switch (_PlayerStates)
         {
             case PlayerState.Red:
@@ -341,18 +346,11 @@ public class PlayerController : MonoBehaviour
                 _PlayerDedection.SetText(_PlayerDedection._RedSliderTMP, "0/5");
                 break;
             case PlayerState.Green:
-                if (!PlayerPrefs.HasKey("GreenUnlockedSkill")) return;
-
-
                 _GreenSlider.value = 0;
                 _PlayerDedection._GreenPointIndex = 0;
                 _PlayerDedection.SetText(_PlayerDedection._GreenSliderTMP, "0/5");
                 break;
             case PlayerState.Blue:
-                if (!PlayerPrefs.HasKey("BlueUnlockedSkill")) return;
-
-
-
                 _BlueSlider.value = 0;
                 _PlayerDedection._BluePointIndex = 0;
                 _PlayerDedection.SetText(_PlayerDedection._BlueSliderTMP, "0/5");

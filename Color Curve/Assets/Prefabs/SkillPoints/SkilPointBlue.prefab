@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2942028434195985794}
   - component: {fileID: 8034654817118302056}
   - component: {fileID: 2137004059421352093}
+  - component: {fileID: 6427890076383951406}
   m_Layer: 10
   m_Name: SkilPointBlue
   m_TagString: BluePoint
@@ -121,6 +122,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.73142856
+--- !u!114 &6427890076383951406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4322037419891903360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17b3b32a4c97a39498c0609646717f23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5541202551924875276
 GameObject:
   m_ObjectHideFlags: 0

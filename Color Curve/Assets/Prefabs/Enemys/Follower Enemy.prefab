@@ -5267,7 +5267,7 @@ MonoBehaviour:
   _SkillPointGreen: {fileID: 3300495693130643080, guid: c28d4dba8fa3e9d4aba7c1a3399507bd, type: 3}
   _FromScale: {x: 0.8, y: 1}
   _Bullet: {fileID: 7778097815662144734, guid: 3ce6b96ac42525841a6c10aa00970e41, type: 3}
-  _BlueColor: {r: 0, g: 0, b: 0, a: 0}
+  _BlueColor: {r: 0.0627451, g: 1, b: 1, a: 1}
 --- !u!114 &8415306030667311737
 MonoBehaviour:
   m_ObjectHideFlags: 0

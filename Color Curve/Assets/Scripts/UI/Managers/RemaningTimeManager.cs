@@ -50,7 +50,7 @@ public class RemaningTimeManager : MonoBehaviour
                 else
                 {
                     _WaveManager.WaveIndex++;
-                    _GameManager.ChangeWaveInfos();
+                    _GameManager.ChangeWave();
                 }
             }
             StartCoroutine(_WaveManager.NextWave());

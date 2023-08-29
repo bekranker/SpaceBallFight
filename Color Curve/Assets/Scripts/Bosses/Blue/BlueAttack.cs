@@ -31,11 +31,11 @@ public class BlueAttack : MonoBehaviour
     {
         _BossPlayerFollow.CanFollow = false;
         yield return _blueWait;
+        Audio.PlayAudio($"BossShootBGNoise", .1f);
         _SpinBoss._SpinSpeed *= 2;
         for (int i = 0; i < _BulletCountForEachPoint; i++)
         {
             yield return _shootDelayForBlue;
-            Audio.PlayAudio("BossShoot", .25f);
             Rigidbody2D rb = Instantiate(_BulletPrefabForBlue, _SpawnPoint.position, _SpawnPoint.rotation).GetComponent<Rigidbody2D>();
             PushBulet(rb);
         }

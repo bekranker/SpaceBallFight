@@ -17,8 +17,6 @@ public class BossManager : MonoBehaviour
     [SerializeField] public Slider _BossHealthSlider;
     [SerializeField] private TMP_Text _BossHealthText;
     [SerializeField] private GameManager _GameManager;
-    [SerializeField] private List<Image> _Borders = new List<Image>();
-    [SerializeField] private List<Collider2D> _BordersCollider = new List<Collider2D>();
     [SerializeField] private List<ParticleSystem> _BossBeginParticles;
     [SerializeField] private AudioSource _AudioSource;
     [SerializeField] private AudioClip _NormalBGMusic, _BossFight;
@@ -27,7 +25,7 @@ public class BossManager : MonoBehaviour
     private int _bossCount = 0;
     //------------------------Cut------------------------
 
-    private WaitForSeconds _sleep = new WaitForSeconds(2);
+    private WaitForSeconds _sleep = new WaitForSeconds(5);
     private Camera _mainCamera;
     private bool _canCallBoss;
 
@@ -59,8 +57,6 @@ public class BossManager : MonoBehaviour
         _AudioSource.clip = _BossFight;
         _AudioSource.Play();
         Instantiate(_BossBeginParticles[_bossCount], _BossSpawnPoint.position, Quaternion.identity);
-        _Borders.ForEach((_border) => { _border.DOFade(1, 1); });
-        _BordersCollider.ForEach((_border) => { _border.gameObject.SetActive(true);});
         _mainCamera.DOShakePosition(3, 2, 2, fadeOut: true);
         yield return _sleep;
         Audio.PlayAudio("BlueBossegin", .1f);
@@ -72,10 +68,6 @@ public class BossManager : MonoBehaviour
     {
         GC.Collect();
         StartCoroutine(GoSlider());
-        _Borders.ForEach((_border) => { _border.DOFade(0, 1).OnComplete(() => {
-            _BordersCollider.ForEach((_border) => { _border.gameObject.SetActive(false); });
-        }); });
-
         yield return _sleep;
         _PlayerController.LockPlayer = false;
         _AudioSource.clip = _NormalBGMusic;
@@ -84,7 +76,7 @@ public class BossManager : MonoBehaviour
         _CameraFollow.enabled = true;
         _canCallBoss = true;
         _WaveManager.WaveIndex++;
-        _GameManager.ChangeWaveInfos();
+        _GameManager.ChangeWave();
         _SpawnManager.CanSpawn = true;
         _RemaningTimeManager.CanDecrease = true;
     }

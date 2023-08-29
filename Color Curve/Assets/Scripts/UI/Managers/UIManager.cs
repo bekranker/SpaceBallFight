@@ -87,7 +87,8 @@ public class UIManager : MonoBehaviour
 
     private void RestartTheGame()
     {
-        CrazyAds.Instance.beginAdBreak(RestartGameCallBack, RestartGameCallBack);
+        Time.timeScale = 1;
+        RestartGameCallBack();
     }
     private void RestartGameCallBack() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     public void ResumeTheGame()

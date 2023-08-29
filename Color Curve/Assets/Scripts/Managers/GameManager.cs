@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
         Dead = false;
         _playerT = _PlayerController.transform;
     }
-    public void ChangeWaveInfos()
+    public void ChangeWave()
     {
         StartCoroutine(ChangeWaveIE());
     }
@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
     }
     public void DeadTime()
     {
-        Dead = false;
+        Dead = true;
         Time.timeScale = 0;
         _GameOverScreen.SetActive(true);
         _ShockWaveManager.CallShockWave();
@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
     }
     public void BornTime()
     {
-        Dead = true;
+        Dead = false;
         Time.timeScale = 1;
         _playerT.position = new Vector2(Camera.main.transform.position.x, Camera.main.transform.position.y);
         _BgMusic.Play();
@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour
         _enemys = FindObjectsOfType<EnemyManager>();
         foreach (EnemyManager enemy in _enemys)
         {
-            enemy.TakeDamage(1000, _playerT);
+            Destroy(enemy.gameObject);
         }
     }
 }

@@ -37,26 +37,16 @@ public class PlayerDedection : MonoBehaviour
         {
             _PlayerController.TakeDamage(25);
         }
-        if (collision.gameObject.CompareTag("Border"))
-        {
-            _PlayerController.TakeDamage(25);
-            var direction = new Vector3(_cameraTransform.position.x, _cameraTransform.position.y, 0) - _t.position;
-            transform.right = direction;
-            GetComponent<Rigidbody2D>().velocity = transform.right * 15;
-            if(gameObject.activeSelf)
-                StartCoroutine(pushIt());
-        }
         CollectPoints(collision);
-        if (collision.gameObject.CompareTag("CollectBullet"))
-        {
-            _PlayerController.BulletCount += 15;
-            _PlayerController.BulletSlider();
-            Instantiate(_BulletCollectedParticle, collision.transform.position, Quaternion.identity);
-            Destroy(collision.gameObject);
-            Audio.PlayAudio($"CollectSoundEffect", .7f);
 
-        }
+
+
+        //------------------------------------------------
+
+
         if (!CanDedect) return;
+        
+        
         if (collision.CompareTag("FreezeBullet"))
         {
             StartCoroutine(decreaseSpeed());
@@ -82,11 +72,6 @@ public class PlayerDedection : MonoBehaviour
             _PlayerController.TakeDamage(10);
         }
     }
-    private IEnumerator pushIt()
-    {
-        yield return new WaitForSeconds(.3f);
-        GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-    }
     private IEnumerator decreaseSpeed()
     {
         _PlayerController._Speed /= 2;
@@ -102,7 +87,7 @@ public class PlayerDedection : MonoBehaviour
                 _RedPointIndex++;
                 _RedSlider.value = _RedPointIndex;
                 IncreasePointIndex(collision.gameObject, _SkillPointRedP);
-                Audio.PlayAudio($"CollectSoundEffect", 1f);
+                Audio.PlayAudio($"CollectSoundEffect", .7f);
             }
         }
         if (collision.gameObject.CompareTag("BluePoint"))
@@ -112,7 +97,7 @@ public class PlayerDedection : MonoBehaviour
                 _BluePointIndex++;
                 _BlueSlider.value = _BluePointIndex;
                 IncreasePointIndex(collision.gameObject, _SkillPointBlueP);
-                Audio.PlayAudio($"CollectSoundEffect", 1f);
+                Audio.PlayAudio($"CollectSoundEffect", .7f);
             }
         }
         if (collision.gameObject.CompareTag("GreenPoint"))
@@ -122,8 +107,16 @@ public class PlayerDedection : MonoBehaviour
                 _GreenPointIndex++;
                 _GreenSlider.value = _GreenPointIndex;
                 IncreasePointIndex(collision.gameObject, _SkillPointGreenP);
-                Audio.PlayAudio($"CollectSoundEffect", 1f);
+                Audio.PlayAudio($"CollectSoundEffect", .7f);
             }
+        }
+        if (collision.gameObject.CompareTag("CollectBullet"))
+        {
+            Audio.PlayAudio($"CollectSoundEffect", .7f);
+            _PlayerController.BulletCount += 15;
+            _PlayerController.BulletSlider();
+            Instantiate(_BulletCollectedParticle, collision.transform.position, Quaternion.identity);
+            Destroy(collision.gameObject);
         }
     }
     private void IncreasePointIndex(GameObject dedectedSkillPoint, ParticleSystem effect)

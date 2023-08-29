@@ -514,7 +514,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7962573220392005129}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.67, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -577,8 +577,8 @@ MonoBehaviour:
   - {fileID: 1170405919546122793}
   - {fileID: 6314259680120364254}
   - {fileID: 3943049455165802286}
-  _DamageColor: {r: 0, g: 0, b: 0, a: 0}
-  _NormalColor: {r: 0, g: 0, b: 0, a: 0}
+  _DamageColor: {r: 0.0627451, g: 1, b: 1, a: 1}
+  _NormalColor: {r: 0.0627451, g: 1, b: 1, a: 1}
   _Eyes:
   - {fileID: 1223697321274696035}
   _ScoreManager: {fileID: 0}

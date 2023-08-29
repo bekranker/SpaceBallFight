@@ -33,6 +33,7 @@ public class RedBossAttack : MonoBehaviour
         _BossPlayerFollow.CanFollow = false;
         //---------------------------------------Cut---------------------------------------
         StartCoroutine(ShootIE());
+        Audio.PlayAudio($"BossShootBGNoise", .1f, "General", "Sound");
         yield return _changeAttackDelay;
         _SpinBoss._SpinSpeed *= 1.2f;
         createEnemys();
@@ -46,7 +47,7 @@ public class RedBossAttack : MonoBehaviour
         for (int i = 0; i < _BulletCountForEachPoint; i++)
         {
             yield return _shootDelay;
-            float angle = i * 22.5f;
+            float angle = i * 45f;
             Quaternion rotation = Quaternion.Euler(0, 0, angle);
             Rigidbody2D rb = Instantiate(_BulletPrefab, _t.position, rotation).GetComponent<Rigidbody2D>();
             PushBulet(rb);

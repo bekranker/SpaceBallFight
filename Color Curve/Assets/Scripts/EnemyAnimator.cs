@@ -7,7 +7,6 @@ public class EnemyAnimator : MonoBehaviour
 {
     [SerializeField] private List<GameObject> _Enemys;
     [SerializeField] private List<Transform> _To, _From;
-    [SerializeField] private List<Transform> _RemovedToes;
     [SerializeField] private Vector2Int _RandomTimeTostart;
     [SerializeField] private float _Speed;
     
