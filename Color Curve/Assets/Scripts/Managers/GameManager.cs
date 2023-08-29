@@ -1,3 +1,4 @@
+using CrazyGames;
 using System.Collections;
 using UnityEngine;
 
@@ -19,15 +20,8 @@ public class GameManager : MonoBehaviour
     private Transform _playerT;
     private void Start()
     {
-        Time.timeScale = 0;
-        StartCoroutine(priviewthecutScnee());
+        CrazyEvents.Instance.GameplayStart();
         _playerT = _PlayerController.transform;
-    }
-
-    private IEnumerator priviewthecutScnee()
-    {
-        yield return new WaitForSecondsRealtime(1);
-        Time.timeScale = 1;
     }
     public void ChangeWaveInfos()
     {
@@ -36,7 +30,7 @@ public class GameManager : MonoBehaviour
     IEnumerator ChangeWaveIE()
     {
         _ShockWaveManager.CallShockWave();
-        Audio.PlayAudio("EnemysComing");
+        Audio.PlayAudio("EnemysComing", .5f);
         _Animatior.SetTrigger("WaveCompleted");
         Time.timeScale = 0;
         yield return _sleepTime;
@@ -56,6 +50,7 @@ public class GameManager : MonoBehaviour
     public void BornTime()
     {
         Time.timeScale = 1;
+        _playerT.position = new Vector2(Camera.main.transform.position.x, Camera.main.transform.position.y);
         _BgMusic.Play();
         _GameOverScreen.SetActive(false);
         _ScoreManager.SaveScore();

@@ -12,7 +12,6 @@ public class BossTag : MonoBehaviour
     [SerializeField] public List<SpriteRenderer> _SpriteRenderer = new List<SpriteRenderer>();
     [SerializeField] private Color _DamageColor, _NormalColor;
     [SerializeField] private List<Transform> _Eyes = new List<Transform>();
-    [SerializeField] private ParticleSystem _HitParticle;
     [SerializeField] private ScoreManager _ScoreManager;
     [SerializeField] private BossAttackManager _BossAttackManager;
     [HideInInspector] public ShockWaveManager _ShockWave;
@@ -83,10 +82,7 @@ public class BossTag : MonoBehaviour
         }
         else
         {
-            for (int i = 0; i < _SpriteRenderer.Count; i++)
-            {
-                Instantiate(_HitParticle, _SpriteRenderer[i].gameObject.transform.position, Quaternion.identity);
-            }
+            Audio.PlayAudio("EnemyHit", .25f, UnityEngine.Random.Range(0.9f, 1.1f));
             _ScoreManager.IncreaseScore(Mathf.RoundToInt(damage), pos);
             OnHit?.Invoke();
             StartCoroutine(DamageEffect());
@@ -115,15 +111,12 @@ public class BossTag : MonoBehaviour
         {
             case EnemyColor.Red:
                 _NormalColor = Color.red;
-                _DamageColor = Color.white;
                 break;
             case EnemyColor.Green:
                 _NormalColor = Color.green;
-                _DamageColor = Color.white;
                 break;
             case EnemyColor.Blue:
                 _NormalColor = _ColorBlue;
-                _DamageColor = Color.white;
                 break;
             default:
                 break;

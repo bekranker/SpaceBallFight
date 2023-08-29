@@ -49,7 +49,7 @@ public class UnlockPlayer : MonoBehaviour
             PlayerPrefs.SetInt("BlueUnlockedSkill", 1);
             _PlayerController.LockedOrUnlockedSlider("Blue", _PlayerController._BlueSliderTMP, _PlayerController._BlueSliderSpriteR, _PlayerController._BlueSliderSprite, _PlayerController._BlueSliderSpriteUnlocked);
         }
-        Audio.PlayAudio("Unlocked", .5f);
+        Audio.PlayAudio("Unlocked", .2f);
         Destroy(gameObject);
     }
 }

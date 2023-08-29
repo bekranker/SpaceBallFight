@@ -117,7 +117,7 @@ public class SoundAndMusicManager : MonoBehaviour
         }
         _MusicText.text = $"%{percentile[_indexMusic]}";
         AudioMixer.SetFloat("Music", values[index]);
-        PlayerPrefs.SetFloat("Music", _indexMusic);
+        PlayerPrefs.SetInt("Music", _indexMusic);
     }
     private void SetSound(int index)
     {

@@ -54,8 +54,8 @@ public class PlayerAttack : MonoBehaviour
 
     private void BulletSpawn()
     {
-        GameObject spawnedBulelt = _ObjectPool.TakeBullet(transform.position);
-        spawnedBulelt.transform.position = transform.position;
+        GameObject spawnedBulelt = _ObjectPool.TakeBullet(_t.position);
+        spawnedBulelt.transform.position = _t.position;
         spawnedBulelt.GetComponent<SpriteRenderer>().color = _PlayeRSpriteRenderer.GetComponent<SpriteRenderer>().color;
         switch (_PlayerController._PlayerStates)
         {
@@ -74,7 +74,7 @@ public class PlayerAttack : MonoBehaviour
         }
         _PlayerController.BulletCount--;
         _PlayerController.BulletSlider();
-        Audio.PlayAudio($"shoot{_Range}", .1f);
+        Audio.PlayAudio($"shoot{_Range}", .075f);
     }
     private void UseSpecialAttack()
     {

@@ -196,7 +196,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3593132996305869852}
+  - {fileID: 1408671584618019829}
   m_Father: {fileID: 3449951700695009794}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -332,37 +332,6 @@ MonoBehaviour:
   _t: {fileID: 1074758971433216594}
   _SpinSpeed: 2
   _GoCenter: 1
---- !u!1 &4898550794462849780
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3593132996305869852}
-  m_Layer: 11
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3593132996305869852
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4898550794462849780}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.67, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1223697321274696035}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6061449261259089575
 GameObject:
   m_ObjectHideFlags: 0
@@ -519,8 +488,39 @@ MonoBehaviour:
   _BulletSpeed: 15
   _BulletCountForEachPoint: 25
   _BossPlayerFollow: {fileID: 2612594647363477601}
-  _SpawnPoint: {fileID: 3593132996305869852}
+  _SpawnPoint: {fileID: 1408671584618019829}
   _BossAttackManager: {fileID: 7541677978920868396}
+--- !u!1 &7962573220392005129
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1408671584618019829}
+  m_Layer: 11
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1408671584618019829
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7962573220392005129}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 4.67, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1223697321274696035}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8323530343370846776
 GameObject:
   m_ObjectHideFlags: 0
@@ -572,7 +572,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyColor: 2
-  _MaxHealth: 15000
+  _MaxHealth: 5000
   _SpriteRenderer:
   - {fileID: 1170405919546122793}
   - {fileID: 6314259680120364254}
@@ -581,7 +581,6 @@ MonoBehaviour:
   _NormalColor: {r: 0, g: 0, b: 0, a: 0}
   _Eyes:
   - {fileID: 1223697321274696035}
-  _HitParticle: {fileID: 7331853491115004459, guid: 72ff552b91381ff45924e8d9c96a54cb, type: 3}
   _ScoreManager: {fileID: 0}
   _BossAttackManager: {fileID: 7541677978920868396}
   _ShockWave: {fileID: 0}
@@ -661,6 +660,7 @@ MonoBehaviour:
   _BossTag: {fileID: 4584990611553512346}
   _GreenPlayerParticle: {fileID: 130230781439211816, guid: 9d415c378759ed644afe0af1166cc7ec, type: 3}
   _DeadParticle: {fileID: 1339670025956112321, guid: ee1a3b5c7c66df046af6a6c72db05d66, type: 3}
+  Tutorial: {fileID: 0}
 --- !u!1 &8889868816753563571
 GameObject:
   m_ObjectHideFlags: 0

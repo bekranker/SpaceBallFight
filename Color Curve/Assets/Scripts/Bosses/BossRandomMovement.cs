@@ -18,6 +18,7 @@ public class BossRandomMovement : MonoBehaviour
 
     private void Start()
     {
+        _canMove = true;
         InvokeRepeating("BeginAttack", 0, .5f);
         _t = transform;
         _g = gameObject;

@@ -368,12 +368,12 @@ public class PlayerController : MonoBehaviour
     public void PlayerHealthSldier()
     {
         SetHealthText(CurrentHealth.ToString());
-        if (!_canChange) return;
         _PlayerHealth.value = CurrentHealth;
+        if (!_canChange) return;
         _PlayerHealthT.DOPunchPosition(_SliderEffectScale * new Vector3(1, 0), _SliderEffectSpeed).OnComplete(() =>
         {
             _canChange = true;
-        });
+        }).SetUpdate(true);
         _canChange = false;
     }
     public IEnumerator IncreaseSpeedAndAttack()
@@ -401,7 +401,7 @@ public class PlayerController : MonoBehaviour
         _BulletSlider.value = BulletCount;
         SetBulletText(BulletCount);
         if (!_canEffect) return;
-        _BulletSliderT.DOPunchScale(.1f * Vector2.one, .1f).OnComplete(() => _canEffect = true);
+        _BulletSliderT.DOPunchScale(.1f * Vector2.one, .1f).OnComplete(() => _canEffect = true).SetUpdate(true);
         _canEffect = false;
     }
     public void SetBulletText(int count)

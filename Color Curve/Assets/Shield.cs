@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
 using UnityEngine;
 using Color = UnityEngine.Color;
 
@@ -14,10 +13,29 @@ public class Shield : MonoBehaviour
     [SerializeField] SpriteRenderer _SpriteRenderer;
     [SerializeField] Sprite _SpriteRed, _SpriteGreen, _SpriteBlue;
     [SerializeField] Sprite _SpriteRedIcon, _SpriteGreenIcon, _SpriteBlueIcon;
+    [SerializeField] private bool _CanDestroyBullets;
+    [SerializeField] private PlayerDedection PlayerDedection;
 
 
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (_CanDestroyBullets)
+        {
+            if (collision.gameObject.CompareTag("BossBullet"))
+            {
+                Destroy(collision.gameObject);
+            }
+        }
+    }
     private void Start()
     {
+        _SpriteRenderer.color = new Color(255, 255, 255, 255);
+        _ShieldIconsSp.ForEach((spRenderer) => { spRenderer.color = new Color(255, 255, 255, 255f); });
+        if (_CanDestroyBullets)
+        {
+            PlayerDedection.CanDedect = false;
+        }
         _PlayerController.OnPlayerStateChange += ActionChange;
         StartCoroutine(LastThreeSeconds());
     }
@@ -78,12 +96,13 @@ public class Shield : MonoBehaviour
         _SpriteRenderer.color = new Color(255, 255, 255, 255);
         _ShieldIconsSp.ForEach((spRenderer) => { spRenderer.color = new Color(255, 255, 255, 255f); });
         yield return new WaitForSeconds(.5f);
-        _SpriteRenderer.color = new Color(255, 255, 255, .2f);
-        _ShieldIconsSp.ForEach((spRenderer) => { spRenderer.color = new Color(255, 255, 255, .2f); });
-        yield return new WaitForSeconds(.5f);
         _SpriteRenderer.color = new Color(255, 255, 255, 255);
-        _ShieldIconsSp.ForEach((spRenderer) => { spRenderer.color = new Color(255, 255, 255, 255); });
-
+        _SpriteRenderer.color = new Color(255, 255, 255, 255);
+        _ShieldIconsSp.ForEach((spRenderer) => { spRenderer.color = new Color(255, 255, 255, 255); if (_CanDestroyBullets)
+            {
+                PlayerDedection.CanDedect = true;
+            }
+        });
     }
     private void ChangeColors(Sprite sprite)
     {

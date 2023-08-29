@@ -49,17 +49,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyColor: 1
-  _MaxHealth: 10000
+  _MaxHealth: 5000
   _SpriteRenderer:
   - {fileID: 8468803243237296431}
   - {fileID: 30721676677632464}
   - {fileID: 3068830757603967955}
   - {fileID: 6992050287824743700}
   - {fileID: 3113171936213149545}
-  _DamageColor: {r: 1, g: 1, b: 1, a: 1}
+  _DamageColor: {r: 0.8679245, g: 0.8679245, b: 0.8679245, a: 1}
   _NormalColor: {r: 0, g: 1, b: 0, a: 1}
   _Eyes: []
-  _HitParticle: {fileID: 7331853491115004459, guid: 72ff552b91381ff45924e8d9c96a54cb, type: 3}
   _ScoreManager: {fileID: 0}
   _BossAttackManager: {fileID: 6768188169551334552}
   _ShockWave: {fileID: 0}

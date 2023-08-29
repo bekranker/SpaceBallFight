@@ -137,14 +137,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyColor: 0
-  _MaxHealth: 15000
+  _MaxHealth: 5000
   _SpriteRenderer:
   - {fileID: 6463164299694116712}
   - {fileID: 9148507580756972424}
   _DamageColor: {r: 0, g: 0, b: 0, a: 0}
   _NormalColor: {r: 0, g: 0, b: 0, a: 0}
   _Eyes: []
-  _HitParticle: {fileID: 7331853491115004459, guid: 72ff552b91381ff45924e8d9c96a54cb, type: 3}
   _ScoreManager: {fileID: 0}
   _BossAttackManager: {fileID: 1440559676262522750}
   _ShockWave: {fileID: 0}
@@ -245,6 +244,7 @@ MonoBehaviour:
   _BossTag: {fileID: 4223094603076711288}
   _GreenPlayerParticle: {fileID: 130230781439211816, guid: 1df2683ec8563244aa109fe0919b4b4a, type: 3}
   _DeadParticle: {fileID: 7432857655332963612, guid: ee34b6f25b8529443813d0945528bdd8, type: 3}
+  Tutorial: {fileID: 5096485203613481641, guid: 75d42017e8ceee940b578b21d2869d0d, type: 3}
 --- !u!1 &4404552696471192483
 GameObject:
   m_ObjectHideFlags: 0

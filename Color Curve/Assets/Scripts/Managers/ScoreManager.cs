@@ -30,7 +30,7 @@ public class ScoreManager : MonoBehaviour
 
         if (_canEffect)
         {
-            _ScoreT.DOPunchScale(0.3f * Vector2.one, .15f).OnComplete(() => { _canEffect = true;});
+            _ScoreT.DOPunchScale(0.3f * Vector2.one, .15f).OnComplete(() => { _canEffect = true;}).SetUpdate(true);
             _canEffect = false;
         }
 
@@ -52,7 +52,7 @@ public class ScoreManager : MonoBehaviour
         }
         PlayerPrefs.SetInt("CurrentScore", Score);
 
-        _BestScoreTMP.text = "Best Score: " + _bestScore.ToString();
-        _CurrentScoreTMP.text = "Score: " + Score.ToString();
+        _BestScoreTMP.text = "Best Score: " + _bestScore;
+        _CurrentScoreTMP.text = "Score: " + Score;
     }
 }

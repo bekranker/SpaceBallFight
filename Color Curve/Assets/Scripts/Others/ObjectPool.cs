@@ -64,14 +64,6 @@ public class ObjectPool : MonoBehaviour
         rb.velocity = Vector2.zero;
         rb.angularVelocity = 0;
     }
-    public GameObject TakeParticle(Vector2 pos)
-    {
-        GameObject taedComboEffect = ParticleQueue.Dequeue();
-        taedComboEffect.SetActive(true);
-        taedComboEffect.transform.position = pos;
-        GiveParticle(taedComboEffect);
-        return taedComboEffect;
-    }
     public GameObject TakeComboEffect(Vector2 pos)
     {
         GameObject takedEffect = ComboEffectQueue.Dequeue();
@@ -81,10 +73,6 @@ public class ObjectPool : MonoBehaviour
         takedEffect.transform.position = new Vector2(pos.x + Random.Range(-.5f, .5f), pos.y + Random.Range(-.5f, .5f));
         GiveComboEffect(takedEffect);
         return takedEffect;
-    }
-    private void GiveParticle(GameObject particle)
-    {
-        ParticleQueue.Enqueue(particle);
     }
     private void GiveComboEffect(GameObject comboEffect)
     {

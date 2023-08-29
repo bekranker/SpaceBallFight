@@ -13,15 +13,17 @@ public class PlayerDedection : MonoBehaviour
     [SerializeField] private PlayerController _PlayerController;
     [SerializeField] private ScoreManager _ScoreManager;
     [SerializeField] private Slider _RedSlider, _GreenSlider, _BlueSlider;
-    [SerializeField] private ParticleSystem _SkillPointRedP, _SkillPointBlueP, _SkillPointGreenP;
+    [SerializeField] private ParticleSystem _SkillPointRedP, _SkillPointBlueP, _SkillPointGreenP, _BulletCollectedParticle;
     [SerializeField] public TMP_Text _RedSliderTMP, _GreenSliderTMP, _BlueSliderTMP;
     [SerializeField] public Transform _RedSliderT, _GreenSliderT, _BlueSliderT;
+    public bool CanDedect;
     private WaitForSeconds WaitForSeconds = new WaitForSeconds(1);
     private Transform _t;
     private bool _canEffect;
     private Transform _cameraTransform;
     private void Start()
     {
+        CanDedect = true;
         _cameraTransform = Camera.main.transform;
         _canEffect = true;
         SetText(_RedSliderTMP, $"{_RedPointIndex}/5");
@@ -31,7 +33,28 @@ public class PlayerDedection : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.gameObject.CompareTag("Boss"))
+        {
+            _PlayerController.TakeDamage(25);
+        }
+        if (collision.gameObject.CompareTag("Border"))
+        {
+            _PlayerController.TakeDamage(25);
+            var direction = new Vector3(_cameraTransform.position.x, _cameraTransform.position.y, 0) - _t.position;
+            transform.right = direction;
+            GetComponent<Rigidbody2D>().velocity = transform.right * 15;
+            if(gameObject.activeSelf)
+                StartCoroutine(pushIt());
+        }
         CollectPoints(collision);
+        if (collision.gameObject.CompareTag("CollectBullet"))
+        {
+            _PlayerController.BulletCount += 5;
+            _PlayerController.BulletSlider();
+            Instantiate(_BulletCollectedParticle, collision.transform.position, Quaternion.identity);
+            Destroy(collision.gameObject);
+        }
+        if (!CanDedect) return;
         if (collision.CompareTag("FreezeBullet"))
         {
             StartCoroutine(decreaseSpeed());
@@ -52,28 +75,9 @@ public class PlayerDedection : MonoBehaviour
         {
             _PlayerController.TakeDamage(15);
         }
-        if (collision.gameObject.CompareTag("Boss"))
-        {
-            _PlayerController.TakeDamage(25);
-        }
         if (collision.gameObject.CompareTag("Spike"))
         {
             _PlayerController.TakeDamage(10);
-        }
-        if (collision.gameObject.CompareTag("Border"))
-        {
-            _PlayerController.TakeDamage(25);
-            var direction = _cameraTransform.position - _t.position;
-            transform.right = direction;
-            GetComponent<Rigidbody2D>().velocity = transform.right * 25;
-            StartCoroutine(pushIt());
-        }
-        if (collision.gameObject.CompareTag("CollectBullet"))
-        {
-            _PlayerController.BulletCount += 5;
-            _PlayerController.BulletSlider();
-            Instantiate(_SkillPointRedP, collision.transform.position, Quaternion.identity);
-            Destroy(collision.gameObject);
         }
     }
     private IEnumerator pushIt()

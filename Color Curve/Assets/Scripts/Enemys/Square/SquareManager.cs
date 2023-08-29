@@ -9,7 +9,7 @@ public class SquareManager : EnemyMovementAbstract
     [SerializeField] private Rigidbody2D _Rb;
     [SerializeField] EnemyManager _EnemyManager;
 
-    private Transform _t;
+    private Transform _t, _playerT;
     private bool _canDash, _canFollow;
 
     public override void OnUpdate(AbstractmovementManager abstractmovementManager)
@@ -23,6 +23,7 @@ public class SquareManager : EnemyMovementAbstract
         _canDash = true;
         _canFollow = true;
         _PlayerController = FindObjectOfType<PlayerController>();
+        _playerT = _PlayerController.transform;
     }
 
     public override void OnLateUpdate(AbstractmovementManager abstractmovementManager)
@@ -30,14 +31,13 @@ public class SquareManager : EnemyMovementAbstract
         FollowCurrentPlayer();
     }
 
-    private void LookToPlayer() => _t.up = _PlayerController.transform.position - _t.position;
+    private void LookToPlayer() => _t.up = _playerT.position - _t.position;
     private void FollowCurrentPlayer()
     {
-        if (Vector2.Distance(_t.position, _PlayerController.transform.position) > 5 && _canFollow)
+        if (Vector2.Distance(_t.position, _playerT.position) > 5 && _canFollow)
         {
             TurnBody();
-            _t.position = Vector3.MoveTowards(_t.position, _PlayerController.transform.position, _EnemyManager.Speed * Time.deltaTime);
-            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            _t.position = Vector3.MoveTowards(_t.position, _playerT.position, _EnemyManager.Speed * Time.deltaTime);
         }
         else
         {
@@ -49,7 +49,7 @@ public class SquareManager : EnemyMovementAbstract
                 }
             }
         }
-        if (Vector2.Distance(_t.position, _PlayerController.transform.position) > 5)
+        if (Vector2.Distance(_t.position, _playerT.position) > 5)
         {
             _canDash = true;
             _canFollow = true;
@@ -64,8 +64,9 @@ public class SquareManager : EnemyMovementAbstract
     {
         _canDash = false;
         yield return new WaitForSeconds(.25f);
-        _Rb.velocity = 30 * Time.deltaTime * 100 * _t.up;
-        yield return new WaitForSeconds(.25f);
+        _Rb.velocity = 10 * Time.deltaTime * 100 * _t.up;
+        yield return new WaitForSeconds(.4f);
+        _Rb.velocity = Vector2.zero;
         _canFollow = true;
     }
 

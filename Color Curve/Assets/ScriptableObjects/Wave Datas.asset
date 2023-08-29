@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyCount: 0
   SpawnDelay: 1
-  EnemyTypes: 000000000100000002000000
+  EnemyTypes: 00000000
   StartColor: 00000000
   WaveTimeCount: 20
   Boss: 0
