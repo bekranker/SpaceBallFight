@@ -21,7 +21,7 @@ public class SpikyBossAttack : MonoBehaviour
     private int _selectedSpikeIndex;
     [SerializeField] private Transform _SpawnerT;
     [SerializeField] private BossFightCreateEnemy _BossFightCreateEnemy;
-    [SerializeField] private BossRandomMovement _BossRandomMovement;
+    [SerializeField] private BossPlayerFollow _BossPlayerFollow;
     [SerializeField] private BossAttackManager _BossAttackManager;
     [SerializeField] private BossTag _BossTag;
     private void Start()
@@ -47,6 +47,7 @@ public class SpikyBossAttack : MonoBehaviour
     private IEnumerator SpikeMovemenIE()
     {
         _canAttack = false;
+        _BossPlayerFollow.CanFollow = false;
 
         if (_spikeParentQueue.Count == 0)
         {
@@ -67,7 +68,7 @@ public class SpikyBossAttack : MonoBehaviour
                 spike.position = _startPos;
                 spike.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
             }
-            _BossRandomMovement.CanMove = true;
+            _BossPlayerFollow.CanFollow = true;
             _BossAttackManager.CanFight = false;
             _canAttack = true;
             for (int i = 0; i < 4; i++)
@@ -77,10 +78,9 @@ public class SpikyBossAttack : MonoBehaviour
             _selectedSpikeIndex = 0;
             yield break;
         }
-
         //-----------------------Cut
         //Attacking with spikes
-        
+
         yield return _sleepTime;
         Transform selectedSpikes = _spikeParentQueue.Dequeue();
         int childCount = selectedSpikes.childCount;
@@ -106,7 +106,6 @@ public class SpikyBossAttack : MonoBehaviour
             yield return _sleepTimeForAttack;
             PushSpike(rb);
         }
-        _BossTag._ShockWave.CallShockWave();
         _BossFightCreateEnemy.SpawnRandomEnemy(Random.Range(3,5), .2f, _SpawnerT.position);
         yield return _nextAttackSleepTime;
         _canAttack = true;

@@ -423,7 +423,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.245, y: 0.2585366}
   m_AnchorMax: {x: 0.75200003, y: 0.39530548}
-  m_AnchoredPosition: {x: 0.49996948, y: -1.5150146}
+  m_AnchoredPosition: {x: 0.49996948, y: 6.484955}
   m_SizeDelta: {x: -1, y: 3.0300293}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &32865067
@@ -16907,7 +16907,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -173
   m_TargetDisplay: 0
 --- !u!224 &344853749
 RectTransform:
@@ -16925,7 +16925,7 @@ RectTransform:
   - {fileID: 926143077}
   - {fileID: 1891908969}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -24163,9 +24163,9 @@ MonoBehaviour:
   m_enableAutoSizing: 1
   m_fontSizeMin: 0
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 16
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 4096
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -24882,7 +24882,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.245, y: 0.071}
   m_AnchorMax: {x: 0.75200003, y: 0.22662191}
-  m_AnchoredPosition: {x: 2, y: 0.7496948}
+  m_AnchoredPosition: {x: 2, y: 8.749695}
   m_SizeDelta: {x: 0, y: -11.499466}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &837330572
@@ -31549,6 +31549,7 @@ MonoBehaviour:
   _ScoreManager: {fileID: 1810342100}
   _BgMusic: {fileID: 1554281687}
   _Animator: {fileID: 1169388705}
+  Dead: 0
 --- !u!1 &1102543700
 GameObject:
   m_ObjectHideFlags: 0
@@ -32283,7 +32284,7 @@ RectTransform:
   m_Children:
   - {fileID: 1190454297}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -32658,7 +32659,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1920, y: 1082}
+  m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1190454299
 CanvasRenderer:
@@ -34680,8 +34681,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278517245
+  m_fontColor: {r: 0.9921569, g: 0.9921569, b: 0.015686275, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -36743,8 +36744,8 @@ MonoBehaviour:
   _Shield: {fileID: 487003374}
   _RingUpgrade: {fileID: 1518023428}
   _DieEffect: {fileID: 0}
-  BulletCount: 1500
-  MaXbulletCount: 1500
+  BulletCount: 1000
+  MaXbulletCount: 1000
   _BulletSlider: {fileID: 1795898069}
   _BulletSliderT: {fileID: 70782425}
   _BulletSliderTMP: {fileID: 1896074232}
@@ -42476,9 +42477,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 750
+  m_MaxValue: 1000
   m_WholeNumbers: 1
-  m_Value: 7
+  m_Value: 1000
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -53992,6 +53993,9 @@ MonoBehaviour:
   - {fileID: 930595912}
   - {fileID: 1596297941}
   - {fileID: 704943189}
+  - {fileID: 644352343}
+  - {fileID: 1885915007}
+  - {fileID: 1033510171}
   _Languages:
   - Sentences:
     - 'Score:'
@@ -54010,23 +54014,29 @@ MonoBehaviour:
     - 'FULL BULLET BAR '
     - 'Next Wave:'
     - ENEMIES COMING !!
+    - 'Don''t forget to like for more games :)) '
+    - Shoot
+    - or
   - Sentences:
     - 'Skor:'
     - Menuye gerI don
     - Ses efektI
-    - MuzIk
+    - Muzik
     - Devam et
-    - Oyun DuraklatIldI
+    - "Oyun Duraklat\u0131ld\u0131"
     - Reklam Izle ve devam et
     - Oyun BIttI
     - Menuye gerI don
     - Oyunu YenIden Baslat
-    - CanInI ful doldurur
+    - "Can\u0131n\u0131 ful doldurur"
     - Hasar ve hIzInI arttIrIr
     - 10 sanIye boyunca kalkan verIr
-    - Kursun BarInI doldurur
-    - 'SIradakI dalga:'
-    - DUsmanlar GelIyor
+    - "Kur\u015Fun Barini Doldur"
+    - "S\u0131radaki Dalga: "
+    - "D\xFC\u015Fmanlar Geliyor"
+    - "Daha fazla oyun i\xE7in be\u011Fenmeyi unutmay\u0131n :))"
+    - "Ate\u015F et"
+    - ya da
   - Sentences:
     - "\u0421\u0427\u0401\u0422:"
     - "\u043D\u0430\u0437\u0430\u0434 \u043A \u043C\u0435\u043D\u044E"
@@ -54046,6 +54056,11 @@ MonoBehaviour:
     - "\u041F\u041E\u041B\u041D\u0410\u042F \u041F\u0423\u041B\u042F"
     - "\u0421\u043B\u0435\u0434\u0443\u044E\u0449\u0430\u044F \u0432\u043E\u043B\u043D\u0430:"
     - "\u0412\u0420\u0410\u0413\u0418 \u041F\u0420\u0418\u0425\u041E\u0414\u042F\u0422!!"
+    - "\u041D\u0435 \u0437\u0430\u0431\u0443\u0434\u044C\u0442\u0435 \u043F\u043E\u0441\u0442\u0430\u0432\u0438\u0442\u044C
+      \u043B\u0430\u0439\u043A, \u0447\u0442\u043E\u0431\u044B \u0431\u044B\u043B\u043E
+      \u0431\u043E\u043B\u044C\u0448\u0435 \u0438\u0433\u0440 :))"
+    - "\u0441\u0442\u0440\u0435\u043B\u044F\u0442\u044C"
+    - "\u0438\u043B\u0438"
   - Sentences:
     - 'PUNKTZAHL:'
     - "zur\xFCck zum Men\xFC"
@@ -54063,6 +54078,9 @@ MonoBehaviour:
     - "VOLLST\xC4NDIGE BULLET-BAR"
     - "N\xE4chste Welle:"
     - FEINDE KOMMEN!!
+    - Vergessen Sie nicht, weitere Spiele zu liken :))
+    - "schie\xDFen"
+    - oder
   - Sentences:
     - 'SCORE:'
     - retour au menu
@@ -54080,6 +54098,9 @@ MonoBehaviour:
     - "BARRE DE BALLES COMPL\xC8TE"
     - 'Prochaine vague:'
     - "ENNEMIS \xC0 VENIR !!"
+    - N'oubliez pas d'aimer pour plus de jeux :))
+    - tirer
+    - ou
 --- !u!4 &2009908393
 Transform:
   m_ObjectHideFlags: 0
@@ -54088,7 +54109,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2009908391}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.0268681, y: -2.7085261, z: 1363.9741}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -54162,8 +54183,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278517245
+  m_fontColor: {r: 0.99215686, g: 0.99215686, b: 0.015686275, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -54672,7 +54693,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.2498962, y: 0.56915563}
   m_AnchorMax: {x: 0.75200003, y: 0.73362243}
-  m_AnchoredPosition: {x: -0.9999542, y: 15}
+  m_AnchoredPosition: {x: -0.9999542, y: 23}
   m_SizeDelta: {x: 0, y: -18.93}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2088961001
@@ -54992,7 +55013,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.2498962, y: 0.56915563}
   m_AnchorMax: {x: 0.75200003, y: 0.73362243}
-  m_AnchoredPosition: {x: -0.9999542, y: -125.2675}
+  m_AnchoredPosition: {x: -0.9999542, y: -117.26751}
   m_SizeDelta: {x: 0, y: -19.465004}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2114723696

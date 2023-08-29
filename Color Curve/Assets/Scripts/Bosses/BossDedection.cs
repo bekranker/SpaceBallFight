@@ -30,29 +30,29 @@ public class BossDedection : MonoBehaviour
                 }
                 else
                 {
-                    _BossTag.TakeDamage(Random.Range(2,5), _t, "BulletRed");
+                    _BossTag.TakeDamage(Random.Range(10,15), _t, "BulletRed");
                 }
                 _ObjectPool.GiveBullet(bullet);
                 break;
             case "BulletBlue":
-                if (_BossTag.EnemyColor == EnemyColor.Red)
+                if (_BossTag.EnemyColor == EnemyColor.Blue)
                 {
                     _BossTag.TakeDamage(Random.Range(20, 50), _t, "BulletBlue");
                 }
                 else
                 {
-                    _BossTag.TakeDamage(Random.Range(2, 5), _t, "BulletBlue");
+                    _BossTag.TakeDamage(Random.Range(12, 15), _t, "BulletBlue");
                 }
                 _ObjectPool.GiveBullet(bullet);
                 break;
             case "BulletGreen":
-                if (_BossTag.EnemyColor == EnemyColor.Red)
+                if (_BossTag.EnemyColor == EnemyColor.Green)
                 {
                     _BossTag.TakeDamage(Random.Range(20, 50), _t, "BulletGreen");
                 }
                 else
                 {
-                    _BossTag.TakeDamage(Random.Range(2, 5), _t, "BulletGreen");
+                    _BossTag.TakeDamage(Random.Range(12, 15), _t, "BulletGreen");
                 }
                 _ObjectPool.GiveBullet(bullet);
                 break;

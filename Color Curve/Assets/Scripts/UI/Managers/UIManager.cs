@@ -101,6 +101,7 @@ public class UIManager : MonoBehaviour
     }
     public void PauseTheGame()
     {
+        if (_GameManager.Dead) return;
         Time.timeScale = 0;
         _Panel.SetActive(true);
     }

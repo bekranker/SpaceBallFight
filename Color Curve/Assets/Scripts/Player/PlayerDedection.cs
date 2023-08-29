@@ -49,10 +49,12 @@ public class PlayerDedection : MonoBehaviour
         CollectPoints(collision);
         if (collision.gameObject.CompareTag("CollectBullet"))
         {
-            _PlayerController.BulletCount += 5;
+            _PlayerController.BulletCount += 15;
             _PlayerController.BulletSlider();
             Instantiate(_BulletCollectedParticle, collision.transform.position, Quaternion.identity);
             Destroy(collision.gameObject);
+            Audio.PlayAudio($"CollectSoundEffect", 1f);
+
         }
         if (!CanDedect) return;
         if (collision.CompareTag("FreezeBullet"))

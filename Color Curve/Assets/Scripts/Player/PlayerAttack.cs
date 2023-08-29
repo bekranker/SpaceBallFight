@@ -74,7 +74,7 @@ public class PlayerAttack : MonoBehaviour
         }
         _PlayerController.BulletCount--;
         _PlayerController.BulletSlider();
-        Audio.PlayAudio($"shoot{_Range}", .075f);
+        Audio.PlayAudio($"shoot{_Range}", .12f);
     }
     private void UseSpecialAttack()
     {

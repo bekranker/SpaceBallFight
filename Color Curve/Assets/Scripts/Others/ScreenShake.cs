@@ -17,7 +17,7 @@ public class ScreenShake : MonoBehaviour
     }
     public void Shake()
     {
-        Audio.PlayAudio("EnemyDie1", .6f, 1);
+        Audio.PlayAudio("bom", .35f);
         _mainCamera.DOShakePosition(.1f, 3, 12, fadeOut:true, randomnessMode: ShakeRandomnessMode.Harmonic);
         Instantiate(_CrashEffect, _t.position, Quaternion.identity);
         _ShockWaveManager.CallShockWave();

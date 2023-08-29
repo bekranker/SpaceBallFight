@@ -93,9 +93,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Enemy:
-  - {fileID: 4035755614856987180, guid: dbb4bae0573d86a4793368cd89748f41, type: 3}
+  - {fileID: 535675090760986626, guid: dbb4bae0573d86a4793368cd89748f41, type: 3}
   - {fileID: 2956253033659694738, guid: b2c5f37d75d4e8b4b9460cbf52fbf0f6, type: 3}
-  - {fileID: 6486329078010515525, guid: 4da8e04c7c3efaf4aa7942f81eb08837, type: 3}
+  - {fileID: 7332723378666184511, guid: 4da8e04c7c3efaf4aa7942f81eb08837, type: 3}
   _Tag: {fileID: 2115577761221136777}
   _HaveX: 1
 --- !u!114 &-6887939074566037906

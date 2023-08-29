@@ -14,7 +14,6 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private int _Health;
     [SerializeField] public Color _NormalColor, _DamagedColor;
     [SerializeField] public List<SpriteRenderer> _Sp;
-    [SerializeField] private Slider _HealthSlider;
     [SerializeField] public EnemyColor EnemyColorTypes = new EnemyColor();
     [SerializeField] public EnemyTypes EnemyTypes = new EnemyTypes();
     [SerializeField] public ParticleSystem BackgroundParticle;
@@ -52,7 +51,7 @@ public class EnemyManager : MonoBehaviour
     {
         if(_healthCount - damage > 0)
         {
-            Audio.PlayAudio("EnemyHit", .25f, Random.Range(0.9f, 1.1f));
+            Audio.PlayAudio("EnemyHit", .25f);
             DecreaseHealt(damage);
             StartCoroutine(damageAction());
             _scoreManager.IncreaseScore(damage * Random.Range(5, 10), pos);
@@ -60,7 +59,7 @@ public class EnemyManager : MonoBehaviour
         }
         else
         {
-            Audio.PlayAudio("EnemyDie1", .35f, Random.Range(0.9f, 1.1f));
+            Audio.PlayAudio("bom", .33f);
             if (!_canDie) return;
             if(_waveManager != null)
                 _waveManager.IncreaseKilledEnemy();
@@ -149,14 +148,10 @@ public class EnemyManager : MonoBehaviour
     private void SetHealth(int value)
     {
         _healthCount = value;
-        _HealthSlider.value = _healthCount;
-        _HealthSlider.maxValue = _Health;
-        _HealthSlider.minValue = 0;
     }
     private void DecreaseHealt(int value)
     {
         _healthCount -= value;
-        _HealthSlider.value = _healthCount;
     }
     private void CreateSkillPoint()
     {
@@ -203,7 +198,7 @@ public class EnemyManager : MonoBehaviour
     private bool DidFallBullet()
     {
         int rand = Random.Range(0, 5);
-        if (rand <= 3)
+        if (rand <= 2)
         {
             return true;
         }

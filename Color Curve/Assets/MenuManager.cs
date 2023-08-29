@@ -16,7 +16,6 @@ public class MenuManager : MonoBehaviour
 
     private void Start()
     {
-        CrazyEvents.Instance.GameplayStart();
         _StartButton.DoSomething += () => StartCoroutine(StartButton());
         _SettingsButton.DoSomething += SettingsButton;
     }
@@ -28,7 +27,6 @@ public class MenuManager : MonoBehaviour
     }
     private void SettingsButton()
     {
-        CrazyEvents.Instance.GameplayStop();
         _SettingsPanel.SetActive(true);
         CloseOrOpen(false);
     }

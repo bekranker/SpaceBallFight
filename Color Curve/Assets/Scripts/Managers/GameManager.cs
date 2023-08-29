@@ -18,9 +18,10 @@ public class GameManager : MonoBehaviour
     private WaitForSecondsRealtime _sleepTime = new WaitForSecondsRealtime(1.75f);
     private EnemyManager[] _enemys;
     private Transform _playerT;
+    public bool Dead;
     private void Start()
     {
-        CrazyEvents.Instance.GameplayStart();
+        Dead = false;
         _playerT = _PlayerController.transform;
     }
     public void ChangeWaveInfos()
@@ -38,6 +39,7 @@ public class GameManager : MonoBehaviour
     }
     public void DeadTime()
     {
+        Dead = false;
         Time.timeScale = 0;
         _GameOverScreen.SetActive(true);
         _ShockWaveManager.CallShockWave();
@@ -49,6 +51,7 @@ public class GameManager : MonoBehaviour
     }
     public void BornTime()
     {
+        Dead = true;
         Time.timeScale = 1;
         _playerT.position = new Vector2(Camera.main.transform.position.x, Camera.main.transform.position.y);
         _BgMusic.Play();

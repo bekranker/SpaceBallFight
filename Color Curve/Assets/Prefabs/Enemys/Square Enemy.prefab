@@ -185,7 +185,7 @@ GameObject:
   - component: {fileID: -4279034778473957359}
   - component: {fileID: 2584711400389892618}
   m_Layer: 3
-  m_Name: Enemy
+  m_Name: Square Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -313,8 +313,7 @@ MonoBehaviour:
   _DamagedColor: {r: 0.7735849, g: 0.7735849, b: 0.7735849, a: 1}
   _Sp:
   - {fileID: 4094074337474539156}
-  - {fileID: 4094074337474539156}
-  _HealthSlider: {fileID: 0}
+  - {fileID: 8303231991175422073}
   EnemyColorTypes: 0
   EnemyTypes: 1
   BackgroundParticle: {fileID: 763131256908207663}

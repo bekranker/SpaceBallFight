@@ -18,7 +18,7 @@ public class BossPlayerFollow : MonoBehaviour
     {
         _t = transform;
         CanFollow = true;
-        _player = GameObject.FindAnyObjectByType<PlayerController>().transform;
+        _player = FindAnyObjectByType<PlayerController>().transform;
     }
 
     private void LateUpdate()
