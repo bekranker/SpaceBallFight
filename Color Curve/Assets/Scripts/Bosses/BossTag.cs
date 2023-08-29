@@ -82,7 +82,7 @@ public class BossTag : MonoBehaviour
         }
         else
         {
-            Audio.PlayAudio("EnemyHit", .25f, UnityEngine.Random.Range(0.9f, 1.1f));
+            Audio.PlayAudio("EnemyHit", .25f);
             _ScoreManager.IncreaseScore(Mathf.RoundToInt(damage), pos);
             OnHit?.Invoke();
             StartCoroutine(DamageEffect());

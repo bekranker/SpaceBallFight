@@ -23,6 +23,7 @@ public class BossManager : MonoBehaviour
     [SerializeField] private AudioSource _AudioSource;
     [SerializeField] private AudioClip _NormalBGMusic, _BossFight;
     [SerializeField] private PlayerController _PlayerController;
+    [SerializeField] private RemaningTimeManager _RemaningTimeManager;
     private int _bossCount = 0;
     //------------------------Cut------------------------
 
@@ -41,6 +42,7 @@ public class BossManager : MonoBehaviour
     {
         if (!_canCallBoss) return;
 
+        _RemaningTimeManager.CanDecrease = false;
         _PlayerController.LockPlayer = true;
         _CameraFollow.enabled = false;
         StartCoroutine(BeginBossFightIE());
@@ -84,6 +86,7 @@ public class BossManager : MonoBehaviour
         _WaveManager.WaveIndex++;
         _GameManager.ChangeWaveInfos();
         _SpawnManager.CanSpawn = true;
+        _RemaningTimeManager.CanDecrease = true;
     }
     private IEnumerator GoSlider()
     {

@@ -53,7 +53,7 @@ public class PlayerDedection : MonoBehaviour
             _PlayerController.BulletSlider();
             Instantiate(_BulletCollectedParticle, collision.transform.position, Quaternion.identity);
             Destroy(collision.gameObject);
-            Audio.PlayAudio($"CollectSoundEffect", 1f);
+            Audio.PlayAudio($"CollectSoundEffect", .7f);
 
         }
         if (!CanDedect) return;

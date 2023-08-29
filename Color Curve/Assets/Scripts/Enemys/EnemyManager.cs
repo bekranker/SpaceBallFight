@@ -54,7 +54,7 @@ public class EnemyManager : MonoBehaviour
             Audio.PlayAudio("EnemyHit", .25f);
             DecreaseHealt(damage);
             StartCoroutine(damageAction());
-            _scoreManager.IncreaseScore(damage * Random.Range(5, 10), pos);
+            _scoreManager.IncreaseScore(damage, pos);
             OnHit?.Invoke();
         }
         else
@@ -65,7 +65,7 @@ public class EnemyManager : MonoBehaviour
                 _waveManager.IncreaseKilledEnemy();
             OnDead?.Invoke();
             _mainCamera.DOShakePosition(.1f, .5f);
-            _scoreManager.IncreaseScore(damage * Random.Range(7, 12), pos);
+            _scoreManager.IncreaseScore(damage, pos);
             CreateSkillPoint();
             CreateBullet();
             Destroy(gameObject);
@@ -198,7 +198,7 @@ public class EnemyManager : MonoBehaviour
     private bool DidFallBullet()
     {
         int rand = Random.Range(0, 5);
-        if (rand <= 2)
+        if (rand <= 1)
         {
             return true;
         }

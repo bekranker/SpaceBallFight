@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyCount: 0
   SpawnDelay: 1
-  EnemyTypes: 0100000000000000
+  EnemyTypes: 00000000
   StartColor: 00000000
-  WaveTimeCount: 20
+  WaveTimeCount: 40
   Boss: 1
   BossPrefab: {fileID: 8905257333664680449, guid: 167e5bc30e9d21c4d81f1b2d3c4bec7d, type: 3}

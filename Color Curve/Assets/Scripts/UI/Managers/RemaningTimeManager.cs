@@ -14,19 +14,26 @@ public class RemaningTimeManager : MonoBehaviour
     [SerializeField] private Spawneranager _SpawnerManager;
     public float CurrentCounter;
     public bool CanIncrease;
-
+    public bool CanDecrease;
 
     void Start()
     {
         CanIncrease = true;
         CurrentCounter = _StartValue;
         RefreshText(_Text);
+        StartCoroutine(waitForBegin());
     }
     void Update()
     {
+        if (!CanDecrease) return;
         DecreaseTime();
         RefreshText(_Text);
         SwitchWave();
+    }
+    private IEnumerator waitForBegin()
+    {
+        yield return new WaitForSeconds(1);
+        CanDecrease = true;
     }
     private void SwitchWave()
     {
