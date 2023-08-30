@@ -10,11 +10,7 @@ public class tutorialManagerTwo : MonoBehaviour
     private void Start()
     {
         animationOfScroll();
-    }
-    IEnumerator fadeToZero()
-    {
-        yield return new WaitForSeconds(10);
-        GetComponent<CanvasGroup>().DOFade(0, 1).OnComplete(()=> gameObject.SetActive(false));
+        Destroy(gameObject, 10);
     }
     void animationOfScroll()
     {

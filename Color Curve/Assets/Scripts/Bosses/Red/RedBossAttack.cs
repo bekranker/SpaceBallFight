@@ -9,7 +9,7 @@ public class RedBossAttack : MonoBehaviour
     [SerializeField] private BossFightCreateEnemy _BossFightCreateEnemy;
     [SerializeField] private float _BulletSpeed, _BulletCountForEachPoint;
     [SerializeField] private BossPlayerFollow _BossPlayerFollow;
-    [SerializeField] private Transform _SpawnPoint;
+    [SerializeField] private List<Transform> _SpawnPoint;
 
     private WaitForSeconds _changeAttackDelay = new WaitForSeconds(5);
     private WaitForSeconds _sleepTimeFirst = new WaitForSeconds(2);
@@ -38,6 +38,7 @@ public class RedBossAttack : MonoBehaviour
         _SpinBoss._SpinSpeed *= 1.2f;
         createEnemys();
         yield return _changeAttackDelay;
+        createEnemys();
         _SpinBoss._SpinSpeed = _firstSpeed;
         _BossPlayerFollow.CanFollow = true;
         Attack();
@@ -47,7 +48,7 @@ public class RedBossAttack : MonoBehaviour
         for (int i = 0; i < _BulletCountForEachPoint; i++)
         {
             yield return _shootDelay;
-            float angle = i * 45f;
+            float angle = i * 30f;
             Quaternion rotation = Quaternion.Euler(0, 0, angle);
             Rigidbody2D rb = Instantiate(_BulletPrefab, _t.position, rotation).GetComponent<Rigidbody2D>();
             PushBulet(rb);
@@ -55,7 +56,7 @@ public class RedBossAttack : MonoBehaviour
     }
     private void createEnemys()
     {
-        _BossFightCreateEnemy.SpawnRandomEnemy(Random.Range(5, 10), .25f, _SpawnPoint.position);
+        _BossFightCreateEnemy.SpawnRandomEnemy(Random.Range(7, 10), .25f, _SpawnPoint);
     }
 
     private void PushBulet(Rigidbody2D rb)

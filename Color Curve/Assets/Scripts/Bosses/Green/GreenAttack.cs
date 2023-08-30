@@ -8,8 +8,9 @@ public class GreenAttack : MonoBehaviour
     [SerializeField] private GameObject _BulletPrefab;
     [SerializeField] private BossFightCreateEnemy _BossFightCreateEnemy;
     [SerializeField] private float _BulletSpeed, _BulletCountForEachPoint;
-    [SerializeField] private BossRandomMovement _BossRandomMovement;
+    [SerializeField] private BossPlayerFollow _BossPlayerFollow;
     [SerializeField] private Transform _SpawnPoint;
+    [SerializeField] private List<Transform> _SpawnPointBullet;
     [SerializeField] private BossAttackManager _BossAttackManager;
     private WaitForSeconds _attackDelay = new WaitForSeconds(0.1f);
     private WaitForSeconds _attackDelay2 = new WaitForSeconds(3);
@@ -38,6 +39,7 @@ public class GreenAttack : MonoBehaviour
     {
         _BossAttackManager.CanFight = false;
         yield return _attackDelay2;
+        _BossPlayerFollow.CanFollow = false;
         Audio.PlayAudio($"BossShootBGNoise", .1f);
         _SpinBoss._SpinSpeed *= 2;
         for (int i = 0; i < _BulletCountForEachPoint; i++)
@@ -48,10 +50,11 @@ public class GreenAttack : MonoBehaviour
         }
         yield return _attackDelay2;
         _SpinBoss._SpinSpeed *= 1.2f;
-        _BossFightCreateEnemy.SpawnRandomEnemy(Random.Range(5, 10), .5f, _SpawnPoint.position);
+        _BossFightCreateEnemy.SpawnRandomEnemy(Random.Range(5, 10), .5f, _SpawnPointBullet);
         yield return _attackDelay2;
         _SpinBoss._SpinSpeed = _startSpinSpeed;
-        _BossRandomMovement.CanMove = true;
+        _BossPlayerFollow.CanFollow = true;
+        _BossAttackManager.CanFight = true;
         repeate();
         _can = true;
     }

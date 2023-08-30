@@ -577,7 +577,7 @@ MonoBehaviour:
   - {fileID: 1170405919546122793}
   - {fileID: 6314259680120364254}
   - {fileID: 3943049455165802286}
-  _DamageColor: {r: 0.0627451, g: 1, b: 1, a: 1}
+  _DamageColor: {r: 0, g: 0.3490566, b: 0.3490566, a: 1}
   _NormalColor: {r: 0.0627451, g: 1, b: 1, a: 1}
   _Eyes:
   - {fileID: 1223697321274696035}

@@ -12,20 +12,22 @@ public class SpikyBossAttack : MonoBehaviour
     [SerializeField] private float _SlideSpeed, _LookSpeed, _PushSpeed;
     private Queue<Transform> _spikeParentQueue = new Queue<Transform>();
     private WaitForSeconds _sleepTimeForAttack = new WaitForSeconds(.05f);
-    private WaitForSeconds _sleepTime = new WaitForSeconds(.3f);
+    private WaitForSeconds _sleepTime = new WaitForSeconds(.1f);
     private WaitForSeconds _nextAttackSleepTime = new WaitForSeconds(1f);
     private Transform _playerT;
     private bool _canAttack;
     private Queue<Vector3> _startPositions = new Queue<Vector3>();
     private Queue<Transform> _spikes = new Queue<Transform>();
     private int _selectedSpikeIndex;
-    [SerializeField] private Transform _SpawnerT;
+    [SerializeField] private List<Transform> _SpawnerT;
     [SerializeField] private BossFightCreateEnemy _BossFightCreateEnemy;
     [SerializeField] private BossPlayerFollow _BossPlayerFollow;
     [SerializeField] private BossAttackManager _BossAttackManager;
     [SerializeField] private BossTag _BossTag;
+    int _indexForSpawnPoint;
     private void Start()
     {
+        _indexForSpawnPoint = 0;
         _playerT = FindObjectOfType<PlayerController>().transform;
         _canAttack = true;
         int count = _SpikesParent.Count;
@@ -106,7 +108,7 @@ public class SpikyBossAttack : MonoBehaviour
             yield return _sleepTimeForAttack;
             PushSpike(rb);
         }
-        _BossFightCreateEnemy.SpawnRandomEnemy(Random.Range(3,5), .2f, _SpawnerT.position);
+        _BossFightCreateEnemy.SpawnRandomEnemy(Random.Range(4,7), .1f, _SpawnerT);
         yield return _nextAttackSleepTime;
         _canAttack = true;
         SpikeMovement();

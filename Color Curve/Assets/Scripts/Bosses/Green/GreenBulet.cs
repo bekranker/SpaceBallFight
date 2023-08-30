@@ -9,7 +9,7 @@ public class GreenBulet : MonoBehaviour
 
     void Start()
     {
-        _randWait = Random.Range(1, 3);
+        _randWait = Random.Range(1, 4);
         greenParticle();
     }
     void greenParticle()

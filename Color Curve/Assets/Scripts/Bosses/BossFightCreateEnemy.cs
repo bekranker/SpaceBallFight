@@ -1,5 +1,7 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BossFightCreateEnemy : MonoBehaviour
@@ -19,6 +21,28 @@ public class BossFightCreateEnemy : MonoBehaviour
             yield return new WaitForSeconds(spawnDelay);
             Audio.PlayAudio("BossCreateEnemy", .1f);
             GameObject enemy = Instantiate(_Enemy[randEnemy], spawnPos, Quaternion.identity);
+            ChangeEnemyState(enemy.GetComponent<EnemyManager>());
+        }
+    }
+    public void SpawnRandomEnemy(int enemyCount, float spawnDelay, List<Transform> pos)
+    {
+        StartCoroutine(SpawnRandomEnemyIE(enemyCount, spawnDelay, pos));
+    }
+    private IEnumerator SpawnRandomEnemyIE(int enemyCount, float spawnDelay, List<Transform> spawnPos)
+    {
+        int randEnemy = Random.Range(0, _Enemy.Count);
+        int _index = 0;
+        for (int i = 0; i < enemyCount; i++)
+        {
+            yield return new WaitForSeconds(spawnDelay);
+            Audio.PlayAudio("BossCreateEnemy", .1f);
+            if (_index + 1 >= spawnPos.Count)
+                _index = 0;
+            else
+                _index++;
+
+
+            GameObject enemy = Instantiate(_Enemy[randEnemy], spawnPos[_index].position, Quaternion.identity);
             ChangeEnemyState(enemy.GetComponent<EnemyManager>());
         }
     }

@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,7 +17,6 @@ public class Toxic : MonoBehaviour
         _t = transform;
         _can = true;
         StartCoroutine(effect());
-        Destroy(gameObject, 5);
     }
     void Update()
     {
@@ -40,6 +40,7 @@ public class Toxic : MonoBehaviour
         yield return new WaitForSeconds(4);
         ParticleSystem.MainModule mainPart = _ToxicParticle.main;
         mainPart.startLifetime = 0;
+        GetComponent<SpriteRenderer>().DOFade(0, 1).OnComplete(() => { Destroy(gameObject); });
     }
     private IEnumerator damageDelay()
     {

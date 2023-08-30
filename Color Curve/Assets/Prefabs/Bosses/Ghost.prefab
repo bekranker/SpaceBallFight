@@ -506,7 +506,7 @@ MonoBehaviour:
   _MaxHealth: 10000
   _SpriteRenderer:
   - {fileID: 5258969562169511306}
-  _DamageColor: {r: 0, g: 0, b: 0, a: 0}
+  _DamageColor: {r: 0.6698113, g: 0.6698113, b: 0.6698113, a: 1}
   _NormalColor: {r: 0, g: 0, b: 0, a: 0}
   _Eyes: []
   _ScoreManager: {fileID: 0}

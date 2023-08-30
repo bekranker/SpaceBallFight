@@ -392,7 +392,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0fceeba633c40341a7cb65d0b0e2053, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _CrashEffect: {fileID: 13144126549437060, guid: d2e0243ba78b8de409941dcd7f5ff404, type: 3}
 --- !u!114 &133073520657288184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -774,7 +773,7 @@ Transform:
   m_GameObject: {fileID: 8905257333664680449}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2650226203741389523}
@@ -794,11 +793,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyColor: 0
-  _MaxHealth: 2500
+  _MaxHealth: 5
   _SpriteRenderer:
   - {fileID: 3416591650518308714}
   - {fileID: 5285656950751555728}
-  _DamageColor: {r: 0.6698113, g: 0, b: 0, a: 1}
+  _DamageColor: {r: 0.3962264, g: 0, b: 0, a: 1}
   _NormalColor: {r: 1, g: 0, b: 0, a: 1}
   _Eyes:
   - {fileID: 3995860025968458649}

@@ -35,6 +35,7 @@ public class BossTag : MonoBehaviour
 
     private void Start()
     {
+        _canDamage = true;
         _firstSpeed = Speed;
         _t = transform;
         _player = FindAnyObjectByType<PlayerController>().transform;
@@ -46,18 +47,12 @@ public class BossTag : MonoBehaviour
         _currentHealth = _MaxHealth;
 
         Setcolor(EnemyColor);
-        StartCoroutine(SetBossBeReady());
     }
     private void Update()
     {
         LookToPlayer();
     }
-    private IEnumerator SetBossBeReady()
-    {
-        _BossManager.SetHealthSlider(_MaxHealth, 0, _MaxHealth);
-        yield return new WaitForSeconds(2);
-        _canDamage = true;
-    }
+    
     private void LookToPlayer()
     {
         _playerPosition = _player.position;
