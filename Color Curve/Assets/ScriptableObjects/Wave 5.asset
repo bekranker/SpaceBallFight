@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c601ae65f43718e499f636424dcab0f8, type: 3}
-  m_Name: Wave Datas 7
+  m_Name: Wave 5
   m_EditorClassIdentifier: 
   EnemyCount: 0
   SpawnDelay: 1
   EnemyTypes: 01000000000000000200000003000000
   StartColor: 000000000100000002000000
-  WaveTimeCount: 70
+  WaveTimeCount: 1
   Boss: 1
-  BossPrefab: {fileID: 1703918714598183436, guid: fbd5a5121a4b4bc4ca23a94d55d1961f, type: 3}
+  BossPrefab: {fileID: 8323530343370846776, guid: 7d12de16f2f919a4aa8d9b6f0c73810f, type: 3}

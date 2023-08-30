@@ -25,9 +25,11 @@ public class RemaningTimeManager : MonoBehaviour
     }
     void Update()
     {
-        if (!CanDecrease) return;
-        DecreaseTime();
-        RefreshText(_Text);
+        if (CanDecrease)
+        {
+            DecreaseTime();
+            RefreshText(_Text);
+        }
         SwitchWave();
     }
     private IEnumerator waitForBegin()

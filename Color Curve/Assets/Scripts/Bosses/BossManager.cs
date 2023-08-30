@@ -1,6 +1,5 @@
 using DG.Tweening;
 using System.Collections;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -52,7 +51,6 @@ public class BossManager : MonoBehaviour
     }
     private IEnumerator BeginBossFightIE()
     {
-        GC.Collect();
         Audio.PlayAudio("BossBegin", .2f);
         _AudioSource.clip = _BossFight;
         _AudioSource.Play();
@@ -66,17 +64,17 @@ public class BossManager : MonoBehaviour
     }
     private IEnumerator EndBossFightIE()
     {
-        GC.Collect();
         StartCoroutine(GoSlider());
+        CrazyEvents.Instance.HappyTime();
         yield return _sleep;
         _PlayerController.LockPlayer = false;
         _AudioSource.clip = _NormalBGMusic;
-        CrazyEvents.Instance.HappyTime();
         _AudioSource.Play();
         _CameraFollow.enabled = true;
-        _canCallBoss = true;
         _WaveManager.WaveIndex++;
+        _RemaningTimeManager.SetRemaningTime(_WaveManager._WaveData[_WaveManager.WaveIndex].WaveTimeCount);
         _GameManager.ChangeWave();
+        _canCallBoss = true;
         _SpawnManager.CanSpawn = true;
         _RemaningTimeManager.CanDecrease = true;
     }

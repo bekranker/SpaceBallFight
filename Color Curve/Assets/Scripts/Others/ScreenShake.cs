@@ -6,7 +6,6 @@ public class ScreenShake : MonoBehaviour
 {
     Transform _t;
     Camera _mainCamera;
-    [SerializeField] private GameObject _CrashEffect;
     private ShockWaveManager _ShockWaveManager;
 
     private void Start()
@@ -19,7 +18,6 @@ public class ScreenShake : MonoBehaviour
     {
         Audio.PlayAudio("bom", .35f);
         _mainCamera.DOShakePosition(.1f, 3, 12, fadeOut:true, randomnessMode: ShakeRandomnessMode.Harmonic);
-        Instantiate(_CrashEffect, _t.position, Quaternion.identity);
         _ShockWaveManager.CallShockWave();
     }
 }

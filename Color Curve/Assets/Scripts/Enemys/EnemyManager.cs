@@ -22,6 +22,7 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private Vector2 _FromScale;
     [SerializeField] private GameObject _Bullet;
     [SerializeField] private Color _BlueColor;
+    private PlayerController _playerController;
     //-----------------------------------Cut-----------------------------------
 
     private WaitForSeconds _sleepTime = new WaitForSeconds(.05f);
@@ -43,6 +44,7 @@ public class EnemyManager : MonoBehaviour
         _t.localScale = scale;
         _scoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
         _waveManager = GameObject.FindGameObjectWithTag("WaveManager").GetComponent<WaveManager>();
+        _playerController = FindObjectOfType<PlayerController>();
         _mainCamera = Camera.main;
         SetHealth(_Health);
         _canDie = true;
@@ -110,6 +112,7 @@ public class EnemyManager : MonoBehaviour
                     {
                         Trail.ForEach((_trail) => { _trail.startColor = Color.red; });
                     }
+                    _NormalColor = Color.red;
                     break;
                 case 1:
                     EnemyColorTypes = EnemyColor.Green;
@@ -123,6 +126,7 @@ public class EnemyManager : MonoBehaviour
                     {
                         Trail.ForEach((_trail) => { _trail.startColor = Color.green; });
                     }
+                    _NormalColor = Color.green;
                     break;
                 case 2:
                     EnemyColorTypes = EnemyColor.Blue;
@@ -136,6 +140,7 @@ public class EnemyManager : MonoBehaviour
                     {
                         Trail.ForEach((_trail) => { _trail.startColor = _BlueColor; });
                     }
+                    _NormalColor = _BlueColor;
                     break;
                 default:
                     break;
@@ -159,23 +164,16 @@ public class EnemyManager : MonoBehaviour
         switch (EnemyColorTypes)
         {
             case EnemyColor.Red:
-                if (PlayerPrefs.HasKey("RedUnlockedSkill"))
-                {
+                if (_playerController.RedSkillOpened)
                     Instantiate(_SkillPointRed, _t.position, Quaternion.identity);
-                }
-
                 break;
             case EnemyColor.Green:
-                if (PlayerPrefs.HasKey("GreenUnlockedSkill"))
-                {
+                if (_playerController.GreenSkillOpened)
                     Instantiate(_SkillPointGreen, _t.position, Quaternion.identity);
-                }
                 break;
             case EnemyColor.Blue:
-                if (PlayerPrefs.HasKey("BlueUnlockedSkill"))
-                {
+                if (_playerController.BlueSkillOpened)
                     Instantiate(_SkillPointBlue, _t.position, Quaternion.identity);
-                }
                 break;
             default:
                 break;

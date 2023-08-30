@@ -36,19 +36,19 @@ public class EnemyDedection : MonoBehaviour
                 if(_EnemyManager.EnemyColorTypes == EnemyColor.Red)
                     TakeDamage(collision, 10 * _playerController.DamageMultipilier);
                 else
-                    TakeDamage(collision, 5 * _playerController.DamageMultipilier);
+                    TakeDamage(collision, 3 * _playerController.DamageMultipilier);
                 break;
             case "BulletBlue":
                 if (_EnemyManager.EnemyColorTypes == EnemyColor.Blue)
                     TakeDamage(collision, 10 * _playerController.DamageMultipilier);
                 else
-                    TakeDamage(collision, 5 * _playerController.DamageMultipilier);
+                    TakeDamage(collision, 3 * _playerController.DamageMultipilier);
                 break;
             case "BulletGreen":
                 if (_EnemyManager.EnemyColorTypes == EnemyColor.Green)
                     TakeDamage(collision, 10 * _playerController.DamageMultipilier);
                 else
-                    TakeDamage(collision, 5 * _playerController.DamageMultipilier);
+                    TakeDamage(collision, 3 * _playerController.DamageMultipilier);
                 break;
             default:
                 break;

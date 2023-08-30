@@ -23436,12 +23436,12 @@ MonoBehaviour:
   _BossHealthText: {fileID: 631568518}
   _GameManager: {fileID: 1094257087}
   _BossBeginParticles:
-  - {fileID: 8028851021924304830, guid: d2e0243ba78b8de409941dcd7f5ff404, type: 3}
+  - {fileID: 2702541558607588355, guid: c6c7abfdb72a7e24d864d7e95c711d40, type: 3}
   - {fileID: 3464385518997942632, guid: a9759a93217cec34daa0c12bbba22429, type: 3}
-  - {fileID: 3074787291418757306, guid: 5c367207dcb74b4478ab694e13d2fb01, type: 3}
   - {fileID: 5982834411997381313, guid: 9adf1435da2784649948d7b3704dace2, type: 3}
   - {fileID: 6114503577601669272, guid: 770254134f31ac84eb38ab8ff47e00e0, type: 3}
   - {fileID: 954024466874305228, guid: 72fa2be1d3815da44a27d856667e661c, type: 3}
+  - {fileID: 3074787291418757306, guid: 5c367207dcb74b4478ab694e13d2fb01, type: 3}
   - {fileID: 7934633799481901496, guid: 4f3bc8d561cd17e4c982779b794572fc, type: 3}
   - {fileID: 7934633799481901496, guid: 4f3bc8d561cd17e4c982779b794572fc, type: 3}
   _AudioSource: {fileID: 1554281687}
@@ -23936,7 +23936,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Don't forget to like for more games :))\r"
+  m_text: "Don't forget to l\u0131ke for more games :))\r"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7028efaf808e08f4abe3df9a0f281c74, type: 2}
   m_sharedMaterial: {fileID: -8114760823456611521, guid: 7028efaf808e08f4abe3df9a0f281c74, type: 2}
@@ -24163,10 +24163,10 @@ MonoBehaviour:
   _WaveData:
   - {fileID: 11400000, guid: ef9b617a34c84b14f9f57bb3aaab8678, type: 2}
   - {fileID: 11400000, guid: f87078c8749d30b48825360eb8b65689, type: 2}
-  - {fileID: 11400000, guid: 640e8898d2f7fea49bc27317457bfda9, type: 2}
   - {fileID: 11400000, guid: 64bdf6278314207438851ee392d795b5, type: 2}
   - {fileID: 11400000, guid: 5279e883474e7784fa7776b7f24886f1, type: 2}
   - {fileID: 11400000, guid: 24ad343ec095b284bbc8cc0b1a22cc3e, type: 2}
+  - {fileID: 11400000, guid: 640e8898d2f7fea49bc27317457bfda9, type: 2}
   - {fileID: 11400000, guid: a03f301d7db9bb340845250fcaa0f923, type: 2}
   - {fileID: 11400000, guid: 313cd5931e05dbf4980675700279d794, type: 2}
   _SpawnerManager: {fileID: 654226036}
@@ -35611,7 +35611,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Next Wave:'
+  m_text: 'Boss Coming:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7028efaf808e08f4abe3df9a0f281c74, type: 2}
   m_sharedMaterial: {fileID: -8114760823456611521, guid: 7028efaf808e08f4abe3df9a0f281c74, type: 2}
@@ -35638,7 +35638,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18.7
+  m_fontSize: 15.6
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -36340,8 +36340,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DamageMultipilier: 1
-  MaxHealth: 5
-  CurrentHealth: 5
+  MaxHealth: 100
+  CurrentHealth: 100
   _PlayerStates: 0
   CanChangestate: 1
   _CursorPosition: {fileID: 1191222190}
@@ -36404,6 +36404,9 @@ MonoBehaviour:
   _CameraFollow: {fileID: 519420033}
   _Bg: {fileID: 1554281687}
   LockPlayer: 0
+  RedSkillOpened: 0
+  GreenSkillOpened: 0
+  BlueSkillOpened: 0
 --- !u!114 &1679517852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53450,7 +53453,7 @@ MonoBehaviour:
     - 'FULL BULLET BAR '
     - 'Next Wave:'
     - ENEMIES COMING !!
-    - 'Don''t forget to like for more games :)) '
+    - "Don't forget to l\u0131ke for more games :)) "
     - Shoot
     - or
     - Best Score

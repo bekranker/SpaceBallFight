@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
     private bool _canChange, _canEffect, _canDamage;
     private WaitForSeconds _delayForAdsReward = new WaitForSeconds(10);
     private Vector2 _lockPosition;
-    public bool LockPlayer;
+    public bool LockPlayer, RedSkillOpened, GreenSkillOpened, BlueSkillOpened;
     private Camera _camera;
     private float _inputX, _inputY;
     Vector3 _go;
@@ -95,14 +95,14 @@ public class PlayerController : MonoBehaviour
 
         if (LockPlayer)
         {
-            if (Vector2.Distance(_t.position, _camera.transform.position) < 10)
+            if (Mathf.Abs(_t.position.x - _camera.transform.position.x) < 18 && Mathf.Abs(_t.position.y - _camera.transform.position.y) < 9)
             {
                 _t.position += _go * Time.deltaTime;
             }
             else
             {
                 var direction = new Vector3(_camera.transform.position.x, _camera.transform.position.y, 0) -  _t.position ;
-                _t.position += Vector3.ClampMagnitude(direction.normalized, 0.05f);
+                _t.position += Vector3.ClampMagnitude(direction.normalized, 0.01f);
             }
         }
         else
@@ -116,10 +116,12 @@ public class PlayerController : MonoBehaviour
     {
         if(CurrentHealth - damageValue <= 0)
         {
-            StartCoroutine(takeDamageIE(damageValue));
             _Bg.Stop();
             _GameManager.DeadTime();
+            Dead();
+            DecreaseHealth((int)damageValue);
             Audio.PlayAudio("amsesi", .25f);
+            PlayerHealthSldier();
             return;
         }
         else
@@ -131,13 +133,13 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine(takeDamageIE(damageValue));
                 _canDamage = false;
             }
+            DecreaseHealth((int)damageValue);
+            PlayerHealthSldier();
         }
-        PlayerHealthSldier();
     }
     private IEnumerator takeDamageIE(float damageValue)
     {
         Color currentColor = _Sp.color;
-        DecreaseHealth((int)damageValue);
         _Sp.color = Color.white;
         SetBGPColorToWhite();
         Time.timeScale = 0f;
@@ -149,7 +151,9 @@ public class PlayerController : MonoBehaviour
     }
     public void Dead()
     {
-        Instantiate(_DieEffect, transform.position, Quaternion.identity);
+        Color currentColor = _Sp.color;
+        SetParticleColor();
+        _Sp.color = currentColor;
         gameObject.SetActive(false);
     }
     //changing player
@@ -318,7 +322,7 @@ public class PlayerController : MonoBehaviour
     }
     //Health slider must be update here
     public void IncreaseHealth(int value) => CurrentHealth += value;
-    public void DecreaseHealth(int value) => CurrentHealth -= value;
+    public void DecreaseHealth(int value) => CurrentHealth -= (CurrentHealth - value < 0) ? CurrentHealth : value;
     public void IncreaseSlider() => CurrentSlider().value++;
     public void DecraseSlider() => CurrentSlider().value--;
     public Slider CurrentSlider()

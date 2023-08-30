@@ -40,13 +40,13 @@ public class SpikyBossAttack : MonoBehaviour
     {
         if (_BossAttackManager.CanFight && _canAttack)
         {
-            print("Attacking");
             StartCoroutine(SpikeMovemenIE());
         }
     }
     private IEnumerator SpikeMovemenIE()
     {
         _canAttack = false;
+        yield return _nextAttackSleepTime;
         _BossPlayerFollow.CanFollow = false;
 
         if (_spikeParentQueue.Count == 0)
@@ -69,7 +69,7 @@ public class SpikyBossAttack : MonoBehaviour
                 spike.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
             }
             _BossPlayerFollow.CanFollow = true;
-            _BossAttackManager.CanFight = false;
+            _BossAttackManager.CanFight = true;
             _canAttack = true;
             for (int i = 0; i < 4; i++)
             {
