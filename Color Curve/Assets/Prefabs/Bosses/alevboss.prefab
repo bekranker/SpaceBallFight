@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 1440559676262522750}
   - component: {fileID: 4954880520193330799}
   - component: {fileID: 7542101511969963314}
-  - component: {fileID: -2083280183237880496}
+  - component: {fileID: -1161247422674973459}
   m_Layer: 11
   m_Name: alevboss
   m_TagString: Boss
@@ -267,7 +267,7 @@ MonoBehaviour:
   - {fileID: 5309062064384292469}
   - {fileID: 8441978346167933359}
   - {fileID: 1277647612860680672}
---- !u!114 &-2083280183237880496
+--- !u!114 &-1161247422674973459
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -276,13 +276,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1703918714598183436}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a571644cbdcbcfd4e9e0f04d7d2abfba, type: 3}
+  m_Script: {fileID: 11500000, guid: 3d869d8fb65198d49a95a4007ad899dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _BossTag: {fileID: 4223094603076711288}
-  _GreenPlayerParticle: {fileID: 130230781439211816, guid: 1df2683ec8563244aa109fe0919b4b4a, type: 3}
-  _DeadParticle: {fileID: 7432857655332963612, guid: ee34b6f25b8529443813d0945528bdd8, type: 3}
-  Tutorial: {fileID: 5096485203613481641, guid: 75d42017e8ceee940b578b21d2869d0d, type: 3}
+  _DieParticle: {fileID: 7432857655332963612, guid: ee34b6f25b8529443813d0945528bdd8, type: 3}
+  _UnlockedCanvas: {fileID: 3623095102184389603, guid: 336153086a5f25548a050380bc3394f4, type: 3}
+  _Tutorial: {fileID: 5096485203613481641, guid: 75d42017e8ceee940b578b21d2869d0d, type: 3}
+  _BlueUnlocked: 0
+  _GreenUnlocked: 0
+  _RedSkillUnlocked: 1
+  _BlueSkillUnlocked: 0
+  _GreenSkillUnlocked: 0
 --- !u!1 &4058138779504254250
 GameObject:
   m_ObjectHideFlags: 0

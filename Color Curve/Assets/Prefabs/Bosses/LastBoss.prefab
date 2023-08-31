@@ -494,7 +494,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d869d8fb65198d49a95a4007ad899dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _DieParticle: {fileID: 0}
+  _DieParticle: {fileID: 7432857655332963612, guid: ee34b6f25b8529443813d0945528bdd8, type: 3}
+  _UnlockedCanvas: {fileID: 0}
+  _Tutorial: {fileID: 0}
+  _BlueUnlocked: 0
+  _GreenUnlocked: 0
+  _RedSkillUnlocked: 0
+  _BlueSkillUnlocked: 0
+  _GreenSkillUnlocked: 0
 --- !u!114 &1002431036665056005
 MonoBehaviour:
   m_ObjectHideFlags: 0

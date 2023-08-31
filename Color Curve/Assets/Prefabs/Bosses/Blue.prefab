@@ -535,7 +535,6 @@ GameObject:
   - component: {fileID: 7541677978920868396}
   - component: {fileID: 6815747530035486234}
   - component: {fileID: -2282599074497807954}
-  - component: {fileID: 5402133392304588746}
   m_Layer: 11
   m_Name: Blue
   m_TagString: Boss
@@ -644,23 +643,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d869d8fb65198d49a95a4007ad899dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _DieParticle: {fileID: 2885456171195781281, guid: 8cf86ea9b9cc6b14cac3deec1e3fe2df, type: 3}
---- !u!114 &5402133392304588746
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8323530343370846776}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a571644cbdcbcfd4e9e0f04d7d2abfba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _BossTag: {fileID: 4584990611553512346}
-  _GreenPlayerParticle: {fileID: 130230781439211816, guid: 9d415c378759ed644afe0af1166cc7ec, type: 3}
-  _DeadParticle: {fileID: 1339670025956112321, guid: ee1a3b5c7c66df046af6a6c72db05d66, type: 3}
-  Tutorial: {fileID: 0}
+  _DieParticle: {fileID: 1339670025956112321, guid: ee1a3b5c7c66df046af6a6c72db05d66, type: 3}
+  _UnlockedCanvas: {fileID: 3623095102184389603, guid: 7544ea240d5e62e4b88d0c19fca55105, type: 3}
+  _Tutorial: {fileID: 0}
+  _BlueUnlocked: 0
+  _GreenUnlocked: 0
+  _RedSkillUnlocked: 0
+  _BlueSkillUnlocked: 1
+  _GreenSkillUnlocked: 0
 --- !u!1 &8889868816753563571
 GameObject:
   m_ObjectHideFlags: 0

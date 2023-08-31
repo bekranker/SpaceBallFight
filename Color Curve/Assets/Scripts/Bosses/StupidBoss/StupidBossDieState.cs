@@ -9,6 +9,9 @@ public class StupidBossDieState : MonoBehaviour
     [SerializeField] private GameObject _GreenPlayerParticle;
     [SerializeField] private ParticleSystem _DeadParticle;
     [SerializeField] private GameObject Tutorial;
+
+
+
     private void OnEnable()
     {
         BossTag.OnDie += UnlockGreenPlayer;
@@ -17,6 +20,7 @@ public class StupidBossDieState : MonoBehaviour
     {
         BossTag.OnDie -= UnlockGreenPlayer;
     }
+    
     private void UnlockGreenPlayer()
     {
         Instantiate(_GreenPlayerParticle, transform.position, Quaternion.identity);
@@ -26,5 +30,7 @@ public class StupidBossDieState : MonoBehaviour
         Camera.main.DOShakePosition(.1f, 3, 9, randomnessMode: ShakeRandomnessMode.Harmonic);
         _BossTag._ShockWave.CallShockWave();
         Destroy(gameObject);
+
+       
     }
 }

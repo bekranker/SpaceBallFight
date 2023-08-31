@@ -82,6 +82,7 @@ public class EnemyManager : MonoBehaviour
         }
         Speed = 0;
         yield return _sleepTime;
+        if (_Sp == null) yield break;
         Speed = _firsSpeed;
         for (int i = 0; i < _Sp.Count; i++)
         {

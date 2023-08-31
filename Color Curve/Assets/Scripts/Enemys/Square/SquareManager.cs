@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class SquareManager : EnemyMovementAbstract
 {
@@ -10,7 +11,10 @@ public class SquareManager : EnemyMovementAbstract
     [SerializeField] EnemyManager _EnemyManager;
 
     private Transform _t, _playerT;
-    private bool _canDash, _canFollow;
+    private bool _canDash, _canFollow, _canD;
+    private Vector3 _to;
+    private WaitForSeconds _delay = new WaitForSeconds(.5f);
+
 
     public override void OnUpdate(AbstractmovementManager abstractmovementManager)
     {
@@ -39,35 +43,40 @@ public class SquareManager : EnemyMovementAbstract
             TurnBody();
             _t.position = Vector3.MoveTowards(_t.position, _playerT.position, _EnemyManager.Speed * Time.deltaTime);
         }
-        else
+        else if(!_canFollow)
         {
-            if (!_canFollow)
-            {
-                if (_canDash)
-                {
-                    StartCoroutine(dashToPlayer());
-                }
-            }
+           if (_canDash)
+           {
+                _canDash = false;
+                StartCoroutine(dashToPlayer());
+           }
         }
-        if (Vector2.Distance(_t.position, _playerT.position) > 5)
+        if (Vector2.Distance(_t.position, _playerT.position) > 5 && _canFollow)
+        {
+            _canDash = false;
+            _canFollow = true;
+            _canD = true;
+        }
+        else
         {
             _canDash = true;
-            _canFollow = true;
-        }
-        else
-        {
             _canFollow = false;
         }
     }
 
     private IEnumerator dashToPlayer()
     {
-        _canDash = false;
-        yield return new WaitForSeconds(.25f);
-        _Rb.velocity = 10 * Time.deltaTime * 100 * _t.up;
-        yield return new WaitForSeconds(.4f);
-        _Rb.velocity = Vector2.zero;
-        _canFollow = true;
+        yield return _delay;
+        if (_canD)
+        {
+            _to = _playerT.position + new Vector3(1, 0, 0);
+            _canD = false;
+        }
+        if(_t == null)
+        {
+            yield break;
+        }
+        _t.DOMove(_to, 1f).OnComplete(()=> _canFollow = true);
     }
 
     public override void TriggerEnter2D(AbstractmovementManager abstractmovementManager, Collider2D collision)

@@ -329,8 +329,8 @@ GameObject:
   - component: {fileID: 7684549080195541535}
   - component: {fileID: 9167154706983426252}
   - component: {fileID: 8209334226995038042}
-  - component: {fileID: 1834613308952605026}
   - component: {fileID: 1229021173457549455}
+  - component: {fileID: -4446148422471684739}
   m_Layer: 11
   m_Name: Green
   m_TagString: Boss
@@ -411,22 +411,6 @@ MonoBehaviour:
   - {fileID: 7332723378666184511, guid: 4da8e04c7c3efaf4aa7942f81eb08837, type: 3}
   _Tag: {fileID: 7684549080195541535}
   _HaveX: 0
---- !u!114 &1834613308952605026
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3736763704464210565}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a571644cbdcbcfd4e9e0f04d7d2abfba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _BossTag: {fileID: 7684549080195541535}
-  _GreenPlayerParticle: {fileID: 130230781439211816, guid: a631f1a56667ccb478a6c275e1d0eb3f, type: 3}
-  _DeadParticle: {fileID: 3326816926934398082, guid: 2685f429241492d4ca7fc4c615058695, type: 3}
-  Tutorial: {fileID: 0}
 --- !u!114 &1229021173457549455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -441,6 +425,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CanFollow: 0
   _Speed: 2
+--- !u!114 &-4446148422471684739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3736763704464210565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d869d8fb65198d49a95a4007ad899dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _DieParticle: {fileID: 3326816926934398082, guid: 2685f429241492d4ca7fc4c615058695, type: 3}
+  _UnlockedCanvas: {fileID: 3623095102184389603, guid: 3093125a2f7b43049b258c4c33577f94, type: 3}
+  _BlueUnlocked: 0
+  _GreenUnlocked: 0
+  _RedSkillUnlocked: 0
+  _BlueSkillUnlocked: 0
+  _GreenSkillUnlocked: 1
 --- !u!1 &3991395638191149659
 GameObject:
   m_ObjectHideFlags: 0

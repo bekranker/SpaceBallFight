@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
     private int _index;
     private float _previousScrollPosition;
     [SerializeField] private Slider _RedSlider, _GreenSlider, _BlueSlider;
-    [SerializeField] public TMP_Text _RedSliderTMP, _GreenSliderTMP, _BlueSliderTMP;
+    [SerializeField] public Text _RedSliderTMP, _GreenSliderTMP, _BlueSliderTMP;
     [SerializeField] public Sprite _RedSliderSprite, _GreenSliderSprite, _BlueSliderSprite;
     [SerializeField] public Sprite _RedSliderSpriteUnlocked, _GreenSliderSpriteUnlocked, _BlueSliderSpriteUnlocked;
     [SerializeField] public Image _RedSliderSpriteR, _GreenSliderSpriteR, _BlueSliderSpriteR;
@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PlayerDedection _PlayerDedection;
     [SerializeField] private PlayerAttack _PlayerAttack;
     [SerializeField] private Slider _PlayerHealth;
-    [SerializeField] private TMP_Text _PlayerHealthTMP;
+    [SerializeField] private Text _PlayerHealthTMP;
     [SerializeField] private Transform _PlayerHealthT;
     [SerializeField] private float _SliderEffectSpeed, _SliderEffectScale;
     [SerializeField] private GameManager _GameManager;
@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public int BulletCount, MaXbulletCount;
     [SerializeField] private Slider _BulletSlider;
     [SerializeField] private Transform _BulletSliderT;
-    [SerializeField] private TMP_Text _BulletSliderTMP;
+    [SerializeField] private Text _BulletSliderTMP;
     [SerializeField] private CameraFollow _CameraFollow;
     [SerializeField] public Action OnPlayerStateChange;
     [SerializeField] private AudioSource _Bg;
@@ -278,7 +278,7 @@ public class PlayerController : MonoBehaviour
         _BlueSliderG.SetActive(false);
         slider.SetActive(true);
     }
-    public void UnlockedSkill(TMP_Text slidertext, Image sliderSpriteRenderer, Sprite sliderSpriteUnlocked)
+    public void UnlockedSkill(Text slidertext, Image sliderSpriteRenderer, Sprite sliderSpriteUnlocked)
     {
         slidertext.text = "0/5";
         sliderSpriteRenderer.sprite = sliderSpriteUnlocked;
@@ -372,6 +372,7 @@ public class PlayerController : MonoBehaviour
         SetHealthText(CurrentHealth.ToString());
         _PlayerHealth.value = CurrentHealth;
         if (!_canChange) return;
+        if (_PlayerHealthT == null) return;
         _PlayerHealthT.DOPunchPosition(_SliderEffectScale * new Vector3(1, 0), _SliderEffectSpeed).OnComplete(() =>
         {
             _canChange = true;
@@ -403,15 +404,15 @@ public class PlayerController : MonoBehaviour
         _BulletSlider.value = BulletCount;
         SetBulletText(BulletCount);
         if (!_canEffect) return;
-        _BulletSliderT.DOPunchScale(.1f * Vector2.one, .1f).OnComplete(() => _canEffect = true).SetUpdate(true);
+        _BulletSliderT.DOPunchScale(.2f * Vector2.one, 0.07f).OnComplete(() => _canEffect = true).SetUpdate(true);
         _canEffect = false;
     }
     public void SetBulletText(int count)
     {
-        _BulletSliderTMP.text = $"{count}/{MaXbulletCount}";
+        _BulletSliderTMP.text = $"{count}";
     }
     public void SetHealthText(string value)
     {
-        _PlayerHealthTMP.text = $"{value}/{MaxHealth}";
+        _PlayerHealthTMP.text = $"{value}";
     }
 }

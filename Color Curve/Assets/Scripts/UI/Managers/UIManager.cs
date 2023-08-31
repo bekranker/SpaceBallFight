@@ -12,7 +12,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject _Panel;
     [SerializeField] private List<GameObject> _CloseTheese = new List<GameObject>();
     [SerializeField] private PlayerController _PlayerController;
-    [SerializeField] private ButtonClickManager _AdsHealthButton, _AdsUpgradeButton, _AdsShieldButton, _AdsBulletButton, _AdsWatchAndResume;
+    [SerializeField] private ButtonClickManager _AdsHealthButton, _AdsShieldButton, _AdsBulletButton, _AdsWatchAndResume;
     [SerializeField] private GameManager _GameManager;
     private bool _canClick;
 
@@ -32,7 +32,6 @@ public class UIManager : MonoBehaviour
         _AdsWatchAndResume.DoSomething += SetWatchAndResumeAds;
         _AdsBulletButton.DoSomething += SetBulletAds;
         _AdsShieldButton.DoSomething += SetShieldAds;
-        _AdsUpgradeButton.DoSomething += SetUpgradeAds;
         _AdsHealthButton.DoSomething += SetHealthAds;
     
     }
@@ -57,14 +56,6 @@ public class UIManager : MonoBehaviour
     {
         _PlayerController.CurrentHealth = _PlayerController.MaxHealth;
         _PlayerController.PlayerHealthSldier();
-    }
-    public void SetUpgradeAds()
-    {
-        CrazyAds.Instance.beginAdBreakRewarded(UpgradeRewarded, () => print("add didnt be loaded"));
-    }
-    private void UpgradeRewarded()
-    {
-        StartCoroutine(_PlayerController.IncreaseSpeedAndAttack());
     }
     public void SetShieldAds()
     {

@@ -756,7 +756,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8530728940616773516}
   - component: {fileID: 3838827982302977659}
-  - component: {fileID: -8464912889016123284}
+  - component: {fileID: -3162321193919481351}
   m_Layer: 11
   m_Name: StupidBoss
   m_TagString: Boss
@@ -793,7 +793,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyColor: 0
-  _MaxHealth: 5
+  _MaxHealth: 3000
   _SpriteRenderer:
   - {fileID: 3416591650518308714}
   - {fileID: 5285656950751555728}
@@ -808,7 +808,7 @@ MonoBehaviour:
   _ColorBlue: {r: 0, g: 0.7607843, b: 1, a: 1}
   Speed: 0
   _player: {fileID: 0}
---- !u!114 &-8464912889016123284
+--- !u!114 &-3162321193919481351
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -817,10 +817,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 8905257333664680449}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a571644cbdcbcfd4e9e0f04d7d2abfba, type: 3}
+  m_Script: {fileID: 11500000, guid: 3d869d8fb65198d49a95a4007ad899dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _BossTag: {fileID: 3838827982302977659}
-  _GreenPlayerParticle: {fileID: 130230781439211816, guid: 687aeaa429a9c79459dab249cbb253f1, type: 3}
-  _DeadParticle: {fileID: 2885456171195781281, guid: 8cf86ea9b9cc6b14cac3deec1e3fe2df, type: 3}
-  Tutorial: {fileID: 3585559979542669575, guid: 00a345a3420f51d45840da9d7cac1576, type: 3}
+  _DieParticle: {fileID: 2885456171195781281, guid: 8cf86ea9b9cc6b14cac3deec1e3fe2df, type: 3}
+  _UnlockedCanvas: {fileID: 1501909995271890420, guid: d58d4ac7f10f677489ff84c283c361c0, type: 3}
+  _Tutorial: {fileID: 3585559979542669575, guid: 00a345a3420f51d45840da9d7cac1576, type: 3}
+  _BlueUnlocked: 0
+  _GreenUnlocked: 1
+  _RedSkillUnlocked: 0
+  _BlueSkillUnlocked: 0
+  _GreenSkillUnlocked: 0

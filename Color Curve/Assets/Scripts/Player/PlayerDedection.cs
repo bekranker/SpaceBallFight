@@ -14,7 +14,7 @@ public class PlayerDedection : MonoBehaviour
     [SerializeField] private ScoreManager _ScoreManager;
     [SerializeField] private Slider _RedSlider, _GreenSlider, _BlueSlider;
     [SerializeField] private ParticleSystem _SkillPointRedP, _SkillPointBlueP, _SkillPointGreenP, _BulletCollectedParticle;
-    [SerializeField] public TMP_Text _RedSliderTMP, _GreenSliderTMP, _BlueSliderTMP;
+    [SerializeField] public Text _RedSliderTMP, _GreenSliderTMP, _BlueSliderTMP;
     [SerializeField] public Transform _RedSliderT, _GreenSliderT, _BlueSliderT;
     public bool CanDedect;
     private WaitForSeconds WaitForSeconds = new WaitForSeconds(1);
@@ -113,7 +113,7 @@ public class PlayerDedection : MonoBehaviour
         if (collision.gameObject.CompareTag("CollectBullet"))
         {
             Audio.PlayAudio($"CollectSoundEffect", .7f);
-            _PlayerController.BulletCount += 15;
+            _PlayerController.BulletCount = (_PlayerController.BulletCount + 8 > 1000) ? _PlayerController.MaXbulletCount : _PlayerController.BulletCount + 8;
             _PlayerController.BulletSlider();
             Instantiate(_BulletCollectedParticle, collision.transform.position, Quaternion.identity);
             Destroy(collision.gameObject);
@@ -155,7 +155,7 @@ public class PlayerDedection : MonoBehaviour
             SetText(_BlueSliderTMP, $"{_BluePointIndex}/5");
         }
     }
-    public void SetText(TMP_Text text, string to, bool full = false)
+    public void SetText(Text text, string to, bool full = false)
     {
         text.text = to;
         if (!_canEffect) return;
@@ -164,14 +164,14 @@ public class PlayerDedection : MonoBehaviour
             _RedSliderT.DOPunchScale(0.75f * Vector2.one, 0.2f).OnComplete(() =>
             {
                 _canEffect = true;
-            });
+            }).SetUpdate(true);
         }
         else
         {
             _RedSliderT.DOPunchPosition(25 * new Vector2(1,0), 0.3f).OnComplete(() =>
             {
                 _canEffect = true;
-            });
+            }).SetUpdate(true);
         }
         _canEffect = false;
     }

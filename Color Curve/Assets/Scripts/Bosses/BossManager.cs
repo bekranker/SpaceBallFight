@@ -21,17 +21,18 @@ public class BossManager : MonoBehaviour
     [SerializeField] private AudioClip _NormalBGMusic, _BossFight;
     [SerializeField] private PlayerController _PlayerController;
     [SerializeField] private RemaningTimeManager _RemaningTimeManager;
+    [SerializeField] public Transform _BossSliderT, _BossSliderText;
     private int _bossCount = 0;
     //------------------------Cut------------------------
 
     private WaitForSeconds _sleep = new WaitForSeconds(5);
     private Camera _mainCamera;
-    private bool _canCallBoss;
-
+    private bool _canCallBoss, _canEffect;
 
 
     private void Start()
     {
+        _canEffect = true;
         _canCallBoss = true;
         _mainCamera = Camera.main;
     }
@@ -94,5 +95,11 @@ public class BossManager : MonoBehaviour
     {
         _BossHealthSlider.value = value;
         _BossHealthText.text = value.ToString() + " / " + max.ToString();
+        if (_canEffect)
+        {
+            _BossSliderText.DOPunchScale(.5f * Vector2.one, .1f).SetUpdate(true);
+            _BossSliderT.DOPunchPosition(8 * Vector2.right, .1f).OnComplete(() => { _canEffect = true; }).SetUpdate(true);
+            _canEffect = false;
+        }
     }
 }

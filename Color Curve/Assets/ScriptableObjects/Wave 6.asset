@@ -16,6 +16,6 @@ MonoBehaviour:
   SpawnDelay: 1
   EnemyTypes: 01000000000000000200000003000000
   StartColor: 000000000100000002000000
-  WaveTimeCount: 1
+  WaveTimeCount: 80
   Boss: 1
   BossPrefab: {fileID: 2321063364261582777, guid: c6ee6208f7fc97d458fd48cfdaa673d4, type: 3}

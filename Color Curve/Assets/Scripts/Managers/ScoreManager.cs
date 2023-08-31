@@ -27,7 +27,7 @@ public class ScoreManager : MonoBehaviour
         _CrossHair.ShootEffect();
         Score += value;
 
-        if (Score >= 1000)
+        if (Score >= 10000)
         {
             _Score.text = ((float)Score / 1000).ToString("0.0") + "k";
         }
