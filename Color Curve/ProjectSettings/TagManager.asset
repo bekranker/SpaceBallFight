@@ -37,6 +37,9 @@ TagManager:
   - Boss
   - Border
   - CollectBullet
+  - AdHelath
+  - AdBullet
+  - PlayerCanvas
   layers:
   - Default
   - TransparentFX

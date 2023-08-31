@@ -73,6 +73,7 @@ public class PlayerAttack : MonoBehaviour
                 break;
         }
         _PlayerController.BulletCount--;
+        _PlayerController.CanDropBulletF();
         _PlayerController.BulletSlider();
         Audio.PlayAudio($"shoot{_Range}", .12f);
     }

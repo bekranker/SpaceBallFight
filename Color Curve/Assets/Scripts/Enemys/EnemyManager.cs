@@ -20,7 +20,7 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] public List<TrailRenderer> Trail;
     [SerializeField] private GameObject _SkillPointRed, _SkillPointBlue, _SkillPointGreen;
     [SerializeField] private Vector2 _FromScale;
-    [SerializeField] private GameObject _Bullet;
+    [SerializeField] private GameObject _BulletBallon, _HealthAdBallon, _BulletAdBallon;
     [SerializeField] private Color _BlueColor;
     private PlayerController _playerController;
     //-----------------------------------Cut-----------------------------------
@@ -49,6 +49,7 @@ public class EnemyManager : MonoBehaviour
         SetHealth(_Health);
         _canDie = true;
     }
+    
     public void TakeDamage(int damage, Transform pos)
     {
         if(_healthCount - damage > 0)
@@ -70,8 +71,25 @@ public class EnemyManager : MonoBehaviour
             _scoreManager.IncreaseScore(damage, pos);
             CreateSkillPoint();
             CreateBullet();
+            CreateHealthAd();
+            CreateBulletAd();
             Destroy(gameObject);
             _canDie = false;
+        }
+    }
+    private void CreateHealthAd()
+    {
+        if (_playerController.CanDropHealth())
+        {
+            Instantiate(_HealthAdBallon, _t.position, Quaternion.identity);
+        }
+    }
+    private void CreateBulletAd()
+    {
+        if (_playerController.CanDropBullet)
+        {
+            Instantiate(_BulletAdBallon, _t.position, Quaternion.identity);
+            _playerController.CanDropBullet = false;
         }
     }
     IEnumerator damageAction()
@@ -183,7 +201,7 @@ public class EnemyManager : MonoBehaviour
     private void CreateBullet()
     {
         if (!DidFallBullet()) return;
-        Instantiate(_Bullet, _t.position, Quaternion.identity);
+        Instantiate(_BulletBallon, _t.position, Quaternion.identity);
     }
     private bool DidFallPoint()
     {

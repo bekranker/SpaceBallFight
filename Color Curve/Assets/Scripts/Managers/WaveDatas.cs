@@ -13,4 +13,5 @@ public class WaveDatas : ScriptableObject
     public float WaveTimeCount;
     public bool Boss;
     public GameObject BossPrefab;
+    public int MaxBulletSize;
 }

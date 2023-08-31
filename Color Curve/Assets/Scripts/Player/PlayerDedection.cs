@@ -33,10 +33,7 @@ public class PlayerDedection : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Boss"))
-        {
-            _PlayerController.TakeDamage(25);
-        }
+        
         CollectPoints(collision);
 
 
@@ -45,27 +42,30 @@ public class PlayerDedection : MonoBehaviour
 
 
         if (!CanDedect) return;
-        
-        
+        if (collision.gameObject.CompareTag("Boss"))
+        {
+            _PlayerController.TakeDamage(20);
+        }
+
         if (collision.CompareTag("FreezeBullet"))
         {
             StartCoroutine(decreaseSpeed());
-            _PlayerController.TakeDamage(7);
+            _PlayerController.TakeDamage(10);
             Destroy(collision.gameObject);
         }
         if (collision.CompareTag("BossBullet"))
         {
-            _PlayerController.TakeDamage(7);
+            _PlayerController.TakeDamage(10);
             Destroy(collision.gameObject);
         }
         if (collision.CompareTag("Enemy"))
         {
-            _PlayerController.TakeDamage(3);
-            Destroy(collision.gameObject);
+            _PlayerController.TakeDamage(10);
+            collision.GetComponent<EnemyManager>().TakeDamage(999, _t);
         }
         if (collision.gameObject.CompareTag("Lazer"))
         {
-            _PlayerController.TakeDamage(15);
+            _PlayerController.TakeDamage(10);
         }
         if (collision.gameObject.CompareTag("Spike"))
         {
@@ -113,7 +113,7 @@ public class PlayerDedection : MonoBehaviour
         if (collision.gameObject.CompareTag("CollectBullet"))
         {
             Audio.PlayAudio($"CollectSoundEffect", .7f);
-            _PlayerController.BulletCount = (_PlayerController.BulletCount + 8 > 1000) ? _PlayerController.MaXbulletCount : _PlayerController.BulletCount + 8;
+            _PlayerController.BulletCount = (_PlayerController.BulletCount + 20 > _PlayerController.MaXbulletCount) ? _PlayerController.MaXbulletCount : _PlayerController.BulletCount + 20;
             _PlayerController.BulletSlider();
             Instantiate(_BulletCollectedParticle, collision.transform.position, Quaternion.identity);
             Destroy(collision.gameObject);
@@ -168,7 +168,7 @@ public class PlayerDedection : MonoBehaviour
         }
         else
         {
-            _RedSliderT.DOPunchPosition(25 * new Vector2(1,0), 0.3f).OnComplete(() =>
+            _RedSliderT.DOPunchPosition(1 * new Vector2(1,0), 0.3f).OnComplete(() =>
             {
                 _canEffect = true;
             }).SetUpdate(true);

@@ -245,7 +245,9 @@ MonoBehaviour:
   _SkillPointBlue: {fileID: 1935863650943656197, guid: 96d815f1a36477148972133cd5955c21, type: 3}
   _SkillPointGreen: {fileID: 1935863650943656197, guid: e613f42e3e84da64fb45126e8b145bd8, type: 3}
   _FromScale: {x: 1.1, y: 1.5}
-  _Bullet: {fileID: 7778097815662144734, guid: 3ce6b96ac42525841a6c10aa00970e41, type: 3}
+  _BulletBallon: {fileID: 7778097815662144734, guid: 3ce6b96ac42525841a6c10aa00970e41, type: 3}
+  _HealthAdBallon: {fileID: 3855130778366639842, guid: 5c8fff1f605cb334f9f61a9b3f8e893e, type: 3}
+  _BulletAdBallon: {fileID: 7610641975642543185, guid: 7e8389d791aac3f4d815f183b3732ea1, type: 3}
   _BlueColor: {r: 0.0627451, g: 1, b: 1, a: 1}
 --- !u!114 &101449402923172480
 MonoBehaviour:

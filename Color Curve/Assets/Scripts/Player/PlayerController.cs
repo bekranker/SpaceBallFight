@@ -1,7 +1,6 @@
 using DG.Tweening;
 using System;
 using System.Collections;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -55,6 +54,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private CameraFollow _CameraFollow;
     [SerializeField] public Action OnPlayerStateChange;
     [SerializeField] private AudioSource _Bg;
+    [SerializeField] private WaveManager _WaveManager;
     private Transform _t;
     private bool _canChange, _canEffect, _canDamage;
     private WaitForSeconds _delayForAdsReward = new WaitForSeconds(10);
@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour
     private Camera _camera;
     private float _inputX, _inputY;
     Vector3 _go;
-
+    public bool CanDropBullet;
     private void Start()
     {
         _camera = Camera.main;
@@ -75,7 +75,7 @@ public class PlayerController : MonoBehaviour
         CanChangestate = true;
         FirstSpeed = _Speed;
         _index = 1;
-        BulletSlider();
+        SetBulletSliderBeReady(_WaveManager._WaveData[_WaveManager.WaveIndex].MaxBulletSize);
         PlayerHealthSldier();
         ChangeState();
     }
@@ -130,14 +130,14 @@ public class PlayerController : MonoBehaviour
             Audio.PlayAudio("EnemyHit", .25f);
             if (_canDamage)
             {
-                StartCoroutine(takeDamageIE(damageValue));
+                StartCoroutine(takeDamageIE());
                 _canDamage = false;
             }
             DecreaseHealth((int)damageValue);
             PlayerHealthSldier();
         }
     }
-    private IEnumerator takeDamageIE(float damageValue)
+    private IEnumerator takeDamageIE()
     {
         Color currentColor = _Sp.color;
         _Sp.color = Color.white;
@@ -399,7 +399,15 @@ public class PlayerController : MonoBehaviour
         yield return _delayForAdsReward;
         _Shield.SetActive(false);
     }
-    public void BulletSlider() 
+    public void SetBulletSliderBeReady(int max = 1000)
+    {
+        MaXbulletCount = max;
+        BulletCount = MaXbulletCount;
+        _BulletSlider.maxValue = MaXbulletCount;
+        _BulletSlider.value = BulletCount;
+        SetBulletText(MaXbulletCount);
+    }
+    public void BulletSlider()
     {
         _BulletSlider.value = BulletCount;
         SetBulletText(BulletCount);
@@ -414,5 +422,37 @@ public class PlayerController : MonoBehaviour
     public void SetHealthText(string value)
     {
         _PlayerHealthTMP.text = $"{value}";
+    }
+    public bool CanDropHealth()
+    {
+        if (CurrentHealth <= 70 && CurrentHealth > 69)
+        {
+            return true;
+        }
+        else if (CurrentHealth <= 50 && CurrentHealth > 49)
+        {
+            return true;
+        }
+        else if (CurrentHealth <= 20 && CurrentHealth > 19)
+        {
+            return true;
+        }
+        return false;
+    }
+    public void CanDropBulletF()
+    {
+        if (CanDropBullet) return;
+        if (BulletCount <= (MaXbulletCount * 20) / 100 && BulletCount > ((MaXbulletCount * 20) / 100) - .1f)
+        {
+            CanDropBullet = true;
+        }
+        else if(BulletCount <= (MaXbulletCount * 50) / 100 && BulletCount > ((MaXbulletCount * 50) / 100) - .1f)
+        {
+            CanDropBullet = true;
+        }
+        else if (BulletCount <= (MaXbulletCount * 70) / 100 && BulletCount > ((MaXbulletCount * 70) / 100) - .1f)
+        {
+            CanDropBullet = true;
+        }
     }
 }

@@ -73,6 +73,7 @@ public class BossManager : MonoBehaviour
         _AudioSource.Play();
         _CameraFollow.enabled = true;
         _WaveManager.WaveIndex++;
+        _PlayerController.SetBulletSliderBeReady(_WaveManager._WaveData[_WaveManager.WaveIndex].MaxBulletSize);
         _RemaningTimeManager.SetRemaningTime(_WaveManager._WaveData[_WaveManager.WaveIndex].WaveTimeCount);
         _GameManager.ChangeWave();
         _canCallBoss = true;

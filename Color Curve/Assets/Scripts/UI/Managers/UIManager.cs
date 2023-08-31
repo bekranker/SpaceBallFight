@@ -15,7 +15,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private ButtonClickManager _AdsHealthButton, _AdsShieldButton, _AdsBulletButton, _AdsWatchAndResume;
     [SerializeField] private GameManager _GameManager;
     private bool _canClick;
-
+    [SerializeField] private Animator _CutScene;
 
 
 
@@ -25,9 +25,9 @@ public class UIManager : MonoBehaviour
         _canClick = true;
         _PauseButton.DoSomething += PauseTheGame;
         _ResumeButton.DoSomething += ResumeTheGame;
-        _ReturnToMenuButton.DoSomething += ReturnToMenu;
+        _ReturnToMenuButton.DoSomething += () => StartCoroutine(ReturnToMenu());
         _RestartTheGame.DoSomething += RestartTheGame;
-        _BackToMenu.DoSomething += ReturnToMenu;
+        _BackToMenu.DoSomething += ()=> StartCoroutine(ReturnToMenu());
 
         _AdsWatchAndResume.DoSomething += SetWatchAndResumeAds;
         _AdsBulletButton.DoSomething += SetBulletAds;
@@ -87,8 +87,10 @@ public class UIManager : MonoBehaviour
         Time.timeScale = 1;
         _Panel.SetActive(false);
     }
-    public void ReturnToMenu()
+    public IEnumerator ReturnToMenu()
     {
+        _CutScene.SetTrigger("Exit");
+        yield return new WaitForSecondsRealtime(1);
         Time.timeScale = 1;
         SceneManager.LoadScene(0);
     }

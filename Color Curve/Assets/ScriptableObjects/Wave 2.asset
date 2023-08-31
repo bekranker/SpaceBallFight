@@ -19,3 +19,4 @@ MonoBehaviour:
   WaveTimeCount: 40
   Boss: 1
   BossPrefab: {fileID: 2655506304520732533, guid: 3ce5b5fbacbfb244cb92d79d5f432c34, type: 3}
+  MaxBulletSize: 1000
