@@ -20,7 +20,7 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] public List<TrailRenderer> Trail;
     [SerializeField] private GameObject _SkillPointRed, _SkillPointBlue, _SkillPointGreen;
     [SerializeField] private Vector2 _FromScale;
-    [SerializeField] private GameObject _BulletBallon, _HealthAdBallon, _BulletAdBallon;
+    [SerializeField] private GameObject _BulletBallon, _HealthAdBallon, _BulletAdBallon, __HealthBallon;
     [SerializeField] private Color _BlueColor;
     private PlayerController _playerController;
     //-----------------------------------Cut-----------------------------------
@@ -33,9 +33,12 @@ public class EnemyManager : MonoBehaviour
     private Camera _mainCamera;
     private Transform _t;
     private float _firsSpeed;
+    private Vector2 _to;
+    private bool _canEffect;
 
     private void Start()
     {
+        _canEffect = true;
         StartCoroutine(ChangeStateRandom());
         _firsSpeed = Speed;
         _t = transform;
@@ -69,31 +72,59 @@ public class EnemyManager : MonoBehaviour
             OnDead?.Invoke();
             _mainCamera.DOShakePosition(.1f, .5f);
             _scoreManager.IncreaseScore(damage, pos);
-            CreateSkillPoint();
+
+
+            
+            CreateRedSkillPoint();
+            CreateGreenSkillPoint();
+            CreateBlueSkillPoint();
             CreateBullet();
             CreateHealthAd();
             CreateBulletAd();
+            CreateHealthBallon();
             Destroy(gameObject);
             _canDie = false;
         }
     }
+    private void CreateHealthBallon()
+    {
+        float randX = _t.position.x + (Random.Range(-2, 2));
+        float randY = _t.position.y + (Random.Range(-2, 2));
+        _to = new Vector2(randX, randY);
+        if (DidFallHealth())
+        {
+            Instantiate(__HealthBallon, _to, Quaternion.identity);
+        }
+    }
     private void CreateHealthAd()
     {
-        if (_playerController.CanDropHealth())
+        float randX = _t.position.x + (Random.Range(-2, 2));
+        float randY = _t.position.y + (Random.Range(-2, 2));
+        _to = new Vector2(randX, randY);
+        if (_playerController.CanDropHealth)
         {
-            Instantiate(_HealthAdBallon, _t.position, Quaternion.identity);
+            Instantiate(_HealthAdBallon, _to, Quaternion.identity);
+            _playerController.CanDropHealth = false;
         }
     }
     private void CreateBulletAd()
     {
+        float randX = _t.position.x + (Random.Range(-2, 2));
+        float randY = _t.position.y + (Random.Range(-2, 2));
+        _to = new Vector2(randX, randY);
         if (_playerController.CanDropBullet)
         {
-            Instantiate(_BulletAdBallon, _t.position, Quaternion.identity);
+            Instantiate(_BulletAdBallon, _to, Quaternion.identity);
             _playerController.CanDropBullet = false;
         }
     }
     IEnumerator damageAction()
     {
+        if (_canEffect)
+        {
+            _t.DOPunchScale(new Vector2(.4f, .5f), .075f).OnComplete(()=> _canEffect = true).SetUpdate(true);
+            _canEffect = false;
+        }
         for (int i = 0; i < _Sp.Count; i++)
         {
             _Sp[i].color = _DamagedColor;
@@ -107,8 +138,17 @@ public class EnemyManager : MonoBehaviour
             _Sp[i].color = _NormalColor;
         }
     }
+    private void OnDestroy()
+    {
+        StopAllCoroutines();
+    }
+    private void OnDisable()
+    {
+        StopAllCoroutines();
+    }
     public IEnumerator ChangeStateRandom()
     {
+        _t.DOPunchScale(new Vector2(.7f,.9f), .5f);
         if (EnemyTypes == EnemyTypes.X)
         {
             int rand = Random.Range(0, 4);
@@ -177,36 +217,45 @@ public class EnemyManager : MonoBehaviour
     {
         _healthCount -= value;
     }
-    private void CreateSkillPoint()
+    private void CreateRedSkillPoint()
     {
+        float randX = _t.position.x + (Random.Range(-2, 2));
+        float randY = _t.position.y + (Random.Range(-2, 2));
+        _to = new Vector2(randX, randY);
         if (!DidFallPoint()) return;
-        switch (EnemyColorTypes)
-        {
-            case EnemyColor.Red:
-                if (_playerController.RedSkillOpened)
-                    Instantiate(_SkillPointRed, _t.position, Quaternion.identity);
-                break;
-            case EnemyColor.Green:
-                if (_playerController.GreenSkillOpened)
-                    Instantiate(_SkillPointGreen, _t.position, Quaternion.identity);
-                break;
-            case EnemyColor.Blue:
-                if (_playerController.BlueSkillOpened)
-                    Instantiate(_SkillPointBlue, _t.position, Quaternion.identity);
-                break;
-            default:
-                break;
-        }
+        if (_playerController.RedSkillOpened)
+            Instantiate(_SkillPointRed, _to, Quaternion.identity);
+    }
+    private void CreateGreenSkillPoint()
+    {
+        float randX = _t.position.x + (Random.Range(-2, 2));
+        float randY = _t.position.y + (Random.Range(-2, 2));
+        _to = new Vector2(randX, randY);
+        if (!DidFallPoint()) return;
+        if (_playerController.GreenSkillOpened)
+            Instantiate(_SkillPointGreen, _to, Quaternion.identity);
+    }
+    private void CreateBlueSkillPoint()
+    {
+        float randX = _t.position.x + (Random.Range(-2, 2));
+        float randY = _t.position.y + (Random.Range(-2, 2));
+        _to = new Vector2(randX, randY);
+        if (!DidFallPoint()) return;
+        if (_playerController.BlueSkillOpened)
+            Instantiate(_SkillPointBlue, _to, Quaternion.identity);
     }
     private void CreateBullet()
     {
+        float randX = _t.position.x + (Random.Range(-2, 2));
+        float randY = _t.position.y + (Random.Range(-2, 2));
+        _to = new Vector2(randX, randY);
         if (!DidFallBullet()) return;
-        Instantiate(_BulletBallon, _t.position, Quaternion.identity);
+        Instantiate(_BulletBallon, _to, Quaternion.identity);
     }
     private bool DidFallPoint()
     {
-        int rand = Random.Range(0,10);
-        if (rand <= 2)
+        int rand = Random.Range(0,100);
+        if (rand <= 5)
         {
             return true;
         }
@@ -216,6 +265,15 @@ public class EnemyManager : MonoBehaviour
     {
         int rand = Random.Range(0, 5);
         if (rand <= 1)
+        {
+            return true;
+        }
+        return false;
+    }
+    private bool DidFallHealth()
+    {
+        int rand = Random.Range(0, 100);
+        if (rand <= 10)
         {
             return true;
         }

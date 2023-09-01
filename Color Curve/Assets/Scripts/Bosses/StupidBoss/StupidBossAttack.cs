@@ -12,7 +12,7 @@ public class StupidBossAttack : MonoBehaviour
     private int _positionIndex;
     [SerializeField] Transform _t;
     private bool _canMove;
-    private WaitForSecondsRealtime _sleep = new WaitForSecondsRealtime(1.5f);
+    private WaitForSecondsRealtime _sleep = new WaitForSecondsRealtime(1.1f);
     private List<Vector2> _Positions = new List<Vector2>
     {
         new Vector2(0, 6),

@@ -29,7 +29,7 @@ public class Toxic : MonoBehaviour
                 if (cols[0].TryGetComponent(out PlayerController player))
                 {
                     StartCoroutine(damageDelay());
-                    player.TakeDamage(1);
+                    player.TakeDamage(10);
                 }
             }
             

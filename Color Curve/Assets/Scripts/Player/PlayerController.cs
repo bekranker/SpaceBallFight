@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour
     private Camera _camera;
     private float _inputX, _inputY;
     Vector3 _go;
-    public bool CanDropBullet;
+    public bool CanDropBullet, CanDropHealth;
     private void Start()
     {
         _camera = Camera.main;
@@ -121,6 +121,7 @@ public class PlayerController : MonoBehaviour
             Dead();
             DecreaseHealth((int)damageValue);
             Audio.PlayAudio("amsesi", .25f);
+            CanDropHealthF();
             PlayerHealthSldier();
             return;
         }
@@ -135,15 +136,18 @@ public class PlayerController : MonoBehaviour
             }
             DecreaseHealth((int)damageValue);
             PlayerHealthSldier();
+            CanDropHealthF();
         }
     }
     private IEnumerator takeDamageIE()
     {
         Color currentColor = _Sp.color;
+        CanChangestate = false;
         _Sp.color = Color.white;
         SetBGPColorToWhite();
         Time.timeScale = 0f;
         yield return _sleepTime;
+        CanChangestate = true;
         _canDamage = true;
         Time.timeScale = 1;
         _Sp.color = currentColor;
@@ -347,17 +351,17 @@ public class PlayerController : MonoBehaviour
             case PlayerState.Red:
                 _RedSlider.value = 0;
                 _PlayerDedection._RedPointIndex = 0;
-                _PlayerDedection.SetText(_PlayerDedection._RedSliderTMP, "0/5");
+                _PlayerDedection.SetText(_PlayerDedection._RedSliderT, _PlayerDedection._RedSliderTMP, "0/5");
                 break;
             case PlayerState.Green:
                 _GreenSlider.value = 0;
                 _PlayerDedection._GreenPointIndex = 0;
-                _PlayerDedection.SetText(_PlayerDedection._GreenSliderTMP, "0/5");
+                _PlayerDedection.SetText(_PlayerDedection._GreenSliderT, _PlayerDedection._GreenSliderTMP, "0/5");
                 break;
             case PlayerState.Blue:
                 _BlueSlider.value = 0;
                 _PlayerDedection._BluePointIndex = 0;
-                _PlayerDedection.SetText(_PlayerDedection._BlueSliderTMP, "0/5");
+                _PlayerDedection.SetText(_PlayerDedection._BlueSliderT, _PlayerDedection._BlueSliderTMP, "0/5");
                 break;
             default:
                 break;
@@ -423,21 +427,21 @@ public class PlayerController : MonoBehaviour
     {
         _PlayerHealthTMP.text = $"{value}";
     }
-    public bool CanDropHealth()
+    public void CanDropHealthF()
     {
+        if (CanDropHealth) return;
         if (CurrentHealth <= 70 && CurrentHealth > 69)
         {
-            return true;
+            CanDropHealth = true;
         }
         else if (CurrentHealth <= 50 && CurrentHealth > 49)
         {
-            return true;
+            CanDropHealth = true;
         }
         else if (CurrentHealth <= 20 && CurrentHealth > 19)
         {
-            return true;
+            CanDropHealth = true;
         }
-        return false;
     }
     public void CanDropBulletF()
     {

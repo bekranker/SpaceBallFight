@@ -51,6 +51,7 @@ public class ScoreManager : MonoBehaviour
         if(_bestScore == 0)
         {
             PlayerPrefs.SetInt("BestScore", Score);
+            _bestScore = Score;
         }
         else
         {

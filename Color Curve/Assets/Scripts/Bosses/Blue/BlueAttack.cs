@@ -10,6 +10,7 @@ public class BlueAttack : MonoBehaviour
     [SerializeField] private float _BulletSpeed, _BulletCountForEachPoint;
     [SerializeField] private BossPlayerFollow _BossPlayerFollow;
     [SerializeField] private Transform _SpawnPoint;
+    [SerializeField] private List<Transform> _SpawnPoints;
     [SerializeField] private BossAttackManager _BossAttackManager;
     private WaitForSeconds _shootDelayForBlue = new WaitForSeconds(0.1f);
     private WaitForSeconds _blueWait = new WaitForSeconds(3);
@@ -29,20 +30,23 @@ public class BlueAttack : MonoBehaviour
     }
     private IEnumerator ShootIE()
     {
-        _BossPlayerFollow.CanFollow = false;
+        _BossPlayerFollow.CanFollow = true;
         yield return _blueWait;
+        _BossPlayerFollow.CanFollow = false;
         Audio.PlayAudio($"BossShootBGNoise", .1f);
-        _SpinBoss._SpinSpeed *= 2;
+        _SpinBoss._SpinSpeed *= 1.1f;
         for (int i = 0; i < _BulletCountForEachPoint; i++)
         {
             yield return _shootDelayForBlue;
-            Rigidbody2D rb = Instantiate(_BulletPrefabForBlue, _SpawnPoint.position, _SpawnPoint.rotation).GetComponent<Rigidbody2D>();
+            float angle = i * 45;
+            Quaternion rotation = Quaternion.Euler(0, 0, angle);
+            Rigidbody2D rb = Instantiate(_BulletPrefabForBlue, _SpawnPoint.position, rotation).GetComponent<Rigidbody2D>();
             PushBulet(rb);
         }
+        _BossFightCreateEnemy.SpawnRandomEnemy(5, .5f, _SpawnPoints);
+        _SpinBoss._SpinSpeed *= 1.3f;
         yield return _blueWait;
-        _SpinBoss._SpinSpeed *= 1.2f;
-        _BossFightCreateEnemy.SpawnRandomEnemy(Random.Range(5, 10), .5f, _SpawnPoint.position);
-        yield return _blueWait;
+        _BossFightCreateEnemy.SpawnRandomEnemy(15, .25f, _SpawnPoints);
         _SpinBoss._SpinSpeed = _startSpinSpeed;
         _BossPlayerFollow.CanFollow = true;
         repeate();

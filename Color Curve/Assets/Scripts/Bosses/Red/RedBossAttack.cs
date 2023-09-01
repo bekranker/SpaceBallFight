@@ -29,13 +29,13 @@ public class RedBossAttack : MonoBehaviour
     private IEnumerator AttackIE()
     {
         yield return _sleepTimeFirst;
-        _SpinBoss._SpinSpeed *= 1.5f;
+        _SpinBoss._SpinSpeed += 1.2f;
         _BossPlayerFollow.CanFollow = false;
         //---------------------------------------Cut---------------------------------------
         StartCoroutine(ShootIE());
         Audio.PlayAudio($"BossShootBGNoise", .1f, "General", "Sound");
         yield return _changeAttackDelay;
-        _SpinBoss._SpinSpeed *= 1.2f;
+        _SpinBoss._SpinSpeed += 1.3f;
         createEnemys();
         yield return _changeAttackDelay;
         createEnemys();
@@ -48,7 +48,7 @@ public class RedBossAttack : MonoBehaviour
         for (int i = 0; i < _BulletCountForEachPoint; i++)
         {
             yield return _shootDelay;
-            float angle = i * 30f;
+            float angle = i * 45;
             Quaternion rotation = Quaternion.Euler(0, 0, angle);
             Rigidbody2D rb = Instantiate(_BulletPrefab, _t.position, rotation).GetComponent<Rigidbody2D>();
             PushBulet(rb);
@@ -56,7 +56,7 @@ public class RedBossAttack : MonoBehaviour
     }
     private void createEnemys()
     {
-        _BossFightCreateEnemy.SpawnRandomEnemy(Random.Range(7, 10), .25f, _SpawnPoint);
+        _BossFightCreateEnemy.SpawnRandomEnemy(7, .35f, _SpawnPoint);
     }
 
     private void PushBulet(Rigidbody2D rb)

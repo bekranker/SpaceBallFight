@@ -443,7 +443,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyColor: 0
-  _MaxHealth: 25000
+  _MaxHealth: 3000
   _SpriteRenderer:
   - {fileID: 5373862884397780209}
   - {fileID: 5716242867864433578}

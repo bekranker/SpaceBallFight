@@ -18,4 +18,5 @@ MonoBehaviour:
   StartColor: 000000000100000002000000
   WaveTimeCount: 60
   Boss: 1
-  BossPrefab: {fileID: 3736763704464210565, guid: 8d4153f56bbcad2479ecccdd0e178d61, type: 3}
+  BossPrefab: {fileID: 4031225820613692250, guid: 8d4153f56bbcad2479ecccdd0e178d61, type: 3}
+  MaxBulletSize: 1100

@@ -6,7 +6,7 @@ public class SpinAttack : MonoBehaviour
 {
     [SerializeField] private Animator _Animation;
     [SerializeField] private BossFightCreateEnemy _EnemyCreateManager;
-    [SerializeField] private Transform _SpawnPoint;
+    [SerializeField] private List<Transform> _SpawnPoint;
     [SerializeField] private BossTag _Tag;
     private int _rand;
     private WaitForSeconds _sleep = new WaitForSeconds(5);
@@ -31,7 +31,8 @@ public class SpinAttack : MonoBehaviour
         _rand = Random.Range(1, 3);
         _Animation.SetTrigger($"Attack{_rand}");
         int randEnemyCount = Random.Range(3, 10);
-        _EnemyCreateManager.SpawnRandomEnemy(randEnemyCount, .2f, _SpawnPoint.position);
+        _EnemyCreateManager.SpawnRandomEnemy(randEnemyCount, .2f, _SpawnPoint);
         Attack();
     }
 }
+    

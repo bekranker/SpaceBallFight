@@ -100,7 +100,8 @@ public class BossTag : MonoBehaviour
     }
     public void Setcolor(EnemyColor enemyC)
     {
-        _ShockWave.CallShockWave();
+        if(_ShockWave != null)
+            _ShockWave.CallShockWave();
         EnemyColor = enemyC;
         switch (enemyC)
         {
@@ -116,11 +117,10 @@ public class BossTag : MonoBehaviour
             default:
                 break;
         }
-        _SpriteRenderer?.ForEach((_sp) => 
+        _SpriteRenderer?.ForEach((_sp) =>
         {
             _sp.color = _NormalColor;
         });
-
     }
     private bool IsCorrectColor(string tag)
     {

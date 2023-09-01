@@ -13,7 +13,7 @@ public class PlayerCanvas : MonoBehaviour
     public void EffectHealthSlider()
     {
         IncreaseIndex();
-        _TextsT[_index].text = "+20";
+        _TextsT[_index].text = "+5";
         SelectText();
         SelectTextT().position = _HealthEffectPos.position;
 

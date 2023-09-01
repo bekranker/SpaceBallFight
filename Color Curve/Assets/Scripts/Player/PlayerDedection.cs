@@ -13,7 +13,7 @@ public class PlayerDedection : MonoBehaviour
     [SerializeField] private PlayerController _PlayerController;
     [SerializeField] private ScoreManager _ScoreManager;
     [SerializeField] private Slider _RedSlider, _GreenSlider, _BlueSlider;
-    [SerializeField] private ParticleSystem _SkillPointRedP, _SkillPointBlueP, _SkillPointGreenP, _BulletCollectedParticle;
+    [SerializeField] private ParticleSystem _SkillPointRedP, _SkillPointBlueP, _SkillPointGreenP, _BulletCollectedParticle, _HeathCollectedParticle;
     [SerializeField] public Text _RedSliderTMP, _GreenSliderTMP, _BlueSliderTMP;
     [SerializeField] public Transform _RedSliderT, _GreenSliderT, _BlueSliderT;
     public bool CanDedect;
@@ -26,9 +26,9 @@ public class PlayerDedection : MonoBehaviour
         CanDedect = true;
         _cameraTransform = Camera.main.transform;
         _canEffect = true;
-        SetText(_RedSliderTMP, $"{_RedPointIndex}/5");
-        SetText(_GreenSliderTMP, $"{_GreenPointIndex}/5");
-        SetText(_BlueSliderTMP, $"{_BluePointIndex}/5");
+        SetText(_RedSliderT, _RedSliderTMP, $"{_RedPointIndex}/5");
+        SetText(_GreenSliderT, _GreenSliderTMP, $"{_GreenPointIndex}/5");
+        SetText(_BlueSliderT, _BlueSliderTMP, $"{_BluePointIndex}/5");
         _t = transform;
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -82,33 +82,24 @@ public class PlayerDedection : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("RedPoint"))
         {
-            if (_PlayerController.IsTrueState(PlayerState.Red))
-            {
-                _RedPointIndex++;
-                _RedSlider.value = _RedPointIndex;
-                IncreasePointIndex(collision.gameObject, _SkillPointRedP);
-                Audio.PlayAudio($"CollectSoundEffect", .7f);
-            }
+            _RedPointIndex++;
+            _RedSlider.value = _RedPointIndex;
+            IncreasePointIndex(collision.gameObject, _SkillPointRedP);
+            Audio.PlayAudio($"CollectSoundEffect", .7f);
         }
         if (collision.gameObject.CompareTag("BluePoint"))
         {
-            if (_PlayerController.IsTrueState(PlayerState.Blue))
-            {
-                _BluePointIndex++;
-                _BlueSlider.value = _BluePointIndex;
-                IncreasePointIndex(collision.gameObject, _SkillPointBlueP);
-                Audio.PlayAudio($"CollectSoundEffect", .7f);
-            }
+            _BluePointIndex++;
+            _BlueSlider.value = _BluePointIndex;
+            IncreasePointIndex(collision.gameObject, _SkillPointBlueP);
+            Audio.PlayAudio($"CollectSoundEffect", .7f);
         }
         if (collision.gameObject.CompareTag("GreenPoint"))
         {
-            if (_PlayerController.IsTrueState(PlayerState.Green))
-            {
-                _GreenPointIndex++;
-                _GreenSlider.value = _GreenPointIndex;
-                IncreasePointIndex(collision.gameObject, _SkillPointGreenP);
-                Audio.PlayAudio($"CollectSoundEffect", .7f);
-            }
+            _GreenPointIndex++;
+            _GreenSlider.value = _GreenPointIndex;
+            IncreasePointIndex(collision.gameObject, _SkillPointGreenP);
+            Audio.PlayAudio($"CollectSoundEffect", .7f);
         }
         if (collision.gameObject.CompareTag("CollectBullet"))
         {
@@ -116,6 +107,13 @@ public class PlayerDedection : MonoBehaviour
             _PlayerController.BulletCount = (_PlayerController.BulletCount + 20 > _PlayerController.MaXbulletCount) ? _PlayerController.MaXbulletCount : _PlayerController.BulletCount + 20;
             _PlayerController.BulletSlider();
             Instantiate(_BulletCollectedParticle, collision.transform.position, Quaternion.identity);
+            Destroy(collision.gameObject);
+        }
+        if (collision.gameObject.CompareTag("Health"))
+        {
+            _PlayerController.CurrentHealth = (_PlayerController.CurrentHealth + 10 <= 100) ? _PlayerController.CurrentHealth + 10 : _PlayerController.MaxHealth;
+            _PlayerController.PlayerHealthSldier();
+            Instantiate(_HeathCollectedParticle, collision.transform.position, Quaternion.identity);
             Destroy(collision.gameObject);
         }
     }
@@ -130,45 +128,45 @@ public class PlayerDedection : MonoBehaviour
         if (_RedPointIndex >= 5)
         {
             _PlayerAttack.CanUseFire = true;
-            SetText(_RedSliderTMP, "Full", true);
+            SetText(_RedSliderT, _RedSliderTMP, "Full", true);
         }
         else
         {
-            SetText(_RedSliderTMP, $"{_RedPointIndex}/5");
+            SetText(_RedSliderT, _RedSliderTMP, $"{_RedPointIndex}/5");
         }
         if (_GreenPointIndex >= 5)
         {
             _PlayerAttack.CanUseToxic = true;
-            SetText(_GreenSliderTMP, "Full", true);
+            SetText(_GreenSliderT, _GreenSliderTMP, "Full", true);
         }
         else
         {
-            SetText(_GreenSliderTMP, $"{_GreenPointIndex}/5");
+            SetText(_GreenSliderT, _GreenSliderTMP, $"{_GreenPointIndex}/5");
         }
         if (_BluePointIndex >= 5)
         {
             _PlayerAttack.CanUseFreeze = true;
-            SetText(_BlueSliderTMP, "Full", true);
+            SetText(_BlueSliderT, _BlueSliderTMP, "Full", true);
         }
         else
         {
-            SetText(_BlueSliderTMP, $"{_BluePointIndex}/5");
+            SetText(_BlueSliderT, _BlueSliderTMP, $"{_BluePointIndex}/5");
         }
     }
-    public void SetText(Text text, string to, bool full = false)
+    public void SetText(Transform slider,Text text, string to, bool full = false)
     {
         text.text = to;
         if (!_canEffect) return;
         if (!full)
         {
-            _RedSliderT.DOPunchScale(0.75f * Vector2.one, 0.2f).OnComplete(() =>
+            slider.DOPunchScale(0.75f * Vector2.one, 0.2f).OnComplete(() =>
             {
                 _canEffect = true;
             }).SetUpdate(true);
         }
         else
         {
-            _RedSliderT.DOPunchPosition(1 * new Vector2(1,0), 0.3f).OnComplete(() =>
+            slider.DOPunchPosition(1 * new Vector2(1,0), 0.3f).OnComplete(() =>
             {
                 _canEffect = true;
             }).SetUpdate(true);

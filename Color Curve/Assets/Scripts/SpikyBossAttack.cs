@@ -12,8 +12,11 @@ public class SpikyBossAttack : MonoBehaviour
     [SerializeField] private float _SlideSpeed, _LookSpeed, _PushSpeed;
     private Queue<Transform> _spikeParentQueue = new Queue<Transform>();
     private WaitForSeconds _sleepTimeForAttack = new WaitForSeconds(.05f);
-    private WaitForSeconds _sleepTime = new WaitForSeconds(.1f);
-    private WaitForSeconds _nextAttackSleepTime = new WaitForSeconds(1f);
+    private WaitForSeconds _sleepTime = new WaitForSeconds(.05f);
+    private WaitForSeconds _sleepTime2 = new WaitForSeconds(1f);
+    private WaitForSeconds _nextAttackSleepTime = new WaitForSeconds(.3f);
+    private WaitForSeconds _nextAttackSleepTimeFirst = new WaitForSeconds(.5f);
+    private WaitForSeconds _waitForEnemys = new WaitForSeconds(8.5f);
     private Transform _playerT;
     private bool _canAttack;
     private Queue<Vector3> _startPositions = new Queue<Vector3>();
@@ -24,9 +27,11 @@ public class SpikyBossAttack : MonoBehaviour
     [SerializeField] private BossPlayerFollow _BossPlayerFollow;
     [SerializeField] private BossAttackManager _BossAttackManager;
     [SerializeField] private BossTag _BossTag;
+    private bool _can;
     int _indexForSpawnPoint;
     private void Start()
     {
+        _can = true;
         _indexForSpawnPoint = 0;
         _playerT = FindObjectOfType<PlayerController>().transform;
         _canAttack = true;
@@ -35,6 +40,7 @@ public class SpikyBossAttack : MonoBehaviour
         {
             _spikeParentQueue.Enqueue(_SpikesParent[i].transform);
         }
+        _BossFightCreateEnemy.SpawnRandomEnemy(10, .75f, _SpawnerT);
         Repeate();
     }
     private void Repeate() => InvokeRepeating("SpikeMovement", 1, .5f);
@@ -48,7 +54,12 @@ public class SpikyBossAttack : MonoBehaviour
     private IEnumerator SpikeMovemenIE()
     {
         _canAttack = false;
-        yield return _nextAttackSleepTime;
+        if (_can)
+        {
+            yield return _waitForEnemys;
+            _can = false;
+        }
+        yield return _nextAttackSleepTimeFirst;
         _BossPlayerFollow.CanFollow = false;
 
         if (_spikeParentQueue.Count == 0)
@@ -71,6 +82,8 @@ public class SpikyBossAttack : MonoBehaviour
                 spike.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
             }
             _BossPlayerFollow.CanFollow = true;
+            _BossFightCreateEnemy.SpawnRandomEnemy(7, .75f, _SpawnerT);
+            yield return _waitForEnemys;
             _BossAttackManager.CanFight = true;
             _canAttack = true;
             for (int i = 0; i < 4; i++)
@@ -108,7 +121,7 @@ public class SpikyBossAttack : MonoBehaviour
             yield return _sleepTimeForAttack;
             PushSpike(rb);
         }
-        _BossFightCreateEnemy.SpawnRandomEnemy(Random.Range(4,7), .1f, _SpawnerT);
+        _BossFightCreateEnemy.SpawnRandomEnemy(1, .5f, _SpawnerT);
         yield return _nextAttackSleepTime;
         _canAttack = true;
         SpikeMovement();

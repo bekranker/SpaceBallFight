@@ -74,6 +74,8 @@ public class BossManager : MonoBehaviour
         _CameraFollow.enabled = true;
         _WaveManager.WaveIndex++;
         _PlayerController.SetBulletSliderBeReady(_WaveManager._WaveData[_WaveManager.WaveIndex].MaxBulletSize);
+        _PlayerController.CurrentHealth = _PlayerController.MaxHealth;
+        _PlayerController.PlayerHealthSldier();
         _RemaningTimeManager.SetRemaningTime(_WaveManager._WaveData[_WaveManager.WaveIndex].WaveTimeCount);
         _GameManager.ChangeWave();
         _canCallBoss = true;

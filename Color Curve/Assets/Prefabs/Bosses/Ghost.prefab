@@ -503,7 +503,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyColor: 0
-  _MaxHealth: 10000
+  _MaxHealth: 3000
   _SpriteRenderer:
   - {fileID: 5258969562169511306}
   _DamageColor: {r: 0.6698113, g: 0.6698113, b: 0.6698113, a: 1}
@@ -555,3 +555,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _DieParticle: {fileID: 2885456171195781281, guid: 8cf86ea9b9cc6b14cac3deec1e3fe2df, type: 3}
+  _UnlockedCanvas: {fileID: 0}
+  _Tutorial: {fileID: 0}
+  _BlueUnlocked: 0
+  _GreenUnlocked: 0
+  _RedSkillUnlocked: 0
+  _BlueSkillUnlocked: 0
+  _GreenSkillUnlocked: 0
