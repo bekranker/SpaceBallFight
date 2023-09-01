@@ -55,6 +55,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public Action OnPlayerStateChange;
     [SerializeField] private AudioSource _Bg;
     [SerializeField] private WaveManager _WaveManager;
+    [SerializeField] private VariableJoystick _VariableJoystick;
     private Transform _t;
     private bool _canChange, _canEffect, _canDamage;
     private WaitForSeconds _delayForAdsReward = new WaitForSeconds(10);
@@ -91,7 +92,7 @@ public class PlayerController : MonoBehaviour
     {
         _inputX = Input.GetAxisRaw("Horizontal") * _Speed;
         _inputY = Input.GetAxisRaw("Vertical") * _Speed;
-        _go = new Vector3(_inputX, _inputY);
+        _go = new Vector3(_inputX, _inputY).normalized * 10;
 
         if (LockPlayer)
         {

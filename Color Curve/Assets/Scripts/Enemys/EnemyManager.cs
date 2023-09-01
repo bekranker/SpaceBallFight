@@ -148,7 +148,7 @@ public class EnemyManager : MonoBehaviour
     }
     public IEnumerator ChangeStateRandom()
     {
-        _t.DOPunchScale(new Vector2(.7f,.9f), .5f);
+        _t.DOPunchScale(new Vector2(.7f,.9f), .5f).SetUpdate(true);
         if (EnemyTypes == EnemyTypes.X)
         {
             int rand = Random.Range(0, 4);

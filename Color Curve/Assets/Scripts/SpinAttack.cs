@@ -30,8 +30,8 @@ public class SpinAttack : MonoBehaviour
         _Tag.Setcolor(_enemyColors[Random.Range(0, _enemyColors.Count)]);
         _rand = Random.Range(1, 3);
         _Animation.SetTrigger($"Attack{_rand}");
-        int randEnemyCount = Random.Range(3, 10);
-        _EnemyCreateManager.SpawnRandomEnemy(randEnemyCount, .2f, _SpawnPoint);
+        int randEnemyCount = 7;
+        _EnemyCreateManager.SpawnRandomEnemy(randEnemyCount, .4f, _SpawnPoint);
         Attack();
     }
 }

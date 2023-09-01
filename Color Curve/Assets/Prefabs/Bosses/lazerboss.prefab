@@ -314,7 +314,7 @@ MonoBehaviour:
   - {fileID: 2956253033659694738, guid: b2c5f37d75d4e8b4b9460cbf52fbf0f6, type: 3}
   - {fileID: 7332723378666184511, guid: 4da8e04c7c3efaf4aa7942f81eb08837, type: 3}
   _Tag: {fileID: 2115577761221136777}
-  _HaveX: 1
+  _HaveX: 0
 --- !u!114 &-6887939074566037906
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -9,6 +9,7 @@ public class BossDieState : MonoBehaviour
     [SerializeField] private bool _BlueUnlocked, _GreenUnlocked, _RedSkillUnlocked, _BlueSkillUnlocked, _GreenSkillUnlocked;
     private PlayerController _PlayerController;
     private Transform _t;
+    EnemyManager[] _enemyManager;
 
     private void Start()
     {
@@ -23,13 +24,21 @@ public class BossDieState : MonoBehaviour
     {
         BossTag.OnDie -= Die;
     }
+    private void DeleteAllEnemys()
+    {
+        _enemyManager = FindObjectsOfType<EnemyManager>();
+        foreach (EnemyManager enemy in _enemyManager)
+        {
+            Destroy(enemy.gameObject);
+        }
+    }
     private void Die()
     {
         if(_DieParticle != null)
             Instantiate(_DieParticle, _t.position, Quaternion.identity);
         if (_Tutorial != null)
             Instantiate(_Tutorial, _t.position, Quaternion.identity);
-
+        DeleteAllEnemys();
         if (_BlueUnlocked)
         {
             Canvas instiatedCanvas = Instantiate(_UnlockedCanvas, _t.position, Quaternion.identity).GetComponent<Canvas>();
