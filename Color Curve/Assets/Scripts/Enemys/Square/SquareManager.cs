@@ -69,7 +69,7 @@ public class SquareManager : EnemyMovementAbstract
         yield return _delay;
         if (_canD)
         {
-            _to = _playerT.position + new Vector3(1, 0, 0);
+            _to = _playerT.position;
             _canD = false;
         }
         if(_t == null)

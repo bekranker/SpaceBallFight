@@ -31,10 +31,12 @@ public class BossTag : MonoBehaviour
     private bool _didDead;
     private bool _canDamage;
     private float _firstSpeed;
+    private bool _canEffect;
 
 
     private void Start()
     {
+        _canEffect = true;
         _canDamage = true;
         _firstSpeed = Speed;
         _t = transform;
@@ -92,6 +94,11 @@ public class BossTag : MonoBehaviour
         {
             _sprites.color = _DamageColor;
         });
+        if (_canEffect)
+        {
+            _t.DOPunchScale(new Vector2(.05f, .07f), .075f).OnComplete(() => _canEffect = true).SetUpdate(true);
+            _canEffect = false;
+        }
         yield return _sleepTime;
         _SpriteRenderer?.ForEach((_sprites) =>
         {
@@ -100,8 +107,6 @@ public class BossTag : MonoBehaviour
     }
     public void Setcolor(EnemyColor enemyC)
     {
-        if(_ShockWave != null)
-            _ShockWave.CallShockWave();
         EnemyColor = enemyC;
         switch (enemyC)
         {

@@ -26,7 +26,7 @@ public class GreenAttack : MonoBehaviour
         _can = true;
         _player = FindObjectOfType<PlayerController>().transform;
         InvokeRepeating("repeate", 0, .5f);
-        _BossFightCreateEnemy.SpawnRandomEnemy(10, .25f, _SpawnPointBullet);
+        _BossFightCreateEnemy.SpawnRandomEnemy(5, .35f, _SpawnPointBullet);
     }
 
     private void repeate()
@@ -51,7 +51,7 @@ public class GreenAttack : MonoBehaviour
         }
         yield return _attackDelay2;
         _SpinBoss._SpinSpeed *= 1.2f;
-        _BossFightCreateEnemy.SpawnRandomEnemy(10, .25f, _SpawnPointBullet);
+        _BossFightCreateEnemy.SpawnRandomEnemy(6, .3f, _SpawnPointBullet);
         yield return _attackDelay2;
         _SpinBoss._SpinSpeed = _startSpinSpeed;
         _BossPlayerFollow.CanFollow = true;

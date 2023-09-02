@@ -43,10 +43,10 @@ public class BlueAttack : MonoBehaviour
             Rigidbody2D rb = Instantiate(_BulletPrefabForBlue, _SpawnPoint.position, rotation).GetComponent<Rigidbody2D>();
             PushBulet(rb);
         }
-        _BossFightCreateEnemy.SpawnRandomEnemy(5, .5f, _SpawnPoints);
+        _BossFightCreateEnemy.SpawnRandomEnemy(6, .5f, _SpawnPoints);
         _SpinBoss._SpinSpeed *= 1.3f;
         yield return _blueWait;
-        _BossFightCreateEnemy.SpawnRandomEnemy(15, .25f, _SpawnPoints);
+        _BossFightCreateEnemy.SpawnRandomEnemy(6, .35f, _SpawnPoints);
         _SpinBoss._SpinSpeed = _startSpinSpeed;
         _BossPlayerFollow.CanFollow = true;
         repeate();

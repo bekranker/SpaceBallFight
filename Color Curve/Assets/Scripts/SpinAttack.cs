@@ -10,6 +10,7 @@ public class SpinAttack : MonoBehaviour
     [SerializeField] private BossTag _Tag;
     private int _rand;
     private WaitForSeconds _sleep = new WaitForSeconds(5);
+    private WaitForSeconds _sleep2 = new WaitForSeconds(2);
     private List<EnemyColor> _enemyColors = new List<EnemyColor> 
     {
         EnemyColor.Red,
@@ -28,10 +29,10 @@ public class SpinAttack : MonoBehaviour
     {
         yield return _sleep;
         _Tag.Setcolor(_enemyColors[Random.Range(0, _enemyColors.Count)]);
+        yield return _sleep2;
         _rand = Random.Range(1, 3);
         _Animation.SetTrigger($"Attack{_rand}");
-        int randEnemyCount = 7;
-        _EnemyCreateManager.SpawnRandomEnemy(randEnemyCount, .4f, _SpawnPoint);
+        _EnemyCreateManager.SpawnRandomEnemy(5, .5f, _SpawnPoint);
         Attack();
     }
 }

@@ -119,7 +119,7 @@ public class EnemyManager : MonoBehaviour
     {
         if (_canEffect)
         {
-            _t.DOPunchScale(new Vector2(.4f, .5f), .075f).OnComplete(()=> _canEffect = true).SetUpdate(true);
+            _t.DOPunchScale(new Vector2(.5f, .6f), .075f).OnComplete(()=> _canEffect = true).SetUpdate(true);
             _canEffect = false;
         }
         for (int i = 0; i < _Sp.Count; i++)

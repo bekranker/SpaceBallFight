@@ -11,7 +11,8 @@ public class LastBossAttack : MonoBehaviour
     [SerializeField] private BossFightCreateEnemy _BossFightCreateEnemy;
     [SerializeField] private float _BulletSpeed, _BulletCountForEachPoint;
     [SerializeField] private BossPlayerFollow _BossPlayerFollow;
-    [SerializeField] private Transform _SpawnPoint;
+    [SerializeField] private List<Transform> _SpawnPoint;
+    [SerializeField] private List<GameObject> _Lazers;
 
     private WaitForSeconds _changeAttackDelay = new WaitForSeconds(3);
     private WaitForSeconds _sleepTimeFirst = new WaitForSeconds(2);
@@ -57,6 +58,7 @@ public class LastBossAttack : MonoBehaviour
     {
         yield return _sleepTimeFirst;
         _SpinBoss._SpinSpeed *= 1.5f;
+        LazerSet(false);
         _BossPlayerFollow.CanFollow = false;
         //---------------------------------------Cut---------------------------------------
         StartCoroutine(SpawnBullets(_BulletPrefabForRed, _BulletSpeed));
@@ -66,6 +68,7 @@ public class LastBossAttack : MonoBehaviour
         yield return _changeAttackDelay;
         _SpinBoss._SpinSpeed = _firstSpeed;
         _BossPlayerFollow.CanFollow = true;
+        LazerSet(true);
         yield return _changeAttackDelay;
         BlueAttack();
     }
@@ -79,6 +82,7 @@ public class LastBossAttack : MonoBehaviour
     {
         _BossPlayerFollow.CanFollow = false;
         yield return _sleepTimeFirst;
+        LazerSet(false);
         StartCoroutine(SpawnBullets(_BulletPrefabForBlue, _BulletSpeed));
         yield return _changeAttackDelay;
         _SpinBoss._SpinSpeed *= 1.2f;
@@ -86,6 +90,7 @@ public class LastBossAttack : MonoBehaviour
         yield return _changeAttackDelay;
         _SpinBoss._SpinSpeed = _firstSpeed;
         _BossPlayerFollow.CanFollow = true;
+        LazerSet(true);
         yield return _changeAttackDelay;
         GreenAttack();
     }
@@ -98,13 +103,15 @@ public class LastBossAttack : MonoBehaviour
     {
         _BossPlayerFollow.CanFollow = false;
         yield return _sleepTimeFirst;
+        LazerSet(false);
         StartCoroutine(SpawnBullets(_BulletPrefabForGreen, Random.Range(_BulletSpeed, _BulletSpeed + 5)));
         yield return _changeAttackDelay;
-        _SpinBoss._SpinSpeed *= 1.2f;
+        _SpinBoss._SpinSpeed += 0.1f;
         createEnemys();
         yield return _changeAttackDelay;
         _SpinBoss._SpinSpeed = _firstSpeed;
         _BossPlayerFollow.CanFollow = true;
+        LazerSet(true);
         yield return _changeAttackDelay;
         StartCoroutine(AttackAction());
     }
@@ -116,11 +123,11 @@ public class LastBossAttack : MonoBehaviour
     }
     private IEnumerator SpawnBullets(GameObject bullet, float speed)
     {
-        _SpinBoss._SpinSpeed *= 2;
+        _SpinBoss._SpinSpeed += 0.1f;
         for (int i = 0; i < _BulletCountForEachPoint; i++)
         {
             yield return _shootDelay;
-            float angle = i * 22.5f;
+            float angle = i * 45;
             Quaternion rotation = Quaternion.Euler(0, 0, angle);
             Rigidbody2D rb = Instantiate(bullet, _t.position, rotation).GetComponent<Rigidbody2D>();
             PushBulet(rb, speed);
@@ -128,10 +135,17 @@ public class LastBossAttack : MonoBehaviour
     }
     private void createEnemys()
     {
-        _BossFightCreateEnemy.SpawnRandomEnemy(Random.Range(3, 5), .25f, _SpawnPoint.position);
+        _BossFightCreateEnemy.SpawnRandomEnemy(10, .3f, _SpawnPoint);
     }
     private void PushBulet(Rigidbody2D rb, float speed)
     {
         rb.velocity = speed * rb.transform.right;
+    }
+    private void LazerSet(bool value)
+    {
+        _Lazers.ForEach((lazer) =>
+        {
+            lazer.SetActive(value);
+        });
     }
 }

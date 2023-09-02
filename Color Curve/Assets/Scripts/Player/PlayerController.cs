@@ -431,10 +431,7 @@ public class PlayerController : MonoBehaviour
     public void CanDropHealthF()
     {
         if (CanDropHealth) return;
-        if (CurrentHealth <= 70 && CurrentHealth > 69)
-        {
-            CanDropHealth = true;
-        }
+        
         else if (CurrentHealth <= 50 && CurrentHealth > 49)
         {
             CanDropHealth = true;

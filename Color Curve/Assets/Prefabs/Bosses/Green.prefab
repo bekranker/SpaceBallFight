@@ -963,7 +963,7 @@ MonoBehaviour:
   _BulletPrefab: {fileID: 8359156425756279567, guid: c94294cf4a075d94ea754e9babae13f0, type: 3}
   _BossFightCreateEnemy: {fileID: 5688781575963697703}
   _BulletSpeed: 8
-  _BulletCountForEachPoint: 25
+  _BulletCountForEachPoint: 20
   _BossPlayerFollow: {fileID: 4957746397990040262}
   _SpawnPoint: {fileID: 1650040950069348419}
   _SpawnPointBullet:

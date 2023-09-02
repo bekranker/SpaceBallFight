@@ -95,8 +95,8 @@ GameObject:
   - component: {fileID: 252158020994071288}
   - component: {fileID: 3598821477875091618}
   - component: {fileID: 5796858457494806209}
-  - component: {fileID: 1687686547516766504}
   - component: {fileID: 1882684351253066798}
+  - component: {fileID: 1687686547516766504}
   - component: {fileID: 101449402923172480}
   - component: {fileID: 3051644678649811091}
   - component: {fileID: 3681776340461245182}
@@ -205,19 +205,6 @@ PolygonCollider2D:
       - {x: 0.27227807, y: -0.52024746}
       - {x: 0.59811616, y: 0.009552568}
   m_UseDelaunayMesh: 0
---- !u!114 &1687686547516766504
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 535675090760986626}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f014459d23473da4a8ddd6e3e9b11649, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _EnemyManager: {fileID: 1882684351253066798}
 --- !u!114 &1882684351253066798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,6 +237,19 @@ MonoBehaviour:
   _BulletAdBallon: {fileID: 7610641975642543185, guid: 7e8389d791aac3f4d815f183b3732ea1, type: 3}
   __HealthBallon: {fileID: 3855130778366639842, guid: d231dbab2a03d694f99e846a73994233, type: 3}
   _BlueColor: {r: 0.0627451, g: 1, b: 1, a: 1}
+--- !u!114 &1687686547516766504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 535675090760986626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f014459d23473da4a8ddd6e3e9b11649, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _EnemyManager: {fileID: 1882684351253066798}
 --- !u!114 &101449402923172480
 MonoBehaviour:
   m_ObjectHideFlags: 0
