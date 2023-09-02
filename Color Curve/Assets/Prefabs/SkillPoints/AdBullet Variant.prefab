@@ -84,6 +84,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 27
       objectReference: {fileID: 0}
+    - target: {fileID: 8819730930948211585, guid: 5c8fff1f605cb334f9f61a9b3f8e893e, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 9010951169851327876, guid: 5c8fff1f605cb334f9f61a9b3f8e893e, type: 3}
       propertyPath: _Bullet
       value: 0
