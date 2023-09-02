@@ -7,7 +7,7 @@ public class EnemyDedection : MonoBehaviour
     private ObjectPool _objectPool;
     [SerializeField] private EnemyManager _EnemyManager;
     private float _firstSpeed;
-    private WaitForSeconds _delay = new WaitForSeconds(2f);
+    private WaitForSeconds _delay = new WaitForSeconds(3f);
     private PlayerController _playerController;
     private Transform _t;
 
@@ -27,7 +27,7 @@ public class EnemyDedection : MonoBehaviour
 
         if (collision.CompareTag("Shield"))
         {
-            _EnemyManager.TakeDamage(999, collision.gameObject.transform);
+            _EnemyManager.TakeDamage(999, collision.gameObject.transform, true);
             return;
         }
         switch (collision.tag)
@@ -61,14 +61,14 @@ public class EnemyDedection : MonoBehaviour
         switch (collision.tag)
         {
             case "SBulletRed":
-                _EnemyManager.TakeDamage(50, collision.gameObject.transform);
+                _EnemyManager.TakeDamage(50, collision.gameObject.transform, true);
                 break;
             case "SBulletBlue":
-                _EnemyManager.TakeDamage(25, collision.gameObject.transform);
+                _EnemyManager.TakeDamage(20, collision.gameObject.transform, false);
                 StartCoroutine(delay());
                 break;
             case "SBulletGreen":
-                _EnemyManager.TakeDamage(15, collision.gameObject.transform);
+                _EnemyManager.TakeDamage(15, collision.gameObject.transform, true);
                 break;
             default:
                 break;
@@ -77,7 +77,7 @@ public class EnemyDedection : MonoBehaviour
     private void TakeDamage(Collider2D collision, int damageCount)
     {
         _objectPool.GiveBullet(collision.gameObject);
-        _EnemyManager.TakeDamage(damageCount, collision.gameObject.transform);
+        _EnemyManager.TakeDamage(damageCount, collision.gameObject.transform, true);
     }
     private IEnumerator delay()
     {

@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using DG.Tweening;
 using System;
 using Random = UnityEngine.Random;
@@ -53,13 +52,13 @@ public class EnemyManager : MonoBehaviour
         _canDie = true;
     }
     
-    public void TakeDamage(int damage, Transform pos)
+    public void TakeDamage(int damage, Transform pos, bool canStopIt)
     {
         if(_healthCount - damage > 0)
         {
             Audio.PlayAudio("EnemyHit", .25f);
             DecreaseHealt(damage);
-            StartCoroutine(damageAction());
+            StartCoroutine(damageAction(canStopIt));
             _scoreManager.IncreaseScore(damage, pos);
             OnHit?.Invoke();
         }
@@ -72,8 +71,6 @@ public class EnemyManager : MonoBehaviour
             OnDead?.Invoke();
             _mainCamera.DOShakePosition(.1f, .5f);
             _scoreManager.IncreaseScore(damage, pos);
-
-
             
             CreateRedSkillPoint();
             CreateGreenSkillPoint();
@@ -118,7 +115,7 @@ public class EnemyManager : MonoBehaviour
             _playerController.CanDropBullet = false;
         }
     }
-    IEnumerator damageAction()
+    IEnumerator damageAction(bool canStopIt)
     {
         if (_canEffect)
         {
@@ -129,10 +126,14 @@ public class EnemyManager : MonoBehaviour
         {
             _Sp[i].color = _DamagedColor;
         }
-        Speed = 0;
+        if (canStopIt)
+        {
+            Speed = 0;
+        }
         yield return _sleepTime;
         if (_Sp == null) yield break;
-        Speed = _firsSpeed;
+        if (canStopIt)
+            Speed = _firsSpeed;
         for (int i = 0; i < _Sp.Count; i++)
         {
             _Sp[i].color = _NormalColor;

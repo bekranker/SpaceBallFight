@@ -41,6 +41,7 @@ TagManager:
   - AdBullet
   - PlayerCanvas
   - Health
+  - Toxic
   layers:
   - Default
   - TransparentFX
@@ -55,7 +56,7 @@ TagManager:
   - SkillPoint
   - Enemy
   - Shield
-  - 
+  - Toxic
   - 
   - 
   - 

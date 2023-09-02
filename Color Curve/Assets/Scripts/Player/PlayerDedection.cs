@@ -61,7 +61,7 @@ public class PlayerDedection : MonoBehaviour
         if (collision.CompareTag("Enemy"))
         {
             _PlayerController.TakeDamage(10);
-            collision.GetComponent<EnemyManager>().TakeDamage(999, _t);
+            collision.GetComponent<EnemyManager>().TakeDamage(999, _t, true);
         }
         if (collision.gameObject.CompareTag("Lazer"))
         {

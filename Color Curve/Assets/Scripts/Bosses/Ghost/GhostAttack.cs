@@ -1,12 +1,13 @@
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GhostAttack : MonoBehaviour
 {
     [SerializeField] private BossFightCreateEnemy _BossFightCreateEnemy;
-    [SerializeField] private Transform _Spawner;
+    [SerializeField] private List<Transform> _Spawner;
     [SerializeField] private BossAttackManager _BossAttackManager;
     [SerializeField] private BossTag _BossTag;
     [SerializeField] private Collider2D _Collider;
@@ -54,7 +55,7 @@ public class GhostAttack : MonoBehaviour
             _sprite.DOFade(.25f, 2.5f);
         });
         _Collider.enabled = false;
-        _BossFightCreateEnemy.SpawnRandomEnemy(Random.Range(5, 10), .25f, _Spawner.position);
+        _BossFightCreateEnemy.SpawnRandomEnemy(7, .25f, _Spawner);
         _BossPlayerFollow.enabled = true;
         yield return _sleepTime;
         _BossTag._SpriteRenderer.ForEach((_sprite) =>
@@ -73,7 +74,21 @@ public class GhostAttack : MonoBehaviour
     private void Shoot()
     {
         var direction = _playerT.position - _t.position;
-        Rigidbody2D rb = Instantiate(_BulletPrefab, _Spawner.position, Quaternion.identity).GetComponent<Rigidbody2D>();
-        rb.velocity = direction * _BulletSpeed * 50 * Time.deltaTime;
+        Rigidbody2D rb = Instantiate(_BulletPrefab, _Spawner[0].position, Quaternion.identity).GetComponent<Rigidbody2D>();
+        rb.velocity = direction.normalized * _BulletSpeed * 100 * Time.unscaledDeltaTime;
+        switch (_BossTag.EnemyColor)
+        {
+            case EnemyColor.Red:
+                rb.GetComponent<SpriteRenderer>().color = Color.red;
+                break;
+            case EnemyColor.Green:
+                rb.GetComponent<SpriteRenderer>().color = Color.green;
+                break;
+            case EnemyColor.Blue:
+                rb.GetComponent<SpriteRenderer>().color = _BossTag._ColorBlue;
+                break;
+            default:
+                break;
+        }
     }
 }

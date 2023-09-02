@@ -1,11 +1,10 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ToxicBullet : MonoBehaviour
 {
-    [SerializeField] private ParticleSystem _ToxicParticle;
     [SerializeField] private LayerMask _AfectedLayers;
+    [SerializeField] private float _Size;
     private bool _can;
     private Transform _t;
 
@@ -13,40 +12,35 @@ public class ToxicBullet : MonoBehaviour
     {
         _t = transform;
         _can = true;
-        StartCoroutine(effect());
-        Destroy(gameObject, 5);
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, _Size);
     }
     void Update()
     {
         if (!_can) return;
-        if (Physics2D.OverlapCircle(_t.position, _t.localScale.x, _AfectedLayers))
+        if (Physics2D.OverlapCircle(_t.position, _Size, _AfectedLayers))
         {
-            Collider2D[] cols = Physics2D.OverlapCircleAll(_t.position, _t.localScale.x, _AfectedLayers);
+            Collider2D[] cols = Physics2D.OverlapCircleAll(_t.position, _Size, _AfectedLayers);
             for (int i = 0; i < cols.Length; i++)
             {
                 if (cols[i].TryGetComponent(out EnemyManager enemy))
                 {
-                    StartCoroutine(damageDelay());
-                    enemy.TakeDamage(15, _t);
+                    enemy.TakeDamage(10, _t, false);
                 }
                 if (cols[i].TryGetComponent(out BossTag boss))
                 {
                     boss.TakeDamage(150, _t, "BulletGreen");
                 }
             }
+            StartCoroutine(damageDelay());
         }
     }
-
     private IEnumerator damageDelay()
     {
         _can = false;
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(.25f);
         _can = true;
-    }
-    private IEnumerator effect()
-    {
-        yield return new WaitForSeconds(4.5f);
-        ParticleSystem.MainModule mainPart = _ToxicParticle.main;
-        mainPart.startLifetime = 0;
     }
 }

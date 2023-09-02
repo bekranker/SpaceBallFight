@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -79,9 +80,7 @@ public class PlayerAttack : MonoBehaviour
     }
     private void UseSpecialAttack()
     {
-        _canAttackNormal = false;
-        _canAttackSpecial = true;
-
+        
         switch (_PlayerController._PlayerStates)
         {
             case PlayerState.Red:
@@ -101,20 +100,42 @@ public class PlayerAttack : MonoBehaviour
     private void RedAttack()
     {
         if (!CanUseFire) return;
+        _canAttackNormal = false;
+        _canAttackSpecial = true;
         StartCoroutine(SpawnBullet(_FireBullet));
     }
     private void BlueAttack()
     {
         if (!CanUseFreeze) return;
+        _canAttackNormal = false;
+        _canAttackSpecial = true;
         StartCoroutine(SpawnBullet(_FreezeBullet));
     }
     private void GreenAttack()
     {
         if (!CanUseToxic) return;
-        StartCoroutine(SpawnBullet(_ToxicBullet));
+        _ToxicBullet.SetActive(true);
+        _PlayerController.ChangeValueOfCollectedSkillPoints();
+        _ToxicBullet.transform.DOScale(10 * Vector2.one, .5f).SetUpdate(true).OnComplete(() => 
+        {
+            StartCoroutine(ToxicDissolve());
+        });
+        
+    }
+    private IEnumerator ToxicDissolve()
+    {
+        yield return new WaitForSeconds(10);
+        _ToxicBullet.transform.DOScale(0 * Vector2.one, .5f).SetUpdate(true).OnComplete(() =>
+        {
+            _ToxicBullet.SetActive(false);
+            _PlayerController.CanChangestate = true;
+            _canAttackNormal = true;
+            _canAttackSpecial = false;
+        });
     }
     private IEnumerator SpawnBullet(GameObject bullet)
     {
+        _PlayerController.ChangeValueOfCollectedSkillPoints();
         while (_canAttackSpecial)
         {
             yield return _attackDelay2;
@@ -153,7 +174,6 @@ public class PlayerAttack : MonoBehaviour
             Quaternion rotation = Quaternion.Euler(0, 0, angle);
             Rigidbody2D rb = Instantiate(bullet, _t.position, rotation).GetComponent<Rigidbody2D>();
             rb.velocity = rb.transform.right * 15;
-            _PlayerController.ChangeValueOfCollectedSkillPoints();
         }
     }
     private bool CanUseSpecialAttack()

@@ -56,7 +56,7 @@ public class RedBossAttack : MonoBehaviour
     }
     private void createEnemys()
     {
-        _BossFightCreateEnemy.SpawnRandomEnemy(7, .35f, _SpawnPoint);
+        _BossFightCreateEnemy.SpawnRandomEnemy(5, .3f, _SpawnPoint);
     }
 
     private void PushBulet(Rigidbody2D rb)
