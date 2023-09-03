@@ -14,7 +14,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private PlayerController _PlayerController;
     [SerializeField] private ButtonClickManager _AdsHealthButton, _AdsShieldButton, _AdsBulletButton, _AdsWatchAndResume;
     [SerializeField] private GameManager _GameManager;
-    private bool _canClick;
+    public bool CanClick;
     [SerializeField] private Animator _CutScene;
 
 
@@ -22,7 +22,6 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        _canClick = true;
         _PauseButton.DoSomething += PauseTheGame;
         _ResumeButton.DoSomething += ResumeTheGame;
         _ReturnToMenuButton.DoSomething += () => StartCoroutine(ReturnToMenu());
@@ -50,6 +49,7 @@ public class UIManager : MonoBehaviour
     }
     public void SetHealthAds()
     {
+        if (!CanClick) return;
         CrazyAds.Instance.beginAdBreakRewarded(HealthReward, () => print("add didnt be loaded"));
     }
     private void HealthReward()
@@ -59,6 +59,7 @@ public class UIManager : MonoBehaviour
     }
     public void SetShieldAds()
     {
+        if (!CanClick) return;
         CrazyAds.Instance.beginAdBreakRewarded(ShieldReward, ()=> print("add didnt be loaded"));
     }
     private void ShieldReward()
@@ -67,6 +68,7 @@ public class UIManager : MonoBehaviour
     }
     public void SetBulletAds()
     {
+        if (!CanClick) return;
         CrazyAds.Instance.beginAdBreakRewarded(BulletReward, () => print("add didnt be loaded"));
     }
     private void BulletReward()
@@ -78,12 +80,14 @@ public class UIManager : MonoBehaviour
 
     private void RestartTheGame()
     {
+        if (!CanClick) return;
         Time.timeScale = 1;
         RestartGameCallBack();
     }
     private void RestartGameCallBack() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     public void ResumeTheGame()
     {
+        if (!CanClick) return;
         Time.timeScale = 1;
         _Panel.SetActive(false);
     }
@@ -96,12 +100,14 @@ public class UIManager : MonoBehaviour
     }
     public void PauseTheGame()
     {
+        if (!CanClick) return;
         if (_GameManager.Dead) return;
         Time.timeScale = 0;
         _Panel.SetActive(true);
     }
     public void OpenOrCloseUI(bool value)
     {
+        if (!CanClick) return;
         _CloseTheese?.ForEach((closetheese) => { closetheese.SetActive(value); });
     }
 }
