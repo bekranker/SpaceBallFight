@@ -969,6 +969,7 @@ MonoBehaviour:
   _RedSkillUnlocked: 1
   _BlueSkillUnlocked: 0
   _GreenSkillUnlocked: 0
+  _TutorialCanvas: {fileID: 2540043473074570289, guid: 78a06321b45accf4db9090c6472c48dd, type: 3}
 --- !u!1 &8613525544914339456
 GameObject:
   m_ObjectHideFlags: 0

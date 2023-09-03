@@ -807,6 +807,7 @@ MonoBehaviour:
   _ShockWave: {fileID: 0}
   _ColorBlue: {r: 0, g: 0.7607843, b: 1, a: 1}
   Speed: 0
+  _CantEffect: 0
   _player: {fileID: 0}
 --- !u!114 &-3162321193919481351
 MonoBehaviour:
@@ -822,9 +823,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _DieParticle: {fileID: 2885456171195781281, guid: 8cf86ea9b9cc6b14cac3deec1e3fe2df, type: 3}
   _UnlockedCanvas: {fileID: 1501909995271890420, guid: d58d4ac7f10f677489ff84c283c361c0, type: 3}
-  _Tutorial: {fileID: 3585559979542669575, guid: 00a345a3420f51d45840da9d7cac1576, type: 3}
+  _Tutorial: {fileID: 1501909995271890420, guid: d58d4ac7f10f677489ff84c283c361c0, type: 3}
   _BlueUnlocked: 0
   _GreenUnlocked: 1
   _RedSkillUnlocked: 0
   _BlueSkillUnlocked: 0
   _GreenSkillUnlocked: 0
+  _TutorialCanvas: {fileID: 6499510870698569038, guid: 9966ef83e4171d64ab2790aa57b0cd78, type: 3}

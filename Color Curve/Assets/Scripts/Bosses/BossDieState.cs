@@ -10,6 +10,8 @@ public class BossDieState : MonoBehaviour
     private PlayerController _PlayerController;
     private Transform _t;
     EnemyManager[] _enemyManager;
+    SkillPoint[] _skillPoints;
+    [SerializeField] private GameObject _TutorialCanvas;
 
     private void Start()
     {
@@ -27,9 +29,21 @@ public class BossDieState : MonoBehaviour
     private void DeleteAllEnemys()
     {
         _enemyManager = FindObjectsOfType<EnemyManager>();
-        foreach (EnemyManager enemy in _enemyManager)
+        if(_enemyManager != null)
         {
-            Destroy(enemy.gameObject);
+            foreach (EnemyManager enemy in _enemyManager)
+            {
+
+                Destroy(enemy.gameObject);
+            }
+        }
+        _skillPoints = FindObjectsOfType<SkillPoint>();
+        if (_skillPoints != null)
+        {
+            foreach (SkillPoint skill in _skillPoints)
+            {
+                Destroy(skill.gameObject);
+            }
         }
     }
     private void Die()
@@ -48,6 +62,8 @@ public class BossDieState : MonoBehaviour
         }
         if (_GreenUnlocked)
         {
+            Canvas  tutorialCanvs = Instantiate(_TutorialCanvas, _t.position, Quaternion.identity).transform.GetChild(0).GetComponent<Canvas>();
+            tutorialCanvs.worldCamera = Camera.main;
             Canvas instiatedCanvas = Instantiate(_UnlockedCanvas, _t.position, Quaternion.identity).GetComponent<Canvas>();
             instiatedCanvas.worldCamera = Camera.main;
             instiatedCanvas.transform.GetChild(0).GetChild(0).GetComponent<Animator>().SetTrigger("Unlocked");
@@ -55,6 +71,8 @@ public class BossDieState : MonoBehaviour
         }
         if (_RedSkillUnlocked)
         {
+            Canvas tutorialCanvs = Instantiate(_TutorialCanvas, _t.position, Quaternion.identity).transform.GetChild(0).GetComponent<Canvas>();
+            tutorialCanvs.worldCamera = Camera.main;
             Canvas instiatedCanvas = Instantiate(_UnlockedCanvas, _t.position, Quaternion.identity).GetComponent<Canvas>();
             instiatedCanvas.worldCamera = Camera.main;
             instiatedCanvas.transform.GetChild(0).GetChild(0).GetComponent<Animator>().SetTrigger("Unlocked");
