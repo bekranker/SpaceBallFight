@@ -223,7 +223,20 @@ public class EnemyManager : MonoBehaviour
         float randX = _t.position.x + (Random.Range(-2, 2));
         float randY = _t.position.y + (Random.Range(-2, 2));
         _to = new Vector2(randX, randY);
-        if (!DidFallPoint()) return;
+        int value = 0;
+        if (_playerController.BlueSkillOpened)
+        {
+            value = 10;
+        }
+        else if (_playerController.GreenSkillOpened)
+        {
+            value = 15;
+        }
+        else
+        {
+            value = 30;
+        }
+        if (!DidFallPoint(value)) return;
         if (_playerController.RedSkillOpened)
             Instantiate(_SkillPointRed, _to, Quaternion.identity);
     }
@@ -232,6 +245,7 @@ public class EnemyManager : MonoBehaviour
         float randX = _t.position.x + (Random.Range(-2, 2));
         float randY = _t.position.y + (Random.Range(-2, 2));
         _to = new Vector2(randX, randY);
+        
         if (!DidFallPoint()) return;
         if (_playerController.GreenSkillOpened)
             Instantiate(_SkillPointGreen, _to, Quaternion.identity);
@@ -253,10 +267,10 @@ public class EnemyManager : MonoBehaviour
         if (!DidFallBullet()) return;
         Instantiate(_BulletBallon, _to, Quaternion.identity);
     }
-    private bool DidFallPoint()
+    private bool DidFallPoint(int value = 5)
     {
-        int rand = Random.Range(0,100);
-        if (rand <= 5)
+        int rand = Random.Range(0, 100);
+        if (rand <= value)
         {
             return true;
         }

@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using CrazyGames;
+using Unity.VisualScripting;
 
 public class BossManager : MonoBehaviour
 {
@@ -22,6 +23,8 @@ public class BossManager : MonoBehaviour
     [SerializeField] private PlayerController _PlayerController;
     [SerializeField] private RemaningTimeManager _RemaningTimeManager;
     [SerializeField] public Transform _BossSliderT, _BossSliderText;
+    [SerializeField] private List<GameObject> _Helpers;
+    [SerializeField] private List<Transform> _HelpersT;
     private int _bossCount = 0;
     //------------------------Cut------------------------
 
@@ -52,6 +55,7 @@ public class BossManager : MonoBehaviour
     }
     private IEnumerator BeginBossFightIE()
     {
+        SpawnAds();
         Audio.PlayAudio("BossBegin", .2f);
         _AudioSource.clip = _BossFight;
         _AudioSource.Play();
@@ -103,6 +107,13 @@ public class BossManager : MonoBehaviour
             _BossSliderText.DOPunchScale(.5f * Vector2.one, .1f).SetUpdate(true);
             _BossSliderT.DOPunchPosition(8 * Vector2.right, .1f).OnComplete(() => { _canEffect = true; }).SetUpdate(true);
             _canEffect = false;
+        }
+    }
+    private void SpawnAds()
+    {
+        for (int i = 0; i < _Helpers.Count; i++)
+        {
+            Instantiate(_Helpers[i], new Vector3(_HelpersT[i].position.x, _HelpersT[i].position.y, 0), Quaternion.identity);
         }
     }
 }

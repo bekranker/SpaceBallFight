@@ -13,7 +13,7 @@ public class GreenAttack : MonoBehaviour
     [SerializeField] private List<Transform> _SpawnPointBullet;
     [SerializeField] private BossAttackManager _BossAttackManager;
     private WaitForSeconds _attackDelay = new WaitForSeconds(0.1f);
-    private WaitForSeconds _attackDelay2 = new WaitForSeconds(3);
+    private WaitForSeconds _attackDelay2 = new WaitForSeconds(4);
     private Transform _player;
     private bool _can;
     private float _startSpinSpeed;
@@ -51,7 +51,7 @@ public class GreenAttack : MonoBehaviour
         }
         yield return _attackDelay2;
         _SpinBoss._SpinSpeed *= 1.2f;
-        _BossFightCreateEnemy.SpawnRandomEnemy(6, .3f, _SpawnPointBullet);
+        _BossFightCreateEnemy.SpawnRandomEnemy(5, .3f, _SpawnPointBullet);
         yield return _attackDelay2;
         _SpinBoss._SpinSpeed = _startSpinSpeed;
         _BossPlayerFollow.CanFollow = true;

@@ -157,8 +157,8 @@ MonoBehaviour:
   _BossTag: {fileID: 972892988807617407}
   _Collider: {fileID: 8357890446727412497}
   _BulletPrefab: {fileID: 4645358681334011435, guid: cf3462632f81ebe41a9301e8046feda9, type: 3}
-  _ShootAttackCounter: 50
-  _BulletSpeed: 30
+  _ShootAttackCounter: 35
+  _BulletSpeed: 7
   _BossPlayerFollow: {fileID: 1172997881651302555}
 --- !u!114 &6918027093068860884
 MonoBehaviour:
@@ -828,9 +828,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9122747971215821611}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.55, y: -2.98, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2813330797188418417}
   m_Father: {fileID: 0}
@@ -860,6 +860,7 @@ MonoBehaviour:
   _ShockWave: {fileID: 0}
   _ColorBlue: {r: 0, g: 0.7607844, b: 1, a: 1}
   Speed: 0
+  _CantEffect: 0
   _player: {fileID: 0}
 --- !u!114 &2179454186489652415
 MonoBehaviour:

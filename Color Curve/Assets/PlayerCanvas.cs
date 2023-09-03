@@ -10,14 +10,14 @@ public class PlayerCanvas : MonoBehaviour
     [SerializeField] private List<Text> _TextsT = new();
     private int _index;
     
+
+
     public void EffectHealthSlider()
     {
         IncreaseIndex();
         _TextsT[_index].text = "+5";
         SelectText();
         SelectTextT().position = _HealthEffectPos.position;
-
-    
     }
     public void EffectBulletSlider()
     {

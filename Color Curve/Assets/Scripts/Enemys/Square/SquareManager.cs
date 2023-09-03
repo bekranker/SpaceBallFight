@@ -24,6 +24,7 @@ public class SquareManager : EnemyMovementAbstract
     public override void OnStart(AbstractmovementManager abstractmovementManager)
     {
         _t = transform;
+        _canD = true;
         _canDash = true;
         _canFollow = true;
         _PlayerController = FindObjectOfType<PlayerController>();

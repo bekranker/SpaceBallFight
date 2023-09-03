@@ -17,6 +17,7 @@ public class BossTag : MonoBehaviour
     [HideInInspector] public ShockWaveManager _ShockWave;
     [SerializeField] public Color _ColorBlue;
     [SerializeField] public float Speed;
+    [SerializeField] private bool _CantEffect;
     //----------------------------------------------------Cut----------------------------------------------------
 
 
@@ -84,7 +85,7 @@ public class BossTag : MonoBehaviour
             OnHit?.Invoke();
             StartCoroutine(DamageEffect());
 
-            _currentHealth -= (IsCorrectColor(tag) ? damage : damage / 3);
+            _currentHealth -= (IsCorrectColor(tag) ? damage : 3);
         }
         _BossManager.SetHealthSlider(_currentHealth, _MaxHealth);
     }
@@ -94,10 +95,13 @@ public class BossTag : MonoBehaviour
         {
             _sprites.color = _DamageColor;
         });
-        if (_canEffect)
+        if (!_CantEffect)
         {
-            _t.DOPunchScale(new Vector2(.05f, .07f), .075f).OnComplete(() => _canEffect = true).SetUpdate(true);
-            _canEffect = false;
+            if (_canEffect)
+            {
+                _t.DOPunchScale(new Vector2(.05f, .07f), .075f).OnComplete(() => _canEffect = true).SetUpdate(true);
+                _canEffect = false;
+            }
         }
         yield return _sleepTime;
         _SpriteRenderer?.ForEach((_sprites) =>

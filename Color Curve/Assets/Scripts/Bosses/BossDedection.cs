@@ -24,47 +24,29 @@ public class BossDedection : MonoBehaviour
         switch (bulletTag)
         {
             case "BulletRed":
-                if (_BossTag.EnemyColor == EnemyColor.Red)
-                {
-                    _BossTag.TakeDamage(10, _t, "BulletRed");
-                }
-                else
-                {
-                    _BossTag.TakeDamage(3, _t, "BulletRed");
-                }
+                _BossTag.TakeDamage(10, _t, "BulletRed");
                 _ObjectPool.GiveBullet(bullet);
                 break;
             case "BulletBlue":
-                if (_BossTag.EnemyColor == EnemyColor.Blue)
-                {
-                    _BossTag.TakeDamage(10, _t, "BulletBlue");
-                }
-                else
-                {
-                    _BossTag.TakeDamage(3, _t, "BulletBlue");
-                }
+                _BossTag.TakeDamage(10, _t, "BulletBlue");
                 _ObjectPool.GiveBullet(bullet);
                 break;
             case "BulletGreen":
-                if (_BossTag.EnemyColor == EnemyColor.Green)
-                {
-                    _BossTag.TakeDamage(10, _t, "BulletGreen");
-                }
-                else
-                {
-                    _BossTag.TakeDamage(3, _t, "BulletGreen");
-                }
+                _BossTag.TakeDamage(10, _t, "BulletGreen");
                 _ObjectPool.GiveBullet(bullet);
                 break;
             case "SBulletRed":
                 _BossTag.TakeDamage(50, bullet.transform, "BulletRed");
+                Destroy(bullet);
                 break;
             case "SBulletBlue":
                 _BossTag.TakeDamage(50, bullet.transform, "BulletBlue");
                 StartCoroutine(_BossTag.Slow());
+                Destroy(bullet);
                 break;
             case "SBulletGreen":
                 _BossTag.TakeDamage(50, bullet.transform, "BulletGreen");
+                Destroy(bullet);
                 break;
             default:
                 break;

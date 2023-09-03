@@ -8,13 +8,17 @@ public class SkillPoint : MonoBehaviour
 {
     [SerializeField] private int _Delay;
     [SerializeField] private bool _Skill, _Bullet, _Health;
+    [SerializeField] private bool _CantDestroy;
     private PlayerCanvas _playerCanvas;
 
 
     void Start()
     {
         _playerCanvas = GameObject.FindGameObjectWithTag("PlayerCanvas").GetComponent<PlayerCanvas>();
-        StartCoroutine(ToDestroy());
+        if (!_CantDestroy)
+        {
+            StartCoroutine(ToDestroy());
+        }
     }
     private IEnumerator ToDestroy()
     {
