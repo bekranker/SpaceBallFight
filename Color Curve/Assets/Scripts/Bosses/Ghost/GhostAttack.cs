@@ -15,7 +15,7 @@ public class GhostAttack : MonoBehaviour
     [SerializeField] private int _ShootAttackCounter;
     [SerializeField] private float _BulletSpeed;
     [SerializeField] private BossPlayerFollow _BossPlayerFollow;
-    private WaitForSeconds _sleepTime = new WaitForSeconds(3);
+    private WaitForSeconds _sleepTime = new WaitForSeconds(5);
     private WaitForSeconds _sleepTimeForShoot = new WaitForSeconds(.1f);
     private Transform _playerT;
     private Transform _t;
@@ -55,7 +55,7 @@ public class GhostAttack : MonoBehaviour
             _sprite.DOFade(.25f, 2.5f);
         });
         _Collider.enabled = false;
-        _BossFightCreateEnemy.SpawnRandomEnemy(7, .25f, _Spawner);
+        _BossFightCreateEnemy.SpawnRandomEnemy(5, .35f, _Spawner);
         _BossPlayerFollow.enabled = true;
         yield return _sleepTime;
         _BossTag._SpriteRenderer.ForEach((_sprite) =>

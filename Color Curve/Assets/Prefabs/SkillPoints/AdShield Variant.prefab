@@ -64,6 +64,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AdShield Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 7610641975642543185, guid: 7e8389d791aac3f4d815f183b3732ea1, type: 3}
+      propertyPath: m_TagString
+      value: AdShield
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 8595223511953767672, guid: 7e8389d791aac3f4d815f183b3732ea1, type: 3}

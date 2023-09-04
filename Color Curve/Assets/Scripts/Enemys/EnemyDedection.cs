@@ -81,7 +81,7 @@ public class EnemyDedection : MonoBehaviour
     }
     private IEnumerator delay()
     {
-        _EnemyManager.Speed /= 2;
+        _EnemyManager.Speed /= 4;
         yield return _delay;
         _EnemyManager.Speed = _firstSpeed;
     }

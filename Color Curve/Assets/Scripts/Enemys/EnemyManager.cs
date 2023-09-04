@@ -19,7 +19,7 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] public List<TrailRenderer> Trail;
     [SerializeField] private GameObject _SkillPointRed, _SkillPointBlue, _SkillPointGreen;
     [SerializeField] private Vector2 _FromScale;
-    [SerializeField] private GameObject _BulletBallon, _HealthAdBallon, _BulletAdBallon, __HealthBallon;
+    [SerializeField] private GameObject _BulletBallon, _HealthAdBallon, _BulletAdBallon, __HealthBallon, _ShieldBallon;
     [SerializeField] private Color _BlueColor;
     private PlayerController _playerController;
     //-----------------------------------Cut-----------------------------------
@@ -79,6 +79,7 @@ public class EnemyManager : MonoBehaviour
             CreateHealthAd();
             CreateBulletAd();
             CreateHealthBallon();
+            CreateShieldAd();
             Destroy(gameObject);
             _canDie = false;
         }
@@ -112,6 +113,17 @@ public class EnemyManager : MonoBehaviour
         if (_playerController.CanDropBullet)
         {
             Instantiate(_BulletAdBallon, _to, Quaternion.identity);
+            _playerController.CanDropBullet = false;
+        }
+    }
+    private void CreateShieldAd()
+    {
+        float randX = _t.position.x + (Random.Range(-2, 2));
+        float randY = _t.position.y + (Random.Range(-2, 2));
+        _to = new Vector2(randX, randY);
+        if (DidFallShield())
+        {
+            Instantiate(_ShieldBallon, _to, Quaternion.identity);
             _playerController.CanDropBullet = false;
         }
     }
@@ -289,6 +301,15 @@ public class EnemyManager : MonoBehaviour
     {
         int rand = Random.Range(0, 100);
         if (rand <= 10)
+        {
+            return true;
+        }
+        return false;
+    }
+    private bool DidFallShield()
+    {
+        int rand = Random.Range(0, 100);
+        if (rand < 5)
         {
             return true;
         }

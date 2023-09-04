@@ -51,6 +51,9 @@ public class WaveManager : MonoBehaviour
                 _PlayerController.Blue = true;
                 _PlayerController.Green = true;
                 _PlayerController.Red = true;
+                _PlayerController.UnlockedSkill(_PlayerController._RedSliderTMP, _PlayerController._RedSliderSpriteR, _PlayerController._RedSliderSpriteUnlocked);
+                _PlayerController.UnlockedSkill(_PlayerController._GreenSliderTMP, _PlayerController._GreenSliderSpriteR, _PlayerController._GreenSliderSpriteUnlocked);
+                _PlayerController.UnlockedSkill(_PlayerController._BlueSliderTMP, _PlayerController._BlueSliderSpriteR, _PlayerController._BlueSliderSpriteUnlocked);
                 break;
             case >= 5:
                 _PlayerController.GreenSkillOpened = true;
@@ -58,12 +61,15 @@ public class WaveManager : MonoBehaviour
                 _PlayerController.Blue = true;
                 _PlayerController.Green = true;
                 _PlayerController.Red = true;
+                _PlayerController.UnlockedSkill(_PlayerController._RedSliderTMP, _PlayerController._RedSliderSpriteR, _PlayerController._RedSliderSpriteUnlocked);
+                _PlayerController.UnlockedSkill(_PlayerController._GreenSliderTMP, _PlayerController._GreenSliderSpriteR, _PlayerController._GreenSliderSpriteUnlocked);
                 break;
             case >= 4:
                 _PlayerController.RedSkillOpened = true;
                 _PlayerController.Blue = true;
                 _PlayerController.Green = true;
                 _PlayerController.Red = true;
+                _PlayerController.UnlockedSkill(_PlayerController._RedSliderTMP, _PlayerController._RedSliderSpriteR, _PlayerController._RedSliderSpriteUnlocked);
                 break;
             case >= 3:
                 _PlayerController.Blue = true;

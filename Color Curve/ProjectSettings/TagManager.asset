@@ -43,6 +43,7 @@ TagManager:
   - Health
   - Toxic
   - CanvasManager
+  - AdShield
   layers:
   - Default
   - TransparentFX

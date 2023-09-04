@@ -16,6 +16,7 @@ public class PlayerDedection : MonoBehaviour
     [SerializeField] private ParticleSystem _SkillPointRedP, _SkillPointBlueP, _SkillPointGreenP, _BulletCollectedParticle, _HeathCollectedParticle;
     [SerializeField] public Text _RedSliderTMP, _GreenSliderTMP, _BlueSliderTMP;
     [SerializeField] public Transform _RedSliderT, _GreenSliderT, _BlueSliderT;
+    [SerializeField] private UIManager _UIManager;
     public bool CanDedect;
     private WaitForSeconds WaitForSeconds = new WaitForSeconds(1);
     private Transform _t;
@@ -114,6 +115,21 @@ public class PlayerDedection : MonoBehaviour
             _PlayerController.CurrentHealth = (_PlayerController.CurrentHealth + 10 <= 100) ? _PlayerController.CurrentHealth + 10 : _PlayerController.MaxHealth;
             _PlayerController.PlayerHealthSldier();
             Instantiate(_HeathCollectedParticle, collision.transform.position, Quaternion.identity);
+            Destroy(collision.gameObject);
+        }
+        if (collision.gameObject.CompareTag("AdBullet"))
+        {
+            _UIManager.SetBulletAds();
+            Destroy(collision.gameObject);
+        }
+        if (collision.gameObject.CompareTag("AdHelath"))
+        {
+            _UIManager.SetHealthAds();
+            Destroy(collision.gameObject);
+        }
+        if (collision.gameObject.CompareTag("AdShield"))
+        {
+            _UIManager.SetShieldAds();
             Destroy(collision.gameObject);
         }
     }
