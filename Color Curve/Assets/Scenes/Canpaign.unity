@@ -8437,7 +8437,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.404, y: 0.187}
   m_AnchorMax: {x: 0.572, y: 0.34800002}
-  m_AnchoredPosition: {x: 33.000046, y: 53.499905}
+  m_AnchoredPosition: {x: 33.000046, y: 53.4999}
   m_SizeDelta: {x: 25.807556, y: 67.71907}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &131707983
@@ -34816,7 +34816,7 @@ MonoBehaviour:
   _ScoreText: {fileID: 1994323393}
   _RemaningTimeManager: {fileID: 278132969}
   _PlayerController: {fileID: 1679517851}
-  WaveIndex: 6
+  WaveIndex: 0
 --- !u!1 &660339610
 GameObject:
   m_ObjectHideFlags: 0

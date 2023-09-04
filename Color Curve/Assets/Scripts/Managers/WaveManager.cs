@@ -44,6 +44,17 @@ public class WaveManager : MonoBehaviour
     {
         switch (WaveIndex)
         {
+            case >= 7:
+                _PlayerController.BlueSkillOpened = true;
+                _PlayerController.GreenSkillOpened = true;
+                _PlayerController.RedSkillOpened = true;
+                _PlayerController.Blue = true;
+                _PlayerController.Green = true;
+                _PlayerController.Red = true;
+                _PlayerController.UnlockedSkill(_PlayerController._RedSliderTMP, _PlayerController._RedSliderSpriteR, _PlayerController._RedSliderSpriteUnlocked);
+                _PlayerController.UnlockedSkill(_PlayerController._GreenSliderTMP, _PlayerController._GreenSliderSpriteR, _PlayerController._GreenSliderSpriteUnlocked);
+                _PlayerController.UnlockedSkill(_PlayerController._BlueSliderTMP, _PlayerController._BlueSliderSpriteR, _PlayerController._BlueSliderSpriteUnlocked);
+                break;
             case >= 6:
                 _PlayerController.BlueSkillOpened = true;
                 _PlayerController.GreenSkillOpened = true;
@@ -56,6 +67,7 @@ public class WaveManager : MonoBehaviour
                 _PlayerController.UnlockedSkill(_PlayerController._BlueSliderTMP, _PlayerController._BlueSliderSpriteR, _PlayerController._BlueSliderSpriteUnlocked);
                 break;
             case >= 5:
+                _PlayerController.BlueSkillOpened = true;
                 _PlayerController.GreenSkillOpened = true;
                 _PlayerController.RedSkillOpened = true;
                 _PlayerController.Blue = true;
@@ -63,25 +75,36 @@ public class WaveManager : MonoBehaviour
                 _PlayerController.Red = true;
                 _PlayerController.UnlockedSkill(_PlayerController._RedSliderTMP, _PlayerController._RedSliderSpriteR, _PlayerController._RedSliderSpriteUnlocked);
                 _PlayerController.UnlockedSkill(_PlayerController._GreenSliderTMP, _PlayerController._GreenSliderSpriteR, _PlayerController._GreenSliderSpriteUnlocked);
+                _PlayerController.UnlockedSkill(_PlayerController._BlueSliderTMP, _PlayerController._BlueSliderSpriteR, _PlayerController._BlueSliderSpriteUnlocked);
+
                 break;
             case >= 4:
+                _PlayerController.GreenSkillOpened = true;
+                _PlayerController.RedSkillOpened = true;
+                _PlayerController.Blue = true;
+                _PlayerController.Green = true;
+                _PlayerController.Red = true;
+                _PlayerController.UnlockedSkill(_PlayerController._RedSliderTMP, _PlayerController._RedSliderSpriteR, _PlayerController._RedSliderSpriteUnlocked);
+                _PlayerController.UnlockedSkill(_PlayerController._GreenSliderTMP, _PlayerController._GreenSliderSpriteR, _PlayerController._GreenSliderSpriteUnlocked);
+
+                break;
+            case >= 3:
                 _PlayerController.RedSkillOpened = true;
                 _PlayerController.Blue = true;
                 _PlayerController.Green = true;
                 _PlayerController.Red = true;
                 _PlayerController.UnlockedSkill(_PlayerController._RedSliderTMP, _PlayerController._RedSliderSpriteR, _PlayerController._RedSliderSpriteUnlocked);
                 break;
-            case >= 3:
-                _PlayerController.Blue = true;
-                _PlayerController.Green = true;
-                _PlayerController.Red = true;
-                break;
             case >= 2:
+                _PlayerController.Blue = true;
                 _PlayerController.Green = true;
                 _PlayerController.Red = true;
                 break;
             case >= 1:
                 _PlayerController.Green = true;
+                _PlayerController.Red = true;
+                break;
+            case >= 0:
                 _PlayerController.Red = true;
                 break;
             default:

@@ -126,6 +126,7 @@ public class PlayerController : MonoBehaviour
             Audio.PlayAudio("amsesi", .25f);
             CanDropHealthF();
             PlayerHealthSldier();
+            PlayerPrefs.SetInt("WaveIndex", (_WaveManager.WaveIndex - 1 < 0) ? 0 : _WaveManager.WaveIndex - 1);
             return;
         }
         else
