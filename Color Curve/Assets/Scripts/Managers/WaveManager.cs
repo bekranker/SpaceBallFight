@@ -10,7 +10,7 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private GameManager _GameManager;
     [SerializeField] private TMP_Text _ScoreText;
     [SerializeField] private RemaningTimeManager _RemaningTimeManager;
-
+    [SerializeField] private PlayerController _PlayerController;
     private WaitForSeconds _waitForWave = new WaitForSeconds(1.75f);
     public int WaveIndex;
 
@@ -18,6 +18,8 @@ public class WaveManager : MonoBehaviour
 
     private void Start()
     {
+        WaveIndex = PlayerPrefs.GetInt("WaveIndex", 0);
+        SetPrefs();
         ChangeScrore();
         _RemaningTimeManager.SetRemaningTime(_WaveData[WaveIndex].WaveTimeCount);
     }
@@ -36,5 +38,48 @@ public class WaveManager : MonoBehaviour
     public void SaveWave()
     {
         PlayerPrefs.SetInt("WaveIndex", WaveIndex);
+    }
+
+    private void SetPrefs()
+    {
+        switch (WaveIndex)
+        {
+            case >= 6:
+                _PlayerController.BlueSkillOpened = true;
+                _PlayerController.GreenSkillOpened = true;
+                _PlayerController.RedSkillOpened = true;
+                _PlayerController.Blue = true;
+                _PlayerController.Green = true;
+                _PlayerController.Red = true;
+                break;
+            case >= 5:
+                _PlayerController.GreenSkillOpened = true;
+                _PlayerController.RedSkillOpened = true;
+                _PlayerController.Blue = true;
+                _PlayerController.Green = true;
+                _PlayerController.Red = true;
+                break;
+            case >= 4:
+                _PlayerController.RedSkillOpened = true;
+                _PlayerController.Blue = true;
+                _PlayerController.Green = true;
+                _PlayerController.Red = true;
+                break;
+            case >= 3:
+                _PlayerController.Blue = true;
+                _PlayerController.Green = true;
+                _PlayerController.Red = true;
+                break;
+            case >= 2:
+                _PlayerController.Green = true;
+                _PlayerController.Red = true;
+                break;
+            case >= 1:
+                _PlayerController.Green = true;
+                _PlayerController.Red = true;
+                break;
+            default:
+                break;
+        }
     }
 }

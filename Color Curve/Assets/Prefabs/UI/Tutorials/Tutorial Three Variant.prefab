@@ -201,8 +201,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "BUNLARDAN BE\u015EER TANE TOPLAYARAK KARAKTERLERL\u0130N \xD6ZEL YETENE\u011E\u0130N\u0130
-    \u201CSPACE\u201D VEYA \u201CF\u201D TU\u015EUNA BASARAK KULLANAB\u0130L\u0130RS\u0130N"
+  m_text: COLLECT FIVE OF THEM AND USE THE CHARACTERS' SPECIAL ABILITY BY HITTING
+    THE "SPACE" OR "F" KEY
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7028efaf808e08f4abe3df9a0f281c74, type: 2}
   m_sharedMaterial: {fileID: -8114760823456611521, guid: 7028efaf808e08f4abe3df9a0f281c74, type: 2}
@@ -229,7 +229,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25.6
+  m_fontSize: 29.35
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -608,8 +608,56 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7947708276280418695, guid: ae15d54525966d74182a9af0a79123ec, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3612132800334203297}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 924518918659309609, guid: ae15d54525966d74182a9af0a79123ec, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1866770277919946189}
   m_SourcePrefab: {fileID: 100100000, guid: ae15d54525966d74182a9af0a79123ec, type: 3}
+--- !u!1 &2540043473074570289 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 924518918659309609, guid: ae15d54525966d74182a9af0a79123ec, type: 3}
+  m_PrefabInstance: {fileID: 3428507166489297944}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1866770277919946189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2540043473074570289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a7e82bac22917f4380e978a9ab8c08f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Texts:
+  - {fileID: 8342556889942401525}
+  - {fileID: 7075959983959959931}
+  _Languages:
+  - Sentences:
+    - COLLECT FIVE OF THEM AND USE THE CHARACTERS' SPECIAL ABILITY BY HITTING THE
+      "SPACE" OR "F" KEY
+    - Contunie
+  - Sentences:
+    - "BE\u015E\u0130N\u0130 TOPLA VE \"BO\u015ELUK\" VEYA \"F\" TU\u015EUNA BASARAK
+      KARAKTERLER\u0130N \xD6ZEL YETENE\u011E\u0130N\u0130 KULLANIN"
+    - Devam Et
+  - Sentences:
+    - "\u0421\u041E\u0411\u0415\u0420\u0418\u0422\u0415 \u041F\u042F\u0422\u042C
+      \u0418\u0417 \u0418\u0425 \u0418 \u0418\u0421\u041F\u041E\u041B\u042C\u0417\u0423\u0419\u0422\u0415
+      \u0421\u041F\u0415\u0426\u0418\u0410\u041B\u042C\u041D\u042B\u0415 \u0421\u041F\u041E\u0421\u041E\u0411\u041D\u041E\u0421\u0422\u0418
+      \u041F\u0415\u0420\u0421\u041E\u041D\u0410\u0416\u0415\u0419, \u041D\u0410\u0416\u0418\u041C\u0410\u042F
+      \u041A\u041B\u0410\u0412\u0418\u0428\u0423 \xAB\u041F\u0420\u041E\u0411\u0415\u041B\xBB
+      \u0418\u041B\u0418 \xABF\xBB."
+    - "\u041F\u0440\u043E\u0434\u043E\u043B\u0436\u0430\u0442\u044C"
+  - Sentences:
+    - "SAMMELN SIE F\xDCNF DAVON UND NUTZEN SIE DIE BESONDERE F\xC4HIGKEIT DER CHARAKTERE,
+      INDEM SIE DIE \u201ELEERTASTE\u201C ODER \u201EF\u201C-TASTE DR\xDCCKEN"
+    - Weitermachen
+  - Sentences:
+    - "COLLECTEZ-EN CINQ ET UTILISEZ LA CAPACIT\xC9 SP\xC9CIALE DES PERSONNAGES EN
+      APPUYANT SUR LA TOUCHE \"ESPACE\" OU \"F\""
+    - Continuer
 --- !u!224 &4746635178592019871 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7947708276280418695, guid: ae15d54525966d74182a9af0a79123ec, type: 3}

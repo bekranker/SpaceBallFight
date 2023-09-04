@@ -17,7 +17,7 @@ public class Spawneranager : MonoBehaviour
     {
         CanSpawn = true;
         KilledEnemyCount = 0;
-        _timeCounter = _WaveManager._WaveData[_WaveManager.WaveIndex].SpawnDelay;
+        _timeCounter = _WaveManager._WaveData[PlayerPrefs.GetInt("WaveIndex", 0)].SpawnDelay;
     }
     private void Update()
     {

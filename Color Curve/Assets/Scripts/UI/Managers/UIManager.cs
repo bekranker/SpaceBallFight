@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private PlayerController _PlayerController;
     [SerializeField] private ButtonClickManager _AdsHealthButton, _AdsShieldButton, _AdsBulletButton, _AdsWatchAndResume;
     [SerializeField] private GameManager _GameManager;
+    [SerializeField] private WaveManager _WaveManager;
     public bool CanClick;
     [SerializeField] private Animator _CutScene;
 
@@ -32,7 +33,6 @@ public class UIManager : MonoBehaviour
         _AdsBulletButton.DoSomething += SetBulletAds;
         _AdsShieldButton.DoSomething += SetShieldAds;
         _AdsHealthButton.DoSomething += SetHealthAds;
-    
     }
     
     #region AdsArea
@@ -82,9 +82,15 @@ public class UIManager : MonoBehaviour
     {
         if (!CanClick) return;
         Time.timeScale = 1;
-        RestartGameCallBack();
+        StartCoroutine(RestartGameCallBack());
     }
-    private void RestartGameCallBack() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    private IEnumerator RestartGameCallBack()
+    {
+        _CutScene.SetTrigger("Exit");
+        PlayerPrefs.SetInt("WaveIndex", (_WaveManager.WaveIndex - 1 <= 0) ? 0 : _WaveManager.WaveIndex - 1);
+        yield return new WaitForSecondsRealtime(1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
     public void ResumeTheGame()
     {
         if (!CanClick) return;

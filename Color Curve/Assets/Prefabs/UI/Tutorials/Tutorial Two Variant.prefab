@@ -293,7 +293,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "DO\u011ERU RENKLE VURUSAN DAHA FAZLA HASAR VE DAHA FAZLA PUAN KAZANIRSIN"
+  m_text: HIT WITH THE RIGHT COLOR GAIN MORE DAMAGE AND MORE POINTS
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7028efaf808e08f4abe3df9a0f281c74, type: 2}
   m_sharedMaterial: {fileID: -8114760823456611521, guid: 7028efaf808e08f4abe3df9a0f281c74, type: 2}
@@ -507,7 +507,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Karakterini \u015Eu Tu\u015Flarla De\u011Fi\u015Ftirebilirsin"
+  m_text: You Can Change Your Character With These Keys
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7028efaf808e08f4abe3df9a0f281c74, type: 2}
   m_sharedMaterial: {fileID: -8114760823456611521, guid: 7028efaf808e08f4abe3df9a0f281c74, type: 2}
@@ -534,7 +534,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 63.7
+  m_fontSize: 58.15
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -933,6 +933,7 @@ GameObject:
   - component: {fileID: 6721467909893765444}
   - component: {fileID: 5710267160516792336}
   - component: {fileID: 5438048489694990811}
+  - component: {fileID: 7675968630572499025}
   m_Layer: 5
   m_Name: Panel (1)
   m_TagString: Untagged
@@ -1001,6 +1002,41 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7675968630572499025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6093237989799725903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a7e82bac22917f4380e978a9ab8c08f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Texts:
+  - {fileID: 3690580357972976583}
+  - {fileID: 3065386751584371857}
+  _Languages:
+  - Sentences:
+    - Contunie
+    - HIT WITH THE RIGHT COLOR GAIN MORE DAMAGE AND MORE POINTS
+  - Sentences:
+    - Devam et
+    - "DO\u011ERU RENKLE VURUSAN DAHA FAZLA HASAR VE DAHA FAZLA PUAN KAZANIRSIN"
+  - Sentences:
+    - "\u041F\u0420\u041E\u0414\u041E\u041B\u0416\u0410\u0422\u042C"
+    - "\u041F\u041E\u041F\u0410\u0414\u0410\u0419\u0422\u0415 \u041F\u0420\u0410\u0412\u0418\u041B\u042C\u041D\u042B\u041C
+      \u0426\u0412\u0415\u0422\u041E\u041C, \u041F\u041E\u041B\u0423\u0427\u0418\u0422\u0415
+      \u0411\u041E\u041B\u042C\u0428\u0415 \u0423\u0420\u041E\u041D\u0410 \u0418
+      \u0411\u041E\u041B\u042C\u0428\u0415 \u041E\u0427\u041A\u041E\u0412."
+  - Sentences:
+    - WEITERMACHEN
+    - "Wenn du mit der richtigen Farbe triffst, erh\xE4ltst du mehr Schaden und mehr
+      Punkte"
+  - Sentences:
+    - CONTINUER
+    - FRAPPEZ AVEC LA BONNE COULEUR GAGNEZ PLUS DE DOMMAGES ET PLUS DE POINTS
 --- !u!1 &6270901711016841427
 GameObject:
   m_ObjectHideFlags: 0
@@ -1194,10 +1230,59 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7947708276280418695, guid: ae15d54525966d74182a9af0a79123ec, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6721467909893765444}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 924518918659309609, guid: ae15d54525966d74182a9af0a79123ec, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4437341651110453446}
   m_SourcePrefab: {fileID: 100100000, guid: ae15d54525966d74182a9af0a79123ec, type: 3}
 --- !u!224 &4084066861542952160 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7947708276280418695, guid: ae15d54525966d74182a9af0a79123ec, type: 3}
   m_PrefabInstance: {fileID: 6261810793865948519}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6499510870698569038 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 924518918659309609, guid: ae15d54525966d74182a9af0a79123ec, type: 3}
+  m_PrefabInstance: {fileID: 6261810793865948519}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4437341651110453446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6499510870698569038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a7e82bac22917f4380e978a9ab8c08f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Texts:
+  - {fileID: 7605902971639965531}
+  - {fileID: 1567970609063501912}
+  - {fileID: 2336916102238791346}
+  _Languages:
+  - Sentences:
+    - Scroll or Q, E or 1, 2, 3
+    - You Can Change Your Character With These Keys
+    - CONTUNIE
+  - Sentences:
+    - "Kayd\u0131rma veya Q, E veya 1, 2, 3"
+    - "Bu Tu\u015Flarla Karakterinizi De\u011Fi\u015Ftirebilirsiniz"
+    - Devam et
+  - Sentences:
+    - "\u041F\u0440\u043E\u043A\u0440\u0443\u0442\u0438\u0442\u0435 \u0438\u043B\u0438
+      Q, E \u0438\u043B\u0438 1, 2, 3"
+    - "\u0412\u044B \u043C\u043E\u0436\u0435\u0442\u0435 \u0438\u0437\u043C\u0435\u043D\u0438\u0442\u044C
+      \u0441\u0432\u043E\u0435\u0433\u043E \u043F\u0435\u0440\u0441\u043E\u043D\u0430\u0436\u0430
+      \u0441 \u043F\u043E\u043C\u043E\u0449\u044C\u044E \u044D\u0442\u0438\u0445
+      \u043A\u043B\u044E\u0447\u0435\u0439"
+    - "\u041F\u0420\u041E\u0414\u041E\u041B\u0416\u0410\u0422\u042C"
+  - Sentences:
+    - Scrollen oder Q, E oder 1, 2, 3
+    - "Mit diesen Tasten k\xF6nnen Sie Ihren Charakter \xE4ndern"
+    - WEITERMACHEN
+  - Sentences:
+    - "D\xE9filement ou Q, E ou 1, 2, 3"
+    - "Vous pouvez changer votre personnage avec ces cl\xE9s"
+    - CONTINUER

@@ -8167,7 +8167,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.404, y: 0.187}
   m_AnchorMax: {x: 0.572, y: 0.34800002}
-  m_AnchoredPosition: {x: 33.000046, y: 53.500046}
+  m_AnchoredPosition: {x: 33.000046, y: 53.49994}
   m_SizeDelta: {x: 25.807556, y: 67.71907}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &131707983
@@ -8980,7 +8980,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 175645487}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 19.1, y: 0, z: 10}
+  m_LocalPosition: {x: 19.5, y: 0, z: 10}
   m_LocalScale: {x: 1, y: 24, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14999,7 +14999,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: RESTART GAME
+  m_text: PrevIous wave
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7028efaf808e08f4abe3df9a0f281c74, type: 2}
   m_sharedMaterial: {fileID: -8114760823456611521, guid: 7028efaf808e08f4abe3df9a0f281c74, type: 2}
@@ -15384,7 +15384,7 @@ GameObject:
   - component: {fileID: 261736742}
   - component: {fileID: 261736741}
   m_Layer: 5
-  m_Name: Title (1)
+  m_Name: Full Health
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22002,7 +22002,7 @@ GameObject:
   - component: {fileID: 326948304}
   - component: {fileID: 326948303}
   m_Layer: 5
-  m_Name: Title (4)
+  m_Name: +20 Health
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22453,7 +22453,7 @@ GameObject:
   - component: {fileID: 335133400}
   - component: {fileID: 335133399}
   m_Layer: 5
-  m_Name: Title (5)
+  m_Name: +20 Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30616,6 +30616,7 @@ MonoBehaviour:
   _AdsBulletButton: {fileID: 1039787574}
   _AdsWatchAndResume: {fileID: 1485772690}
   _GameManager: {fileID: 1094257087}
+  _WaveManager: {fileID: 654226037}
   CanClick: 0
   _CutScene: {fileID: 1169388705}
 --- !u!1 &504938721
@@ -31731,7 +31732,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.6061797, y: 0.16565953}
   m_AnchorMax: {x: 0.69900006, y: 0.31565952}
-  m_AnchoredPosition: {x: 33.50003, y: 79.99996}
+  m_AnchoredPosition: {x: 33.50003, y: 79.99997}
   m_SizeDelta: {x: -2.8700027, y: -3.699997}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &576659708
@@ -33424,6 +33425,7 @@ MonoBehaviour:
   _GameManager: {fileID: 1094257087}
   _ScoreText: {fileID: 1994323393}
   _RemaningTimeManager: {fileID: 278132969}
+  _PlayerController: {fileID: 1679517851}
   WaveIndex: 0
 --- !u!1 &660339610
 GameObject:
@@ -33753,7 +33755,7 @@ GameObject:
   - component: {fileID: 670565679}
   - component: {fileID: 670565678}
   m_Layer: 5
-  m_Name: MouseText (1)
+  m_Name: Move
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35207,7 +35209,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "YERDEN D\xDC\u015EENLER\u0130 TOPLAMAYI UNUTMA"
+  m_text: Don't forget to pick up the fallen Items
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7028efaf808e08f4abe3df9a0f281c74, type: 2}
   m_sharedMaterial: {fileID: -8114760823456611521, guid: 7028efaf808e08f4abe3df9a0f281c74, type: 2}
@@ -43550,7 +43552,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 972301907}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 18.4, y: 0, z: 10}
+  m_LocalPosition: {x: 19.42, y: 0, z: 10}
   m_LocalScale: {x: 1, y: 24.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -55933,7 +55935,7 @@ GameObject:
   - component: {fileID: 1376924309}
   - component: {fileID: 1376924308}
   m_Layer: 5
-  m_Name: Title (2)
+  m_Name: Full Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56145,7 +56147,7 @@ GameObject:
   - component: {fileID: 1385187277}
   - component: {fileID: 1385187276}
   m_Layer: 5
-  m_Name: Title (3)
+  m_Name: 10SN Shield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56191,7 +56193,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 10SN KALKAN
+  m_text: 10SN Shield
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7028efaf808e08f4abe3df9a0f281c74, type: 2}
   m_sharedMaterial: {fileID: -8114760823456611521, guid: 7028efaf808e08f4abe3df9a0f281c74, type: 2}
@@ -56937,7 +56939,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1411324414}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -18.6, y: 0, z: 10}
+  m_LocalPosition: {x: -19.4, y: 0, z: 10}
   m_LocalScale: {x: 1, y: 28.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -61110,83 +61112,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1571362186}
   m_CullTransparentMesh: 1
---- !u!1 &1572651336
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1572651337}
-  - component: {fileID: 1572651339}
-  - component: {fileID: 1572651338}
-  m_Layer: 5
-  m_Name: Image (2)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!224 &1572651337
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1572651336}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.07625, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1596297940}
-  m_Father: {fileID: 1811411046}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 112, y: 72.97998}
-  m_SizeDelta: {x: 252.96, y: 88.71}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1572651338
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1572651336}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0e85e2fd32b76a5439910fcc949a0f8c, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &1572651339
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1572651336}
-  m_CullTransparentMesh: 1
 --- !u!1 &1583065452
 GameObject:
   m_ObjectHideFlags: 0
@@ -61384,141 +61309,6 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1592402546}
-  m_CullTransparentMesh: 1
---- !u!1 &1596297939
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1596297940}
-  - component: {fileID: 1596297942}
-  - component: {fileID: 1596297941}
-  m_Layer: 5
-  m_Name: NextWaveTMP
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1596297940
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1596297939}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.4401858, y: 1.5499998, z: 1.5499998}
-  m_ConstrainProportionsScale: 1
-  m_Children: []
-  m_Father: {fileID: 1572651337}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.11000001, y: 0.04833452}
-  m_AnchorMax: {x: 0.70618725, y: 0.91}
-  m_AnchoredPosition: {x: -0.9000015, y: 0.40729904}
-  m_SizeDelta: {x: -47.46, y: -26.592}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1596297941
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1596297939}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_text: 'Boss Coming:'
-  m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 7028efaf808e08f4abe3df9a0f281c74, type: 2}
-  m_sharedMaterial: {fileID: -8114760823456611521, guid: 7028efaf808e08f4abe3df9a0f281c74, type: 2}
-  m_fontSharedMaterials: []
-  m_fontMaterial: {fileID: 0}
-  m_fontMaterials: []
-  m_fontColor32:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
-  m_enableVertexGradient: 0
-  m_colorMode: 3
-  m_fontColorGradient:
-    topLeft: {r: 1, g: 1, b: 1, a: 1}
-    topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 0}
-  m_tintAllSprites: 0
-  m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: -1183493901
-  m_overrideHtmlColors: 0
-  m_faceColor:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontSize: 15.65
-  m_fontSizeBase: 36
-  m_fontWeight: 400
-  m_enableAutoSizing: 1
-  m_fontSizeMin: 0
-  m_fontSizeMax: 72
-  m_fontStyle: 16
-  m_HorizontalAlignment: 2
-  m_VerticalAlignment: 4096
-  m_textAlignment: 65535
-  m_characterSpacing: 0
-  m_wordSpacing: 0
-  m_lineSpacing: 0
-  m_lineSpacingMax: 0
-  m_paragraphSpacing: 0
-  m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
-  m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
-  m_linkedTextComponent: {fileID: 0}
-  parentLinkedComponent: {fileID: 0}
-  m_enableKerning: 1
-  m_enableExtraPadding: 0
-  checkPaddingRequired: 0
-  m_isRichText: 1
-  m_parseCtrlCharacters: 1
-  m_isOrthographic: 1
-  m_isCullingEnabled: 0
-  m_horizontalMapping: 0
-  m_verticalMapping: 0
-  m_uvLineOffset: 0
-  m_geometrySortingOrder: 0
-  m_IsTextObjectScaleStatic: 0
-  m_VertexBufferAutoSizeReduction: 0
-  m_useMaxVisibleDescender: 1
-  m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
-  m_isUsingLegacyAnimationComponent: 0
-  m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_baseMaterial: {fileID: 0}
-  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!222 &1596297942
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1596297939}
   m_CullTransparentMesh: 1
 --- !u!1 &1597592653
 GameObject:
@@ -61915,7 +61705,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1604083811}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -18.8, y: 0, z: 10}
+  m_LocalPosition: {x: -19.6, y: 0, z: 10}
   m_LocalScale: {x: 1, y: 24, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -66306,7 +66096,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.73600006, y: 0.187}
   m_AnchorMax: {x: 0.87172663, y: 0.32916895}
-  m_AnchoredPosition: {x: 28.50003, y: 80.00002}
+  m_AnchoredPosition: {x: 28.50003, y: 80.000015}
   m_SizeDelta: {x: 201.53, y: 173.04}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1786989422
@@ -67148,7 +66938,6 @@ RectTransform:
   - {fileID: 1117499849}
   - {fileID: 940788040}
   - {fileID: 1153461504}
-  - {fileID: 1572651337}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -80489,35 +80278,51 @@ MonoBehaviour:
   - {fileID: 1121375656}
   - {fileID: 1102543702}
   - {fileID: 930595912}
-  - {fileID: 1596297941}
   - {fileID: 704943189}
   - {fileID: 644352343}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 1676742422}
   - {fileID: 177704698}
+  - {fileID: 576659708}
+  - {fileID: 670565678}
+  - {fileID: 51079231}
+  - {fileID: 1877090991}
+  - {fileID: 760694334}
+  - {fileID: 72367563}
+  - {fileID: 261736741}
+  - {fileID: 1376924308}
+  - {fileID: 1385187276}
+  - {fileID: 326948303}
+  - {fileID: 335133399}
   _Languages:
   - Sentences:
-    - 'Score:'
-    - Back To Menu
+    - 'SCORE:'
+    - Return To Menu
     - Sound
     - MusIc
     - Resume
-    - Game Paused
+    - Game paused
     - Watch and resume
     - Game Over
-    - Back To Menu
-    - RESTART GAME
+    - Back to menu
+    - PrevIous wave
     - 'FULL LIFE BAR '
     - 'A SHIELD FOR 10 SECONDS '
     - 'FULL BULLET BAR '
-    - 'Next Wave:'
-    - ENEMIES COMING !!
+    - ENEMYS COMING !!
     - "Don't forget to l\u0131ke for more games :)) "
-    - Shoot
+    - 'BEST SCORE:'
+    - 'SCORE:'
     - or
-    - Best Score
-    - Score
+    - "For Mov\u0131ng"
+    - PRESS LEFT MOUSE CLICK TO SHOOT
+    - CONTUNIE
+    - Don't forget to pIck up the fallen Items
+    - CONTUNIE
+    - Full Health
+    - Full Bullet
+    - 10SN ShIeld
+    - +20 Health
+    - +20 Bullet
   - Sentences:
     - 'Skor:'
     - Menuye gerI don
@@ -80528,17 +80333,25 @@ MonoBehaviour:
     - Reklam Izle ve devam et
     - Oyun BIttI
     - Menuye gerI don
-    - Oyunu YenIden Baslat
+    - "\xD6nceki dalga"
     - "Can\u0131n\u0131 ful doldurur"
     - 10 sanIye boyunca kalkan verIr
     - "Kur\u015Fun Barini Doldur"
-    - "S\u0131radaki Dalga: "
     - "D\xFC\u015Fmanlar Geliyor"
     - "Daha fazla oyun i\xE7in be\u011Fenmeyi unutmay\u0131n :))"
-    - "Ate\u015F et"
-    - ya da
     - "Y\xFCksek Skor"
     - Skor
+    - ya da
+    - "Hareket \u0130\xC7\u0130N"
+    - "Ate\u015F etmek i\xE7in sol fareye bas"
+    - Devam et
+    - "YERDEN D\xDC\u015EENLER\u0130 TOPLAMAYI UNUTMA"
+    - Devam Et
+    - "Can\u0131 fuller"
+    - "Kur\u015Funu fuller"
+    - 10SN Kalkan
+    - +20 Can
+    - "+20 Kur\u015Fun"
   - Sentences:
     - "\u0421\u0427\u0401\u0422:"
     - "\u043D\u0430\u0437\u0430\u0434 \u043A \u043C\u0435\u043D\u044E"
@@ -80549,20 +80362,29 @@ MonoBehaviour:
     - "\u041F\u043E\u0441\u043C\u043E\u0442\u0440\u0435\u0442\u044C \u0438 \u043F\u0440\u043E\u0434\u043E\u043B\u0436\u0438\u0442\u044C"
     - "\u0418\u0433\u0440\u0430 \u0437\u0430\u043A\u043E\u043D\u0447\u0435\u043D\u0430"
     - "\u043D\u0430\u0437\u0430\u0434 \u043A \u043C\u0435\u043D\u044E"
-    - "\u041F\u0415\u0420\u0415\u0417\u0410\u041F\u0423\u0421\u0422\u0418\u0422\u042C
-      \u0418\u0413\u0420\u0423"
+    - "\u041F\u0440\u0435\u0434\u044B\u0434\u0443\u0449\u0430\u044F \u0432\u043E\u043B\u043D\u0430"
     - "\u041F\u041E\u041B\u041D\u0410\u042F \u0416\u0418\u0417\u041D\u042C \u0411\u0410\u0420"
     - "\u0429\u0418\u0422 \u041D\u0410 10 \u0421\u0415\u041A\u0423\u041D\u0414"
     - "\u041F\u041E\u041B\u041D\u0410\u042F \u041F\u0423\u041B\u042F"
-    - "\u0421\u043B\u0435\u0434\u0443\u044E\u0449\u0430\u044F \u0432\u043E\u043B\u043D\u0430:"
     - "\u0412\u0420\u0410\u0413\u0418 \u041F\u0420\u0418\u0425\u041E\u0414\u042F\u0422!!"
     - "\u041D\u0435 \u0437\u0430\u0431\u0443\u0434\u044C\u0442\u0435 \u043F\u043E\u0441\u0442\u0430\u0432\u0438\u0442\u044C
       \u043B\u0430\u0439\u043A, \u0447\u0442\u043E\u0431\u044B \u0431\u044B\u043B\u043E
       \u0431\u043E\u043B\u044C\u0448\u0435 \u0438\u0433\u0440 :))"
-    - "\u0441\u0442\u0440\u0435\u043B\u044F\u0442\u044C"
-    - "\u0438\u043B\u0438"
     - "\u041B\u0443\u0447\u0448\u0438\u0439 \u0440\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442"
     - "\u0421\u0447\u0435\u0442"
+    - "\u0438\u043B\u0438"
+    - "\u0434\u0432\u0438\u0433\u0430\u0442\u044C\u0441\u044F"
+    - "\u041D\u0410\u0416\u041C\u0418\u0422\u0415 \u041B\u0415\u0412\u0423\u042E
+      \u041C\u042B\u0428\u042C, \u0427\u0422\u041E\u0411\u042B \u0421\u0422\u0420\u0415\u041B\u042F\u0422\u042C"
+    - "\u0413\u0440\u0430\u0444\u0441\u0442\u0432\u043E"
+    - "\u041D\u0435 \u0437\u0430\u0431\u0443\u0434\u044C \u043F\u043E\u0434\u043E\u0431\u0440\u0430\u0442\u044C
+      \u0443\u043F\u0430\u0432\u0448\u0435\u0435"
+    - "\u041F\u0420\u041E\u0414\u041E\u041B\u0416\u0410\u0422\u042C"
+    - "\u041F\u043E\u043B\u043D\u043E\u0435 \u0437\u0434\u043E\u0440\u043E\u0432\u044C\u0435"
+    - "\u041F\u043E\u043B\u043D\u0430\u044F \u043F\u0443\u043B\u044F"
+    - "\u0429\u0418\u0422 10SN"
+    - "+20 \u0417\u0434\u043E\u0440\u043E\u0432\u044C\u0435"
+    - "+20 \u041F\u0443\u043B\u044F"
   - Sentences:
     - 'PUNKTZAHL:'
     - "zur\xFCck zum Men\xFC"
@@ -80573,17 +80395,25 @@ MonoBehaviour:
     - Anschauen und fortfahren
     - Spiel vorbei
     - "zur\xFCck zum Men\xFC"
-    - SPIEL NEUSTARTEN
+    - Vorherige Welle
     - FULL LIFE BAR
     - "EIN SCHILD F\xDCR 10 SEKUNDEN"
     - "VOLLST\xC4NDIGE BULLET-BAR"
-    - "N\xE4chste Welle:"
     - FEINDE KOMMEN!!
     - Vergessen Sie nicht, weitere Spiele zu liken :))
-    - "schie\xDFen"
-    - oder
     - Bestes Ergebnis
     - Punktzahl
+    - oder
+    - bewegen
+    - "DR\xDCCKEN SIE DEN LINKEN MAUSKLICK, UM ZU SCHIESSEN"
+    - Countunie
+    - Vergessen Sie nicht, die Gefallenen aufzuheben
+    - WEITERMACHEN
+    - Volle Gesundheit
+    - Volle Kugel
+    - "10SN SH\u0130ELD"
+    - +20 Gesundheit
+    - +20 Kugel
   - Sentences:
     - 'SCORE:'
     - retour au menu
@@ -80594,17 +80424,25 @@ MonoBehaviour:
     - Regarder et reprendre
     - "Jeu termin\xE9"
     - retour au menu
-    - RECOMMENCER LE JEU
+    - "Vague pr\xE9c\xE9dente"
     - "BARRE DE VIE COMPL\xC8TE"
     - UN BOUCLIER PENDANT 10 SECONDES
     - "BARRE DE BALLES COMPL\xC8TE"
-    - 'Prochaine vague:'
     - "ENNEMIS \xC0 VENIR !!"
     - N'oubliez pas d'aimer pour plus de jeux :))
-    - tirer
-    - ou
     - Meilleur score
     - Score
+    - ou
+    - "se d\xE9placer"
+    - APPUYEZ SUR LE CLIQUE GAUCHE DE LA SOURIS POUR TIRER
+    - "Comt\xE9"
+    - N'oubliez pas de ramasser les morts
+    - "\u041F\u0420\u041E\u0414\u041E\u041B\u0416\u0410\u0422\u042C"
+    - "Pleine sant\xE9"
+    - "Balle compl\xE8te"
+    - BOUCLIER 10SN
+    - "+20 Sant\xE9"
+    - +20 Balle
 --- !u!4 &2009908393
 Transform:
   m_ObjectHideFlags: 0
@@ -82431,7 +82269,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 924518918659309609, guid: ae15d54525966d74182a9af0a79123ec, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3969488291045265975, guid: ae15d54525966d74182a9af0a79123ec, type: 3}
       propertyPath: m_RootOrder
@@ -82476,6 +82314,10 @@ PrefabInstance:
     - target: {fileID: 3969488291045265975, guid: ae15d54525966d74182a9af0a79123ec, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4916529391267290296, guid: ae15d54525966d74182a9af0a79123ec, type: 3}
+      propertyPath: _CANT
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4916529391267290296, guid: ae15d54525966d74182a9af0a79123ec, type: 3}
       propertyPath: _TargetIndex

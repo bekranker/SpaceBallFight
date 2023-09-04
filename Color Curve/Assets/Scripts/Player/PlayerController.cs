@@ -65,6 +65,8 @@ public class PlayerController : MonoBehaviour
     private float _inputX, _inputY;
     Vector3 _go;
     public bool CanDropBullet, CanDropHealth;
+    
+    
     private void Start()
     {
         _camera = Camera.main;

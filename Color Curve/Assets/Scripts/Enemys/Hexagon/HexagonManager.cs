@@ -9,11 +9,15 @@ public class HexagonManager : EnemyMovementAbstract
     [SerializeField] private Transform BodyOne, BodyTwo;
     [SerializeField] EnemyManager _EnemyManager;
 
-    private Transform _t;
+    private Transform _t, _playerT;
     public override void OnStart(AbstractmovementManager abstractmovementManager)
     {
         _t = transform;
         _PlayerController = FindObjectOfType<PlayerController>();
+        if (_PlayerController != null)
+        {
+            _playerT = _PlayerController.transform;
+        }
         LookToPlayer();
     }
     public override void OnUpdate(AbstractmovementManager abstractmovementManager) 
@@ -22,14 +26,15 @@ public class HexagonManager : EnemyMovementAbstract
         TurnBody();
     }
     public override void OnLateUpdate(AbstractmovementManager abstractmovementManager) { }
-    private void LookToPlayer() => transform.up = new Vector3(_PlayerController.transform.position.x, _PlayerController.transform.position.y, 0) - new Vector3(_t.position.x, _t.position.y, 0);
+    private void LookToPlayer() => _t.up = new Vector3(_playerT.position.x, _playerT.position.y, 0) - new Vector3(_t.position.x, _t.position.y, 0);
     public override void TriggerEnter2D(AbstractmovementManager abstractmovementManager, Collider2D collision)
     {
         BounceFromEdge();
     }
     private void BounceFromEdge()
     {
-        LookToPlayer();
+        if(_playerT != null)
+            LookToPlayer();
     }
     private void TurnBody()
     {

@@ -76,6 +76,7 @@ public class BossManager : MonoBehaviour
         _AudioSource.clip = _NormalBGMusic;
         _AudioSource.Play();
         _CameraFollow.enabled = true;
+        PlayerPrefs.SetInt("WaveIndex", _WaveManager.WaveIndex);
         _WaveManager.WaveIndex++;
         _PlayerController.SetBulletSliderBeReady(_WaveManager._WaveData[_WaveManager.WaveIndex].MaxBulletSize);
         _PlayerController.CurrentHealth = _PlayerController.MaxHealth;

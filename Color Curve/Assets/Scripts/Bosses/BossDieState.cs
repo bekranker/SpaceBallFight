@@ -62,8 +62,12 @@ public class BossDieState : MonoBehaviour
         }
         if (_GreenUnlocked)
         {
-            Canvas  tutorialCanvs = Instantiate(_TutorialCanvas, _t.position, Quaternion.identity).transform.GetChild(0).GetComponent<Canvas>();
-            tutorialCanvs.worldCamera = Camera.main;
+            if (!PlayerPrefs.HasKey("GreenUnlocked"))
+            {
+                PlayerPrefs.SetInt("GreenUnlocked", 1);
+                Canvas  tutorialCanvs = Instantiate(_TutorialCanvas, _t.position, Quaternion.identity).transform.GetChild(0).GetComponent<Canvas>();
+                tutorialCanvs.worldCamera = Camera.main;
+            }
             Canvas instiatedCanvas = Instantiate(_UnlockedCanvas, _t.position, Quaternion.identity).GetComponent<Canvas>();
             instiatedCanvas.worldCamera = Camera.main;
             instiatedCanvas.transform.GetChild(0).GetChild(0).GetComponent<Animator>().SetTrigger("Unlocked");
@@ -71,8 +75,12 @@ public class BossDieState : MonoBehaviour
         }
         if (_RedSkillUnlocked)
         {
-            Canvas tutorialCanvs = Instantiate(_TutorialCanvas, _t.position, Quaternion.identity).transform.GetChild(0).GetComponent<Canvas>();
-            tutorialCanvs.worldCamera = Camera.main;
+            if (!PlayerPrefs.HasKey("RedSkillUnlocked"))
+            {
+                PlayerPrefs.SetInt("RedSkillUnlocked", 1);
+                Canvas tutorialCanvs = Instantiate(_TutorialCanvas, _t.position, Quaternion.identity).transform.GetChild(0).GetComponent<Canvas>();
+                tutorialCanvs.worldCamera = Camera.main;
+            }
             Canvas instiatedCanvas = Instantiate(_UnlockedCanvas, _t.position, Quaternion.identity).GetComponent<Canvas>();
             instiatedCanvas.worldCamera = Camera.main;
             instiatedCanvas.transform.GetChild(0).GetChild(0).GetComponent<Animator>().SetTrigger("Unlocked");

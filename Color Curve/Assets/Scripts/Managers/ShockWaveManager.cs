@@ -9,6 +9,13 @@ public class ShockWaveManager : MonoBehaviour
     [SerializeField, Range(0.05f, 3)] private float _ShockWaveSpeed;
     float lerpedAmount;
     float elapsedTime = 0f;
+
+
+    private void Start()
+    {
+        Material.SetFloat(keyID, 1);
+    }
+
     public void CallShockWave()
     {
         StartCoroutine(CallShockWaveIE());

@@ -21,13 +21,14 @@ public class PlayerAttack : MonoBehaviour
     private WaitForSeconds _forSound = new WaitForSeconds(.3f);
     private int _attackCount;
     private int i, _forCount;
-
+    private bool _can;
 
     private void Start()
     {
         FirstShootRange = ShootRange;
         _canAttackSpecial = false;
         _canAttackNormal = true;
+        _can = true;
         _t = transform;
         _shootCounter = ShootRange;
     }
@@ -100,27 +101,34 @@ public class PlayerAttack : MonoBehaviour
     private void RedAttack()
     {
         if (!CanUseFire) return;
+        if (!_can) return;
         _canAttackNormal = false;
         _canAttackSpecial = true;
         StartCoroutine(SpawnBullet(_FireBullet));
+        _can = false;
+
     }
     private void BlueAttack()
     {
         if (!CanUseFreeze) return;
+        if (!_can) return;
         _canAttackNormal = false;
         _canAttackSpecial = true;
         StartCoroutine(SpawnBullet(_FreezeBullet));
+        _can = false;
+
     }
     private void GreenAttack()
     {
         if (!CanUseToxic) return;
+        if (!_can) return;
         _ToxicBullet.SetActive(true);
         _PlayerController.ChangeValueOfCollectedSkillPoints();
         _ToxicBullet.transform.DOScale(10 * Vector2.one, .5f).SetUpdate(true).OnComplete(() => 
         {
             StartCoroutine(ToxicDissolve());
         });
-        
+        _can = false;
     }
     private IEnumerator ToxicDissolve()
     {
@@ -131,6 +139,7 @@ public class PlayerAttack : MonoBehaviour
             _PlayerController.CanChangestate = true;
             _canAttackNormal = true;
             _canAttackSpecial = false;
+            _can = true;
         });
     }
     private IEnumerator SpawnBullet(GameObject bullet)
@@ -162,6 +171,7 @@ public class PlayerAttack : MonoBehaviour
                             break;
                     }
                     _PlayerController.CanChangestate = true;
+                    _can = true;
                     _attackCount = 0;
                     _forCount = 0;
                     i = 0;

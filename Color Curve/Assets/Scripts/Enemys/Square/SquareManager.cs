@@ -18,7 +18,10 @@ public class SquareManager : EnemyMovementAbstract
 
     public override void OnUpdate(AbstractmovementManager abstractmovementManager)
     {
-        LookToPlayer();
+        if (_playerT != null)
+        {
+            LookToPlayer();
+        }
     }
 
     public override void OnStart(AbstractmovementManager abstractmovementManager)
@@ -28,7 +31,8 @@ public class SquareManager : EnemyMovementAbstract
         _canDash = true;
         _canFollow = true;
         _PlayerController = FindObjectOfType<PlayerController>();
-        _playerT = _PlayerController.transform;
+        if(_PlayerController != null)
+            _playerT = _PlayerController.transform;
     }
 
     public override void OnLateUpdate(AbstractmovementManager abstractmovementManager)
@@ -39,6 +43,7 @@ public class SquareManager : EnemyMovementAbstract
     private void LookToPlayer() => _t.up = _playerT.position - _t.position;
     private void FollowCurrentPlayer()
     {
+        if (_playerT == null) return;
         if (Vector2.Distance(_t.position, _playerT.position) > 5 && _canFollow)
         {
             TurnBody();
@@ -67,6 +72,7 @@ public class SquareManager : EnemyMovementAbstract
 
     private IEnumerator dashToPlayer()
     {
+        if (_playerT == null) yield break;
         yield return _delay;
         if (_canD)
         {
