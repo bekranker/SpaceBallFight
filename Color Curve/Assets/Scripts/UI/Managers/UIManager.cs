@@ -15,6 +15,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private ButtonClickManager _AdsHealthButton, _AdsShieldButton, _AdsBulletButton, _AdsWatchAndResume;
     [SerializeField] private GameManager _GameManager;
     [SerializeField] private WaveManager _WaveManager;
+    [SerializeField] private List<ButtonClickManager> _No;
+    [SerializeField] private ButtonClickManager _YesBullet, _YesHealth, _YesShield;
+    [SerializeField] private List<GameObject> _AdPAnels;
     public bool CanClick;
     [SerializeField] private Animator _CutScene;
 
@@ -33,8 +36,27 @@ public class UIManager : MonoBehaviour
         _AdsBulletButton.DoSomething += SetBulletAds;
         _AdsShieldButton.DoSomething += SetShieldAds;
         _AdsHealthButton.DoSomething += SetHealthAds;
+
+        _YesBullet.DoSomething += SetBulletAds;
+        _YesHealth.DoSomething += SetHealthAds;
+        _YesShield.DoSomething += SetShieldAds;
+
+        _No?.ForEach((no) =>
+        {
+            no.DoSomething += CloseAdPanels;
+        });
     }
-    
+
+    private void CloseAdPanels()
+    {
+        _AdPAnels?.ForEach((panel) =>
+        {
+            panel.SetActive(false);
+        });
+        Time.timeScale = 1;
+        CanClick = true;
+    }
+
     #region AdsArea
     private void SetWatchAndResumeAds()
     {
@@ -49,32 +71,43 @@ public class UIManager : MonoBehaviour
     }
     public void SetHealthAds()
     {
-        if (!CanClick) return;
-        CrazyAds.Instance.beginAdBreakRewarded(HealthReward, () => print("add didnt be loaded"));
+        CloseAdPanels();
+        CrazyAds.Instance.beginAdBreakRewarded(HealthReward, () => CanClick = true);
+        CanClick = false;
     }
     private void HealthReward()
     {
+        Time.timeScale = 1;
         _PlayerController.CurrentHealth = _PlayerController.MaxHealth;
         _PlayerController.PlayerHealthSldier();
+        CanClick = true;
+
     }
     public void SetShieldAds()
     {
-        if (!CanClick) return;
-        CrazyAds.Instance.beginAdBreakRewarded(ShieldReward, ()=> print("add didnt be loaded"));
+        CloseAdPanels();
+        CrazyAds.Instance.beginAdBreakRewarded(ShieldReward, () => CanClick = true);
+        CanClick = false;
     }
     private void ShieldReward()
     {
+        Time.timeScale = 1;
         StartCoroutine(_PlayerController.GetAShield());
+        CanClick = true;
+
     }
     public void SetBulletAds()
     {
-        if (!CanClick) return;
-        CrazyAds.Instance.beginAdBreakRewarded(BulletReward, () => print("add didnt be loaded"));
+        CloseAdPanels();
+        CrazyAds.Instance.beginAdBreakRewarded(BulletReward, () => CanClick = true);
+        CanClick = false;
     }
     private void BulletReward()
     {
+        Time.timeScale = 1;
         _PlayerController.BulletCount = _PlayerController.MaXbulletCount;
         _PlayerController.BulletSlider();
+        CanClick = true;
     }
     #endregion
 

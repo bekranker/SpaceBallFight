@@ -17,6 +17,7 @@ public class PlayerDedection : MonoBehaviour
     [SerializeField] public Text _RedSliderTMP, _GreenSliderTMP, _BlueSliderTMP;
     [SerializeField] public Transform _RedSliderT, _GreenSliderT, _BlueSliderT;
     [SerializeField] private UIManager _UIManager;
+    [SerializeField] private GameObject _BulletAdPanel, _HealthAdPanel, _ShieldAdPanel;
     public bool CanDedect;
     private WaitForSeconds WaitForSeconds = new WaitForSeconds(1);
     private Transform _t;
@@ -119,17 +120,23 @@ public class PlayerDedection : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("AdBullet"))
         {
-            _UIManager.SetBulletAds();
+            _BulletAdPanel.SetActive(true);
+            Time.timeScale = 0;
+            _UIManager.CanClick = false;
             Destroy(collision.gameObject);
         }
         if (collision.gameObject.CompareTag("AdHelath"))
         {
-            _UIManager.SetHealthAds();
+            _HealthAdPanel.SetActive(true);
+            Time.timeScale = 0;
+            _UIManager.CanClick = false;
             Destroy(collision.gameObject);
         }
         if (collision.gameObject.CompareTag("AdShield"))
         {
-            _UIManager.SetShieldAds();
+            _ShieldAdPanel.SetActive(true);
+            Time.timeScale = 0;
+            _UIManager.CanClick = false;
             Destroy(collision.gameObject);
         }
     }
