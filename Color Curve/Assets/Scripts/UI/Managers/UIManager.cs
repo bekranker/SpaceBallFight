@@ -113,7 +113,6 @@ public class UIManager : MonoBehaviour
 
     private void RestartTheGame()
     {
-        if (!CanClick) return;
         Time.timeScale = 1;
         StartCoroutine(RestartGameCallBack());
     }
@@ -126,7 +125,6 @@ public class UIManager : MonoBehaviour
     }
     public void ResumeTheGame()
     {
-        if (!CanClick) return;
         Time.timeScale = 1;
         _Panel.SetActive(false);
     }

@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using CrazyGames;
-using Unity.VisualScripting;
 
 public class BossManager : MonoBehaviour
 {
@@ -25,7 +24,7 @@ public class BossManager : MonoBehaviour
     [SerializeField] public Transform _BossSliderT, _BossSliderText;
     [SerializeField] private List<GameObject> _Helpers;
     [SerializeField] private List<Transform> _HelpersT;
-    private int _bossCount = 0;
+    [SerializeField] private UIManager _UIManager;
     //------------------------Cut------------------------
 
     private WaitForSeconds _sleep = new WaitForSeconds(5);
@@ -59,16 +58,16 @@ public class BossManager : MonoBehaviour
         Audio.PlayAudio("BossBegin", .2f);
         _AudioSource.clip = _BossFight;
         _AudioSource.Play();
-        Instantiate(_BossBeginParticles[_bossCount], _BossSpawnPoint.position, Quaternion.identity);
+        Instantiate(_BossBeginParticles[_WaveManager.WaveIndex], _BossSpawnPoint.position, Quaternion.identity);
         _mainCamera.DOShakePosition(3, 2, 2, fadeOut: true);
         yield return _sleep;
         Audio.PlayAudio("BlueBossegin", .1f);
-        _bossCount++;
         _mainCamera.DOShakePosition(.25f, 5, 10, fadeOut: true, randomnessMode: ShakeRandomnessMode.Harmonic);
         _SpawnManager.SpawnBoss();
     }
     private IEnumerator EndBossFightIE()
     {
+        _UIManager.CanClick = false;
         StartCoroutine(GoSlider());
         CrazyEvents.Instance.HappyTime();
         yield return _sleep;

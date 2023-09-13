@@ -33,8 +33,10 @@ public class GameManager : MonoBehaviour
         _ShockWaveManager.CallShockWave();
         Audio.PlayAudio("EnemysComing", .5f);
         _Animatior.SetTrigger("WaveCompleted");
+        _UIManager.CanClick = false;
         Time.timeScale = 0;
         yield return _sleepTime;
+        _UIManager.CanClick = true;
         Time.timeScale = 1;
     }
     public void DeadTime()

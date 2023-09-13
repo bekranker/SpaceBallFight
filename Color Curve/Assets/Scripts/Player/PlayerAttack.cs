@@ -96,12 +96,12 @@ public class PlayerAttack : MonoBehaviour
             default:
                 break;
         }
-        _PlayerController.CanChangestate = false;
     }
     private void RedAttack()
     {
         if (!CanUseFire) return;
         if (!_can) return;
+        _PlayerController.CanChangestate = false;
         _canAttackNormal = false;
         _canAttackSpecial = true;
         StartCoroutine(SpawnBullet(_FireBullet));
@@ -112,6 +112,7 @@ public class PlayerAttack : MonoBehaviour
     {
         if (!CanUseFreeze) return;
         if (!_can) return;
+        _PlayerController.CanChangestate = false;
         _canAttackNormal = false;
         _canAttackSpecial = true;
         StartCoroutine(SpawnBullet(_FreezeBullet));
@@ -122,6 +123,7 @@ public class PlayerAttack : MonoBehaviour
     {
         if (!CanUseToxic) return;
         if (!_can) return;
+        _PlayerController.CanChangestate = true;
         _ToxicBullet.SetActive(true);
         _PlayerController.ChangeValueOfCollectedSkillPoints();
         _ToxicBullet.transform.DOScale(10 * Vector2.one, .5f).SetUpdate(true).OnComplete(() => 
@@ -136,7 +138,6 @@ public class PlayerAttack : MonoBehaviour
         _ToxicBullet.transform.DOScale(0 * Vector2.one, .5f).SetUpdate(true).OnComplete(() =>
         {
             _ToxicBullet.SetActive(false);
-            _PlayerController.CanChangestate = true;
             _canAttackNormal = true;
             _canAttackSpecial = false;
             _can = true;
